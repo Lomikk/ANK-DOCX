@@ -1,0 +1,22 @@
+[
+  {
+    "file": "quarto/chapters/main.qmd",
+    "sha256": "4223CC292E01EC9A2404949DF26144ABC1FFD7E14D4A4E7B921333811D221402"
+  },
+  {
+    "file": "quarto/_extensions/academic/academic.docx",
+    "sha256": "A2488CA97115F93149F11075A241FEFFD2A82A881ACA252B978275E8F15C7A3F"
+  },
+  {
+    "file": "quarto/_extensions/academic/academic-monochrome.docx",
+    "sha256": "F042AE104F7DE284261E6D2BF210435B2871FE496FFE728660FE4E3BB3314AFF"
+  },
+  {
+    "file": "build/formatting-qa/reference-example.docx",
+    "sha256": "B8BEB0CCEF2EC8537BE0EB26AF5BCB1D7BF564FE0D75A2928D5302F9B51D6F37"
+  },
+  {
+    "file": "output/pdf/formatting-consistency.pdf",
+    "sha256": "63EA461AF70E4D63C118C6115DF5B5471441B1CAF3E39E6B23CA155104E0C201"
+  }
+]

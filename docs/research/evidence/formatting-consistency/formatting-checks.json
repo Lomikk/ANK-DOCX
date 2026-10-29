@@ -1,0 +1,19 @@
+{
+  "file": "build/formatting-qa/reference-example.docx",
+  "tables": 4,
+  "table_math_runs": 235,
+  "table_math_objects": 61,
+  "figure_captions": 4,
+  "numbered_equations": 3,
+  "checks": {
+    "all_table_text_11pt_in_word": true,
+    "all_table_math_11pt_in_word": true,
+    "table_style_grid_six_edges": true,
+    "figure_captions_inherit_center": true,
+    "figure_style_center": true,
+    "equations_have_center_and_right_tabs": true,
+    "hyperlink_styles_black_no_theme": true,
+    "no_direct_blue_link_color": true
+  },
+  "passed": true
+}

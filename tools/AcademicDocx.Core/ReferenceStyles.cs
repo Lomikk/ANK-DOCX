@@ -9,6 +9,8 @@ namespace AcademicDocx.Core;
 // reference using the SDK; it does not implement a writer or normative engine.
 public static class ReferenceStyles
 {
+    public const string TextColor = "000000";
+    public const string TableFontSize = "22";
     private static string Twips(double mm) => Math.Round(mm * 1440 / 25.4).ToString(CultureInfo.InvariantCulture);
 
     private static T Set<T>(OpenXmlCompositeElement parent, T child) where T : OpenXmlElement
@@ -28,7 +30,7 @@ public static class ReferenceStyles
         fonts.Ascii = fonts.HighAnsi = fonts.EastAsia = fonts.ComplexScript = "Times New Roman";
         Set(properties, fonts);
         var color = properties.GetFirstChild<W.Color>() ?? new W.Color();
-        color.Val = "000000";
+        color.Val = TextColor;
         Set(properties, color);
         Set(properties, new W.FontSize { Val = "28" });
         Set(properties, new W.FontSizeComplexScript { Val = "28" });
@@ -101,7 +103,7 @@ public static class ReferenceStyles
 
         foreach (var name in new[] { "Normal", "Body Text", "First Paragraph", "Bibliography" }) Style(name);
         Style("Compact", W.JustificationValues.Left, indent: 0);
-        Style("Formula", W.JustificationValues.Left, indent: 0, before: 17, after: 17, keepLines: true);
+        Style("Formula", W.JustificationValues.Center, indent: 0, before: 17, after: 17, keepLines: true);
         Style("Formula Definitions", W.JustificationValues.Left, indent: 0, keepLines: true);
         for (var level = 1; level <= 4; level++)
         {
@@ -161,6 +163,47 @@ public static class ReferenceStyles
         foreach (var name in new[] { "Caption", "Image Caption", "Table Caption", "Figure", "Captioned Figure" })
             Style(name, name == "Table Caption" ? W.JustificationValues.Left : W.JustificationValues.Center,
                 indent: 0, keepNext: name is "Table Caption" or "Figure" or "Captioned Figure", keepLines: true);
+        // Character styles inherit the surrounding size, including 11 pt tables.
+        foreach (var name in new[] { "Hyperlink", "FollowedHyperlink" })
+        {
+            var link = styles.Elements<W.Style>().FirstOrDefault(s =>
+                s.StyleId == name || string.Equals(s.StyleName?.Val, name, StringComparison.OrdinalIgnoreCase));
+            if (link is null)
+            {
+                link = new W.Style { Type = W.StyleValues.Character, StyleId = name,
+                    StyleName = new W.StyleName { Val = name } };
+                styles.Append(link);
+            }
+            var properties = link.StyleRunProperties ??= new W.StyleRunProperties();
+            properties.RemoveAllChildren<W.FontSize>();
+            properties.RemoveAllChildren<W.FontSizeComplexScript>();
+            Set(properties, new W.Color { Val = TextColor });
+        }
+        // Pandoc Markdown tables use this public reference-doc table style.
+        // Flextable retains its explicit cell formatting on the same foundation.
+        var tableStyle = styles.Elements<W.Style>().FirstOrDefault(s =>
+            s.Type?.Value == W.StyleValues.Table &&
+            (s.StyleId == "Table" || string.Equals(s.StyleName?.Val, "Table", StringComparison.OrdinalIgnoreCase)));
+        if (tableStyle is null)
+        {
+            tableStyle = new W.Style { Type = W.StyleValues.Table, StyleId = "Table",
+                StyleName = new W.StyleName { Val = "Table" } };
+            styles.Append(tableStyle);
+        }
+        var tableRun = tableStyle.StyleRunProperties ??= new W.StyleRunProperties();
+        Font(tableRun);
+        Set(tableRun, new W.FontSize { Val = TableFontSize });
+        Set(tableRun, new W.FontSizeComplexScript { Val = TableFontSize });
+        var tableProperties = tableStyle.StyleTableProperties ??= new W.StyleTableProperties();
+        Set(tableProperties, new W.TableBorders(
+            new W.TopBorder { Val = W.BorderValues.Single, Size = 4, Color = TextColor },
+            new W.LeftBorder { Val = W.BorderValues.Single, Size = 4, Color = TextColor },
+            new W.BottomBorder { Val = W.BorderValues.Single, Size = 4, Color = TextColor },
+            new W.RightBorder { Val = W.BorderValues.Single, Size = 4, Color = TextColor },
+            new W.InsideHorizontalBorder { Val = W.BorderValues.Single, Size = 4, Color = TextColor },
+            new W.InsideVerticalBorder { Val = W.BorderValues.Single, Size = 4, Color = TextColor }));
+        foreach (var condition in tableStyle.Elements<W.TableStyleProperties>())
+            condition.TableStyleConditionalFormattingTableCellProperties?.RemoveAllChildren<W.TableCellBorders>();
         Style("TOC Heading", W.JustificationValues.Center, indent: 0, bold: true, caps: true, after: 14, keepNext: true, keepLines: true);
         var defaults = styles.DocDefaults ??= new W.DocDefaults();
         var runDefaults = defaults.RunPropertiesDefault ??= new W.RunPropertiesDefault();

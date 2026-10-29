@@ -308,6 +308,8 @@ utils::write.csv(results, file.path(asset_dir, "results.csv"), row.names = FALSE
 
 Таблица [-@tbl-long-results] рассчитана той же функцией `calculate()` для аргументов от 1 до `r parameters$n_long`. В исходнике это одна таблица. Повторяемую шапку, разбиение по страницам Word и подписи продолжения/окончания формирует конвейер сборки.
 
+Общий итог расширенного расчёта составляет **`r fmt_number(sum(long_results$h))`**. Строки, итог и примечание задаются один раз независимо от числа физических страниц таблицы.
+
 ```{r}
 #| label: tbl-long-results
 #| tbl-cap: "Расширенный расчёт квадратичного и линейного показателей"
@@ -336,5 +338,3 @@ long_ft <- flextable::colformat_int(long_ft, j = c("x", "f", "g", "h"), big.mark
 long_ft <- flextable::align(long_ft, j = c("x", "f", "g", "h"), align = "right", part = "body")
 long_ft
 ```
-
-Общий итог расширенного расчёта составляет **`r fmt_number(sum(long_results$h))`**. Строки, итог и примечание задаются один раз независимо от числа физических страниц таблицы.

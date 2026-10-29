@@ -1,0 +1,1076 @@
+{
+  "passed": true,
+  "checks": {
+    "native_math_recognized": true,
+    "table_base_font_size_11pt": true,
+    "native_toc_recognized": true,
+    "page_count_current": true,
+    "cell_math_edited_in_word": true,
+    "table_number_updated": true,
+    "table_references_updated": true,
+    "heading_updated_in_toc": true,
+    "saved_closed_reopened": true,
+    "sdk_schema_valid": true
+  },
+  "skipped": [
+    "Native Word bibliography sources: the document uses Citeproc bibliography entries"
+  ],
+  "snapshots": [
+    {
+      "label": "opened",
+      "fields": [
+        {
+          "code": "NUMPAGES",
+          "result": "14"
+        },
+        {
+          "code": "TOC \\o \u00221-3\u0022 \\h \\z \\u",
+          "result": "Введение\t5\r1 Математическая модель\t5\r1.1 Определение показателей\t5\r1.1.1 Проверка модели\t6\r2 Табличное представление\t6\r3 Графическое представление\t7\r3.1 Линии и маркеры\t7\r3.2 Штриховки\t7\r3.3 Поверхность при изменении параметра\t8\r4 Воспроизводимость и программный код\t9\rЗаключение\t10\rСписок литературы\t11\rПРИЛОЖЕНИЕ А Вычислительный код и исходные параметры\t12\rОтдельные файлы результатов\t12\rПРИЛОЖЕНИЕ Б Расширенный табличный расчёт\t13"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203063\u0022",
+          "result": "Введение\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244203063 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203064\u0022",
+          "result": "1 Математическая модель\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244203064 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203065\u0022",
+          "result": "1.1 Определение показателей\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244203065 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203066\u0022",
+          "result": "1.1.1 Проверка модели\t6"
+        },
+        {
+          "code": "PAGEREF _Toc244203066 \\h",
+          "result": "6"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203067\u0022",
+          "result": "2 Табличное представление\t6"
+        },
+        {
+          "code": "PAGEREF _Toc244203067 \\h",
+          "result": "6"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203068\u0022",
+          "result": "3 Графическое представление\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244203068 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203069\u0022",
+          "result": "3.1 Линии и маркеры\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244203069 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203070\u0022",
+          "result": "3.2 Штриховки\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244203070 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203071\u0022",
+          "result": "3.3 Поверхность при изменении параметра\t8"
+        },
+        {
+          "code": "PAGEREF _Toc244203071 \\h",
+          "result": "8"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203072\u0022",
+          "result": "4 Воспроизводимость и программный код\t9"
+        },
+        {
+          "code": "PAGEREF _Toc244203072 \\h",
+          "result": "9"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203073\u0022",
+          "result": "Заключение\t10"
+        },
+        {
+          "code": "PAGEREF _Toc244203073 \\h",
+          "result": "10"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203074\u0022",
+          "result": "Список литературы\t11"
+        },
+        {
+          "code": "PAGEREF _Toc244203074 \\h",
+          "result": "11"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203075\u0022",
+          "result": "ПРИЛОЖЕНИЕ А Вычислительный код и исходные параметры\t12"
+        },
+        {
+          "code": "PAGEREF _Toc244203075 \\h",
+          "result": "12"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203076\u0022",
+          "result": "Отдельные файлы результатов\t12"
+        },
+        {
+          "code": "PAGEREF _Toc244203076 \\h",
+          "result": "12"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203077\u0022",
+          "result": "ПРИЛОЖЕНИЕ Б Расширенный табличный расчёт\t13"
+        },
+        {
+          "code": "PAGEREF _Toc244203077 \\h",
+          "result": "13"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-knuth1984\u0022 \\h",
+          "result": "1, с. 97"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-wickham2016\u0022 \\h",
+          "result": "2"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-knuth1984\u0022 \\h",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-wickham2016\u0022 \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF sec_model \\n \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_code\u0022 \\h",
+          "result": "приложение А"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_data\u0022 \\h",
+          "result": "приложение Б"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF sec_reproducibility \\n \\h",
+          "result": "4"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022note-rounding\u0022 \\h",
+          "result": "примечание"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_patterns \\h",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "REF fig_surface_wire \\h",
+          "result": "3"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "REF fig_surface_shaded \\h",
+          "result": "4"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "4"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-validation\u0022 \\h",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_code\u0022 \\h",
+          "result": "приложение А"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-consumer\u0022 \\h",
+          "result": "2"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-quarto-crossref\u0022 \\h",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_patterns \\h",
+          "result": "2"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_data\u0022 \\h",
+          "result": "приложение Б"
+        },
+        {
+          "code": "HYPERLINK \u0022https://doi.org/10.1093/comjnl/27.2.97\u0022 \\h",
+          "result": "Literate Programming"
+        },
+        {
+          "code": "HYPERLINK \u0022https://doi.org/10.1007/978-3-319-24277-4\u0022 \\h",
+          "result": "ggplot2: Elegant Graphics for Data Analysis"
+        },
+        {
+          "code": "HYPERLINK \u0022https://quarto.org/docs/authoring/cross-references.html\u0022 \\h",
+          "result": "https://quarto.org/docs/authoring/cross-references.html"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-calculation\u0022 \\h",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_parameters \\h",
+          "result": "А.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixA \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_long_results \\h",
+          "result": "Б.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixB \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_long_results \\h",
+          "result": "Б.1"
+        }
+      ],
+      "sources": [],
+      "bookmarks": {
+        "eq_model": "1",
+        "eq_surface": "3",
+        "eq_total": "2",
+        "fig_functions": "1",
+        "fig_patterns": "2",
+        "fig_surface_shaded": "4",
+        "fig_surface_wire": "3",
+        "sec_app_code": "ПРИЛОЖЕНИЕ А\u000BВычислительный код и исходные параметры\rВ листинге 3 показан тот же код, который был исполнен в начале документа. ref.label получает его из зарегистрированной ячейки knitr; eval: false исключает повторный расчёт. Код не скопирован в исходнике …",
+        "sec_app_data": "ПРИЛОЖЕНИЕ Б\u000BРасширенный табличный расчёт\rТаблица Б.1 рассчитана той же функцией calculate() для аргументов от 1 до 55. В исходнике это одна таблица. Повторяемую шапку, разбиение по страницам Word и подписи продолжения/окончания формирует конвейер сборки.\r…",
+        "sec_app_export": "Отдельные файлы результатов\rСледующая ячейка создаёт SVG, PNG 600 dpi и CSV для использования вне документа. Это дополнительный пример экспорта; он использует готовые объекты model_plot и results и не создаёт вторую реализацию модели.\rРезультаты находятся …",
+        "sec_conclusion": "ЗАКЛЮЧЕНИЕ\rДля 3 выбранных аргументов получен суммарный показатель 108. Таблица 1, рисунки 1 и 2 и подстановка параметров в тексте используют один результат вычислений R.\rДля 55 аргументов выполнен расширенный расчёт (см. приложение Б). После изменения пар…",
+        "sec_introduction": "ВВЕДЕНИЕ\rВ работе исследуется влияние коэффициента квадратичной функции на результат совместного расчёта двух показателей. Цель — получить согласованные числовые, табличные и графические представления одной модели. Данные являются демонстрационными\u0002.\rПодхо…",
+        "sec_model": "МАТЕМАТИЧЕСКАЯ МОДЕЛЬ\rОпределение показателей\rРассмотрим три безразмерных показателя:\r\t\uD835\uDC53(\uD835\uDC65)=\uD835\uDC4E\r\uD835\uDC65\r2\r\u002B\uD835\uDC4F,\u2001\u2001\uD835\uDC54(\uD835\uDC65)=\uD835\uDC50\uD835\uDC65,\u2001\u2001ℎ(\uD835\uDC65)=\uD835\uDC53(\uD835\uDC65)\u002B\uD835\uDC54(\uD835\uDC65),\t(1)\rгде \uD835\uDC53(\uD835\uDC65) — квадратичный показатель;\u000B\uD835\uDC65 — аргумент модели;\u000B\uD835\uDC4E — коэффициент квадратичного слагаемого;\u000B\uD835\uDC4F — п…",
+        "sec_plots": "ГРАФИЧЕСКОЕ ПРЕДСТАВЛЕНИЕ\rЛинии и маркеры\rНа рисунке 1 показаны те же значения, что и в таблице 1. Ряды различаются типом линии и маркерами, поэтому их можно различить при чёрно-белой печати.\r/\rРисунок 1 — Сопоставление значений трёх показателей\rШтриховки\r…",
+        "sec_references": "СПИСОК ЛИТЕРАТУРЫ\r1 \tKnuth D. E. Literate Programming // The Computer Journal. 1984. Т. 27, № 2. С. 97–111.\r2 \tWickham H. ggplot2: Elegant Graphics for Data Analysis. 2-е изд. Cham: Springer, 2016.\r3 \tQuarto: Cross References [Электронный ресурс]. Posit. U…",
+        "sec_reproducibility": "ВОСПРОИЗВОДИМОСТЬ И ПРОГРАММНЫЙ КОД\rВ листинге 1 показана исполняемая R-ячейка с автоматической проверкой результата. Нарушение условия завершает сборку ошибкой. Полная вычислительная ячейка приведена отдельно; см. приложение А.\rЛистинг\u00A01— Автоматическая п…",
+        "sec_tables": "ТАБЛИЧНОЕ ПРЕДСТАВЛЕНИЕ\rТаблица 1 объединяет исходные аргументы, подстановки в формулу (1) и вычисленные значения. Заголовок имеет два уровня и объединённые ячейки, подстановки представлены редактируемой математикой Word.\rТаблица 1 — Расчёт показателей пол…",
+        "tbl_long_results": "Б.1",
+        "tbl_parameters": "А.1",
+        "tbl_results": "1"
+      },
+      "pages": 14,
+      "equations": 83,
+      "table_math": 61,
+      "toc": 1,
+      "table_text_font_sizes": [
+        11
+      ],
+      "table_math_font_sizes": [
+        11
+      ]
+    },
+    {
+      "label": "edited",
+      "fields": [
+        {
+          "code": "NUMPAGES",
+          "result": "14"
+        },
+        {
+          "code": "TOC \\o \u00221-3\u0022 \\h \\z \\u",
+          "result": "Введение\t5\r1 Математическая модель\t5\r1.1 Определение показателей\t5\r1.1.1 Проверка модели\t6\r2 Табличное представление\t6\r3 Графическое представление\t7\r3.1 Линии и маркеры\t7\r3.2 Штриховки\t7\r3.3 Поверхность при изменении параметра\t8\r4 Воспроизводимость и программный код\t9\rЗаключение\t10\rСписок литературы\t11\rПРИЛОЖЕНИЕ А Вычислительный код и исходные параметры [academic check]\t12\rОтдельные файлы результатов\t12\rПРИЛОЖЕНИЕ Б Расширенный табличный расчёт\t13"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203143\u0022",
+          "result": "Введение\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244203143 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203144\u0022",
+          "result": "1 Математическая модель\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244203144 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203145\u0022",
+          "result": "1.1 Определение показателей\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244203145 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203146\u0022",
+          "result": "1.1.1 Проверка модели\t6"
+        },
+        {
+          "code": "PAGEREF _Toc244203146 \\h",
+          "result": "6"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203147\u0022",
+          "result": "2 Табличное представление\t6"
+        },
+        {
+          "code": "PAGEREF _Toc244203147 \\h",
+          "result": "6"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203148\u0022",
+          "result": "3 Графическое представление\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244203148 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203149\u0022",
+          "result": "3.1 Линии и маркеры\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244203149 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203150\u0022",
+          "result": "3.2 Штриховки\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244203150 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203151\u0022",
+          "result": "3.3 Поверхность при изменении параметра\t8"
+        },
+        {
+          "code": "PAGEREF _Toc244203151 \\h",
+          "result": "8"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203152\u0022",
+          "result": "4 Воспроизводимость и программный код\t9"
+        },
+        {
+          "code": "PAGEREF _Toc244203152 \\h",
+          "result": "9"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203153\u0022",
+          "result": "Заключение\t10"
+        },
+        {
+          "code": "PAGEREF _Toc244203153 \\h",
+          "result": "10"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203154\u0022",
+          "result": "Список литературы\t11"
+        },
+        {
+          "code": "PAGEREF _Toc244203154 \\h",
+          "result": "11"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203155\u0022",
+          "result": "ПРИЛОЖЕНИЕ А Вычислительный код и исходные параметры [academic check]\t12"
+        },
+        {
+          "code": "PAGEREF _Toc244203155 \\h",
+          "result": "12"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203156\u0022",
+          "result": "Отдельные файлы результатов\t12"
+        },
+        {
+          "code": "PAGEREF _Toc244203156 \\h",
+          "result": "12"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203157\u0022",
+          "result": "ПРИЛОЖЕНИЕ Б Расширенный табличный расчёт\t13"
+        },
+        {
+          "code": "PAGEREF _Toc244203157 \\h",
+          "result": "13"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-knuth1984\u0022 \\h",
+          "result": "1, с. 97"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-wickham2016\u0022 \\h",
+          "result": "2"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-knuth1984\u0022 \\h",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-wickham2016\u0022 \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF sec_model \\n \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_code\u0022 \\h",
+          "result": "приложение А"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_data\u0022 \\h",
+          "result": "приложение Б"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF sec_reproducibility \\n \\h",
+          "result": "4"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022note-rounding\u0022 \\h",
+          "result": "примечание"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_patterns \\h",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "REF fig_surface_wire \\h",
+          "result": "3"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "REF fig_surface_shaded \\h",
+          "result": "4"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "4"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-validation\u0022 \\h",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_code\u0022 \\h",
+          "result": "приложение А"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-consumer\u0022 \\h",
+          "result": "2"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-quarto-crossref\u0022 \\h",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_patterns \\h",
+          "result": "2"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_data\u0022 \\h",
+          "result": "приложение Б"
+        },
+        {
+          "code": "HYPERLINK \u0022https://doi.org/10.1093/comjnl/27.2.97\u0022 \\h",
+          "result": "Literate Programming"
+        },
+        {
+          "code": "HYPERLINK \u0022https://doi.org/10.1007/978-3-319-24277-4\u0022 \\h",
+          "result": "ggplot2: Elegant Graphics for Data Analysis"
+        },
+        {
+          "code": "HYPERLINK \u0022https://quarto.org/docs/authoring/cross-references.html\u0022 \\h",
+          "result": "https://quarto.org/docs/authoring/cross-references.html"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-calculation\u0022 \\h",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_parameters \\h",
+          "result": "А.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixA \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_long_results \\h",
+          "result": "Б.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixB \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_long_results \\h",
+          "result": "Б.1"
+        }
+      ],
+      "sources": [],
+      "bookmarks": {
+        "eq_model": "1",
+        "eq_surface": "3",
+        "eq_total": "2",
+        "fig_functions": "1",
+        "fig_patterns": "2",
+        "fig_surface_shaded": "4",
+        "fig_surface_wire": "3",
+        "sec_app_code": "ПРИЛОЖЕНИЕ А\u000BВычислительный код и исходные параметры [academic check]\rВ листинге 3 показан тот же код, который был исполнен в начале документа. ref.label получает его из зарегистрированной ячейки knitr; eval: false исключает повторный расчёт. Код не скопир…",
+        "sec_app_data": "ПРИЛОЖЕНИЕ Б\u000BРасширенный табличный расчёт\rТаблица Б.1 рассчитана той же функцией calculate() для аргументов от 1 до 55. В исходнике это одна таблица. Повторяемую шапку, разбиение по страницам Word и подписи продолжения/окончания формирует конвейер сборки.\r…",
+        "sec_app_export": "Отдельные файлы результатов\rСледующая ячейка создаёт SVG, PNG 600 dpi и CSV для использования вне документа. Это дополнительный пример экспорта; он использует готовые объекты model_plot и results и не создаёт вторую реализацию модели.\rРезультаты находятся …",
+        "sec_conclusion": "ЗАКЛЮЧЕНИЕ\rДля 3 выбранных аргументов получен суммарный показатель 108. Таблица 2, рисунки 1 и 2 и подстановка параметров в тексте используют один результат вычислений R.\rДля 55 аргументов выполнен расширенный расчёт (см. приложение Б). После изменения пар…",
+        "sec_introduction": "ВВЕДЕНИЕ\rВ работе исследуется влияние коэффициента квадратичной функции на результат совместного расчёта двух показателей. Цель — получить согласованные числовые, табличные и графические представления одной модели. Данные являются демонстрационными\u0002.\rПодхо…",
+        "sec_model": "МАТЕМАТИЧЕСКАЯ МОДЕЛЬ\rОпределение показателей\rРассмотрим три безразмерных показателя:\r\t\uD835\uDC53(\uD835\uDC65)=\uD835\uDC4E\r\uD835\uDC65\r2\r\u002B\uD835\uDC4F,\u2001\u2001\uD835\uDC54(\uD835\uDC65)=\uD835\uDC50\uD835\uDC65,\u2001\u2001ℎ(\uD835\uDC65)=\uD835\uDC53(\uD835\uDC65)\u002B\uD835\uDC54(\uD835\uDC65),\t(1)\rгде \uD835\uDC53(\uD835\uDC65) — квадратичный показатель;\u000B\uD835\uDC65 — аргумент модели;\u000B\uD835\uDC4E — коэффициент квадратичного слагаемого;\u000B\uD835\uDC4F — п…",
+        "sec_plots": "ГРАФИЧЕСКОЕ ПРЕДСТАВЛЕНИЕ\rЛинии и маркеры\rНа рисунке 1 показаны те же значения, что и в таблице 2. Ряды различаются типом линии и маркерами, поэтому их можно различить при чёрно-белой печати.\r/\rРисунок 1 — Сопоставление значений трёх показателей\rШтриховки\r…",
+        "sec_references": "СПИСОК ЛИТЕРАТУРЫ\r1 \tKnuth D. E. Literate Programming // The Computer Journal. 1984. Т. 27, № 2. С. 97–111.\r2 \tWickham H. ggplot2: Elegant Graphics for Data Analysis. 2-е изд. Cham: Springer, 2016.\r3 \tQuarto: Cross References [Электронный ресурс]. Posit. U…",
+        "sec_reproducibility": "ВОСПРОИЗВОДИМОСТЬ И ПРОГРАММНЫЙ КОД\rВ листинге 1 показана исполняемая R-ячейка с автоматической проверкой результата. Нарушение условия завершает сборку ошибкой. Полная вычислительная ячейка приведена отдельно; см. приложение А.\rЛистинг\u00A01— Автоматическая п…",
+        "sec_tables": "ТАБЛИЧНОЕ ПРЕДСТАВЛЕНИЕ\rТаблица 2 объединяет исходные аргументы, подстановки в формулу (1) и вычисленные значения. Заголовок имеет два уровня и объединённые ячейки, подстановки представлены редактируемой математикой Word.\rAdditional table 1\rТаблица 2 — Рас…",
+        "tbl_long_results": "Б.1",
+        "tbl_parameters": "А.1",
+        "tbl_results": "2"
+      },
+      "pages": 14,
+      "equations": 83,
+      "table_math": 61,
+      "toc": 1,
+      "table_text_font_sizes": [
+        11
+      ],
+      "table_math_font_sizes": [
+        11
+      ]
+    },
+    {
+      "label": "reopened",
+      "fields": [
+        {
+          "code": "NUMPAGES",
+          "result": "14"
+        },
+        {
+          "code": "TOC \\o \u00221-3\u0022 \\h \\z \\u",
+          "result": "Введение\t5\r1 Математическая модель\t5\r1.1 Определение показателей\t5\r1.1.1 Проверка модели\t6\r2 Табличное представление\t6\r3 Графическое представление\t7\r3.1 Линии и маркеры\t7\r3.2 Штриховки\t7\r3.3 Поверхность при изменении параметра\t8\r4 Воспроизводимость и программный код\t9\rЗаключение\t10\rСписок литературы\t11\rПРИЛОЖЕНИЕ А Вычислительный код и исходные параметры [academic check]\t12\rОтдельные файлы результатов\t12\rПРИЛОЖЕНИЕ Б Расширенный табличный расчёт\t13"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203143\u0022",
+          "result": "Введение\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244203143 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203144\u0022",
+          "result": "1 Математическая модель\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244203144 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203145\u0022",
+          "result": "1.1 Определение показателей\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244203145 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203146\u0022",
+          "result": "1.1.1 Проверка модели\t6"
+        },
+        {
+          "code": "PAGEREF _Toc244203146 \\h",
+          "result": "6"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203147\u0022",
+          "result": "2 Табличное представление\t6"
+        },
+        {
+          "code": "PAGEREF _Toc244203147 \\h",
+          "result": "6"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203148\u0022",
+          "result": "3 Графическое представление\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244203148 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203149\u0022",
+          "result": "3.1 Линии и маркеры\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244203149 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203150\u0022",
+          "result": "3.2 Штриховки\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244203150 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203151\u0022",
+          "result": "3.3 Поверхность при изменении параметра\t8"
+        },
+        {
+          "code": "PAGEREF _Toc244203151 \\h",
+          "result": "8"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203152\u0022",
+          "result": "4 Воспроизводимость и программный код\t9"
+        },
+        {
+          "code": "PAGEREF _Toc244203152 \\h",
+          "result": "9"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203153\u0022",
+          "result": "Заключение\t10"
+        },
+        {
+          "code": "PAGEREF _Toc244203153 \\h",
+          "result": "10"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203154\u0022",
+          "result": "Список литературы\t11"
+        },
+        {
+          "code": "PAGEREF _Toc244203154 \\h",
+          "result": "11"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203155\u0022",
+          "result": "ПРИЛОЖЕНИЕ А Вычислительный код и исходные параметры [academic check]\t12"
+        },
+        {
+          "code": "PAGEREF _Toc244203155 \\h",
+          "result": "12"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203156\u0022",
+          "result": "Отдельные файлы результатов\t12"
+        },
+        {
+          "code": "PAGEREF _Toc244203156 \\h",
+          "result": "12"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244203157\u0022",
+          "result": "ПРИЛОЖЕНИЕ Б Расширенный табличный расчёт\t13"
+        },
+        {
+          "code": "PAGEREF _Toc244203157 \\h",
+          "result": "13"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-knuth1984\u0022 \\h",
+          "result": "1, с. 97"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-wickham2016\u0022 \\h",
+          "result": "2"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-knuth1984\u0022 \\h",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-wickham2016\u0022 \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF sec_model \\n \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_code\u0022 \\h",
+          "result": "приложение А"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_data\u0022 \\h",
+          "result": "приложение Б"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF sec_reproducibility \\n \\h",
+          "result": "4"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022note-rounding\u0022 \\h",
+          "result": "примечание"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_patterns \\h",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "REF fig_surface_wire \\h",
+          "result": "3"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "REF fig_surface_shaded \\h",
+          "result": "4"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "4"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-validation\u0022 \\h",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_code\u0022 \\h",
+          "result": "приложение А"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-consumer\u0022 \\h",
+          "result": "2"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-quarto-crossref\u0022 \\h",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_patterns \\h",
+          "result": "2"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022sec_app_data\u0022 \\h",
+          "result": "приложение Б"
+        },
+        {
+          "code": "HYPERLINK \u0022https://doi.org/10.1093/comjnl/27.2.97\u0022 \\h",
+          "result": "Literate Programming"
+        },
+        {
+          "code": "HYPERLINK \u0022https://doi.org/10.1007/978-3-319-24277-4\u0022 \\h",
+          "result": "ggplot2: Elegant Graphics for Data Analysis"
+        },
+        {
+          "code": "HYPERLINK \u0022https://quarto.org/docs/authoring/cross-references.html\u0022 \\h",
+          "result": "https://quarto.org/docs/authoring/cross-references.html"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-calculation\u0022 \\h",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_parameters \\h",
+          "result": "А.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixA \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_long_results \\h",
+          "result": "Б.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixB \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_long_results \\h",
+          "result": "Б.1"
+        }
+      ],
+      "sources": [],
+      "bookmarks": {
+        "eq_model": "1",
+        "eq_surface": "3",
+        "eq_total": "2",
+        "fig_functions": "1",
+        "fig_patterns": "2",
+        "fig_surface_shaded": "4",
+        "fig_surface_wire": "3",
+        "sec_app_code": "ПРИЛОЖЕНИЕ А\u000BВычислительный код и исходные параметры [academic check]\rВ листинге 3 показан тот же код, который был исполнен в начале документа. ref.label получает его из зарегистрированной ячейки knitr; eval: false исключает повторный расчёт. Код не скопир…",
+        "sec_app_data": "ПРИЛОЖЕНИЕ Б\u000BРасширенный табличный расчёт\rТаблица Б.1 рассчитана той же функцией calculate() для аргументов от 1 до 55. В исходнике это одна таблица. Повторяемую шапку, разбиение по страницам Word и подписи продолжения/окончания формирует конвейер сборки.\r…",
+        "sec_app_export": "Отдельные файлы результатов\rСледующая ячейка создаёт SVG, PNG 600 dpi и CSV для использования вне документа. Это дополнительный пример экспорта; он использует готовые объекты model_plot и results и не создаёт вторую реализацию модели.\rРезультаты находятся …",
+        "sec_conclusion": "ЗАКЛЮЧЕНИЕ\rДля 3 выбранных аргументов получен суммарный показатель 108. Таблица 2, рисунки 1 и 2 и подстановка параметров в тексте используют один результат вычислений R.\rДля 55 аргументов выполнен расширенный расчёт (см. приложение Б). После изменения пар…",
+        "sec_introduction": "ВВЕДЕНИЕ\rВ работе исследуется влияние коэффициента квадратичной функции на результат совместного расчёта двух показателей. Цель — получить согласованные числовые, табличные и графические представления одной модели. Данные являются демонстрационными\u0002.\rПодхо…",
+        "sec_model": "МАТЕМАТИЧЕСКАЯ МОДЕЛЬ\rОпределение показателей\rРассмотрим три безразмерных показателя:\r\t\uD835\uDC53(\uD835\uDC65)=\uD835\uDC4E\r\uD835\uDC65\r2\r\u002B\uD835\uDC4F,\u2001\u2001\uD835\uDC54(\uD835\uDC65)=\uD835\uDC50\uD835\uDC65,\u2001\u2001ℎ(\uD835\uDC65)=\uD835\uDC53(\uD835\uDC65)\u002B\uD835\uDC54(\uD835\uDC65),\t(1)\rгде \uD835\uDC53(\uD835\uDC65) — квадратичный показатель;\u000B\uD835\uDC65 — аргумент модели;\u000B\uD835\uDC4E — коэффициент квадратичного слагаемого;\u000B\uD835\uDC4F — п…",
+        "sec_plots": "ГРАФИЧЕСКОЕ ПРЕДСТАВЛЕНИЕ\rЛинии и маркеры\rНа рисунке 1 показаны те же значения, что и в таблице 2. Ряды различаются типом линии и маркерами, поэтому их можно различить при чёрно-белой печати.\r/\rРисунок 1 — Сопоставление значений трёх показателей\rШтриховки\r…",
+        "sec_references": "СПИСОК ЛИТЕРАТУРЫ\r1 \tKnuth D. E. Literate Programming // The Computer Journal. 1984. Т. 27, № 2. С. 97–111.\r2 \tWickham H. ggplot2: Elegant Graphics for Data Analysis. 2-е изд. Cham: Springer, 2016.\r3 \tQuarto: Cross References [Электронный ресурс]. Posit. U…",
+        "sec_reproducibility": "ВОСПРОИЗВОДИМОСТЬ И ПРОГРАММНЫЙ КОД\rВ листинге 1 показана исполняемая R-ячейка с автоматической проверкой результата. Нарушение условия завершает сборку ошибкой. Полная вычислительная ячейка приведена отдельно; см. приложение А.\rЛистинг\u00A01— Автоматическая п…",
+        "sec_tables": "ТАБЛИЧНОЕ ПРЕДСТАВЛЕНИЕ\rТаблица 2 объединяет исходные аргументы, подстановки в формулу (1) и вычисленные значения. Заголовок имеет два уровня и объединённые ячейки, подстановки представлены редактируемой математикой Word.\rAdditional table 1\rТаблица 2 — Рас…",
+        "tbl_long_results": "Б.1",
+        "tbl_parameters": "А.1",
+        "tbl_results": "2"
+      },
+      "pages": 14,
+      "equations": 83,
+      "table_math": 61,
+      "toc": 1,
+      "table_text_font_sizes": [
+        11
+      ],
+      "table_math_font_sizes": [
+        11
+      ]
+    }
+  ],
+  "expected_pages": 14,
+  "table_mutation_target": "tbl_results",
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 16660,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

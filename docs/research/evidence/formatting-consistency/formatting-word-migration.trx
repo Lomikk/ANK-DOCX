@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="edbad614-6cfc-47c3-b1a4-c622cb15bf32" name="2yash@DESKTOP-H9F324S 2026-10-29 21:52:39" runUser="DESKTOP-H9F324S\2yash" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-29T21:52:39.7762979+05:00" queuing="2026-10-29T21:52:39.7762979+05:00" start="2026-10-29T21:52:07.5883571+05:00" finish="2026-10-29T21:52:39.7804548+05:00" />
+  <TestSettings name="default" id="d64fff6a-9afb-4a3a-8568-dfaf718abc79">
+    <Deployment runDeploymentRoot="2yash_DESKTOP-H9F324S_2026-10-29_21_52_39" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="af1ea532-c2cc-4bb0-a3af-ca8afb79e228" testId="94df44b1-9eda-1cc9-b2af-bf2faf5389a1" testName="AcademicDocx.Tests.WordMigrationTests.MergedHeadersMathAndFootersSurviveCompleteFinalization" computerName="DESKTOP-H9F324S" duration="00:00:31.6063429" startTime="2026-10-29T21:52:08.0963782+05:00" endTime="2026-10-29T21:52:39.7089899+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="af1ea532-c2cc-4bb0-a3af-ca8afb79e228" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="AcademicDocx.Tests.WordMigrationTests.MergedHeadersMathAndFootersSurviveCompleteFinalization" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="94df44b1-9eda-1cc9-b2af-bf2faf5389a1">
+      <Execution id="af1ea532-c2cc-4bb0-a3af-ca8afb79e228" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.WordMigrationTests" name="MergedHeadersMathAndFootersSurviveCompleteFinalization" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="94df44b1-9eda-1cc9-b2af-bf2faf5389a1" executionId="af1ea532-c2cc-4bb0-a3af-ca8afb79e228" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Список результатов" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Все загруженные результаты" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.07]   Discovering: AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.12]   Discovered:  AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.14]   Starting:    AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:31.78]   Finished:    AcademicDocx.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

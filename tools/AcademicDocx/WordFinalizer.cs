@@ -96,6 +96,7 @@ internal static class WordFinalizer
             report.SchemaErrorsBeforeWord = DocxInspection.Validate(path).ErrorCount;
             var original = DocxInspection.Read(path);
             File.Copy(path, staged);
+            DocumentFormatting.Apply(staged);
             session = new();
             var document = session.Open(staged);
             WordFields.Refresh(session);

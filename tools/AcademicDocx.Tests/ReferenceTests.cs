@@ -81,7 +81,7 @@ public sealed class ReferenceTests : IDisposable
     }
 
     [Fact]
-    public void StylesMatchTheRetiredPythonEditor()
+    public void UnchangedStylesMatchTheRetiredPythonEditor()
     {
         var output = Path.Combine(folder, "parity.docx");
         // Migration parity uses the input captured before later listing-style
@@ -89,8 +89,41 @@ public sealed class ReferenceTests : IDisposable
         ReferenceStyles.Apply(Path.Combine(AppContext.BaseDirectory, "Fixtures", "reference-migration-input.docx"), output);
         var expected = RelevantXml(Path.Combine(AppContext.BaseDirectory, "Fixtures", "reference-legacy.docx"));
         var actual = RelevantXml(output);
+        // Later user requirements intentionally change these four styles.
+        XNamespace word = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
+        foreach (var xml in new[] { expected["word/styles.xml"], actual["word/styles.xml"] })
+            xml.Root!.Elements(word + "style").Where(style =>
+                new[] { "Formula", "Table", "Hyperlink", "FollowedHyperlink" }.Contains(
+                    (string?)style.Element(word + "name")?.Attribute(word + "val"), StringComparer.OrdinalIgnoreCase)).Remove();
         foreach (var name in expected.Keys)
             Assert.Equal(Normalize(expected[name].Root!), Normalize(actual[name].Root!));
+    }
+
+    [Fact]
+    public void AcademicStylesCoverMarkdownTablesLinksAndCenteredObjects()
+    {
+        var output = Path.Combine(folder, "formatting.docx");
+        ReferenceStyles.Apply(Source, output);
+        Assert.Empty(DocxInspection.Validate(output).Errors);
+        using var doc = WordprocessingDocument.Open(output, false);
+        var styles = doc.MainDocumentPart!.StyleDefinitionsPart!.Styles!.Elements<W.Style>().ToArray();
+        foreach (var name in new[] { "Hyperlink", "FollowedHyperlink" })
+        {
+            var properties = styles.Single(s => string.Equals(s.StyleName?.Val, name, StringComparison.OrdinalIgnoreCase)).StyleRunProperties!;
+            var color = properties.GetFirstChild<W.Color>()!;
+            Assert.Equal("000000", color.Val!.Value);
+            Assert.Null(color.ThemeColor);
+            Assert.Null(properties.GetFirstChild<W.FontSize>());
+            Assert.Null(properties.GetFirstChild<W.FontSizeComplexScript>());
+        }
+        var table = styles.Single(s => s.StyleId == "Table");
+        Assert.Equal("22", table.StyleRunProperties!.GetFirstChild<W.FontSize>()!.Val!.Value);
+        var borders = table.StyleTableProperties!.TableBorders!;
+        Assert.Equal(6, borders.ChildElements.Count);
+        Assert.All(borders.ChildElements, border => Assert.Equal("single", border.GetAttribute("val", border.NamespaceUri).Value));
+        Assert.Empty(table.Elements<W.TableStyleProperties>().SelectMany(s => s.Descendants<W.TableCellBorders>()));
+        foreach (var id in new[] { "Formula", "ImageCaption" })
+            Assert.Equal(W.JustificationValues.Center, styles.Single(s => s.StyleId == id).StyleParagraphProperties!.Justification!.Val!.Value);
     }
 
     private static string Normalize(XElement element)

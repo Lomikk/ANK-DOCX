@@ -7,7 +7,8 @@ internal sealed record FieldSnapshot(string Code, string Result);
 internal sealed record SourceSnapshot(string Tag, string Title);
 internal sealed record WordSnapshot(string Label, IReadOnlyList<FieldSnapshot> Fields,
     IReadOnlyList<SourceSnapshot> Sources, IReadOnlyDictionary<string, string> Bookmarks,
-    int Pages, int Equations, int TableMath, int Toc);
+    int Pages, int Equations, int TableMath, int Toc, IReadOnlyList<float> TableTextFontSizes,
+    IReadOnlyList<float> TableMathFontSizes);
 internal sealed record PdfExportReport(bool Exported, bool Closed, bool Passed, string? Error, WordLifecycle? Word);
 internal sealed record WordInspectionReport(WordSnapshot Snapshot, WordLifecycle Word);
 
@@ -62,10 +63,26 @@ internal static class WordInspection
             bookmarks[bookmark.Name] = text.Length <= 256 ? text : text[..256] + "…";
         }
         var tableMath = 0;
+        var tableFontSizes = new List<float>();
+        var tableMathFontSizes = new List<float>();
         foreach (Word.Table item in scope.Own(document.Tables))
-            tableMath += scope.Own(scope.Own(scope.Own(item).Range).OMaths).Count;
+        {
+            var range = scope.Own(scope.Own(item).Range);
+            foreach (Word.Paragraph paragraphItem in scope.Own(range.Paragraphs))
+            {
+                var textRange = scope.Own(scope.Own(scope.Own(paragraphItem).Range).Duplicate);
+                var text = textRange.Text;
+                textRange.End -= text.Length - text.TrimEnd('\r', '\a').Length;
+                if (textRange.End > textRange.Start) tableFontSizes.Add(scope.Own(textRange.Font).Size);
+            }
+            var equations = scope.Own(range.OMaths);
+            tableMath += equations.Count;
+            foreach (Word.OMath equation in equations)
+                tableMathFontSizes.Add(scope.Own(scope.Own(scope.Own(equation).Range).Font).Size);
+        }
         return new(label, fields, sources, bookmarks, document.ComputeStatistics(Word.WdStatistic.wdStatisticPages),
-            scope.Own(document.OMaths).Count, tableMath, scope.Own(document.TablesOfContents).Count);
+            scope.Own(document.OMaths).Count, tableMath, scope.Own(document.TablesOfContents).Count,
+            tableFontSizes.Distinct().ToArray(), tableMathFontSizes.Distinct().ToArray());
     }
 
     public static WordCheckReport Check(string input, string copy, int? expectedPages)
@@ -90,6 +107,8 @@ internal static class WordInspection
                 report.Skipped.Add("Native Word bibliography sources: the document uses Citeproc bibliography entries");
             report.Checks["native_math_recognized"] = expected.MathCount == before.Equations &&
                 expected.Tables.Sum(table => table.MathCount) == before.TableMath;
+            report.Checks["table_base_font_size_11pt"] = before.TableTextFontSizes.All(size => size == 11) &&
+                before.TableMathFontSizes.All(size => size == 11);
             report.Checks["native_toc_recognized"] = !expected.Fields.Any(f => f.StartsWith("TOC ", StringComparison.Ordinal)) || before.Toc > 0;
             report.ExpectedPages = expectedPages ?? before.Pages;
             var numPages = before.Fields.Where(f => f.Code == "NUMPAGES").ToArray();

@@ -58,6 +58,16 @@ public sealed class QuartoStarterTests
             Assert.Contains(facts.Fields, field => field.StartsWith("SEQ ТаблицаAppendixB", StringComparison.Ordinal));
             using var package = WordprocessingDocument.Open(output, false);
             var mainPart = package.MainDocumentPart!;
+            // Word may deduplicate direct sizes into paragraph/table styles;
+            // effective text and OMML sizes are checked through the Word API.
+            var styles = mainPart.StyleDefinitionsPart!.Styles!;
+            foreach (var link in styles.Elements<W.Style>().Where(s =>
+                s.StyleName?.Val?.Value is "Hyperlink" or "FollowedHyperlink"))
+                Assert.Equal("000000", link.StyleRunProperties!.GetFirstChild<W.Color>()!.Val!.Value);
+            foreach (var caption in mainPart.Document.Descendants<W.Paragraph>().Where(p =>
+                p.Descendants<W.FieldCode>().Any(f => f.Text.TrimStart().StartsWith("SEQ Рисунок", StringComparison.Ordinal))))
+                Assert.DoesNotContain(caption.Elements<W.ParagraphProperties>(), properties =>
+                    properties.Justification?.Val?.Value == W.JustificationValues.Left);
             var text = string.Join(" ", mainPart.Document.Descendants<W.Text>().Select(t => t.Text));
             Assert.Contains("Независимая работа " + profile, text);
             Assert.Contains("Титульный лист — ЗАГЛУШКА", text);
