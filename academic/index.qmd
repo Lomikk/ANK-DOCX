@@ -1,7 +1,0 @@
-# {.unnumbered .unlisted}
-
-```{r}
-#| label: setup
-#| include: false
-source("_extensions/academic/setup.R", encoding = "UTF-8")
-```

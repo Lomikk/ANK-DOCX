@@ -1,0 +1,20 @@
+{
+  "file": "C:\\Users\\2yash\\AppData\\Local\\Temp\\ANK starter проверка 922148aa3e504a9d986d04acd5273e08\\coursework\\_output\\chapters\\main.docx",
+  "passed": true,
+  "schema_errors_before_word": 41,
+  "validation": {
+    "file": ".academic-63527083e6bf4c2aa76c70c5de7cc299.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 7,
+  "split_tables": [],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 31700,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

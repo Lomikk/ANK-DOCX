@@ -90,7 +90,7 @@ Quarto вызывает служебное приложение на завер�
 
 ## Основания
 
-- Действующий код: [R-hook](../academic/_extensions/academic/finalize.R), [C#-приложение](../tools/AcademicDocx/README.md), [Word-финализатор](../tools/AcademicDocx/WordFinalizer.cs), [таблицы](../tools/AcademicDocx/WordTables.cs), [SDK-проверка](../tools/AcademicDocx.Core/DocxInspection.cs).
+- Действующий код: [R-hook](../quarto/_extensions/academic/finalize.R), [C#-приложение](../tools/AcademicDocx/README.md), [Word-финализатор](../tools/AcademicDocx/WordFinalizer.cs), [таблицы](../tools/AcademicDocx/WordTables.cs), [SDK-проверка](../tools/AcademicDocx.Core/DocxInspection.cs).
 - Границы готовых средств и состояние интеграции: [TABLE_RULES.md](TABLE_RULES.md), [REFERENCE_DOCX.md](REFERENCE_DOCX.md), [EXTENSION_REPORT.md](research/EXTENSION_REPORT.md).
 - Предыдущая миграция: `D:/Repos/AutoNormoKontrol/docs/decisions/ADR-0003-PYTHON-ENGINE-MIGRATION.md`; предыдущий проект не изменялся.
 - Microsoft: [Open XML SDK](https://learn.microsoft.com/en-us/office/open-xml/open-xml-sdk), [Office Interop из C#](https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/interop/how-to-access-office-interop-objects), [официальные PIA](https://learn.microsoft.com/en-us/visualstudio/vsto/office-primary-interop-assemblies?view=visualstudio), [встраивание interop-типов](https://learn.microsoft.com/en-us/dotnet/framework/interop/type-equivalence-and-embedded-interop-types), [публикация .NET](https://learn.microsoft.com/en-us/dotnet/core/deploying/deploy-with-cli).

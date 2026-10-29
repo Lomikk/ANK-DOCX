@@ -18,7 +18,7 @@
   <ItemGroup>
     <Using Include="Xunit" />
     <ProjectReference Include="../AcademicDocx.Core/AcademicDocx.Core.csproj" />
-    <None Include="../../academic/_extensions/academic/academic.docx" Link="reference.docx" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../quarto/_extensions/academic/academic.docx" Link="reference.docx" CopyToOutputDirectory="PreserveNewest" />
     <None Update="Fixtures/**/*.docx" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

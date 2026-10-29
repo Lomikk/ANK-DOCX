@@ -3,7 +3,7 @@
 *.docx binary
 *.png binary
 *.pdf binary
-academic/renv/activate.R linguist-vendored -whitespace
-academic/renv.lock linguist-generated
+**/renv/activate.R linguist-vendored -whitespace
+**/renv.lock linguist-generated
 **/packages.lock.json linguist-generated
 docs/research/evidence/** linguist-generated

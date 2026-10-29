@@ -84,7 +84,9 @@ public sealed class ReferenceTests : IDisposable
     public void StylesMatchTheRetiredPythonEditor()
     {
         var output = Path.Combine(folder, "parity.docx");
-        ReferenceStyles.Apply(Source, output);
+        // Migration parity uses the input captured before later listing-style
+        // changes. Those source styles are intentionally preserved by Apply.
+        ReferenceStyles.Apply(Path.Combine(AppContext.BaseDirectory, "Fixtures", "reference-migration-input.docx"), output);
         var expected = RelevantXml(Path.Combine(AppContext.BaseDirectory, "Fixtures", "reference-legacy.docx"));
         var actual = RelevantXml(output);
         foreach (var name in expected.Keys)

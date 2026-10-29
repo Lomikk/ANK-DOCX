@@ -1,0 +1,5 @@
+book:
+  output-file: appendices
+  appendices:
+    - chapters/appendix-a.qmd
+    - chapters/appendix-b.qmd

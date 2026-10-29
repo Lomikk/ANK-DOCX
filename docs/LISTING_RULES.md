@@ -39,7 +39,7 @@ format:
 
 ## Авторский синтаксис
 
-См. [`academic/examples/listings.qmd`](../academic/examples/listings.qmd). Короткий пример:
+См. [`examples/objects/listings.qmd`](../examples/objects/listings.qmd). Короткий пример:
 
 ````markdown
 См. @lst-speed.

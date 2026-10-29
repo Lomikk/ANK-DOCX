@@ -8,10 +8,15 @@
 # Quarto/knitr output; reference documents and test fixtures stay tracked.
 **/.quarto/
 **/_book/
+**/_output/
 **/*_files/
 **/*.knit.md
 /academic/*.docx
 /academic/*.pdf
+/examples/book/_extensions/
+/examples/book/tools/academic.R
+/examples/book/*.docx
+/examples/book/*.pdf
 
 # R environment: keep renv.lock, activate.R and settings.json.
 **/renv/library/

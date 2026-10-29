@@ -1,0 +1,27 @@
+# Demonstration composition only. Replace stubs after checking real STO samples.
+profiles:
+  coursework:
+    label: "Курсовая работа"
+    before-body: [title, assignment, annotation]
+  referat:
+    label: "Реферат"
+    before-body: [title]
+sheets:
+  title:
+    label: "Титульный лист"
+    required:
+      - title
+      - author
+      - academic.university
+      - academic.department
+      - academic.discipline
+      - academic.group
+      - academic.supervisor
+      - academic.city
+      - academic.year
+  assignment:
+    label: "Задание"
+    required: [title, author, academic.supervisor]
+  annotation:
+    label: "Аннотация"
+    required: [academic.summary]

@@ -1,0 +1,146 @@
+# Модель и результаты {#sec-model}
+
+```{r}
+#| label: calculation
+#| include: false
+source("tools/academic.R", encoding = "UTF-8")
+parameters <- yaml::read_yaml("parameters.yml")
+a <- parameters$a
+b <- parameters$b
+xs <- unlist(parameters$x)
+f <- function(x) a * x^2 + b
+g <- function(x) 2 * x
+results <- data.frame(x = xs, f = f(xs), g = g(xs))
+results$total <- results$f + results$g
+results$formula <- sprintf("f(%s)=%s\\cdot%s^{2}+%s=%s", xs, a, xs, b, results$f)
+total <- sum(results$total)
+```
+
+Рассмотрим функции, описывающие безразмерные показатели модели:
+
+$$
+f(x)=ax^2+b,\qquad g(x)=2x,\qquad h(x)=f(x)+g(x),
+$$ {#eq-model}
+
+::: {custom-style="Formula Definitions"}
+| где $f(x)$ — квадратичное слагаемое;
+| $x$ — аргумент функции;
+| $a$ — коэффициент квадратичного слагаемого;
+| $b$ — постоянное слагаемое;
+| $g(x)$ — линейное слагаемое;
+| $h(x)$ — сумма двух слагаемых.
+:::
+
+Коэффициенты модели составляют $a=`r a`$ и $b=`r b`$. Для выбранных значений аргумента общий результат равен **`r total`** единицам.
+
+## Расчётная таблица
+
+В таблице @tbl-results показаны подстановка значений в квадратичную функцию и результаты вычислений. Строка «Итого» суммирует соответствующие числовые столбцы.
+
+```{r}
+#| label: tbl-results
+#| tbl-cap: "Результаты вычислений"
+table_data <- results[, c("x", "formula", "f", "g", "total")]
+ft <- flextable::flextable(table_data)
+headers <- data.frame(keys = names(table_data), group = c("x", "Подстановка в модель", rep("Вычисленные значения", 3)), label = c("x", "Подстановка в модель", "f(x)", "g(x)", "h(x)"))
+ft <- flextable::set_header_df(ft, mapping = headers, key = "keys")
+ft <- flextable::merge_h(ft, i = 1, part = "header")
+ft <- flextable::merge_v(ft, j = c("x", "formula"), part = "header")
+ft <- flextable::compose(ft, j = "formula", value = flextable::as_paragraph(flextable::as_equation(formula)))
+ft <- flextable::add_footer_row(ft, values = c("Итого", sum(results$f), sum(results$g), total), colwidths = c(2, 1, 1, 1))
+ft <- ank_style_table(ft)
+ft <- flextable::align(ft, j = c("x", "f", "g", "total"), align = "right", part = "body")
+ft
+```
+
+## Графическое представление
+
+На рисунке @fig-functions сопоставлены оба слагаемых и их сумма. При увеличении коэффициента $a$ рост квадратичного слагаемого становится более выраженным.
+
+```{r}
+#| label: fig-functions
+#| fig-cap: "Значения функций на выбранном наборе аргументов"
+#| fig-height: 3.0
+plot_data <- data.frame(
+  x = rep(results$x, 3),
+  value = c(results$f, results$g, results$total),
+  series = factor(rep(c("f", "g", "h"), each = nrow(results)), levels = c("f", "g", "h"))
+)
+series_labels <- expression(italic(f)(italic(x)), italic(g)(italic(x)), italic(h)(italic(x)))
+model_plot <- ggplot2::ggplot(plot_data, ggplot2::aes(x, value, linetype = series, shape = series)) +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::scale_linetype_manual(values = c("dashed", "dotted", "solid"), labels = series_labels) +
+  ggplot2::scale_shape_manual(values = c(21, 24, 16), labels = series_labels) +
+  ggplot2::scale_x_continuous(breaks = results$x) +
+  ggplot2::scale_y_continuous(expand = ggplot2::expansion(mult = c(0.04, 0.08))) +
+  ggplot2::labs(x = "Аргумент x", y = "Значение функции", linetype = NULL, shape = NULL)
+model_plot
+```
+
+## Сравнение результатов со штриховками
+
+Для тех же вычисленных значений сравним функции на столбчатой диаграмме. Разные серии отличаются рисунком штриховки, поэтому диаграмма остаётся читаемой при чёрно-белой печати.
+
+```{r}
+#| label: fig-patterns
+#| fig-cap: "Сравнение значений функций с различной штриховкой"
+#| fig-height: 3.3
+pattern_plot <- ggplot2::ggplot(
+  plot_data,
+  ggplot2::aes(x = factor(x), y = value, pattern = series, group = series)
+) +
+  ggpattern::geom_col_pattern(
+    position = ggplot2::position_dodge(width = 0.85),
+    width = 0.75
+  ) +
+  ggpattern::scale_pattern_manual(
+    values = stats::setNames(ank_fill_patterns[1:3], levels(plot_data$series)),
+    labels = series_labels
+  ) +
+  ggplot2::labs(x = "Аргумент x", y = "Значение функции", pattern = NULL)
+pattern_plot
+```
+
+## Трёхмерное представление
+
+Обозначим через $F(x,a)$ значение квадратичного показателя при совместном изменении аргумента $x$ и коэффициента $a$. Смысл $x$, $a$ и постоянного слагаемого $b$ определён после формулы @eq-model. Зависимость задаётся формулой
+
+$$
+F(x,a)=ax^2+b.
+$$ {#eq-surface}
+
+Каркасный график показывает изменение поверхности при варьировании коэффициента $a$.
+
+```{r}
+#| label: fig-surface-wire
+#| fig-cap: "Поверхность квадратичной модели в каркасном представлении"
+#| fig-height: 4.0
+x_grid <- seq(min(xs), max(xs), length.out = 30)
+a_grid <- seq(max(0.1, a * 0.5), a * 1.5, length.out = 30)
+z_grid <- outer(x_grid, a_grid, function(x_value, a_value) a_value * x_value^2 + b)
+ank_persp_3d(
+  x_grid, a_grid, z_grid,
+  style = "wireframe",
+  xlab = "x", ylab = "a", zlab = "F(x,a)"
+)
+```
+
+Второй вариант использует те же данные, но отображает поверхность с градациями серого.
+
+```{r}
+#| label: fig-surface-shaded
+#| fig-cap: "Та же поверхность с чёрно-белым затенением"
+#| fig-height: 4.0
+ank_persp_3d(
+  x_grid, a_grid, z_grid,
+  style = "shaded",
+  xlab = "x", ylab = "a", zlab = "F(x,a)"
+)
+```
+
+## Выводы
+
+Для исследованного набора исходных данных получена общая сумма **`r total`** единиц. Числовые результаты согласуются с графиком: на всех выбранных точках значение $h(x)$ складывается из соответствующих значений $f(x)$ и $g(x)$.
+
+Повторное выполнение модели после изменения коэффициента обновляет значения, но содержательная интерпретация новых результатов остаётся задачей автора исследования.

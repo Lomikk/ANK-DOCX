@@ -1,0 +1,18 @@
+# Quarto normally omits hidden files and AGENTS.md. Include the author settings.
+!.*
+!AGENTS.md
+.git/
+.quartoignore
+.quarto/
+_output/
+/*.docx
+/*.pdf
+/chapters/*.docx
+/chapters/*.pdf
+renv/library/
+renv/local/
+renv/cellar/
+renv/lock/
+renv/python/
+renv/sandbox/
+renv/staging/

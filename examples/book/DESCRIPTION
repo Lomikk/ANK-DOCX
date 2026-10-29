@@ -1,0 +1,18 @@
+Type: Project
+Title: Academic DOCX Quarto Example
+Version: 0.2.0
+Description: An integration Book using the installed Academic DOCX format.
+Imports:
+    rmarkdown,
+    knitr,
+    flextable,
+    ggplot2,
+    ggpattern,
+    ragg,
+    svglite,
+    equatags,
+    officer,
+    yaml,
+    xml2,
+    zip,
+    jsonlite

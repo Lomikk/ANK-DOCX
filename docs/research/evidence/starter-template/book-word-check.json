@@ -1,0 +1,808 @@
+{
+  "passed": true,
+  "checks": {
+    "native_math_recognized": true,
+    "native_toc_recognized": true,
+    "page_count_current": true,
+    "cell_math_edited_in_word": true,
+    "table_number_updated": true,
+    "table_references_updated": true,
+    "heading_updated_in_toc": true,
+    "saved_closed_reopened": true,
+    "sdk_schema_valid": true
+  },
+  "skipped": [
+    "Native Word bibliography sources: the document uses Citeproc bibliography entries"
+  ],
+  "snapshots": [
+    {
+      "label": "opened",
+      "fields": [
+        {
+          "code": "NUMPAGES",
+          "result": "14"
+        },
+        {
+          "code": "TOC \\o \u00221-3\u0022 \\h \\z \\u",
+          "result": "1 Постановка задачи\t5\r1.1 Исходные предположения\t5\r1.1.1 Проверка согласованности\t5\r2 Модель и результаты\t5\r2.1 Расчётная таблица\t5\r2.2 Графическое представление\t6\r2.3 Сравнение результатов со штриховками\t7\r2.4 Трёхмерное представление\t7\r2.5 Выводы\t9\r3 Расширенный табличный расчёт\t9\rСписок литературы\t12\rПРИЛОЖЕНИЕ А Вспомогательные расчёты\t13\rПРИЛОЖЕНИЕ Б Дополнительные данные\t14"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197643\u0022",
+          "result": "1 Постановка задачи\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197643 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197644\u0022",
+          "result": "1.1 Исходные предположения\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197644 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197645\u0022",
+          "result": "1.1.1 Проверка согласованности\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197645 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197646\u0022",
+          "result": "2 Модель и результаты\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197646 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197647\u0022",
+          "result": "2.1 Расчётная таблица\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197647 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197648\u0022",
+          "result": "2.2 Графическое представление\t6"
+        },
+        {
+          "code": "PAGEREF _Toc244197648 \\h",
+          "result": "6"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197649\u0022",
+          "result": "2.3 Сравнение результатов со штриховками\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244197649 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197650\u0022",
+          "result": "2.4 Трёхмерное представление\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244197650 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197651\u0022",
+          "result": "2.5 Выводы\t9"
+        },
+        {
+          "code": "PAGEREF _Toc244197651 \\h",
+          "result": "9"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197652\u0022",
+          "result": "3 Расширенный табличный расчёт\t9"
+        },
+        {
+          "code": "PAGEREF _Toc244197652 \\h",
+          "result": "9"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197653\u0022",
+          "result": "Список литературы\t12"
+        },
+        {
+          "code": "PAGEREF _Toc244197653 \\h",
+          "result": "12"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197654\u0022",
+          "result": "ПРИЛОЖЕНИЕ А Вспомогательные расчёты\t13"
+        },
+        {
+          "code": "PAGEREF _Toc244197654 \\h",
+          "result": "13"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197655\u0022",
+          "result": "ПРИЛОЖЕНИЕ Б Дополнительные данные\t14"
+        },
+        {
+          "code": "PAGEREF _Toc244197655 \\h",
+          "result": "14"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-knuth1984\u0022 \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF sec_model \\n \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "4"
+        },
+        {
+          "code": "REF tbl_squares \\h",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "REF tbl_squares \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF tbl_squares \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF tbl_parity \\h",
+          "result": "3"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "HYPERLINK \u0022https://doi.org/10.1093/comjnl/27.2.97\u0022 \\h",
+          "result": "Literate Programming"
+        },
+        {
+          "code": "REF tbl_app_parameters \\h",
+          "result": "А.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixA \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_app_trajectory \\h",
+          "result": "А.1"
+        },
+        {
+          "code": "SEQ РисунокAppendixA \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-app-algorithm\u0022 \\h",
+          "result": "листинг\u00A0A.1"
+        },
+        {
+          "code": "REF tbl_app_extra \\h",
+          "result": "Б.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixB \\* ARABIC",
+          "result": "1"
+        }
+      ],
+      "sources": [],
+      "bookmarks": {
+        "eq_model": "1",
+        "eq_surface": "2",
+        "fig_app_trajectory": "А.1",
+        "fig_functions": "1",
+        "fig_patterns": "2",
+        "fig_surface_shaded": "4",
+        "fig_surface_wire": "3",
+        "sec_app_calculations": "ПРИЛОЖЕНИЕ А\u000BВспомогательные расчёты\rВ таблице А.1 приведены демонстрационные данные.\rТаблица А.1 — Исходные параметры\rПараметр\r\u0007Значение\r\u0007\r\u0007Скорость, м/с\r\u000712\r\u0007\r\u0007Время, с\r\u00073\r\u0007\r\u0007\rНа рисунке А.1 показана зависимость пройденного пути от времени.\r/\rРисунок А.1…",
+        "sec_app_data": "ПРИЛОЖЕНИЕ Б\u000BДополнительные данные\rВ таблице Б.1 приведены дополнительные параметры.\rТаблица Б.1 — Дополнительные параметры\rОбозначение\r\u0007Значение\r\u0007\r\u0007Коэффициент\r\u00070,25\r\u0007\r\u0007",
+        "sec_introduction": "ПОСТАНОВКА ЗАДАЧИ\rЗадача исследования — установить, как коэффициент квадратичной функции влияет на сумму двух вычисляемых показателей. Математическая модель позволяет проверить расчёт на нескольких исходных значениях и затем сопоставить числовое и графичес…",
+        "sec_model": "МОДЕЛЬ И РЕЗУЛЬТАТЫ\rРассмотрим функции, описывающие безразмерные показатели модели:\r\uD835\uDC53(\uD835\uDC65)=\uD835\uDC4E\r\uD835\uDC65\r2\r\u002B\uD835\uDC4F,\u2001\u2001\uD835\uDC54(\uD835\uDC65)=2\uD835\uDC65,\u2001\u2001ℎ(\uD835\uDC65)=\uD835\uDC53(\uD835\uDC65)\u002B\uD835\uDC54(\uD835\uDC65),\t(1)\rгде \uD835\uDC53(\uD835\uDC65) — квадратичное слагаемое;\u000B\uD835\uDC65 — аргумент функции;\u000B\uD835\uDC4E — коэффициент квадратичного слагаемого;\u000B\uD835\uDC4F — посто…",
+        "sec_table_examples": "РАСШИРЕННЫЙ ТАБЛИЧНЫЙ РАСЧЁТ\rДля целых аргументов от 1 до 55 рассчитаем квадраты. Таблица 2 содержит исходные аргументы, подстановки и результаты; итоговая строка показывает сумму квадратов. Единый набор данных используется для всех частей таблицы.\rТаблица…",
+        "tbl_app_extra": "Б.1",
+        "tbl_app_parameters": "А.1",
+        "tbl_parity": "3",
+        "tbl_results": "1",
+        "tbl_squares": "2"
+      },
+      "pages": 14,
+      "equations": 79,
+      "table_math": 58,
+      "toc": 1
+    },
+    {
+      "label": "edited",
+      "fields": [
+        {
+          "code": "NUMPAGES",
+          "result": "14"
+        },
+        {
+          "code": "TOC \\o \u00221-3\u0022 \\h \\z \\u",
+          "result": "1 Постановка задачи\t5\r1.1 Исходные предположения\t5\r1.1.1 Проверка согласованности\t5\r2 Модель и результаты\t5\r2.1 Расчётная таблица\t5\r2.2 Графическое представление\t6\r2.3 Сравнение результатов со штриховками\t7\r2.4 Трёхмерное представление\t7\r2.5 Выводы\t9\r3 Расширенный табличный расчёт\t9\rСписок литературы\t12\rПРИЛОЖЕНИЕ А Вспомогательные расчёты [academic check]\t13\rПРИЛОЖЕНИЕ Б Дополнительные данные\t14"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197759\u0022",
+          "result": "1 Постановка задачи\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197759 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197760\u0022",
+          "result": "1.1 Исходные предположения\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197760 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197761\u0022",
+          "result": "1.1.1 Проверка согласованности\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197761 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197762\u0022",
+          "result": "2 Модель и результаты\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197762 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197763\u0022",
+          "result": "2.1 Расчётная таблица\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197763 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197764\u0022",
+          "result": "2.2 Графическое представление\t6"
+        },
+        {
+          "code": "PAGEREF _Toc244197764 \\h",
+          "result": "6"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197765\u0022",
+          "result": "2.3 Сравнение результатов со штриховками\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244197765 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197766\u0022",
+          "result": "2.4 Трёхмерное представление\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244197766 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197767\u0022",
+          "result": "2.5 Выводы\t9"
+        },
+        {
+          "code": "PAGEREF _Toc244197767 \\h",
+          "result": "9"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197768\u0022",
+          "result": "3 Расширенный табличный расчёт\t9"
+        },
+        {
+          "code": "PAGEREF _Toc244197768 \\h",
+          "result": "9"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197769\u0022",
+          "result": "Список литературы\t12"
+        },
+        {
+          "code": "PAGEREF _Toc244197769 \\h",
+          "result": "12"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197770\u0022",
+          "result": "ПРИЛОЖЕНИЕ А Вспомогательные расчёты [academic check]\t13"
+        },
+        {
+          "code": "PAGEREF _Toc244197770 \\h",
+          "result": "13"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197771\u0022",
+          "result": "ПРИЛОЖЕНИЕ Б Дополнительные данные\t14"
+        },
+        {
+          "code": "PAGEREF _Toc244197771 \\h",
+          "result": "14"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-knuth1984\u0022 \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF sec_model \\n \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "4"
+        },
+        {
+          "code": "REF tbl_squares \\h",
+          "result": "3"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_squares \\h",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_squares \\h",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_parity \\h",
+          "result": "4"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "4"
+        },
+        {
+          "code": "HYPERLINK \u0022https://doi.org/10.1093/comjnl/27.2.97\u0022 \\h",
+          "result": "Literate Programming"
+        },
+        {
+          "code": "REF tbl_app_parameters \\h",
+          "result": "А.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixA \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_app_trajectory \\h",
+          "result": "А.1"
+        },
+        {
+          "code": "SEQ РисунокAppendixA \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-app-algorithm\u0022 \\h",
+          "result": "листинг\u00A0A.1"
+        },
+        {
+          "code": "REF tbl_app_extra \\h",
+          "result": "Б.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixB \\* ARABIC",
+          "result": "1"
+        }
+      ],
+      "sources": [],
+      "bookmarks": {
+        "eq_model": "1",
+        "eq_surface": "2",
+        "fig_app_trajectory": "А.1",
+        "fig_functions": "1",
+        "fig_patterns": "2",
+        "fig_surface_shaded": "4",
+        "fig_surface_wire": "3",
+        "sec_app_calculations": "ПРИЛОЖЕНИЕ А\u000BВспомогательные расчёты [academic check]\rВ таблице А.1 приведены демонстрационные данные.\rТаблица А.1 — Исходные параметры\rПараметр\r\u0007Значение\r\u0007\r\u0007Скорость, м/с\r\u000712\r\u0007\r\u0007Время, с\r\u00073\r\u0007\r\u0007\rНа рисунке А.1 показана зависимость пройденного пути от време…",
+        "sec_app_data": "ПРИЛОЖЕНИЕ Б\u000BДополнительные данные\rВ таблице Б.1 приведены дополнительные параметры.\rТаблица Б.1 — Дополнительные параметры\rОбозначение\r\u0007Значение\r\u0007\r\u0007Коэффициент\r\u00070,25\r\u0007\r\u0007",
+        "sec_introduction": "ПОСТАНОВКА ЗАДАЧИ\rЗадача исследования — установить, как коэффициент квадратичной функции влияет на сумму двух вычисляемых показателей. Математическая модель позволяет проверить расчёт на нескольких исходных значениях и затем сопоставить числовое и графичес…",
+        "sec_model": "МОДЕЛЬ И РЕЗУЛЬТАТЫ\rРассмотрим функции, описывающие безразмерные показатели модели:\r\uD835\uDC53(\uD835\uDC65)=\uD835\uDC4E\r\uD835\uDC65\r2\r\u002B\uD835\uDC4F,\u2001\u2001\uD835\uDC54(\uD835\uDC65)=2\uD835\uDC65,\u2001\u2001ℎ(\uD835\uDC65)=\uD835\uDC53(\uD835\uDC65)\u002B\uD835\uDC54(\uD835\uDC65),\t(1)\rгде \uD835\uDC53(\uD835\uDC65) — квадратичное слагаемое;\u000B\uD835\uDC65 — аргумент функции;\u000B\uD835\uDC4E — коэффициент квадратичного слагаемого;\u000B\uD835\uDC4F — посто…",
+        "sec_table_examples": "РАСШИРЕННЫЙ ТАБЛИЧНЫЙ РАСЧЁТ\rДля целых аргументов от 1 до 55 рассчитаем квадраты. Таблица 3 содержит исходные аргументы, подстановки и результаты; итоговая строка показывает сумму квадратов. Единый набор данных используется для всех частей таблицы.\rТаблица…",
+        "tbl_app_extra": "Б.1",
+        "tbl_app_parameters": "А.1",
+        "tbl_parity": "4",
+        "tbl_results": "2",
+        "tbl_squares": "3"
+      },
+      "pages": 14,
+      "equations": 79,
+      "table_math": 58,
+      "toc": 1
+    },
+    {
+      "label": "reopened",
+      "fields": [
+        {
+          "code": "NUMPAGES",
+          "result": "14"
+        },
+        {
+          "code": "TOC \\o \u00221-3\u0022 \\h \\z \\u",
+          "result": "1 Постановка задачи\t5\r1.1 Исходные предположения\t5\r1.1.1 Проверка согласованности\t5\r2 Модель и результаты\t5\r2.1 Расчётная таблица\t5\r2.2 Графическое представление\t6\r2.3 Сравнение результатов со штриховками\t7\r2.4 Трёхмерное представление\t7\r2.5 Выводы\t9\r3 Расширенный табличный расчёт\t9\rСписок литературы\t12\rПРИЛОЖЕНИЕ А Вспомогательные расчёты [academic check]\t13\rПРИЛОЖЕНИЕ Б Дополнительные данные\t14"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197759\u0022",
+          "result": "1 Постановка задачи\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197759 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197760\u0022",
+          "result": "1.1 Исходные предположения\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197760 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197761\u0022",
+          "result": "1.1.1 Проверка согласованности\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197761 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197762\u0022",
+          "result": "2 Модель и результаты\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197762 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197763\u0022",
+          "result": "2.1 Расчётная таблица\t5"
+        },
+        {
+          "code": "PAGEREF _Toc244197763 \\h",
+          "result": "5"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197764\u0022",
+          "result": "2.2 Графическое представление\t6"
+        },
+        {
+          "code": "PAGEREF _Toc244197764 \\h",
+          "result": "6"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197765\u0022",
+          "result": "2.3 Сравнение результатов со штриховками\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244197765 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197766\u0022",
+          "result": "2.4 Трёхмерное представление\t7"
+        },
+        {
+          "code": "PAGEREF _Toc244197766 \\h",
+          "result": "7"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197767\u0022",
+          "result": "2.5 Выводы\t9"
+        },
+        {
+          "code": "PAGEREF _Toc244197767 \\h",
+          "result": "9"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197768\u0022",
+          "result": "3 Расширенный табличный расчёт\t9"
+        },
+        {
+          "code": "PAGEREF _Toc244197768 \\h",
+          "result": "9"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197769\u0022",
+          "result": "Список литературы\t12"
+        },
+        {
+          "code": "PAGEREF _Toc244197769 \\h",
+          "result": "12"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197770\u0022",
+          "result": "ПРИЛОЖЕНИЕ А Вспомогательные расчёты [academic check]\t13"
+        },
+        {
+          "code": "PAGEREF _Toc244197770 \\h",
+          "result": "13"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022_Toc244197771\u0022",
+          "result": "ПРИЛОЖЕНИЕ Б Дополнительные данные\t14"
+        },
+        {
+          "code": "PAGEREF _Toc244197771 \\h",
+          "result": "14"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022ref-knuth1984\u0022 \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF sec_model \\n \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF tbl_results \\h",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "REF fig_functions \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "REF eq_model \\h",
+          "result": "1"
+        },
+        {
+          "code": "SEQ Формула \\* ARABIC",
+          "result": "2"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "SEQ Рисунок \\* ARABIC",
+          "result": "4"
+        },
+        {
+          "code": "REF tbl_squares \\h",
+          "result": "3"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_squares \\h",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_squares \\h",
+          "result": "3"
+        },
+        {
+          "code": "REF tbl_parity \\h",
+          "result": "4"
+        },
+        {
+          "code": "SEQ Таблица \\* ARABIC",
+          "result": "4"
+        },
+        {
+          "code": "HYPERLINK \u0022https://doi.org/10.1093/comjnl/27.2.97\u0022 \\h",
+          "result": "Literate Programming"
+        },
+        {
+          "code": "REF tbl_app_parameters \\h",
+          "result": "А.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixA \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "REF fig_app_trajectory \\h",
+          "result": "А.1"
+        },
+        {
+          "code": "SEQ РисунокAppendixA \\* ARABIC",
+          "result": "1"
+        },
+        {
+          "code": "HYPERLINK \\l \u0022lst-app-algorithm\u0022 \\h",
+          "result": "листинг\u00A0A.1"
+        },
+        {
+          "code": "REF tbl_app_extra \\h",
+          "result": "Б.1"
+        },
+        {
+          "code": "SEQ ТаблицаAppendixB \\* ARABIC",
+          "result": "1"
+        }
+      ],
+      "sources": [],
+      "bookmarks": {
+        "eq_model": "1",
+        "eq_surface": "2",
+        "fig_app_trajectory": "А.1",
+        "fig_functions": "1",
+        "fig_patterns": "2",
+        "fig_surface_shaded": "4",
+        "fig_surface_wire": "3",
+        "sec_app_calculations": "ПРИЛОЖЕНИЕ А\u000BВспомогательные расчёты [academic check]\rВ таблице А.1 приведены демонстрационные данные.\rТаблица А.1 — Исходные параметры\rПараметр\r\u0007Значение\r\u0007\r\u0007Скорость, м/с\r\u000712\r\u0007\r\u0007Время, с\r\u00073\r\u0007\r\u0007\rНа рисунке А.1 показана зависимость пройденного пути от време…",
+        "sec_app_data": "ПРИЛОЖЕНИЕ Б\u000BДополнительные данные\rВ таблице Б.1 приведены дополнительные параметры.\rТаблица Б.1 — Дополнительные параметры\rОбозначение\r\u0007Значение\r\u0007\r\u0007Коэффициент\r\u00070,25\r\u0007\r\u0007",
+        "sec_introduction": "ПОСТАНОВКА ЗАДАЧИ\rЗадача исследования — установить, как коэффициент квадратичной функции влияет на сумму двух вычисляемых показателей. Математическая модель позволяет проверить расчёт на нескольких исходных значениях и затем сопоставить числовое и графичес…",
+        "sec_model": "МОДЕЛЬ И РЕЗУЛЬТАТЫ\rРассмотрим функции, описывающие безразмерные показатели модели:\r\uD835\uDC53(\uD835\uDC65)=\uD835\uDC4E\r\uD835\uDC65\r2\r\u002B\uD835\uDC4F,\u2001\u2001\uD835\uDC54(\uD835\uDC65)=2\uD835\uDC65,\u2001\u2001ℎ(\uD835\uDC65)=\uD835\uDC53(\uD835\uDC65)\u002B\uD835\uDC54(\uD835\uDC65),\t(1)\rгде \uD835\uDC53(\uD835\uDC65) — квадратичное слагаемое;\u000B\uD835\uDC65 — аргумент функции;\u000B\uD835\uDC4E — коэффициент квадратичного слагаемого;\u000B\uD835\uDC4F — посто…",
+        "sec_table_examples": "РАСШИРЕННЫЙ ТАБЛИЧНЫЙ РАСЧЁТ\rДля целых аргументов от 1 до 55 рассчитаем квадраты. Таблица 3 содержит исходные аргументы, подстановки и результаты; итоговая строка показывает сумму квадратов. Единый набор данных используется для всех частей таблицы.\rТаблица…",
+        "tbl_app_extra": "Б.1",
+        "tbl_app_parameters": "А.1",
+        "tbl_parity": "4",
+        "tbl_results": "2",
+        "tbl_squares": "3"
+      },
+      "pages": 14,
+      "equations": 79,
+      "table_math": 58,
+      "toc": 1
+    }
+  ],
+  "expected_pages": 14,
+  "table_mutation_target": "tbl_results",
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 39760,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

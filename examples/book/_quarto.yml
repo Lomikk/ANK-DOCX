@@ -1,0 +1,30 @@
+project:
+  type: book
+  execute-dir: project
+  output-dir: _book
+  post-render:
+    - tools/academic.R finalize
+book:
+  output-file: coursework
+  chapters:
+    - index.qmd
+    - chapters/introduction.qmd
+    - chapters/model.qmd
+    - chapters/tables.qmd
+    - chapters/references.qmd
+format:
+  academic-docx: default
+engine: knitr
+lang: ru
+bibliography: references.bib
+link-citations: true
+metadata-files: [metadata.yml]
+execute:
+  # Common figure output settings; individual chunks choose their own height.
+  fig-width: 6.2
+  out-width: "95%"
+  echo: false
+  cache: false
+  freeze: false
+  error: false
+  warning: true

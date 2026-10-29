@@ -1,0 +1,26 @@
+[
+  {
+    "Path": "D:\\Repos\\ANK DOCX\\quarto\\chapters\\main.qmd",
+    "Hash": "3300607754D4531866E65816463E51741C3143850ABAA0C430BB89822909AD77"
+  },
+  {
+    "Path": "D:\\Repos\\ANK DOCX\\quarto\\references.bib",
+    "Hash": "63B18DDB27C001D7401CC6804C75553DB86616D1C5EB4D254367FC94D0756B92"
+  },
+  {
+    "Path": "D:\\Repos\\ANK DOCX\\quarto\\metadata.yml",
+    "Hash": "D20ACF962E5005E9FB57DA3F4DB3298190D13A54EF18A213E874E8968B491D6C"
+  },
+  {
+    "Path": "D:\\Repos\\ANK DOCX\\quarto\\_extensions\\academic\\academic.lua",
+    "Hash": "DC5C89E456E6ADD4A249DDAF6ED3235FA29633737A0448B424545098D4F4FA08"
+  },
+  {
+    "Path": "D:\\Repos\\ANK DOCX\\quarto\\_extensions\\academic\\finalize.R",
+    "Hash": "641BA65DE9353D18FFC407C737A5085DC8291C60E1C68076C744BF91530E45D0"
+  },
+  {
+    "Path": "D:\\Repos\\ANK DOCX\\quarto\\_output\\chapters\\main.docx",
+    "Hash": "D6379D2A513D230E7A3F7DEE51875B96ED8555742ABD4EC5E09B3E69F2BDE811"
+  }
+]

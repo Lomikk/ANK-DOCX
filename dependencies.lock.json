@@ -1,7 +1,7 @@
 {
   "academic_extension": {
-    "version": "0.1.0",
-    "r_lockfile": "academic/renv.lock",
+    "version": "0.2.0",
+    "r_lockfile": "quarto/renv.lock",
     "required_finalizer": "Microsoft Word desktop on Windows"
   },
   "r": "4.6.1",

@@ -13,7 +13,8 @@ internal static class EnvironmentSetup
     {
         root = Path.GetFullPath(root);
         var lockPath = Path.Combine(root, "dependencies.lock.json");
-        var installer = Path.Combine(root, "academic", "tools", "install.R");
+        var template = Path.Combine(root, "quarto");
+        var installer = Path.Combine(template, "tools", "install.R");
         if (!File.Exists(lockPath) || !File.Exists(installer)) throw new ArgumentException("Setup root must be an Academic DOCX repository");
         using var dependencies = JsonDocument.Parse(File.ReadAllText(lockPath));
         var data = dependencies.RootElement;
@@ -54,7 +55,13 @@ internal static class EnvironmentSetup
         }
         RequireVersion(svgExe, ["--version"], svg.GetProperty("version").GetString()!.Replace("librsvg ", "rsvg-convert version ", StringComparison.Ordinal), exact: true, root);
         // Process-local environment only. Do not change the user's locale/PATH.
-        Execute(rScript, ["--vanilla", "tools/install.R"], Path.Combine(root, "academic"), clearLocale: true);
+        Execute(rScript, ["--vanilla", installer], template, clearLocale: true);
+        var example = Path.Combine(root, "examples", "book");
+        Execute(quartoExe, ["add", template, "--no-prompt"], example);
+        // These are installed template dependencies, ignored in the developer
+        // checkout. Their only maintained source is the starter directory.
+        File.Copy(Path.Combine(template, "tools", "academic.R"), Path.Combine(example, "tools", "academic.R"), overwrite: true);
+        Execute(rScript, ["--vanilla", installer], example, clearLocale: true);
         Console.WriteLine("Academic DOCX environment is ready.");
     }
 

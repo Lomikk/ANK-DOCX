@@ -1,0 +1,26 @@
+{
+  "AppendixHeadings": [
+    "ПРИЛОЖЕНИЕ А Вспомогательные расчёты13",
+    "ПРИЛОЖЕНИЕ Б Дополнительные данные14",
+    "ПРИЛОЖЕНИЕ АВспомогательные расчёты",
+    "ПРИЛОЖЕНИЕ БДополнительные данные"
+  ],
+  "AppendixSequences": [
+    " SEQ ТаблицаAppendixA \\* ARABIC ",
+    " SEQ РисунокAppendixA \\* ARABIC ",
+    " SEQ ТаблицаAppendixB \\* ARABIC "
+  ],
+  "AppendixCaptions": [
+    "Таблица А.1 — Исходные параметры",
+    "Рисунок А.1 — Демонстрационная зависимость пути от времени",
+    "Таблица Б.1 — Дополнительные параметры"
+  ],
+  "NativeRefs": [
+    " REF tbl_app_parameters \\h ",
+    " REF fig_app_trajectory \\h ",
+    " REF tbl_app_extra \\h "
+  ],
+  "TableCount": 7,
+  "MathCount": 79,
+  "BrokenReferenceText": []
+}

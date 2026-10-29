@@ -1,0 +1,37 @@
+title: Academic DOCX
+author: AutoNormoKontrol contributors
+version: 0.2.0
+quarto-required: ">=1.10.0"
+contributes:
+  formats:
+    docx:
+      reference-doc: academic.docx
+      template: document.openxml
+      csl: gost-r-7-0-5-2008-numeric.csl
+      toc: true
+      toc-depth: 3
+      toc-title: "Оглавление"
+      number-sections: false
+      fig-format: svg
+      fig-dpi: 600
+      # Pandoc/Quarto highlighting keeps listings editable as Word text.
+      # A monochrome variant can be selected with syntax-highlighting: monochrome.
+      syntax-highlighting: github
+      # Knitr-specific options belong here, not under execute.
+      # The device background is independent of the ggplot2 theme.
+      knitr:
+        opts_chunk:
+          dev: svglite
+          dev.args:
+            bg: transparent
+      filters:
+        - academic.lua
+      crossref:
+        fig-title: "Рисунок"
+        fig-prefix: "рисунок"
+        tbl-title: "Таблица"
+        tbl-prefix: "таблица"
+        lst-title: "Листинг"
+        lst-prefix: "листинг"
+        appendix-title: "ПРИЛОЖЕНИЕ"
+        title-delim: " — "

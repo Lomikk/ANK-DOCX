@@ -1,0 +1,7 @@
+# {.unnumbered .unlisted}
+
+```{r}
+#| label: setup
+#| include: false
+source("tools/academic.R", encoding = "UTF-8")
+```

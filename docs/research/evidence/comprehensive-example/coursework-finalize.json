@@ -1,0 +1,30 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\build\\comprehensive-example\\projects\\ANK starter проверка 53a90c3238af4460a4be31e57c9dadc2\\coursework\\_output\\chapters\\main.docx",
+  "passed": true,
+  "schema_errors_before_word": 1871,
+  "validation": {
+    "file": ".academic-279fed14d8414afd90a87c7c4de768fa.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 17,
+  "split_tables": [
+    {
+      "name": "tbl_long_results",
+      "table_indices": [
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 21788,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

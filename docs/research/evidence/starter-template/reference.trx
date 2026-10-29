@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="93d1c2cd-df4f-40da-98ff-2977ece8a1b6" name="2yash@DESKTOP-H9F324S 2026-10-29 20:19:48" runUser="DESKTOP-H9F324S\2yash" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-29T20:19:48.0598658+05:00" queuing="2026-10-29T20:19:48.0598664+05:00" start="2026-10-29T20:19:43.7256447+05:00" finish="2026-10-29T20:19:48.4392625+05:00" />
+  <TestSettings name="default" id="d8922662-1705-4ee3-bb52-f44c5fac0192">
+    <Deployment runDeploymentRoot="2yash_DESKTOP-H9F324S_2026-10-29_20_19_48" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="9bd27991-b55d-4cee-aa0b-6c15e5463432" testId="35e54123-79a9-1855-aa45-e83be7cf2f3b" testName="AcademicDocx.Tests.ReferenceTests.FailedStyleValidationPreservesExistingReference" computerName="DESKTOP-H9F324S" duration="00:00:00.1430248" startTime="2026-10-29T20:19:47.6245974+05:00" endTime="2026-10-29T20:19:47.7644426+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9bd27991-b55d-4cee-aa0b-6c15e5463432" />
+    <UnitTestResult executionId="da86baa2-47e2-472b-8fce-1a733b6e8260" testId="e60bd215-b512-93e7-f398-01ed71669e33" testName="AcademicDocx.Tests.ReferenceTests.BottomMarginVariantKeepsTheSameStylesAndNumbering" computerName="DESKTOP-H9F324S" duration="00:00:00.3007145" startTime="2026-10-29T20:19:47.9919357+05:00" endTime="2026-10-29T20:19:48.2926433+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="da86baa2-47e2-472b-8fce-1a733b6e8260" />
+    <UnitTestResult executionId="e761eab8-0339-4b70-9649-84965a879c5b" testId="19f4873f-90a2-0cef-cb75-aaae8b789aee" testName="AcademicDocx.Tests.ReferenceTests.ReapplyingStylesDoesNotDuplicateOrChangeXml" computerName="DESKTOP-H9F324S" duration="00:00:01.7067127" startTime="2026-10-29T20:19:45.7272374+05:00" endTime="2026-10-29T20:19:47.4553197+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e761eab8-0339-4b70-9649-84965a879c5b" />
+    <UnitTestResult executionId="2a17ff4a-0a1b-4220-a5d6-0919be5c86a2" testId="80df18c6-8d92-0528-23cf-9d6b5b127650" testName="AcademicDocx.Tests.ReferenceTests.StylesMatchTheRetiredPythonEditor" computerName="DESKTOP-H9F324S" duration="00:00:00.1648968" startTime="2026-10-29T20:19:47.4737705+05:00" endTime="2026-10-29T20:19:47.6206021+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2a17ff4a-0a1b-4220-a5d6-0919be5c86a2" />
+    <UnitTestResult executionId="c7394a4b-f110-4553-a1da-4003cfd46291" testId="20ac6ac9-9735-588e-6df6-33a46edb101e" testName="AcademicDocx.Tests.ReferenceTests.InvalidMarginLeavesExistingOutputUntouched" computerName="DESKTOP-H9F324S" duration="00:00:00.0193252" startTime="2026-10-29T20:19:47.9723734+05:00" endTime="2026-10-29T20:19:47.9916457+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c7394a4b-f110-4553-a1da-4003cfd46291" />
+    <UnitTestResult executionId="a2b1960d-9d95-4d2c-a958-9ec36dd78df0" testId="7dff50f6-c732-f202-bde2-6e6aee89f963" testName="AcademicDocx.Tests.ReferenceTests.SchemaValidationFindsDuplicateParagraphProperties" computerName="DESKTOP-H9F324S" duration="00:00:00.0224999" startTime="2026-10-29T20:19:48.2929629+05:00" endTime="2026-10-29T20:19:48.3152751+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a2b1960d-9d95-4d2c-a958-9ec36dd78df0" />
+    <UnitTestResult executionId="143e780a-8dcb-40a3-8069-d1a59e9da89c" testId="557dc13d-6fbd-f68c-b2e4-5ea53fe9dd01" testName="AcademicDocx.Tests.ReferenceTests.StylesKeepNativeHeadingNumbersAndPageFields" computerName="DESKTOP-H9F324S" duration="00:00:00.2076075" startTime="2026-10-29T20:19:47.7647713+05:00" endTime="2026-10-29T20:19:47.9721506+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="143e780a-8dcb-40a3-8069-d1a59e9da89c" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.FailedStyleValidationPreservesExistingReference" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="35e54123-79a9-1855-aa45-e83be7cf2f3b">
+      <Execution id="9bd27991-b55d-4cee-aa0b-6c15e5463432" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="FailedStyleValidationPreservesExistingReference" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.ReapplyingStylesDoesNotDuplicateOrChangeXml" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="19f4873f-90a2-0cef-cb75-aaae8b789aee">
+      <Execution id="e761eab8-0339-4b70-9649-84965a879c5b" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="ReapplyingStylesDoesNotDuplicateOrChangeXml" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.BottomMarginVariantKeepsTheSameStylesAndNumbering" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="e60bd215-b512-93e7-f398-01ed71669e33">
+      <Execution id="da86baa2-47e2-472b-8fce-1a733b6e8260" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="BottomMarginVariantKeepsTheSameStylesAndNumbering" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.StylesMatchTheRetiredPythonEditor" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="80df18c6-8d92-0528-23cf-9d6b5b127650">
+      <Execution id="2a17ff4a-0a1b-4220-a5d6-0919be5c86a2" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="StylesMatchTheRetiredPythonEditor" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.SchemaValidationFindsDuplicateParagraphProperties" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="7dff50f6-c732-f202-bde2-6e6aee89f963">
+      <Execution id="a2b1960d-9d95-4d2c-a958-9ec36dd78df0" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="SchemaValidationFindsDuplicateParagraphProperties" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.InvalidMarginLeavesExistingOutputUntouched" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="20ac6ac9-9735-588e-6df6-33a46edb101e">
+      <Execution id="c7394a4b-f110-4553-a1da-4003cfd46291" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="InvalidMarginLeavesExistingOutputUntouched" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.StylesKeepNativeHeadingNumbersAndPageFields" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="557dc13d-6fbd-f68c-b2e4-5ea53fe9dd01">
+      <Execution id="143e780a-8dcb-40a3-8069-d1a59e9da89c" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="StylesKeepNativeHeadingNumbersAndPageFields" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="35e54123-79a9-1855-aa45-e83be7cf2f3b" executionId="9bd27991-b55d-4cee-aa0b-6c15e5463432" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e60bd215-b512-93e7-f398-01ed71669e33" executionId="da86baa2-47e2-472b-8fce-1a733b6e8260" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="19f4873f-90a2-0cef-cb75-aaae8b789aee" executionId="e761eab8-0339-4b70-9649-84965a879c5b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="80df18c6-8d92-0528-23cf-9d6b5b127650" executionId="2a17ff4a-0a1b-4220-a5d6-0919be5c86a2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="20ac6ac9-9735-588e-6df6-33a46edb101e" executionId="c7394a4b-f110-4553-a1da-4003cfd46291" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7dff50f6-c732-f202-bde2-6e6aee89f963" executionId="a2b1960d-9d95-4d2c-a958-9ec36dd78df0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="557dc13d-6fbd-f68c-b2e4-5ea53fe9dd01" executionId="143e780a-8dcb-40a3-8069-d1a59e9da89c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Список результатов" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Все загруженные результаты" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="7" executed="7" passed="7" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.03] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.34]   Discovering: AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.45]   Discovered:  AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.50]   Starting:    AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:03.16]   Finished:    AcademicDocx.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

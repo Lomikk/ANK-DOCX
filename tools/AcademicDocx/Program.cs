@@ -9,10 +9,16 @@ internal static class Program
     {
         try
         {
+            if (args is ["--version"])
+            {
+                Console.WriteLine(typeof(Program).Assembly.GetName().Version!.ToString(3));
+                return 0;
+            }
             if (args.Length == 0 || args[0] is "help" or "--help" or "-h")
             {
                 Console.WriteLine("""
                     Academic DOCX service
+                      --version
                       finalize-word DOCX [--report JSON]
                       validate DOCX [DOCX ...]
                       style-reference DOCX [--output DOCX] [--bottom-margin-mm 20|26]

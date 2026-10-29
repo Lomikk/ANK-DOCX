@@ -1,0 +1,29 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\examples\\book\\_book\\starter-appendices.docx",
+  "passed": true,
+  "schema_errors_before_word": 1534,
+  "validation": {
+    "file": ".academic-618e8605223143dd973de37e0cdbfae9.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 14,
+  "split_tables": [
+    {
+      "name": "tbl_squares",
+      "table_indices": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 24372,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

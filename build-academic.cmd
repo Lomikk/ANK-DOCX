@@ -1,7 +1,7 @@
 @echo off
 setlocal
 set "TASK_ROOT=%~dp0"
-set "ACADEMIC_DOCX_SERVICE=%TASK_ROOT%.tools\academic-docx\academic-docx.exe"
+if not defined ACADEMIC_DOCX_SERVICE set "ACADEMIC_DOCX_SERVICE=%TASK_ROOT%.tools\academic-docx\academic-docx.exe"
 if not exist "%ACADEMIC_DOCX_SERVICE%" (
   echo Academic DOCX service is missing. Run setup-academic.cmd. 1>&2
   exit /b 1
@@ -30,7 +30,15 @@ set "LC_CTYPE="
 set "LC_COLLATE="
 set "LC_MONETARY="
 set "LC_TIME="
-pushd "%TASK_ROOT%academic"
+rem An explicit project/file is forwarded unchanged to Quarto. Without one,
+rem use the maintained integration example; existing --profile usage stays valid.
+set "TASK_FIRST=%~1"
+if not defined TASK_FIRST goto render_example
+if "%TASK_FIRST:~0,1%"=="-" goto render_example
+quarto render %* --to academic-docx --no-clean
+exit /b %ERRORLEVEL%
+:render_example
+pushd "%TASK_ROOT%examples\book"
 quarto render --to academic-docx --no-clean %*
 set "TASK_RESULT=%ERRORLEVEL%"
 popd

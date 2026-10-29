@@ -15,9 +15,9 @@
 
 ## Текущий механизм
 
-- Автор пишет стандартные ссылки Quarto, например `[@source]`, `[@source, с. 16]`, `[@first; @second]`, а метаданные источников хранятся в `academic/references.bib`.
-- Quarto/Pandoc Citeproc самостоятельно выполняет нумерацию, группировку ссылок и построение списка в `references.qmd` (`#refs`).
-- `academic/gost-r-7-0-5-2008-numeric.csl` — локальная адаптация [Russian GOST R 7.0.5-2008 (numeric)](https://github.com/citation-style-language/styles/blob/master/gost-r-7-0-5-2008-numeric.csl): убрана точка после номера записи. Исходный стиль распространяется по [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/); сведения об авторах и лицензии сохранены в CSL. Наличие слова «ГОСТ» в названии не доказывает точность каждого случая библиографического описания.
+- Автор пишет стандартные ссылки Quarto, например `[@source]`, `[@source, с. 16]`, `[@first; @second]`, а метаданные источников хранятся в `references.bib` корня работы. Полный Starter показывает статью, книгу и интернет-источник в `quarto/references.bib`.
+- Quarto/Pandoc Citeproc самостоятельно выполняет нумерацию, группировку ссылок и построение списка в блоке `#refs` внутри `chapters/main.qmd`; в Book этот блок может находиться в отдельном `references.qmd`.
+- `quarto/_extensions/academic/gost-r-7-0-5-2008-numeric.csl` — локальная адаптация [Russian GOST R 7.0.5-2008 (numeric)](https://github.com/citation-style-language/styles/blob/master/gost-r-7-0-5-2008-numeric.csl): убрана точка после номера записи. Исходный стиль распространяется по [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/); сведения об авторах и лицензии сохранены в CSL. Наличие слова «ГОСТ» в названии не доказывает точность каждого случая библиографического описания.
 - После сборки библиографические записи — редактируемые абзацы DOCX, но **не** источники в менеджере библиографии Word. Правки BibTeX отражаются после повторной сборки из QMD.
 - Нативные Word `SEQ`/`REF` для формул, таблиц, рисунков и разделов остаются отдельной обязанностью Word-адаптера.
 
