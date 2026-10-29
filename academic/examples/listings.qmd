@@ -1,0 +1,32 @@
+---
+title: "Примеры оформления программного кода"
+---
+
+# Примеры листингов
+
+Первый пример показывает неисполняемый Python-код. Результат описан в @lst-speed.
+
+```{#lst-speed .python lst-cap="Вычисление скорости движения"}
+def calculate_speed(distance: float, time: float) -> float:
+    """Return speed in metres per second."""
+    if time <= 0:
+        raise ValueError("Время должно быть положительным")
+
+    return distance / time
+```
+
+В @lst-customers приведён запрос на получение последних заказов.
+
+```{#lst-customers .sql lst-cap="Запрос последних заказов"}
+SELECT customer_id, COUNT(*) AS order_count
+FROM orders
+WHERE created_at >= DATE '2026-01-01'
+GROUP BY customer_id
+ORDER BY order_count DESC;
+```
+
+Для обычного небольшого фрагмента без подписи допустим неисполняемый блок с классом языка:
+
+```{.python}
+result = calculate_speed(120.0, 10.0)
+```

@@ -13,6 +13,9 @@ contributes:
       number-sections: false
       fig-format: svg
       fig-dpi: 600
+      # Pandoc/Quarto highlighting keeps listings editable as Word text.
+      # A monochrome variant can be selected with syntax-highlighting: monochrome.
+      syntax-highlighting: github
       # Knitr-specific options belong here, not under execute.
       # The device background is independent of the ggplot2 theme.
       knitr:
@@ -25,4 +28,6 @@ contributes:
       crossref:
         fig-title: "Рисунок"
         tbl-title: "Таблица"
+        lst-title: "Листинг"
+        lst-prefix: "листинг"
         title-delim: " — "
