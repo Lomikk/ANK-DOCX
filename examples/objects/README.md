@@ -2,12 +2,13 @@
 
 ## Основной текст
 
-`main-text.qmd` и актуальный `main-text-math-rules.docx` показывают общий reference-docx: основной текст, четыре уровня заголовков, ненумерованные структурные заголовки и inline-обозначения OMML. Титула и сопроводительных листов нет. Предыдущий `main-text.docx` сохранён отдельно: он был открыт в Word при обновлении. Параметры и основания: [REFERENCE_DOCX.md](../../docs/REFERENCE_DOCX.md). Нумеруемые формулы и пояснения новых обозначений показаны в `../book/chapters/model.qmd`; правила — в [MATH_RULES.md](../../docs/MATH_RULES.md).
+`main-text.qmd` показывает общий reference-docx: основной текст, четыре уровня заголовков, ненумерованные структурные заголовки и inline-обозначения OMML. Титула и сопроводительных листов нет. Готовые DOCX в этом каталоге не хранятся; образец создаётся из исходника. Параметры и основания: [REFERENCE_DOCX.md](../../docs/REFERENCE_DOCX.md). Нумеруемые формулы и пояснения новых обозначений показаны в `../book/chapters/model.qmd`; правила — в [MATH_RULES.md](../../docs/MATH_RULES.md).
 
 Из корня репозитория, при доступном Quarto, образец воспроизводится без R:
 
 ```powershell
-quarto pandoc examples/objects/main-text.qmd --from markdown --to docx --reference-doc=quarto/_extensions/academic/academic.docx --output=examples/objects/main-text-math-rules.docx
+New-Item -ItemType Directory -Path build -Force | Out-Null
+quarto pandoc examples/objects/main-text.qmd --from markdown --to docx --reference-doc=quarto/_extensions/academic/academic.docx --output=build/main-text.docx
 ```
 
 Эта команда использует стандартный Pandoc и explicit custom-style из образца; полный адаптер Book не вызывается.
