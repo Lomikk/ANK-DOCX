@@ -26,9 +26,33 @@ for (output in outputs) {
   media <- list.files(file.path(folder, "word/media"), full.names = TRUE)
   if (length(media) && any(file.info(media)$size == 0)) stop("Empty embedded image: check the SVG converter; this DOCX is not ready")
   doc <- read_xml(file.path(folder, "word/document.xml"))
-  # Flatten only Quarto one-cell figure/table containers identified by semantic IDs.
-  wrappers <- xml_find_all(doc, "//w:tbl[count(w:tr)=1 and count(w:tr/w:tc)=1][w:tr/w:tc/w:bookmarkStart[starts-with(@w:name,'tbl-') or starts-with(@w:name,'fig-')]]", ns)
+  # Quarto also wraps captioned listings in a one-cell table. They are ordinary
+  # Word paragraphs after flattening, with no artificial table around the code.
+  wrappers <- xml_find_all(doc, "//w:tbl[count(w:tr)=1 and count(w:tr/w:tc)=1][w:tr/w:tc/w:bookmarkStart[starts-with(@w:name,'tbl-') or starts-with(@w:name,'fig-') or starts-with(@w:name,'lst-')]]", ns)
   for (wrapper in wrappers) {
+    listing <- length(xml_find_all(wrapper, "./w:tr/w:tc/w:bookmarkStart[starts-with(@w:name,'lst-')]", ns)) > 0
+    if (listing) {
+      # Quarto centres both the ImageCaption and the SourceCode paragraph inside
+      # its one-cell table. Align only listing paragraphs; figures keep their style.
+      paragraphs <- xml_find_all(wrapper, "./w:tr/w:tc/w:p", ns)
+      if (!length(paragraphs)) stop("Captioned listing has no caption paragraph")
+      for (paragraph in paragraphs) {
+        pr <- xml_find_first(paragraph, "./w:pPr", ns)
+        if (inherits(pr, "xml_missing")) pr <- xml_add_child(paragraph, node("<w:pPr/>"), .where = 0)
+        xml_remove(xml_find_all(pr, "./w:jc|./w:ind", ns))
+        xml_add_child(pr, node('<w:ind w:firstLine="0" w:left="0" w:right="0"/>'))
+        xml_add_child(pr, node('<w:jc w:val="left"/>'))
+      }
+      caption_pr <- xml_find_first(paragraphs[[1]], "./w:pPr", ns)
+      if (!length(xml_find_all(caption_pr, "./w:keepNext", ns))) {
+        style <- xml_find_first(caption_pr, "./w:pStyle", ns)
+        if (inherits(style, "xml_missing")) {
+          xml_add_child(caption_pr, node("<w:keepNext/>"), .where = 0)
+        } else {
+          xml_add_sibling(style, node("<w:keepNext/>"), .where = "after")
+        }
+      }
+    }
     content <- xml_find_all(wrapper, "./w:tr/w:tc/*[not(self::w:tcPr)]", ns)
     for (part in content) xml_add_sibling(wrapper, part, .where = "before")
     xml_remove(wrapper)
