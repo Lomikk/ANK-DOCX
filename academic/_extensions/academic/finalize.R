@@ -1,8 +1,6 @@
 # Standard Quarto project hook. Only missing native Word mechanisms live here.
 library(xml2)
 W <- "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
-B <- "http://schemas.openxmlformats.org/officeDocument/2006/bibliography"
-REL <- "http://schemas.openxmlformats.org/package/2006/relationships"
 ns <- c(w = W, m = "http://schemas.openxmlformats.org/officeDocument/2006/math")
 escape <- function(x) {
   x <- gsub("&", "&amp;", as.character(x), fixed = TRUE)
@@ -18,7 +16,6 @@ put <- function(x, name, value) xml_set_attr(x, paste0("w:", name), value, ns = 
 outputs <- strsplit(Sys.getenv("QUARTO_PROJECT_OUTPUT_FILES"), "\n", fixed = TRUE)[[1]]
 outputs <- outputs[grepl("[.]docx$", outputs, ignore.case = TRUE)]
 if (!length(outputs)) stop("Academic hook did not receive a DOCX output")
-sources <- jsonlite::fromJSON(".quarto/academic-sources.json", simplifyVector = FALSE)
 
 for (output in outputs) {
   output <- normalizePath(output, mustWork = TRUE)
@@ -125,49 +122,6 @@ for (output in outputs) {
     for (part in xml_find_all(number, "./*[not(self::w:pPr)]", ns)) xml_add_child(previous, part)
     xml_remove(number)
   }
-  # Linked citeproc citations retain source IDs; replace only recognized targets.
-  citations <- xml_find_all(doc, "//w:hyperlink[starts-with(@w:anchor,'ref-')]", ns)
-  source_ids <- vapply(sources, function(s) s$id, "")
-  for (citation in citations) {
-    key <- sub("^ref-", "", attr(citation, "w:anchor"))
-    if (!key %in% source_ids) stop("Unknown bibliography source: ", key)
-    # CITATION supplies its own parentheses; remove the adjacent citeproc pair.
-    before <- xml_find_first(citation,"preceding-sibling::w:r[1]/w:t[last()]",ns)
-    after <- xml_find_first(citation,"following-sibling::w:r[1]/w:t[1]",ns)
-    if (!inherits(before,"xml_missing") && !inherits(after,"xml_missing") && grepl("\\($",xml_text(before)) && grepl("^\\)",xml_text(after))) {
-      xml_text(before) <- sub("\\($","",xml_text(before))
-      xml_text(after) <- sub("^\\)","",xml_text(after))
-    }
-    for (part in xml_children(read_xml(paste0('<root xmlns:w="', W, '">', field(paste0("CITATION ", key, " \\l 1049")), '</root>')))) xml_add_sibling(citation, part, .where = "before")
-    xml_remove(citation)
-  }
-  bib <- xml_find_all(doc, "//w:p[w:pPr/w:pStyle[@w:val='Bibliography']]", ns)
-  if (length(sources) && (!length(citations) || !length(bib))) stop("Expected linked citations and a bibliography")
-  if (length(bib)) {
-    xml_add_sibling(bib[[1]], node(paste0('<w:p>', field("BIBLIOGRAPHY \\l 1049"), '</w:p>')), .where = "before")
-    xml_remove(bib)
-  }
-  # A narrow supported source mapping; reject unsupported types rather than inventing data.
-  source_xml <- character()
-  tag <- function(n, v) if (is.null(v) || !length(v)) "" else paste0('<b:', n, '>', escape(v), '</b:', n, '>')
-  for (source in sources) {
-    type <- switch(source$type, "article-journal" = "JournalArticle", "book" = "Book", "webpage" = "InternetSite", stop("Unsupported native bibliography type: ", source$type))
-    authors <- vapply(source$author, function(a) if (!is.null(a$literal)) tag("Corporate", a$literal) else paste0('<b:Person>', tag("Last", a$family), tag("First", a$given), '</b:Person>'), "")
-    author_xml <- if (any(vapply(source$author, function(a) !is.null(a$literal), logical(1)))) paste(authors, collapse = "") else paste0('<b:NameList>', paste(authors, collapse = ""), '</b:NameList>')
-    id <- digest::digest(source$id, algo = "md5", serialize = FALSE)
-    guid <- paste0('{', substr(id,1,8), '-', substr(id,9,12), '-', substr(id,13,16), '-', substr(id,17,20), '-', substr(id,21,32), '}')
-    source_xml <- c(source_xml, paste0('<b:Source>', tag("Tag", source$id), tag("SourceType", type), tag("Guid", toupper(guid)), tag("Title", source$title), '<b:Author><b:Author>', author_xml, '</b:Author></b:Author>', tag("Year", source$issued$`date-parts`[[1]][[1]]), tag("JournalName", source$`container-title`), tag("Volume", source$volume), tag("Issue", source$issue), tag("Pages", source$page), tag("StandardNumber", source$DOI), tag("URL", source$URL), '</b:Source>'))
-  }
-  dir.create(file.path(folder, "customXml/_rels"), recursive = TRUE, showWarnings = FALSE)
-  write_xml(read_xml(paste0('<b:Sources xmlns:b="', B, '" SelectedStyle="\\APASixthEditionOfficeOnline.xsl" StyleName="APA" Version="6">', paste(source_xml,collapse=""), '</b:Sources>')), file.path(folder,"customXml/item1.xml"))
-  write_xml(read_xml(paste0('<ds:datastoreItem xmlns:ds="http://schemas.openxmlformats.org/officeDocument/2006/customXml" ds:itemID="{12170D43-7531-5C70-BBAA-F5993787C4B1}"><ds:schemaRefs><ds:schemaRef ds:uri="', B, '"/></ds:schemaRefs></ds:datastoreItem>')), file.path(folder,"customXml/itemProps1.xml"))
-  write_xml(read_xml(paste0('<Relationships xmlns="', REL, '"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/customXmlProps" Target="itemProps1.xml"/></Relationships>')),file.path(folder,"customXml/_rels/item1.xml.rels"))
-  rels <- read_xml(file.path(folder,"word/_rels/document.xml.rels"))
-  xml_add_child(rels,read_xml(paste0('<Relationship xmlns="',REL,'" Id="rIdAcademicSources" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/customXml" Target="../customXml/item1.xml"/>')))
-  write_xml(rels,file.path(folder,"word/_rels/document.xml.rels"))
-  types <- read_xml(file.path(folder,"[Content_Types].xml"))
-  xml_add_child(types,read_xml('<Override xmlns="http://schemas.openxmlformats.org/package/2006/content-types" PartName="/customXml/itemProps1.xml" ContentType="application/vnd.openxmlformats-officedocument.customXmlProperties+xml"/>'))
-  write_xml(types,file.path(folder,"[Content_Types].xml"))
   # Structural preflight: no missing REF targets or duplicate semantic bookmarks.
   names <- vapply(xml_find_all(doc,"//w:bookmarkStart",ns),attr,"",name="w:name")
   refs <- xml_text(xml_find_all(doc,"//w:instrText[starts-with(normalize-space(.),'REF ')]",ns))

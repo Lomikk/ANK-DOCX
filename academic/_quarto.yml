@@ -18,6 +18,7 @@ format:
 engine: knitr
 lang: ru
 bibliography: references.bib
+csl: gost-r-7-0-5-2008-numeric.csl
 link-citations: true
 metadata-files: [metadata.yml]
 execute:

@@ -15,5 +15,4 @@ Imports:
     yaml,
     xml2,
     zip,
-    jsonlite,
-    digest
+    jsonlite

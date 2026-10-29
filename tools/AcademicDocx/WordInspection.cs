@@ -84,7 +84,10 @@ internal static class WordInspection
             var scope = session.Objects;
             var before = Snapshot(session, "opened");
             report.Snapshots.Add(before);
-            report.Checks["native_sources_recognized"] = expected.SourceTags.Order().SequenceEqual(before.Sources.Select(s => s.Tag).Order());
+            if (expected.SourceTags.Count > 0)
+                report.Checks["native_sources_recognized"] = expected.SourceTags.Order().SequenceEqual(before.Sources.Select(s => s.Tag).Order());
+            else
+                report.Skipped.Add("Native Word bibliography sources: the document uses Citeproc bibliography entries");
             report.Checks["native_math_recognized"] = expected.MathCount == before.Equations &&
                 expected.Tables.Sum(table => table.MathCount) == before.TableMath;
             report.Checks["native_toc_recognized"] = !expected.Fields.Any(f => f.StartsWith("TOC ", StringComparison.Ordinal)) || before.Toc > 0;

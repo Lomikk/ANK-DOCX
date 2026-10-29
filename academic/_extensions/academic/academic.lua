@@ -38,17 +38,13 @@ local function process(doc)
     front:insert(pagebreak())
   end
   doc.meta['academic-front-matter']=pandoc.MetaBlocks(front)
-  local references=pandoc.utils.references(doc)
-  local bibliography=pandoc.Pandoc({}, {references=references})
-  local out=assert(io.open('.quarto/academic-sources.json','wb'))
-  out:write(pandoc.write(bibliography,'csljson'));out:close()
   local headings={}
   doc:walk({Header=function(h)
     if h.classes:includes('unnumbered') then
       table.insert(headings,{id=h.identifier,unlisted=h.classes:includes('unlisted')})
     end
   end})
-  out=assert(io.open('.quarto/academic-headings.json','wb'))
+  local out=assert(io.open('.quarto/academic-headings.json','wb'))
   out:write(quarto.json.encode(headings));out:close()
   return doc
 end
@@ -63,9 +59,6 @@ local function para(p)
   end
 end
 local function cite(c)
-  if #c.citations > 1 then
-    error('Grouped citations are not yet supported by academic-docx 0.1; use individual citations.')
-  end
   if #c.citations==1 then
     local id=c.citations[1].id
     if id:match('^fig%-') or id:match('^tbl%-') or id:match('^eq%-') or id:match('^sec%-') then
