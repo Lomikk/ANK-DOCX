@@ -78,6 +78,30 @@ for (output in outputs) {
     xml_add_child(pr,node('<w:numPr><w:numId w:val="0"/></w:numPr>'))
     if (isTRUE(heading$unlisted)) xml_add_child(pr,node('<w:outlineLvl w:val="9"/>'))
   }
+  # Quarto Book knows which chapter files are appendices. Its Lua filter emits
+  # their heading IDs and order; Word needs only the missing STO layout.
+  appendices <- jsonlite::fromJSON(".quarto/academic-appendices.json",simplifyVector=FALSE)
+  appendix_headings <- list()
+  for (appendix in appendices) {
+    mark <- xml_find_first(doc,paste0("//w:bookmarkStart[@w:name='",appendix$id,"']"),ns)
+    if (inherits(mark,"xml_missing")) stop("Missing appendix bookmark: ",appendix$id)
+    p <- xml_find_first(mark,"following::w:p[1]",ns)
+    style <- xml_find_first(p,"./w:pPr/w:pStyle",ns)
+    if (inherits(style,"xml_missing") || attr(style,"w:val")!="Heading1")
+      stop("Appendix must begin with a top-level heading: ",appendix$id)
+    appendix_headings[[length(appendix_headings)+1L]] <- c(list(p=p),appendix)
+    pr <- xml_find_first(p,"./w:pPr",ns)
+    xml_remove(xml_find_all(pr,"./w:numPr|./w:jc|./w:pageBreakBefore",ns))
+    xml_add_child(pr,node('<w:numPr><w:numId w:val="0"/></w:numPr>'))
+    xml_add_child(pr,node('<w:jc w:val="center"/>'))
+    xml_add_child(pr,node('<w:pageBreakBefore/>'))
+    xml_remove(xml_find_all(p,"./w:r|./w:hyperlink",ns))
+    xml_add_child(p,node(run(paste0("ПРИЛОЖЕНИЕ ",appendix$letter))))
+    xml_add_child(p,node('<w:r><w:br/></w:r>'))
+    # Heading1 uses all-caps for chapter titles. The thematic appendix title
+    # must retain its sentence case on the second line (§4.14).
+    xml_add_child(p,node(paste0('<w:r><w:rPr><w:caps w:val="0"/></w:rPr><w:t xml:space="preserve">',escape(appendix$title),'</w:t></w:r>')))
+  }
   bookmarks <- xml_find_all(doc, "//w:bookmarkStart", ns)
   next_id <- max(c(0, as.integer(vapply(bookmarks, attr, "", name = "w:id"))), na.rm = TRUE) + 1
   for (bookmark in bookmarks) {
@@ -91,15 +115,21 @@ for (output in outputs) {
     captions <- candidates[startsWith(vapply(candidates, text, ""), label)]
     if (!length(captions)) stop("Missing caption for ", name)
     caption <- captions[[1]]
-    caption_text <- sub(paste0("^", label, "[[:space:]\u00a0]+[0-9.]+[[:space:]\u00a0]*[—–:.-]?[[:space:]]*"), "", text(caption), perl = TRUE)
+    caption_text <- sub(paste0("^", label, "[[:space:]\u00a0]+(?:[A-ZА-Я]\\.)?[0-9.]+[[:space:]\u00a0]*[—–:.-]?[[:space:]]*"), "", text(caption), perl = TRUE)
     if (!nzchar(caption_text)) stop("Empty caption for ", name)
+    appendix_heading <- xml_find_first(caption,"preceding::w:p[w:pPr/w:pStyle[@w:val='Heading1']][1]",ns)
+    appendix <- if (inherits(appendix_heading,"xml_missing")) list() else
+      Filter(function(a) identical(xml_path(a$p),xml_path(appendix_heading)),appendix_headings)
+    appendix_prefix <- if (length(appendix)) paste0(appendix[[1]]$letter,".") else ""
+    sequence <- if (length(appendix)) paste0(label,"Appendix",appendix[[1]]$latin) else label
     old_id <- attr(bookmark, "w:id")
     xml_remove(xml_find_all(doc, paste0("//w:bookmarkEnd[@w:id='", old_id, "']"), ns))
     xml_remove(bookmark)
     xml_remove(xml_find_all(caption, "./*[not(self::w:pPr)]", ns))
     xml_add_child(caption, node(run(paste0(label, " "))))
     xml_add_child(caption, node(paste0('<w:bookmarkStart w:id="', next_id, '" w:name="', normalized, '"/>')))
-    for (part in xml_children(read_xml(paste0('<root xmlns:w="', W, '">', field(paste0("SEQ ", label, " \\* ARABIC")), '</root>')))) xml_add_child(caption, part)
+    if (nzchar(appendix_prefix)) xml_add_child(caption,node(run(appendix_prefix)))
+    for (part in xml_children(read_xml(paste0('<root xmlns:w="', W, '">', field(paste0("SEQ ", sequence, " \\* ARABIC")), '</root>')))) xml_add_child(caption, part)
     xml_add_child(caption, node(paste0('<w:bookmarkEnd w:id="', next_id, '"/>')))
     xml_add_child(caption, node(run(paste0(" — ", caption_text))))
     next_id <- next_id + 1

@@ -1,0 +1,31 @@
+# Вспомогательные расчёты {#sec-app-calculations}
+
+В таблице @tbl-app-parameters приведены демонстрационные данные.
+
+| Параметр | Значение |
+|:---|---:|
+| Скорость, м/с | 12 |
+| Время, с | 3 |
+
+: Исходные параметры {#tbl-app-parameters}
+
+На рисунке @fig-app-trajectory показана зависимость пройденного пути от времени.
+
+```{r}
+#| label: fig-app-trajectory
+#| fig-cap: "Демонстрационная зависимость пути от времени"
+#| echo: false
+
+library(ggplot2)
+ggplot(data.frame(t = 0:3, s = 12 * (0:3)), aes(t, s)) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 2) +
+  labs(x = "Время, с", y = "Путь, м")
+```
+
+В листинге @lst-app-algorithm приведён фрагмент программы, который не исполняется при сборке.
+
+```{#lst-app-algorithm .python lst-cap="Расчёт расстояния"}
+def distance(speed, time):
+    return speed * time
+```

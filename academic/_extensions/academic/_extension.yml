@@ -27,7 +27,10 @@ contributes:
         - academic.lua
       crossref:
         fig-title: "Рисунок"
+        fig-prefix: "рисунок"
         tbl-title: "Таблица"
+        tbl-prefix: "таблица"
         lst-title: "Листинг"
         lst-prefix: "листинг"
+        appendix-title: "ПРИЛОЖЕНИЕ"
         title-delim: " — "
