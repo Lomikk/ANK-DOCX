@@ -6,7 +6,22 @@ if not exist "%ACADEMIC_DOCX_SERVICE%" (
   echo Academic DOCX service is missing. Run setup-academic.cmd. 1>&2
   exit /b 1
 )
-if exist "%TASK_ROOT%.tools\quarto-1.10.19\bin\quarto.exe" set "PATH=%TASK_ROOT%.tools\quarto-1.10.19\bin;%PATH%"
+if exist "%TASK_ROOT%.tools\quarto-1.10.19\bin\quarto.exe" (
+  rem Quarto Book embeds its own path in Markdown; Pandoc drops the backslash
+  rem before .tools, breaking the built-in title-block template lookup.
+  if not exist "%TEMP%\ank-quarto-1.10.19\bin\quarto.exe" (
+    if exist "%TEMP%\ank-quarto-1.10.19" (
+      echo Quarto alias path is occupied: %TEMP%\ank-quarto-1.10.19 1>&2
+      exit /b 1
+    )
+    mklink /J "%TEMP%\ank-quarto-1.10.19" "%TASK_ROOT%.tools\quarto-1.10.19" >nul
+    if errorlevel 1 (
+      echo Cannot create Quarto junction in TEMP. 1>&2
+      exit /b 1
+    )
+  )
+  set "PATH=%TEMP%\ank-quarto-1.10.19\bin;%PATH%"
+)
 if exist "%TASK_ROOT%.tools\R\bin\Rscript.exe" set "PATH=%TASK_ROOT%.tools\R\bin;%PATH%"
 if exist "%TASK_ROOT%.tools\R\bin\Rscript.exe" set "QUARTO_R=%TASK_ROOT%.tools\R\bin\Rscript.exe"
 if exist "%TASK_ROOT%.tools\rsvg-convert-static-1.0.0\rsvg-convert.exe" set "PATH=%TASK_ROOT%.tools\rsvg-convert-static-1.0.0;%PATH%"
