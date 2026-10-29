@@ -62,6 +62,16 @@ internal static class EnvironmentSetup
         // checkout. Their only maintained source is the starter directory.
         File.Copy(Path.Combine(template, "tools", "academic.R"), Path.Combine(example, "tools", "academic.R"), overwrite: true);
         Execute(rScript, ["--vanilla", installer], example, clearLocale: true);
+        var reference = Path.Combine(root, "Workspaces", "Пример");
+        // Install the starter's runtime files, not a second maintained implementation.
+        foreach (var file in new[] { ".Rprofile", "DESCRIPTION", "renv.lock", "renv/activate.R", "renv/settings.json", "tools/install.R", "tools/academic.R" })
+        {
+            var destination = Path.Combine(reference, file);
+            Directory.CreateDirectory(Path.GetDirectoryName(destination)!);
+            File.Copy(Path.Combine(template, file), destination, overwrite: true);
+        }
+        Execute(quartoExe, ["add", template, "--no-prompt"], reference);
+        Execute(rScript, ["--vanilla", installer], reference, clearLocale: true);
         Console.WriteLine("Academic DOCX environment is ready.");
     }
 

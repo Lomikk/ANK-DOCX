@@ -1,0 +1,20 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\.tools\\workspace-minimal\\_output\\chapters\\main.docx",
+  "passed": true,
+  "schema_errors_before_word": 0,
+  "validation": {
+    "file": ".academic-b9496160af85463995d21b787ba65dd5.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 5,
+  "split_tables": [],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 5348,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

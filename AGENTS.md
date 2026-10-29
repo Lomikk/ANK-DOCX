@@ -30,6 +30,8 @@
 ## Структура после исследования
 
 - quarto/ — единый поставляемый Starter и единственный исходник расширения _extensions/academic/. Новая работа: quarto use template; содержательный текст — chapters/main.qmd, данные — metadata.yml. См. docs/STARTER_TEMPLATE.md.
+- Workspaces/ — локальные работы, игнорируются Git репозитория, кроме поставляемого Пример/. Корневой ANK-DOCX.cmd предлагает меню и команды setup/new/build/list; внутри используются стандартные Quarto и renv. Не добавляй пользовательские работы в коммиты движка.
+- Новая работа получает чистый chapters/main.qmd, пустые metadata.yml и references.bib. Полный учебный пример и каталог находятся только в Workspaces/Пример/. Не копируй их в каждую работу. Стандартные junction-ссылки renv на общий кэш включаются .Rprofile; установленные пакеты через эти ссылки не редактируют.
 - examples/book/ — сохранённый интеграционный Book; расширение и tools/academic.R устанавливаются setup из quarto/ и игнорируются Git. Команда из корня: build-academic.cmd. examples/objects/ содержит отдельные образцы.
 - docs/ — план и вопросы продукта; docs/research/ — результаты проведённых опытов. Сначала читай docs/README.md, чтобы выбрать актуальный отчёт.
 - tools/AcademicDocx/, tools/AcademicDocx.Core/ и tools/AcademicDocx.Tests/ — служебное приложение, переносимая обработка DOCX и проверки. Подготовка среды: setup-academic.cmd; команды: academic-docx.cmd.

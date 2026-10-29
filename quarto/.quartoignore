@@ -2,6 +2,7 @@
 !.*
 !AGENTS.md
 .git/
+.tools/
 .quartoignore
 .quarto/
 _output/

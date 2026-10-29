@@ -1,0 +1,22 @@
+project:
+  type: default
+  render: [chapters/main.qmd]
+  execute-dir: project
+  output-dir: _output
+  post-render:
+    - tools/academic.R finalize
+format:
+  academic-docx: default
+engine: knitr
+lang: ru
+metadata-files: [metadata.yml]
+bibliography: references.bib
+link-citations: true
+execute:
+  fig-width: 6.2
+  out-width: "95%"
+  echo: false
+  cache: false
+  freeze: false
+  error: false
+  warning: true

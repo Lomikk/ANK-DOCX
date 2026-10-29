@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="200356f3-01ab-4cd1-b532-6c514ca6646b" name="2yash@DESKTOP-H9F324S 2026-10-30 01:20:43" runUser="DESKTOP-H9F324S\2yash" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-30T01:20:43.7382475+05:00" queuing="2026-10-30T01:20:43.7382476+05:00" start="2026-10-30T01:20:42.2633724+05:00" finish="2026-10-30T01:21:48.9601057+05:00" />
+  <TestSettings name="default" id="bc5154cb-ff4b-425f-a546-34ce128a0062">
+    <Deployment runDeploymentRoot="2yash_DESKTOP-H9F324S_2026-10-30_01_20_43" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="2ac48222-04ab-49f7-87c1-dfa6006a7e32" testId="3550b1cc-f6c5-371b-d5fa-79a574d8d421" testName="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;CON&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.1090480" startTime="2026-10-30T01:20:42.8693976+05:00" endTime="2026-10-30T01:20:42.9841505+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2ac48222-04ab-49f7-87c1-dfa6006a7e32" />
+    <UnitTestResult executionId="1b5e761f-3d0d-45e4-bf45-00813c10e681" testId="b8451ac6-841c-d9a4-2f29-825e0b12cedb" testName="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;export-pdf&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0917592" startTime="2026-10-30T01:20:43.3233652+05:00" endTime="2026-10-30T01:20:43.4144139+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1b5e761f-3d0d-45e4-bf45-00813c10e681" />
+    <UnitTestResult executionId="701eb139-a5e3-422c-9a7f-132b9b8f89cc" testId="2b2ce105-f6e2-2294-24d3-c18626d8353c" testName="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;check-word&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0902303" startTime="2026-10-30T01:20:43.4145815+05:00" endTime="2026-10-30T01:20:43.5047534+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="701eb139-a5e3-422c-9a7f-132b9b8f89cc" />
+    <UnitTestResult executionId="9c8c83a7-dd4f-4415-bbd6-d09f454a4946" testId="db106157-1cf6-9d69-16d6-7835dc8c23fd" testName="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;../outside&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0845068" startTime="2026-10-30T01:20:43.2378378+05:00" endTime="2026-10-30T01:20:43.3222609+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9c8c83a7-dd4f-4415-bbd6-d09f454a4946" />
+    <UnitTestResult executionId="75ad663b-707a-4def-8789-db16181cf6cc" testId="46d6d6af-e562-fa5f-dcf2-c226b4d023ce" testName="AcademicDocx.Tests.QuartoStarterTests.IndependentProjectsUseProfilesAndFindTheServiceOnPath" computerName="DESKTOP-H9F324S" duration="00:01:05.0415355" startTime="2026-10-30T01:20:43.8610604+05:00" endTime="2026-10-30T01:21:48.9119895+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="75ad663b-707a-4def-8789-db16181cf6cc">
+      <Output>
+        <ErrorInfo>
+          <Message># Bootstrapping renv 1.3.1 ---------------------------------------------------&#xD;
+- Downloading renv ... FAILED&#xD;
+Warning message:&#xD;
+failed to bootstrap renv: the project will not be loaded.&#xD;
+Reason: failed to download:&#xD;
+All download methods failed&#xD;
+Use `renv::activate()` to re-initialize the project. &#xD;
+Error in loadNamespace(x) : there is no package called 'renv'&#xD;
+Calls: loadNamespace -&gt; withRestarts -&gt; withOneRestart -&gt; doWithOneRestart&#xD;
+Execution halted&#xD;
+</Message>
+          <StackTrace>   at AcademicDocx.Tests.QuartoStarterTests.MustRun(String directory, String command, String[] args) in D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\QuartoStarterTests.cs:line 150&#xD;
+   at AcademicDocx.Tests.QuartoStarterTests.IndependentProjectsUseProfilesAndFindTheServiceOnPath() in D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\QuartoStarterTests.cs:line 51&#xD;
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7a1f053f-f20a-4861-978f-49c7ccff9713" testId="ba510509-3a09-02ba-7746-e93f32490532" testName="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;trailing.&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0858342" startTime="2026-10-30T01:20:42.9924184+05:00" endTime="2026-10-30T01:20:43.0700767+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7a1f053f-f20a-4861-978f-49c7ccff9713" />
+    <UnitTestResult executionId="eb07959c-1aef-4675-a065-d0d646d07b7b" testId="fb08c6ef-0520-dd31-4c52-ec2c50c24623" testName="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;inspect-word&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0894260" startTime="2026-10-30T01:20:43.5969984+05:00" endTime="2026-10-30T01:20:43.6862654+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eb07959c-1aef-4675-a065-d0d646d07b7b" />
+    <UnitTestResult executionId="741ab72e-5179-4c69-9190-e662f9b639ab" testId="00c932f3-e18b-cb68-ce59-7a14bcf33143" testName="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;C:\\outside&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0847931" startTime="2026-10-30T01:20:43.1528944+05:00" endTime="2026-10-30T01:20:43.2376559+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="741ab72e-5179-4c69-9190-e662f9b639ab" />
+    <UnitTestResult executionId="a5e5919b-f870-4af9-849d-46c3cdc21c19" testId="4265f696-9794-c0e2-eef1-0a643fc3b29e" testName="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;..&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0826173" startTime="2026-10-30T01:20:43.0707615+05:00" endTime="2026-10-30T01:20:43.1527532+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a5e5919b-f870-4af9-849d-46c3cdc21c19" />
+    <UnitTestResult executionId="4f975997-b709-4424-9711-a80bc65efa62" testId="39a2cbff-d8c0-39ac-1c54-f064abafb3e0" testName="AcademicDocx.Tests.CliTests.NewWorkspaceDoesNotOverwriteExistingAuthoredFiles" computerName="DESKTOP-H9F324S" duration="00:00:00.0869063" startTime="2026-10-30T01:20:43.7720283+05:00" endTime="2026-10-30T01:20:43.8587002+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4f975997-b709-4424-9711-a80bc65efa62" />
+    <UnitTestResult executionId="8396e0d9-b37e-4f7b-8f17-f0c66c6c3061" testId="c90f231f-9e8a-4f7d-f520-ee4e544cb158" testName="AcademicDocx.Tests.CliTests.PublishedApplicationRunsWithoutDotnetRootOrPath" computerName="DESKTOP-H9F324S" duration="00:00:00.0853077" startTime="2026-10-30T01:20:43.7096682+05:00" endTime="2026-10-30T01:20:43.7716898+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8396e0d9-b37e-4f7b-8f17-f0c66c6c3061" />
+    <UnitTestResult executionId="b6851261-190a-4cf2-8cb4-509975b1d364" testId="f6378ebd-bcbe-f30e-1db0-2285b25f518d" testName="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;finalize-word&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0918583" startTime="2026-10-30T01:20:43.5049394+05:00" endTime="2026-10-30T01:20:43.5967933+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b6851261-190a-4cf2-8cb4-509975b1d364" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="AcademicDocx.Tests.QuartoStarterTests.IndependentProjectsUseProfilesAndFindTheServiceOnPath" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="46d6d6af-e562-fa5f-dcf2-c226b4d023ce">
+      <Execution id="75ad663b-707a-4def-8789-db16181cf6cc" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.QuartoStarterTests" name="IndependentProjectsUseProfilesAndFindTheServiceOnPath" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;export-pdf&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="b8451ac6-841c-d9a4-2f29-825e0b12cedb">
+      <Execution id="1b5e761f-3d0d-45e4-bf45-00813c10e681" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="ReportCannotOverwriteTheInputDocument" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;finalize-word&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="f6378ebd-bcbe-f30e-1db0-2285b25f518d">
+      <Execution id="b6851261-190a-4cf2-8cb4-509975b1d364" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="ReportCannotOverwriteTheInputDocument" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.NewWorkspaceDoesNotOverwriteExistingAuthoredFiles" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="39a2cbff-d8c0-39ac-1c54-f064abafb3e0">
+      <Execution id="4f975997-b709-4424-9711-a80bc65efa62" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="NewWorkspaceDoesNotOverwriteExistingAuthoredFiles" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.PublishedApplicationRunsWithoutDotnetRootOrPath" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="c90f231f-9e8a-4f7d-f520-ee4e544cb158">
+      <Execution id="8396e0d9-b37e-4f7b-8f17-f0c66c6c3061" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="PublishedApplicationRunsWithoutDotnetRootOrPath" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;../outside&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="db106157-1cf6-9d69-16d6-7835dc8c23fd">
+      <Execution id="9c8c83a7-dd4f-4415-bbd6-d09f454a4946" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="WorkspaceRejectsPathsAndReservedNames" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;CON&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="3550b1cc-f6c5-371b-d5fa-79a574d8d421">
+      <Execution id="2ac48222-04ab-49f7-87c1-dfa6006a7e32" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="WorkspaceRejectsPathsAndReservedNames" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;C:\\outside&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="00c932f3-e18b-cb68-ce59-7a14bcf33143">
+      <Execution id="741ab72e-5179-4c69-9190-e662f9b639ab" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="WorkspaceRejectsPathsAndReservedNames" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;trailing.&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="ba510509-3a09-02ba-7746-e93f32490532">
+      <Execution id="7a1f053f-f20a-4861-978f-49c7ccff9713" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="WorkspaceRejectsPathsAndReservedNames" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;..&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="4265f696-9794-c0e2-eef1-0a643fc3b29e">
+      <Execution id="a5e5919b-f870-4af9-849d-46c3cdc21c19" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="WorkspaceRejectsPathsAndReservedNames" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;check-word&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="2b2ce105-f6e2-2294-24d3-c18626d8353c">
+      <Execution id="701eb139-a5e3-422c-9a7f-132b9b8f89cc" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="ReportCannotOverwriteTheInputDocument" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;inspect-word&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\debug\net10.0\academicdocx.tests.dll" id="fb08c6ef-0520-dd31-4c52-ec2c50c24623">
+      <Execution id="eb07959c-1aef-4675-a065-d0d646d07b7b" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Debug\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="ReportCannotOverwriteTheInputDocument" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="3550b1cc-f6c5-371b-d5fa-79a574d8d421" executionId="2ac48222-04ab-49f7-87c1-dfa6006a7e32" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b8451ac6-841c-d9a4-2f29-825e0b12cedb" executionId="1b5e761f-3d0d-45e4-bf45-00813c10e681" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2b2ce105-f6e2-2294-24d3-c18626d8353c" executionId="701eb139-a5e3-422c-9a7f-132b9b8f89cc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="db106157-1cf6-9d69-16d6-7835dc8c23fd" executionId="9c8c83a7-dd4f-4415-bbd6-d09f454a4946" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="46d6d6af-e562-fa5f-dcf2-c226b4d023ce" executionId="75ad663b-707a-4def-8789-db16181cf6cc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ba510509-3a09-02ba-7746-e93f32490532" executionId="7a1f053f-f20a-4861-978f-49c7ccff9713" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fb08c6ef-0520-dd31-4c52-ec2c50c24623" executionId="eb07959c-1aef-4675-a065-d0d646d07b7b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="00c932f3-e18b-cb68-ce59-7a14bcf33143" executionId="741ab72e-5179-4c69-9190-e662f9b639ab" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4265f696-9794-c0e2-eef1-0a643fc3b29e" executionId="a5e5919b-f870-4af9-849d-46c3cdc21c19" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="39a2cbff-d8c0-39ac-1c54-f064abafb3e0" executionId="4f975997-b709-4424-9711-a80bc65efa62" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c90f231f-9e8a-4f7d-f520-ee4e544cb158" executionId="8396e0d9-b37e-4f7b-8f17-f0c66c6c3061" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f6378ebd-bcbe-f30e-1db0-2285b25f518d" executionId="b6851261-190a-4cf2-8cb4-509975b1d364" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Список результатов" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Все загруженные результаты" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="12" executed="12" passed="11" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.08]   Discovering: AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.13]   Discovered:  AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.15]   Starting:    AcademicDocx.Tests&#xD;
+[xUnit.net 00:01:06.22]       # Bootstrapping renv 1.3.1 ---------------------------------------------------&#xD;
+[xUnit.net 00:01:06.22]       - Downloading renv ... FAILED&#xD;
+[xUnit.net 00:01:06.22]       Warning message:&#xD;
+[xUnit.net 00:01:06.22]       failed to bootstrap renv: the project will not be loaded.&#xD;
+[xUnit.net 00:01:06.22]       Reason: failed to download:&#xD;
+[xUnit.net 00:01:06.22]       All download methods failed&#xD;
+[xUnit.net 00:01:06.22]       Use `renv::activate()` to re-initialize the project. &#xD;
+[xUnit.net 00:01:06.22]       Error in loadNamespace(x) : there is no package called 'renv'&#xD;
+[xUnit.net 00:01:06.22]       Calls: loadNamespace -&gt; withRestarts -&gt; withOneRestart -&gt; doWithOneRestart&#xD;
+[xUnit.net 00:01:06.22]       Execution halted&#xD;
+[xUnit.net 00:01:06.22]       &#xD;
+[xUnit.net 00:01:06.22]       Stack Trace:&#xD;
+[xUnit.net 00:01:06.22]         D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\QuartoStarterTests.cs(150,0): at AcademicDocx.Tests.QuartoStarterTests.MustRun(String directory, String command, String[] args)&#xD;
+[xUnit.net 00:01:06.22]         D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\QuartoStarterTests.cs(51,0): at AcademicDocx.Tests.QuartoStarterTests.IndependentProjectsUseProfilesAndFindTheServiceOnPath()&#xD;
+[xUnit.net 00:01:06.22]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+[xUnit.net 00:01:06.22]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+[xUnit.net 00:01:06.22]   Finished:    AcademicDocx.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="DESKTOP-H9F324S" outcome="Error" timestamp="2026-10-30T01:21:48.9141644+05:00">
+        <Text>[xUnit.net 00:01:06.22]     AcademicDocx.Tests.QuartoStarterTests.IndependentProjectsUseProfilesAndFindTheServiceOnPath [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

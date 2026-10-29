@@ -26,11 +26,37 @@ public sealed class QuartoStarterTests
             Assert.True(File.Exists(Path.Combine(project, ".Rprofile")));
             Assert.True(File.Exists(Path.Combine(project, ".gitignore")));
             Assert.True(File.Exists(Path.Combine(project, "AGENTS.md")));
-            Assert.True(File.Exists(Path.Combine(project, "EXAMPLE_GUIDE.md")));
+            Assert.False(File.Exists(Path.Combine(project, "EXAMPLE_GUIDE.md")));
+            Assert.False(Directory.Exists(Path.Combine(project, "examples")));
+            Assert.Equal("", File.ReadAllText(Path.Combine(project, "references.bib")));
+            Assert.DoesNotContain("calculate-model", File.ReadAllText(Path.Combine(project, "chapters", "main.qmd")));
             Assert.True(File.Exists(Path.Combine(project, "data", ".gitkeep")));
             Assert.False(Directory.Exists(Path.Combine(project, "renv", "library")));
             Assert.False(Directory.Exists(Path.Combine(project, "docs")));
             Assert.False(Directory.Exists(Path.Combine(project, "tools", "AcademicDocx")));
+            var metadata = Path.Combine(project, "metadata.yml");
+            // Fill authored metadata and text explicitly from the repository's
+            // reference example, after asserting that the new work is clean.
+            var reference = Path.GetFullPath(Path.Combine(source, "..", "Workspaces", "Пример"));
+            var yaml = Regex.Replace(File.ReadAllText(Path.Combine(reference, "metadata.yml")), "(?m)^title:.*$",
+                "title: Независимая работа " + profile).Replace("profile: coursework", "profile: " + profile);
+            if (profile == "referat")
+                yaml = string.Join('\n', yaml.Split('\n').Where(line => !line.TrimStart().StartsWith("summary:", StringComparison.Ordinal)));
+            File.WriteAllText(metadata, yaml);
+            var main = Path.Combine(project, "chapters", "main.qmd");
+            File.Copy(Path.Combine(reference, "chapters", "main.qmd"), main, overwrite: true);
+            File.Copy(Path.Combine(reference, "references.bib"), Path.Combine(project, "references.bib"), overwrite: true);
+            if (profile == "referat")
+                File.WriteAllText(main, File.ReadAllText(main).Replace("a = 3,", "a = 5,"));
+            MustRun(project, "Rscript", ["--vanilla", "tools/install.R"]);
+            var packages = Directory.GetDirectories(Path.Combine(project, "renv", "library"), "jsonlite", SearchOption.AllDirectories);
+            Assert.Single(packages);
+            Assert.True(new DirectoryInfo(packages[0]).Attributes.HasFlag(FileAttributes.ReparsePoint), "R packages should link to the shared cache");
+            var authored = File.ReadAllText(main);
+            var metadataBeforeUpdate = File.ReadAllText(metadata);
+            MustRun(project, "quarto", ["add", source, "--no-prompt"]);
+            Assert.Equal(authored, File.ReadAllText(main));
+            Assert.Equal(metadataBeforeUpdate, File.ReadAllText(metadata));
             // Exercise the namespace added by a GitHub installation, too.
             if (profile == "referat")
             {
@@ -38,16 +64,6 @@ public sealed class QuartoStarterTests
                 Directory.Move(Path.Combine(project, "_extensions", "academic"),
                     Path.Combine(project, "_extensions", "test-owner", "academic"));
             }
-            var metadata = Path.Combine(project, "metadata.yml");
-            var yaml = Regex.Replace(File.ReadAllText(metadata), "(?m)^title:.*$",
-                "title: Независимая работа " + profile).Replace("profile: coursework", "profile: " + profile);
-            if (profile == "referat")
-                yaml = string.Join('\n', yaml.Split('\n').Where(line => !line.TrimStart().StartsWith("summary:", StringComparison.Ordinal)));
-            File.WriteAllText(metadata, yaml);
-            var main = Path.Combine(project, "chapters", "main.qmd");
-            if (profile == "referat")
-                File.WriteAllText(main, File.ReadAllText(main).Replace("a = 3,", "a = 5,"));
-            MustRun(project, "Rscript", ["--vanilla", "tools/install.R"]);
             MustRun(project, "quarto", ["render"]);
             var output = Directory.GetFiles(Path.Combine(project, "_output"), "*.docx", SearchOption.AllDirectories).Single();
             Assert.Equal(0, DocxInspection.Validate(output).ErrorCount);

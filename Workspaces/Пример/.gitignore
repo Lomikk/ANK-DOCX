@@ -1,0 +1,15 @@
+/.Rprofile
+/DESCRIPTION
+/renv.lock
+/renv/
+/tools/
+/_extensions/
+/.quarto/
+/_output/
+*.knit.md
+*_files/
+/*.docx
+/*.pdf
+~$*
+
+**/*.quarto_ipynb

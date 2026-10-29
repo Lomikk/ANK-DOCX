@@ -1,0 +1,20 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\Workspaces\\Проверка CMD реферат\\_output\\chapters\\main.docx",
+  "passed": true,
+  "schema_errors_before_word": 0,
+  "validation": {
+    "file": ".academic-8da4b724d2a64bdab7736476f76d8ac3.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 3,
+  "split_tables": [],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 5776,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

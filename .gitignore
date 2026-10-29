@@ -1,5 +1,7 @@
 # Local tools, generated output and historical archives.
 /.tools/
+/Workspaces/*
+!/Workspaces/Пример/
 /build/
 /output/
 /archive/*

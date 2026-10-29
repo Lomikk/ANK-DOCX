@@ -26,11 +26,16 @@ internal static class Program
                       export-pdf DOCX PDF REPORT
                       inspect-word DOCX REPORT
                       setup REPOSITORY_ROOT
+                      workspace REPOSITORY_ROOT [new NAME [--profile coursework|referat] | build NAME | list]
                     """);
                 return 0;
             }
             switch (args[0])
             {
+                case "workspace":
+                    Require(args, 2);
+                    WorkspaceCommands.Run(args[1], args.Skip(2).ToArray());
+                    return 0;
                 case "inspect-word":
                 {
                     if (args.Length != 3) throw new ArgumentException("inspect-word DOCX REPORT");

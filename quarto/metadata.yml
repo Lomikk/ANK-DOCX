@@ -1,13 +1,12 @@
-title: "Воспроизводимый расчёт полиномиальной модели"
-author: "Иванов Иван Иванович"
+title: ""
+author: ""
 academic:
-  # Demonstration profiles: their sheet composition is not an approved STO rule.
   profile: coursework
-  university: "Название университета"
-  department: "Название кафедры"
-  discipline: "Математическое моделирование"
-  group: "Группа студента"
-  supervisor: "Фамилия Имя Отчество руководителя"
-  city: "Челябинск"
-  year: "2026"
-  summary: "Исследуются квадратичный и линейный показатели и их сумма. Из единой модели на R формируются текстовые результаты, таблицы с математическими подстановками, графики и расширенный расчёт. Приведены программные проверки согласованности, исходный код и воспроизводимые файлы результатов."
+  university: ""
+  department: ""
+  discipline: ""
+  group: ""
+  supervisor: ""
+  city: ""
+  year: ""
+  summary: ""

@@ -1,0 +1,28 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\examples\\reference\\_output\\chapters\\main.docx",
+  "passed": true,
+  "schema_errors_before_word": 1871,
+  "validation": {
+    "file": ".academic-c9ffbc97d7114a649f4a7306e47f7719.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 14,
+  "split_tables": [
+    {
+      "name": "tbl_long_results",
+      "table_indices": [
+        3,
+        4
+      ]
+    }
+  ],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 18336,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

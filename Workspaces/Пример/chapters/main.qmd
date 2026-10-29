@@ -1,0 +1,340 @@
+<!--
+Учебная работа и действующий пример для агента. Весь текст — в одном QMD.
+Сопроводительные листы и аннотацию выбирает metadata.yml, их здесь не включаем.
+Модель определяется один раз в calculate-model; приложение показывает тот же код
+через штатный knitr ref.label без повторного исполнения и копирования реализации.
+Каталог поддержанных элементов: README.md в каталоге этого примера.
+-->
+
+```{r}
+#| label: academic-setup
+#| include: false
+source("tools/academic.R", encoding = "UTF-8")
+```
+
+```{r}
+#| label: calculate-model
+#| include: false
+# Меняйте исходные параметры здесь.
+# Текст, таблицы и графики используют results.
+parameters <- list(
+  a = 3, b = 1, c = 2, x = c(2, 3, 4), n_long = 55L
+)
+
+quadratic <- function(x, a, b) a * x^2 + b
+linear <- function(x, c) c * x
+calculate <- function(x, parameters) {
+  f <- quadratic(x, parameters$a, parameters$b)
+  g <- linear(x, parameters$c)
+  data.frame(x = x, f = f, g = g, h = f + g)
+}
+
+results <- calculate(parameters$x, parameters)
+total <- sum(results$h)
+long_results <- calculate(seq_len(parameters$n_long), parameters)
+```
+
+```{r}
+#| label: prepare-views
+#| include: false
+# Формат отображения не меняет точность расчёта.
+fmt_number <- function(x, digits = 0L) {
+  formatC(x, format = "f", digits = digits,
+          decimal.mark = ",", big.mark = " ")
+}
+
+# Данные двумерных рисунков получены из той же results.
+plot_data <- data.frame(
+  x = rep(results$x, times = 3L),
+  value = unlist(results[c("f", "g", "h")], use.names = FALSE),
+  series = factor(rep(c("f", "g", "h"), each = nrow(results)),
+                  levels = c("f", "g", "h"))
+)
+series_labels <- expression(
+  italic(f)(italic(x)), italic(g)(italic(x)), italic(h)(italic(x))
+)
+```
+
+# Введение {.unnumbered #sec-introduction}
+
+В работе исследуется влияние коэффициента квадратичной функции на результат совместного расчёта двух показателей. Цель — получить согласованные числовые, табличные и графические представления одной модели. Данные являются демонстрационными[^synthetic-data].
+
+Подход к совместному хранению программы и объясняющего текста рассматривается в статье Д. Кнута [@knuth1984, с. 97]. Для графического представления используется ggplot2 [@wickham2016]. Обе работы относятся к методической основе воспроизводимого анализа [@knuth1984; @wickham2016].
+
+Модель определена в разделе [-@sec-model], результаты представлены в таблице [-@tbl-results] и на рисунке [-@fig-functions]. Полный вычислительный код вынесен в @sec-app-code, расширенный расчёт — в @sec-app-data. Обозначения объектов и приложений формируются при сборке.
+
+[^synthetic-data]: Числа выбраны для проверки вычислений и оформления. Они не являются результатами наблюдений за реальным объектом и не обосновывают эмпирических выводов.
+
+# Математическая модель {#sec-model}
+
+## Определение показателей
+
+Рассмотрим три безразмерных показателя:
+
+$$
+f(x)=ax^2+b,\qquad g(x)=cx,\qquad h(x)=f(x)+g(x),
+$$ {#eq-model}
+
+::: {custom-style="Formula Definitions"}
+| где $f(x)$ — квадратичный показатель;
+| $x$ — аргумент модели;
+| $a$ — коэффициент квадратичного слагаемого;
+| $b$ — постоянное слагаемое;
+| $g(x)$ — линейный показатель;
+| $c$ — коэффициент линейного показателя;
+| $h(x)$ — сумма двух показателей.
+:::
+
+В формуле ([-@eq-model]) используются параметры $a=`r parameters$a`$, $b=`r parameters$b`$ и $c=`r parameters$c`$. Расчёт выполняется в `r nrow(results)` точках. Значения $x$ и параметры задаются один раз в вычисляемой ячейке; округление применяется только при отображении.
+
+Суммарный показатель по выбранным точкам определяется зависимостью
+
+$$
+S=\sum_{i=1}^{n}h(x_i),
+$$ {#eq-total}
+
+::: {custom-style="Formula Definitions"}
+| где $S$ — суммарный показатель;
+| $i$ — индекс расчётной точки;
+| $n$ — число расчётных точек.
+:::
+
+Значения $h$ и $x$ уже определены после формулы ([-@eq-model]), поэтому повторное пояснение этих обозначений не требуется. Суммарный показатель: **`r fmt_number(total)`**.
+
+### Проверка модели
+
+Для каждой строки проверяется равенство суммы двух слагаемых третьему показателю. Проверка выполняется автоматически в разделе [-@sec-reproducibility].
+
+#### Область применимости
+
+Модель служит воспроизводимым вычислительным примером. Перенос выводов на конкретный предмет исследования требует самостоятельного обоснования автора.
+
+# Табличное представление {#sec-tables}
+
+Таблица [-@tbl-results] объединяет исходные аргументы, подстановки в формулу ([-@eq-model]) и вычисленные значения. Заголовок имеет два уровня и объединённые ячейки, подстановки представлены редактируемой математикой Word.
+
+```{r}
+#| label: tbl-results
+#| tbl-cap: "Расчёт показателей полиномиальной модели"
+table_data <- transform(
+  results,
+  substitution = sprintf("f(%s)=%s\\cdot%s^{2}+%s=%s",
+    results$x, parameters$a, results$x, parameters$b, results$f)
+)
+table_data <- table_data[c("x", "substitution", "f", "g", "h")]
+headers <- data.frame(
+  key = names(table_data),
+  group = c("Аргумент", "Квадратичный показатель", "Квадратичный показатель",
+            "Линейный показатель", "Суммарный показатель"),
+  label = c("x", "Подстановка", "f(x)", "g(x)", "h(x)")
+)
+ft <- flextable::flextable(table_data)
+ft <- flextable::set_header_df(ft, mapping = headers, key = "key")
+ft <- flextable::merge_h(ft, i = 1, part = "header")
+ft <- flextable::merge_v(ft, j = c("x", "g", "h"), part = "header")
+ft <- flextable::compose(ft, j = "substitution",
+  value = flextable::as_paragraph(flextable::as_equation(substitution)))
+ft <- flextable::add_footer_row(ft,
+  values = c("Суммарный показатель", fmt_number(total)), colwidths = c(4, 1))
+ft <- flextable::add_footer_lines(ft,
+  values = "Примечание — Все числовые ячейки получены из одного вычисляемого набора данных.")
+ft <- ank_style_table(ft)
+ft <- flextable::colformat_int(ft, j = c("x", "f", "g", "h"), big.mark = " ")
+ft <- flextable::align(ft, j = c("x", "f", "g", "h"), align = "right", part = "body")
+ft
+```
+
+::: {#note-rounding}
+Примечание — Округление текста и таблиц не меняет исходные значения, используемые в последующих вычислениях.
+:::
+
+Это пояснение можно упомянуть обычной именованной ссылкой на [примечание](#note-rounding). Оно оформлено абзацем; подстрочная сноска во введении решает другую задачу.
+
+# Графическое представление {#sec-plots}
+
+## Линии и маркеры
+
+На рисунке [-@fig-functions] показаны те же значения, что и в таблице [-@tbl-results]. Ряды различаются типом линии и маркерами, поэтому их можно различить при чёрно-белой печати.
+
+```{r}
+#| label: fig-functions
+#| fig-cap: "Сопоставление значений трёх показателей"
+#| fig-height: 3.2
+model_plot <- ggplot2::ggplot(plot_data,
+  ggplot2::aes(x, value, linetype = series, shape = series)) +
+  ggplot2::geom_line() +
+  ggplot2::geom_point() +
+  ggplot2::scale_linetype_manual(values = ank_line_types[1:3], labels = series_labels) +
+  ggplot2::scale_shape_manual(values = ank_point_shapes[1:3], labels = series_labels) +
+  ggplot2::scale_x_continuous(breaks = results$x) +
+  ggplot2::scale_y_continuous(labels = ank_decimal_labels) +
+  ggplot2::labs(x = "Аргумент x", y = "Значение показателя", linetype = NULL, shape = NULL)
+model_plot
+```
+
+## Штриховки
+
+Столбчатое представление на рисунке [-@fig-patterns] использует штриховки для тех же рядов. Числа не рассчитываются повторно внутри построения рисунка.
+
+```{r}
+#| label: fig-patterns
+#| fig-cap: "Сравнение показателей с помощью штриховок"
+#| fig-height: 3.3
+ggplot2::ggplot(plot_data,
+  ggplot2::aes(x = factor(x), y = value, pattern = series, group = series)) +
+  ggpattern::geom_col_pattern(position = ggplot2::position_dodge(width = 0.85), width = 0.75) +
+  ggpattern::scale_pattern_manual(
+    values = stats::setNames(ank_fill_patterns[1:3], levels(plot_data$series)),
+    labels = series_labels) +
+  ggplot2::labs(x = "Аргумент x", y = "Значение показателя", pattern = NULL)
+```
+
+## Поверхность при изменении параметра
+
+Для оценки влияния коэффициента обозначим через $F(x,a)$ значение квадратичного показателя при совместном изменении $x$ и $a$. Поверхность задаётся зависимостью
+
+$$
+F(x,a)=ax^2+b.
+$$ {#eq-surface}
+
+Все обозначения определены ранее. Каркасное представление той же модели показано на рисунке [-@fig-surface-wire].
+
+```{r}
+#| label: fig-surface-wire
+#| fig-cap: "Каркасное представление поверхности квадратичного показателя"
+#| fig-height: 4
+x_grid <- seq(min(parameters$x), max(parameters$x), length.out = 25L)
+a_grid <- seq(parameters$a * 0.5, parameters$a * 1.5, length.out = 25L)
+z_grid <- outer(x_grid, a_grid, function(x, a) quadratic(x, a, parameters$b))
+ank_persp_3d(x_grid, a_grid, z_grid, style = "wireframe",
+             xlab = "x", ylab = "a", zlab = "F(x,a)")
+```
+
+На рисунке [-@fig-surface-shaded] та же сетка значений представлена с градациями серого. Расчёт повторно не выполняется; меняется только способ изображения.
+
+```{r}
+#| label: fig-surface-shaded
+#| fig-cap: "Представление той же поверхности с градациями серого"
+#| fig-height: 4
+ank_persp_3d(x_grid, a_grid, z_grid, style = "shaded",
+             xlab = "x", ylab = "a", zlab = "F(x,a)")
+```
+
+# Воспроизводимость и программный код {#sec-reproducibility}
+
+В листинге [-@lst-validation] показана **исполняемая R-ячейка** с автоматической проверкой результата. Нарушение условия завершает сборку ошибкой. Полная вычислительная ячейка приведена отдельно; см. @sec-app-code.
+
+```{r}
+#| label: validate-model
+#| lst-label: lst-validation
+#| lst-cap: "Автоматическая проверка согласованности показателей"
+#| echo: true
+stopifnot(all(results$h == results$f + results$g))
+stopifnot(identical(total, sum(results$h)))
+```
+
+В листинге [-@lst-consumer] приведён **неисполняемый** пример чтения готовых данных другой программой на R. Класс `.r` задаёт подсветку; такой блок не является вычисляемой ячейкой `{r}`. Синтаксис ссылок и подписей соответствует документации Quarto [@quarto-crossref].
+
+```{#lst-consumer .r lst-cap="Пример чтения экспортированных данных"}
+# Этот фрагмент показан как текст.
+# При сборке он не исполняется.
+exported_results <- read.csv("_output/assets/results.csv")
+head(exported_results)
+```
+
+1. Изменить параметры в ячейке `calculate-model`.
+2. Выполнить `quarto render` из корня работы.
+3. Проверить обновлённые числа, таблицы и графики.
+
+# Заключение {.unnumbered #sec-conclusion}
+
+Для `r nrow(results)` выбранных аргументов получен суммарный показатель **`r fmt_number(total)`**. Таблица [-@tbl-results], рисунки [-@fig-functions] и [-@fig-patterns] и подстановка параметров в тексте используют один результат вычислений R.
+
+Для `r parameters$n_long` аргументов выполнен расширенный расчёт (см. @sec-app-data). После изменения параметров числовые результаты пересчитываются автоматически. Интерпретация результатов и проверка применимости модели остаются задачей автора.
+
+# Список литературы {.unnumbered #sec-references}
+
+::: {#refs}
+:::
+
+<!-- .appendix — документированный класс заголовка Quarto.
+Не пишите «ПРИЛОЖЕНИЕ А» вручную и не добавляйте .unnumbered.
+Буквы, разрыв страницы, оглавление и номера таблиц задаёт расширение DOCX. -->
+
+# Вычислительный код и исходные параметры {.appendix #sec-app-code}
+
+В листинге [-@lst-calculation] показан тот же код, который был исполнен в начале документа. `ref.label` получает его из зарегистрированной ячейки knitr; `eval: false` исключает повторный расчёт. Код не скопирован в исходнике вручную.
+
+```{r}
+#| label: show-calculation
+#| ref.label: calculate-model
+#| eval: false
+#| echo: true
+#| lst-label: lst-calculation
+#| lst-cap: "Полный исходный код вычисления показателей"
+```
+
+В таблице [-@tbl-parameters] приведены параметры той же модели. Ячейки подставлены из объекта `parameters`.
+
+| Параметр | Значение |
+|:---------|---------:|
+| $a$ | `r parameters$a` |
+| $b$ | `r parameters$b` |
+| $c$ | `r parameters$c` |
+| Число точек основного расчёта | `r nrow(results)` |
+| Число точек расширенного расчёта | `r parameters$n_long` |
+
+: Исходные параметры модели {#tbl-parameters}
+
+## Отдельные файлы результатов {.unnumbered #sec-app-export}
+
+Следующая ячейка создаёт SVG, PNG 600 dpi и CSV для использования вне документа. Это дополнительный пример экспорта; он использует готовые объекты `model_plot` и `results` и не создаёт вторую реализацию модели.
+
+```{r}
+#| label: export-results
+#| include: false
+asset_dir <- file.path("_output", "assets")
+dir.create(asset_dir, recursive = TRUE, showWarnings = FALSE)
+ggplot2::ggsave(file.path(asset_dir, "functions.svg"), model_plot,
+  device = svglite::svglite, width = 6.2, height = 3.2, units = "in", bg = "transparent")
+ggplot2::ggsave(file.path(asset_dir, "functions-600dpi.png"), model_plot,
+  device = ragg::agg_png, width = 6.2, height = 3.2, units = "in", dpi = 600, bg = "transparent")
+utils::write.csv(results, file.path(asset_dir, "results.csv"), row.names = FALSE)
+```
+
+Результаты находятся в `_output/assets/`. В самом DOCX рисунки создаются штатным SVG-драйвером Quarto, а математические выражения сохраняются редактируемыми.
+
+# Расширенный табличный расчёт {.appendix #sec-app-data}
+
+Таблица [-@tbl-long-results] рассчитана той же функцией `calculate()` для аргументов от 1 до `r parameters$n_long`. В исходнике это одна таблица. Повторяемую шапку, разбиение по страницам Word и подписи продолжения/окончания формирует конвейер сборки.
+
+Общий итог расширенного расчёта составляет **`r fmt_number(sum(long_results$h))`**. Строки, итог и примечание задаются один раз независимо от числа физических страниц таблицы.
+
+```{r}
+#| label: tbl-long-results
+#| tbl-cap: "Расширенный расчёт квадратичного и линейного показателей"
+long_table <- transform(long_results,
+  substitution = sprintf("f(%s)=%s\\cdot%s^{2}+%s=%s",
+    x, parameters$a, x, parameters$b, f))
+long_table <- long_table[c("x", "substitution", "f", "g", "h")]
+long_headers <- data.frame(
+  key = names(long_table),
+  group = c("Аргумент", "Квадратичный показатель", "Квадратичный показатель",
+            "Линейный показатель", "Суммарный показатель"),
+  label = c("x", "Подстановка", "f(x)", "g(x)", "h(x)")
+)
+long_ft <- flextable::flextable(long_table)
+long_ft <- flextable::set_header_df(long_ft, mapping = long_headers, key = "key")
+long_ft <- flextable::merge_h(long_ft, i = 1, part = "header")
+long_ft <- flextable::merge_v(long_ft, j = c("x", "g", "h"), part = "header")
+long_ft <- flextable::compose(long_ft, j = "substitution",
+  value = flextable::as_paragraph(flextable::as_equation(substitution)))
+long_ft <- flextable::add_footer_row(long_ft,
+  values = c("Сумма показателей", fmt_number(sum(long_results$h))), colwidths = c(4, 1))
+long_ft <- flextable::add_footer_lines(long_ft,
+  values = "Примечание — Расширенная таблица и её итог рассчитаны автоматически; примечание относится ко всей таблице.")
+long_ft <- ank_style_table(long_ft)
+long_ft <- flextable::colformat_int(long_ft, j = c("x", "f", "g", "h"), big.mark = " ")
+long_ft <- flextable::align(long_ft, j = c("x", "f", "g", "h"), align = "right", part = "body")
+long_ft
+```

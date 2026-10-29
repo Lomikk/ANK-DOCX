@@ -1,0 +1,20 @@
+[
+  {
+    "profile": "coursework",
+    "files": 122,
+    "local_MiB": 5.853,
+    "packages": 85,
+    "junctions": 84,
+    "jsonlite_target": "C:\\Users\\2yash\\AppData\\Local\\R\\cache\\R\\renv\\cache\\v5\\windows\\R-4.6\\x86_64-w64-mingw32\\jsonlite\\2.0.0\\b0776f526d36d8bd4a3344a88fe165c4\\jsonlite",
+    "own_library_MiB": 3.328
+  },
+  {
+    "profile": "referat",
+    "files": 122,
+    "local_MiB": 5.841,
+    "packages": 85,
+    "junctions": 84,
+    "jsonlite_target": "C:\\Users\\2yash\\AppData\\Local\\R\\cache\\R\\renv\\cache\\v5\\windows\\R-4.6\\x86_64-w64-mingw32\\jsonlite\\2.0.0\\b0776f526d36d8bd4a3344a88fe165c4\\jsonlite",
+    "own_library_MiB": 3.328
+  }
+]

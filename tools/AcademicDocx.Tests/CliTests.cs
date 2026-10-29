@@ -42,6 +42,38 @@ public sealed class CliTests
         Assert.Contains("Academic DOCX service", result.Output);
     }
 
+    [WordTheory]
+    [InlineData("..")]
+    [InlineData("../outside")]
+    [InlineData("C:\\outside")]
+    [InlineData("CON")]
+    [InlineData("trailing.")]
+    public void WorkspaceRejectsPathsAndReservedNames(string name)
+    {
+        var result = Run(["workspace", Path.GetTempPath(), "new", name]);
+        Assert.NotEqual(0, result.Code);
+        Assert.Contains("Invalid workspace name", result.Output);
+    }
+
+    [WordFact]
+    public void NewWorkspaceDoesNotOverwriteExistingAuthoredFiles()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "academic-workspace-" + Guid.NewGuid().ToString("N"));
+        var project = Path.Combine(root, "Workspaces", "Existing");
+        Directory.CreateDirectory(project);
+        var authored = Path.Combine(project, "main.qmd");
+        File.WriteAllText(authored, "Author text");
+        try
+        {
+            var result = Run(["workspace", root, "new", "Existing"]);
+            Assert.NotEqual(0, result.Code);
+            Assert.Contains("already exists", result.Output);
+            Assert.Equal("Author text", File.ReadAllText(authored));
+            Assert.Single(Directory.GetFiles(project));
+        }
+        finally { Directory.Delete(root, recursive: true); }
+    }
+
     private static (int Code, string Output) Run(string[] args, bool standalone = false)
     {
         var exe = Environment.GetEnvironmentVariable("ACADEMIC_DOCX_SERVICE") ?? throw new InvalidOperationException("Service path is required");
