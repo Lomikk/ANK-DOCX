@@ -1,0 +1,46 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\.tools\\sto04-implementation\\acceptance\\ANK technical c6c2c9544f934df0a1b3c046db84d436\\_output\\chapters\\main.docx",
+  "passed": true,
+  "schema_errors_before_word": 1871,
+  "validation": {
+    "file": ".academic-bda8e8da29674591bb292c6baa243f8d.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 15,
+  "annotation": {
+    "figures": 4,
+    "tables": 3,
+    "sources": 3,
+    "appendices": 2
+  },
+  "front_matter": {
+    "title_end": 1,
+    "assignment_first_end": 2,
+    "assignment_end": 3,
+    "annotation_start": 4,
+    "body_boundary": 5
+  },
+  "page_layout": {
+    "standard": "susu-04-2008",
+    "first_stamped_page": 4,
+    "stamp_total_pages": 15
+  },
+  "split_tables": [
+    {
+      "name": "tbl_long_results",
+      "table_indices": [
+        4,
+        5
+      ]
+    }
+  ],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 23696,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

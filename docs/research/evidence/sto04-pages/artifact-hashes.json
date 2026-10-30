@@ -1,0 +1,18 @@
+[
+  {
+    "file": "Workspaces/Пример/_output/chapters/main.docx",
+    "sha256": "1486BE3350B759A2718AD792DBC60D24048BF325E277FF1C33CE5CF9244E15FD"
+  },
+  {
+    "file": ".tools/sto04-implementation/final.pdf",
+    "sha256": "89AD14D3D7340491F4071EDC4DDB5C35207A80B6BC39BAB756D8FB4877C743B6"
+  },
+  {
+    "file": ".tools/sto04-implementation/acceptance/ANK technical c6c2c9544f934df0a1b3c046db84d436/expanded.docx",
+    "sha256": "FCB1A42E8287947715C429E974D5AF3910FEA80A1FE4BD5302910A7328954B6D"
+  },
+  {
+    "file": ".tools/sto04-implementation/expanded.pdf",
+    "sha256": "EB6FB340C2344809296570B6E2C6E09B5DDD98DB421AF5C445EB21D3315B8A2F"
+  }
+]

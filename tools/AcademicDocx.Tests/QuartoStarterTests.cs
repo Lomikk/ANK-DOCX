@@ -41,6 +41,7 @@ public sealed class QuartoStarterTests
             var reference = Path.GetFullPath(Path.Combine(source, "..", "Workspaces", "Пример"));
             var yaml = Regex.Replace(File.ReadAllText(Path.Combine(reference, "metadata.yml")), "(?m)^title:.*$",
                 "title: Независимая работа " + profile).Replace("profile: coursework", "profile: " + profile);
+            yaml = Regex.Replace(yaml, "(?m)^  standard:.*$", "  standard: " + (profile == "coursework" ? "susu-21-2008" : "susu-17-2008"));
             if (profile == "referat")
                 yaml = yaml.Replace("Название университета", "Федеральное государственное автономное образовательное учреждение высшего образования «Испытательный университет научных исследований и информационных технологий»");
             File.WriteAllText(metadata, yaml);
@@ -158,6 +159,57 @@ public sealed class QuartoStarterTests
                 throw new InvalidOperationException("Test cleanup target escapes its temporary root");
             Directory.Delete(parent, recursive: true);
         }
+    }
+
+    [WordFact]
+    public void TechnicalCourseworkKeepsNativeFramesAndUpdatesStampTotalsAfterGrowth()
+    {
+        var source = TemplateSource();
+        var reference = Path.GetFullPath(Path.Combine(source, "..", "Workspaces", "Пример"));
+        var project = Path.Combine(Environment.GetEnvironmentVariable("ACADEMIC_TEST_ARTIFACTS") ?? Path.GetTempPath(), "ANK technical " + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(project);
+        MustRun(project, "quarto", ["use", "template", source, "--no-prompt"]);
+        var yaml = File.ReadAllText(Path.Combine(reference, "metadata.yml"));
+        if (!yaml.Contains("standard: susu-04-2008", StringComparison.Ordinal)) throw new InvalidDataException("Reference example must exercise the technical profile");
+        File.WriteAllText(Path.Combine(project, "metadata.yml"), yaml);
+        var main = Path.Combine(project, "chapters", "main.qmd");
+        File.Copy(Path.Combine(reference, "chapters", "main.qmd"), main, true);
+        File.Copy(Path.Combine(reference, "references.bib"), Path.Combine(project, "references.bib"), true);
+        MustRun(project, "Rscript", ["--vanilla", "tools/install.R"]);
+        var pageCounts = new List<int>();
+        for (var pass = 0; pass < 2; pass++)
+        {
+            if (pass == 1)
+            {
+                var paragraph = string.Concat(Enumerable.Repeat("Дополнительный материал для проверки автоматического переноса текста и повторения основной надписи. ", 18));
+                File.WriteAllText(main, File.ReadAllText(main).Replace("# Заключение", string.Join("\n\n", Enumerable.Repeat(paragraph, 8)) + "\n\n# Заключение", StringComparison.Ordinal));
+            }
+            MustRun(project, "quarto", ["render"]);
+            var output = Path.Combine(project, "_output", "chapters", "main.docx");
+            Assert.Empty(DocxInspection.Validate(output).Errors);
+            using var report = JsonDocument.Parse(File.ReadAllText(Path.Combine(project, ".quarto", "main.docx.finalize.json")));
+            var pages = report.RootElement.GetProperty("pages").GetInt32();
+            pageCounts.Add(pages);
+            Assert.Equal(pages, report.RootElement.GetProperty("page_layout").GetProperty("stamp_total_pages").GetInt32());
+            Assert.Equal(4, report.RootElement.GetProperty("page_layout").GetProperty("first_stamped_page").GetInt32());
+            Assert.Equal(3, report.RootElement.GetProperty("annotation").GetProperty("tables").GetInt32());
+            using (var package = WordprocessingDocument.Open(output, false))
+            {
+                var part = package.MainDocumentPart!;
+                Assert.Equal(3, part.Document.Descendants<W.SectionProperties>().Count());
+                Assert.Contains(part.HeaderParts, h => h.Header.InnerText.Contains("Университет", StringComparison.Ordinal));
+                Assert.All(part.HeaderParts, h => Assert.DoesNotContain("Павлов", h.Header.InnerText));
+                Assert.Contains(part.HeaderParts, h => h.Header.Descendants<W.SdtRun>().Any(s => s.SdtProperties?.GetFirstChild<W.Tag>()?.Val == "AcademicStamp.document-code"));
+            }
+            File.Copy(output, Path.Combine(project, pass == 0 ? "baseline.docx" : "expanded.docx"), true);
+            File.Copy(Path.Combine(project, ".quarto", "main.docx.finalize.json"), Path.Combine(project, pass == 0 ? "baseline.json" : "expanded.json"), true);
+        }
+        Assert.True(pageCounts[1] > pageCounts[0], "Added text must increase the physical page count and stamp total");
+        File.WriteAllText(Path.Combine(project, "metadata.yml"), yaml.Replace("standard: susu-04-2008", "standard: unsupported-standard", StringComparison.Ordinal));
+        var invalid = Run(project, "quarto", ["render"]);
+        Assert.NotEqual(0, invalid.Code);
+        Assert.Contains("Unsupported academic.standard", invalid.Output);
+        File.WriteAllText(Path.Combine(project, "metadata.yml"), yaml);
     }
 
     private static string TemplateSource()

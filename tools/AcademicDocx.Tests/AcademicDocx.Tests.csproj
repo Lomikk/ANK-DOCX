@@ -20,6 +20,7 @@
     <ProjectReference Include="../AcademicDocx.Core/AcademicDocx.Core.csproj" />
     <None Include="../../quarto/_extensions/academic/academic.docx" Link="reference.docx" CopyToOutputDirectory="PreserveNewest" />
     <None Update="Fixtures/**/*.docx" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../quarto/_extensions/academic/page-templates/sto04/*.xml" Link="PageTemplates/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

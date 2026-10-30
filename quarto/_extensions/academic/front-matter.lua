@@ -20,6 +20,10 @@ return function(doc, field, directory)
   local id = value(doc.meta, 'academic.profile')
   local profile = config.profiles[id]
   assert(profile, 'Unknown or missing academic.profile: "'..id..'". Available profiles: coursework, referat')
+  local standard = value(doc.meta, 'academic.standard')
+  if standard == '' then standard = id == 'coursework' and 'susu-21-2008' or 'susu-17-2008' end
+  assert(id == 'coursework' and (standard == 'susu-04-2008' or standard == 'susu-21-2008') or
+    id == 'referat' and standard == 'susu-17-2008', 'Unsupported academic.standard / academic.profile combination: '..standard..' / '..id)
   local missing = {}
   for _, sheet_id in ipairs(profile['before-body']) do
     local sheet = assert(config.sheets[text(sheet_id)])
@@ -37,6 +41,13 @@ return function(doc, field, directory)
   table.sort(paths)
   assert(#paths == 0, 'Missing metadata for academic.profile "'..id..'": '..table.concat(paths, ', '))
   local function v(path) return value(doc.meta, 'academic.'..path) end
+  local scratch = pandoc.path.join({quarto.project.offset or '.', '.quarto'})
+  pandoc.system.make_directory(scratch, true)
+  local layout = assert(io.open(pandoc.path.join({scratch, 'academic-layout.json'}), 'wb'))
+  layout:write(quarto.json.encode({Standard=standard, Profile=id, Title=value(doc.meta,'title'), DocumentCode=v('document-code'),
+    Author=v('author-short'), Supervisor=v('supervisor'), NormalController=v('normal-controller.name'),
+    Approver=v('stamp.approver'), Organization=v('stamp.organization') ~= '' and v('stamp.organization') or v('university-short')..'\n'..v('group')}))
+  layout:close()
   local questions = get(doc.meta, 'academic.assignment.questions')
   local calendar = get(doc.meta, 'academic.assignment.calendar')
   if id == 'coursework' then
@@ -72,7 +83,11 @@ return function(doc, field, directory)
   renderers.title = function()
   institution(false)
   p(value(doc.meta, 'title'), id == 'coursework' and 'CourseworkTitle' or 'ReferatTitle')
-  p(id == 'coursework' and 'ПОЯСНИТЕЛЬНАЯ ЗАПИСКА К КУРСОВОЙ РАБОТЕ' or 'РЕФЕРАТ', 'WorkType')
+  if standard == 'susu-04-2008' then
+    p({pandoc.Str('ПОЯСНИТЕЛЬНАЯ ЗАПИСКА'), pandoc.LineBreak(), pandoc.Str('К КУРСОВОЙ РАБОТЕ')}, 'WorkType')
+  else
+    p(id == 'coursework' and 'ПОЯСНИТЕЛЬНАЯ ЗАПИСКА К КУРСОВОЙ РАБОТЕ' or 'РЕФЕРАТ', 'WorkType')
+  end
   p('по дисциплине «'..v('discipline')..'»', 'Centered')
   if id == 'coursework' then p(v('document-code'), 'Centered') end
   if id == 'coursework' then

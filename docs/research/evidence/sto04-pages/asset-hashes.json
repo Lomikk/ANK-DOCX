@@ -1,0 +1,17 @@
+[
+  {
+    "file": "first.xml",
+    "sha256": "C367E3E7D0B4072BBFD0A8D418B47A33893AA76894720A3ACE1DE0AB7B50B503",
+    "bytes": 124881
+  },
+  {
+    "file": "following.xml",
+    "sha256": "E3D23B5E89C34C46B96F7CBDDCCF6AF79C6F2940B568E1A331E31AD900CC49DE",
+    "bytes": 49012
+  },
+  {
+    "file": "title.xml",
+    "sha256": "22EA52E209C66163C9F94946CB3C85A9F6CAD3971ACE4B7D7A79651F016BAF20",
+    "bytes": 5082
+  }
+]

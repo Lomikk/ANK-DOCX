@@ -1,4 +1,5 @@
-# Forms and numbering: STO 21-2008 (coursework), STO 17-2008 (referat).
+# Shared sheet composition. academic.standard selects STO 04 or 21 for coursework,
+# STO 17 for referat; standard-specific page furniture is applied by the C# service.
 profiles:
   coursework:
     label: "Курсовая работа"

@@ -1,0 +1,992 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<w:hdr xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:cx="http://schemas.microsoft.com/office/drawing/2014/chartex" xmlns:cx1="http://schemas.microsoft.com/office/drawing/2015/9/8/chartex" xmlns:cx2="http://schemas.microsoft.com/office/drawing/2015/10/21/chartex" xmlns:cx3="http://schemas.microsoft.com/office/drawing/2016/5/9/chartex" xmlns:cx4="http://schemas.microsoft.com/office/drawing/2016/5/10/chartex" xmlns:cx5="http://schemas.microsoft.com/office/drawing/2016/5/11/chartex" xmlns:cx6="http://schemas.microsoft.com/office/drawing/2016/5/12/chartex" xmlns:cx7="http://schemas.microsoft.com/office/drawing/2016/5/13/chartex" xmlns:cx8="http://schemas.microsoft.com/office/drawing/2016/5/14/chartex" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:aink="http://schemas.microsoft.com/office/drawing/2016/ink" xmlns:am3d="http://schemas.microsoft.com/office/drawing/2017/model3d" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:w16cid="http://schemas.microsoft.com/office/word/2016/wordml/cid" xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">
+  <w:p w14:paraId="6443F743" w14:textId="77777777" w:rsidR="00C93868" w:rsidRPr="001935D9" w:rsidRDefault="00C93868" w:rsidP="001935D9">
+    <w:pPr>
+      <w:pStyle w:val="aa" />
+      <w:ind w:right="-144" />
+      <w:jc w:val="right" />
+      <w:rPr>
+        <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+        <w:i />
+        <w:sz w:val="18" />
+      </w:rPr>
+    </w:pPr>
+    <w:r>
+      <w:rPr>
+        <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+        <w:i />
+        <w:sz w:val="18" />
+      </w:rPr>
+    </w:r>
+  </w:p>
+  <w:p w14:paraId="1E71A64D" w14:textId="77777777" w:rsidR="00C93868" w:rsidRDefault="00C93868">
+    <w:pPr>
+      <w:pStyle w:val="aa" />
+    </w:pPr>
+    <w:r>
+      <w:rPr>
+        <w:noProof />
+        <w:lang w:eastAsia="ru-RU" />
+      </w:rPr>
+      <w:drawing>
+        <wp:anchor distT="0" distB="0" distL="114300" distR="114300" simplePos="0" relativeHeight="251671040" behindDoc="1" locked="1" layoutInCell="1" allowOverlap="1" wp14:anchorId="4465D92F" wp14:editId="1249BA37">
+          <wp:simplePos x="0" y="0" />
+          <wp:positionH relativeFrom="page">
+            <wp:posOffset>720000</wp:posOffset>
+          </wp:positionH>
+          <wp:positionV relativeFrom="page">
+            <wp:posOffset>180000</wp:posOffset>
+          </wp:positionV>
+          <wp:extent cx="6660000" cy="10332000" />
+          <wp:effectExtent l="0" t="0" r="21590" b="20955" />
+          <wp:wrapNone />
+          <wp:docPr id="520000" name="Группа 712" />
+          <wp:cNvGraphicFramePr>
+            <a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" />
+          </wp:cNvGraphicFramePr>
+          <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+            <a:graphicData uri="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup">
+              <wpg:wgp>
+                <wpg:cNvGrpSpPr>
+                  <a:grpSpLocks />
+                </wpg:cNvGrpSpPr>
+                <wpg:grpSpPr bwMode="auto">
+                  <a:xfrm>
+                    <a:off x="0" y="0" />
+                    <a:ext cx="6660000" cy="10332000" />
+                    <a:chOff x="0" y="0" />
+                    <a:chExt cx="6660000" cy="10332000" />
+                  </a:xfrm>
+                </wpg:grpSpPr>
+                <wps:wsp>
+                  <wps:cNvPr id="520001" name="Rectangle 23" />
+                  <wps:cNvSpPr>
+                    <a:spLocks noChangeArrowheads="1" />
+                  </wps:cNvSpPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="0" y="0" />
+                      <a:ext cx="6660000" cy="10332000" />
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln w="25400">
+                      <a:solidFill>
+                        <a:srgbClr val="000000" />
+                      </a:solidFill>
+                      <a:miter lim="800000" />
+                      <a:headEnd />
+                      <a:tailEnd />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:solidFill>
+                            <a:srgbClr val="FFFFFF" />
+                          </a:solidFill>
+                        </a14:hiddenFill>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:bodyPr rot="0" vert="horz" wrap="square" lIns="7200" tIns="0" rIns="7200" bIns="0" anchor="ctr" anchorCtr="0" upright="1">
+                    <a:noAutofit />
+                  </wps:bodyPr>
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520002" name="Line 24" />
+                  <wps:cNvCnPr>
+                    <a:cxnSpLocks noChangeShapeType="1" />
+                  </wps:cNvCnPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="252000" y="9792000" />
+                      <a:ext cx="0" cy="540000" />
+                    </a:xfrm>
+                    <a:prstGeom prst="line">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln w="25400">
+                      <a:solidFill>
+                        <a:srgbClr val="000000" />
+                      </a:solidFill>
+                      <a:round />
+                      <a:headEnd />
+                      <a:tailEnd />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:noFill />
+                        </a14:hiddenFill>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:bodyPr lIns="7200" rIns="7200" tIns="0" bIns="0" anchor="ctr" />
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520003" name="Line 25" />
+                  <wps:cNvCnPr>
+                    <a:cxnSpLocks noChangeShapeType="1" />
+                  </wps:cNvCnPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="0" y="9792000" />
+                      <a:ext cx="6660000" cy="0" />
+                    </a:xfrm>
+                    <a:prstGeom prst="line">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln w="25400">
+                      <a:solidFill>
+                        <a:srgbClr val="000000" />
+                      </a:solidFill>
+                      <a:round />
+                      <a:headEnd />
+                      <a:tailEnd />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:noFill />
+                        </a14:hiddenFill>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:bodyPr lIns="7200" rIns="7200" tIns="0" bIns="0" anchor="ctr" />
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520004" name="Line 26" />
+                  <wps:cNvCnPr>
+                    <a:cxnSpLocks noChangeShapeType="1" />
+                  </wps:cNvCnPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="612000" y="9792000" />
+                      <a:ext cx="0" cy="540000" />
+                    </a:xfrm>
+                    <a:prstGeom prst="line">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln w="25400">
+                      <a:solidFill>
+                        <a:srgbClr val="000000" />
+                      </a:solidFill>
+                      <a:round />
+                      <a:headEnd />
+                      <a:tailEnd />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:noFill />
+                        </a14:hiddenFill>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:bodyPr lIns="7200" rIns="7200" tIns="0" bIns="0" anchor="ctr" />
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520005" name="Line 27" />
+                  <wps:cNvCnPr>
+                    <a:cxnSpLocks noChangeShapeType="1" />
+                  </wps:cNvCnPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="1440000" y="9792000" />
+                      <a:ext cx="0" cy="540000" />
+                    </a:xfrm>
+                    <a:prstGeom prst="line">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln w="25400">
+                      <a:solidFill>
+                        <a:srgbClr val="000000" />
+                      </a:solidFill>
+                      <a:round />
+                      <a:headEnd />
+                      <a:tailEnd />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:noFill />
+                        </a14:hiddenFill>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:bodyPr lIns="7200" rIns="7200" tIns="0" bIns="0" anchor="ctr" />
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520006" name="Line 28" />
+                  <wps:cNvCnPr>
+                    <a:cxnSpLocks noChangeShapeType="1" />
+                  </wps:cNvCnPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="1980000" y="9792000" />
+                      <a:ext cx="0" cy="540000" />
+                    </a:xfrm>
+                    <a:prstGeom prst="line">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln w="25400">
+                      <a:solidFill>
+                        <a:srgbClr val="000000" />
+                      </a:solidFill>
+                      <a:round />
+                      <a:headEnd />
+                      <a:tailEnd />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:noFill />
+                        </a14:hiddenFill>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:bodyPr lIns="7200" rIns="7200" tIns="0" bIns="0" anchor="ctr" />
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520007" name="Line 29" />
+                  <wps:cNvCnPr>
+                    <a:cxnSpLocks noChangeShapeType="1" />
+                  </wps:cNvCnPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="2340000" y="9792000" />
+                      <a:ext cx="0" cy="540000" />
+                    </a:xfrm>
+                    <a:prstGeom prst="line">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln w="25400">
+                      <a:solidFill>
+                        <a:srgbClr val="000000" />
+                      </a:solidFill>
+                      <a:round />
+                      <a:headEnd />
+                      <a:tailEnd />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:noFill />
+                        </a14:hiddenFill>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:bodyPr lIns="7200" rIns="7200" tIns="0" bIns="0" anchor="ctr" />
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520008" name="Line 30" />
+                  <wps:cNvCnPr>
+                    <a:cxnSpLocks noChangeShapeType="1" />
+                  </wps:cNvCnPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="6300000" y="9792000" />
+                      <a:ext cx="0" cy="540000" />
+                    </a:xfrm>
+                    <a:prstGeom prst="line">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln w="25400">
+                      <a:solidFill>
+                        <a:srgbClr val="000000" />
+                      </a:solidFill>
+                      <a:round />
+                      <a:headEnd />
+                      <a:tailEnd />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:noFill />
+                        </a14:hiddenFill>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:bodyPr lIns="7200" rIns="7200" tIns="0" bIns="0" anchor="ctr" />
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520009" name="Line 31" />
+                  <wps:cNvCnPr>
+                    <a:cxnSpLocks noChangeShapeType="1" />
+                  </wps:cNvCnPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="0" y="9972000" />
+                      <a:ext cx="2340000" cy="0" />
+                    </a:xfrm>
+                    <a:prstGeom prst="line">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln w="12700">
+                      <a:solidFill>
+                        <a:srgbClr val="000000" />
+                      </a:solidFill>
+                      <a:round />
+                      <a:headEnd />
+                      <a:tailEnd />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:noFill />
+                        </a14:hiddenFill>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:bodyPr lIns="7200" rIns="7200" tIns="0" bIns="0" anchor="ctr" />
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520010" name="Line 32" />
+                  <wps:cNvCnPr>
+                    <a:cxnSpLocks noChangeShapeType="1" />
+                  </wps:cNvCnPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="0" y="10152000" />
+                      <a:ext cx="2340000" cy="0" />
+                    </a:xfrm>
+                    <a:prstGeom prst="line">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln w="25400">
+                      <a:solidFill>
+                        <a:srgbClr val="000000" />
+                      </a:solidFill>
+                      <a:round />
+                      <a:headEnd />
+                      <a:tailEnd />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:noFill />
+                        </a14:hiddenFill>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:bodyPr lIns="7200" rIns="7200" tIns="0" bIns="0" anchor="ctr" />
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520011" name="Line 33" />
+                  <wps:cNvCnPr>
+                    <a:cxnSpLocks noChangeShapeType="1" />
+                  </wps:cNvCnPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="6300000" y="9972000" />
+                      <a:ext cx="360000" cy="0" />
+                    </a:xfrm>
+                    <a:prstGeom prst="line">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln w="12700">
+                      <a:solidFill>
+                        <a:srgbClr val="000000" />
+                      </a:solidFill>
+                      <a:round />
+                      <a:headEnd />
+                      <a:tailEnd />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:noFill />
+                        </a14:hiddenFill>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:bodyPr lIns="7200" rIns="7200" tIns="0" bIns="0" anchor="ctr" />
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520012" name="Rectangle 34" />
+                  <wps:cNvSpPr>
+                    <a:spLocks noChangeArrowheads="1" />
+                  </wps:cNvSpPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="12450" y="10159119" />
+                      <a:ext cx="230558" cy="157119" />
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln>
+                      <a:noFill />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:solidFill>
+                            <a:srgbClr val="FFFFFF" />
+                          </a:solidFill>
+                        </a14:hiddenFill>
+                      </a:ext>
+                      <a:ext uri="{91240B29-F687-4F45-9708-019B960494DF}">
+                        <a14:hiddenLine xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" w="3175">
+                          <a:solidFill>
+                            <a:srgbClr val="000000" />
+                          </a:solidFill>
+                          <a:miter lim="800000" />
+                          <a:headEnd />
+                          <a:tailEnd />
+                        </a14:hiddenLine>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:txbx>
+                    <w:txbxContent>
+                      <w:p w14:paraId="21D32856" w14:textId="77777777" w:rsidR="00C93868" w:rsidRDefault="00C93868" w:rsidP="001027BC">
+                        <w:pPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                          <w:spacing w:before="0" w:after="0" w:line="147" w:lineRule="exact" />
+                          <w:ind w:left="0" w:right="0" w:firstLine="0" />
+                          <w:jc w:val="left" />
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                        </w:pPr>
+                        <w:proofErr w:type="spellStart" />
+                        <w:r>
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+                            <w:i />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                          <w:t>Изм</w:t>
+                        </w:r>
+                        <w:proofErr w:type="spellEnd" />
+                        <w:r>
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+                            <w:i />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                          <w:t>.</w:t>
+                        </w:r>
+                      </w:p>
+                    </w:txbxContent>
+                  </wps:txbx>
+                  <wps:bodyPr rot="0" vert="horz" wrap="square" lIns="7200" tIns="0" rIns="7200" bIns="0" anchor="ctr" anchorCtr="0" upright="1">
+                    <a:noAutofit />
+                  </wps:bodyPr>
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520013" name="Rectangle 35" />
+                  <wps:cNvSpPr>
+                    <a:spLocks noChangeArrowheads="1" />
+                  </wps:cNvSpPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="267151" y="10159119" />
+                      <a:ext cx="329698" cy="157119" />
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln>
+                      <a:noFill />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:solidFill>
+                            <a:srgbClr val="FFFFFF" />
+                          </a:solidFill>
+                        </a14:hiddenFill>
+                      </a:ext>
+                      <a:ext uri="{91240B29-F687-4F45-9708-019B960494DF}">
+                        <a14:hiddenLine xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" w="3175">
+                          <a:solidFill>
+                            <a:srgbClr val="000000" />
+                          </a:solidFill>
+                          <a:miter lim="800000" />
+                          <a:headEnd />
+                          <a:tailEnd />
+                        </a14:hiddenLine>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:txbx>
+                    <w:txbxContent>
+                      <w:p w14:paraId="102ECF4A" w14:textId="77777777" w:rsidR="00C93868" w:rsidRDefault="00C93868" w:rsidP="001027BC">
+                        <w:pPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                          <w:spacing w:before="0" w:after="0" w:line="147" w:lineRule="exact" />
+                          <w:ind w:left="0" w:right="0" w:firstLine="0" />
+                          <w:jc w:val="left" />
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                        </w:pPr>
+                        <w:r>
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+                            <w:i />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                          <w:t>Лист</w:t>
+                        </w:r>
+                      </w:p>
+                    </w:txbxContent>
+                  </wps:txbx>
+                  <wps:bodyPr rot="0" vert="horz" wrap="square" lIns="7200" tIns="0" rIns="7200" bIns="0" anchor="ctr" anchorCtr="0" upright="1">
+                    <a:noAutofit />
+                  </wps:bodyPr>
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520014" name="Rectangle 36" />
+                  <wps:cNvSpPr>
+                    <a:spLocks noChangeArrowheads="1" />
+                  </wps:cNvSpPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="636540" y="10159119" />
+                      <a:ext cx="779526" cy="157119" />
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln>
+                      <a:noFill />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:solidFill>
+                            <a:srgbClr val="FFFFFF" />
+                          </a:solidFill>
+                        </a14:hiddenFill>
+                      </a:ext>
+                      <a:ext uri="{91240B29-F687-4F45-9708-019B960494DF}">
+                        <a14:hiddenLine xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" w="3175">
+                          <a:solidFill>
+                            <a:srgbClr val="000000" />
+                          </a:solidFill>
+                          <a:miter lim="800000" />
+                          <a:headEnd />
+                          <a:tailEnd />
+                        </a14:hiddenLine>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:txbx>
+                    <w:txbxContent>
+                      <w:p w14:paraId="2E181210" w14:textId="77777777" w:rsidR="00C93868" w:rsidRDefault="00C93868" w:rsidP="001027BC">
+                        <w:pPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                          <w:spacing w:before="0" w:after="0" w:line="147" w:lineRule="exact" />
+                          <w:ind w:left="0" w:right="0" w:firstLine="0" />
+                          <w:jc w:val="left" />
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                        </w:pPr>
+                        <w:r>
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+                            <w:i />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                          <w:t xml:space="preserve">№ </w:t>
+                        </w:r>
+                        <w:proofErr w:type="spellStart" />
+                        <w:r>
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+                            <w:i />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                          <w:t>докум</w:t>
+                        </w:r>
+                        <w:proofErr w:type="spellEnd" />
+                        <w:r>
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+                            <w:i />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                          <w:t>.</w:t>
+                        </w:r>
+                      </w:p>
+                    </w:txbxContent>
+                  </wps:txbx>
+                  <wps:bodyPr rot="0" vert="horz" wrap="square" lIns="7200" tIns="0" rIns="7200" bIns="0" anchor="ctr" anchorCtr="0" upright="1">
+                    <a:noAutofit />
+                  </wps:bodyPr>
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520015" name="Rectangle 37" />
+                  <wps:cNvSpPr>
+                    <a:spLocks noChangeArrowheads="1" />
+                  </wps:cNvSpPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="1461099" y="10159119" />
+                      <a:ext cx="505714" cy="157119" />
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln>
+                      <a:noFill />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:solidFill>
+                            <a:srgbClr val="FFFFFF" />
+                          </a:solidFill>
+                        </a14:hiddenFill>
+                      </a:ext>
+                      <a:ext uri="{91240B29-F687-4F45-9708-019B960494DF}">
+                        <a14:hiddenLine xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" w="3175">
+                          <a:solidFill>
+                            <a:srgbClr val="000000" />
+                          </a:solidFill>
+                          <a:miter lim="800000" />
+                          <a:headEnd />
+                          <a:tailEnd />
+                        </a14:hiddenLine>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:txbx>
+                    <w:txbxContent>
+                      <w:p w14:paraId="14E3F83E" w14:textId="77777777" w:rsidR="00C93868" w:rsidRDefault="00C93868" w:rsidP="001027BC">
+                        <w:pPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                          <w:spacing w:before="0" w:after="0" w:line="147" w:lineRule="exact" />
+                          <w:ind w:left="0" w:right="0" w:firstLine="0" />
+                          <w:jc w:val="left" />
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                        </w:pPr>
+                        <w:proofErr w:type="spellStart" />
+                        <w:r>
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+                            <w:i />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                          <w:t>Подпись</w:t>
+                        </w:r>
+                        <w:proofErr w:type="spellEnd" />
+                      </w:p>
+                    </w:txbxContent>
+                  </wps:txbx>
+                  <wps:bodyPr rot="0" vert="horz" wrap="square" lIns="7200" tIns="0" rIns="7200" bIns="0" anchor="ctr" anchorCtr="0" upright="1">
+                    <a:noAutofit />
+                  </wps:bodyPr>
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520016" name="Rectangle 38" />
+                  <wps:cNvSpPr>
+                    <a:spLocks noChangeArrowheads="1" />
+                  </wps:cNvSpPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="1995480" y="10159119" />
+                      <a:ext cx="329369" cy="157119" />
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln>
+                      <a:noFill />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:solidFill>
+                            <a:srgbClr val="FFFFFF" />
+                          </a:solidFill>
+                        </a14:hiddenFill>
+                      </a:ext>
+                      <a:ext uri="{91240B29-F687-4F45-9708-019B960494DF}">
+                        <a14:hiddenLine xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" w="3175">
+                          <a:solidFill>
+                            <a:srgbClr val="000000" />
+                          </a:solidFill>
+                          <a:miter lim="800000" />
+                          <a:headEnd />
+                          <a:tailEnd />
+                        </a14:hiddenLine>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:txbx>
+                    <w:txbxContent>
+                      <w:p w14:paraId="74C2396D" w14:textId="77777777" w:rsidR="00C93868" w:rsidRDefault="00C93868" w:rsidP="001027BC">
+                        <w:pPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                          <w:spacing w:before="0" w:after="0" w:line="147" w:lineRule="exact" />
+                          <w:ind w:left="0" w:right="0" w:firstLine="0" />
+                          <w:jc w:val="left" />
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                        </w:pPr>
+                        <w:r>
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+                            <w:i />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                          <w:t>Дата</w:t>
+                        </w:r>
+                      </w:p>
+                    </w:txbxContent>
+                  </wps:txbx>
+                  <wps:bodyPr rot="0" vert="horz" wrap="square" lIns="7200" tIns="0" rIns="7200" bIns="0" anchor="ctr" anchorCtr="0" upright="1">
+                    <a:noAutofit />
+                  </wps:bodyPr>
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520017" name="Rectangle 39" />
+                  <wps:cNvSpPr>
+                    <a:spLocks noChangeArrowheads="1" />
+                  </wps:cNvSpPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="6314466" y="9810920" />
+                      <a:ext cx="329096" cy="158011" />
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln>
+                      <a:noFill />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:solidFill>
+                            <a:srgbClr val="FFFFFF" />
+                          </a:solidFill>
+                        </a14:hiddenFill>
+                      </a:ext>
+                      <a:ext uri="{91240B29-F687-4F45-9708-019B960494DF}">
+                        <a14:hiddenLine xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" w="3175">
+                          <a:solidFill>
+                            <a:srgbClr val="000000" />
+                          </a:solidFill>
+                          <a:miter lim="800000" />
+                          <a:headEnd />
+                          <a:tailEnd />
+                        </a14:hiddenLine>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:txbx>
+                    <w:txbxContent>
+                      <w:p>
+                        <w:pPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                          <w:spacing w:before="0" w:after="0" w:line="147" w:lineRule="exact" />
+                          <w:ind w:left="0" w:right="0" w:firstLine="0" />
+                          <w:jc w:val="left" />
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                        </w:pPr>
+                        <w:r>
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+                            <w:i />
+                            <w:color w:val="000000" />
+                            <w:sz w:val="14" />
+                          </w:rPr>
+                          <w:t>Лист</w:t>
+                        </w:r>
+                      </w:p>
+                    </w:txbxContent>
+                  </wps:txbx>
+                  <wps:bodyPr rot="0" vert="horz" wrap="square" lIns="7200" tIns="0" rIns="7200" bIns="0" anchor="ctr" anchorCtr="0" upright="1">
+                    <a:noAutofit />
+                  </wps:bodyPr>
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520018" name="Rectangle 40" />
+                  <wps:cNvSpPr>
+                    <a:spLocks noChangeArrowheads="1" />
+                  </wps:cNvSpPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="6314466" y="10044408" />
+                      <a:ext cx="329096" cy="215389" />
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln>
+                      <a:noFill />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:solidFill>
+                            <a:srgbClr val="FFFFFF" />
+                          </a:solidFill>
+                        </a14:hiddenFill>
+                      </a:ext>
+                      <a:ext uri="{91240B29-F687-4F45-9708-019B960494DF}">
+                        <a14:hiddenLine xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" w="3175">
+                          <a:solidFill>
+                            <a:srgbClr val="000000" />
+                          </a:solidFill>
+                          <a:miter lim="800000" />
+                          <a:headEnd />
+                          <a:tailEnd />
+                        </a14:hiddenLine>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:txbx>
+                    <w:txbxContent>
+                      <w:p>
+                        <w:pPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                          <w:spacing w:before="0" w:after="0" w:line="210" w:lineRule="exact" />
+                          <w:ind w:left="0" w:right="0" w:firstLine="0" />
+                          <w:jc w:val="center" />
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:color w:val="000000" />
+                            <w:sz w:val="20" />
+                          </w:rPr>
+                        </w:pPr>
+                        <w:fldSimple w:instr="PAGE">
+                          <w:r>
+                            <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+                              <w:i />
+                              <w:color w:val="000000" />
+                              <w:sz w:val="20" />
+                            </w:rPr>
+                            <w:t>0</w:t>
+                          </w:r>
+                        </w:fldSimple>
+                      </w:p>
+                    </w:txbxContent>
+                  </wps:txbx>
+                  <wps:bodyPr rot="0" vert="horz" wrap="square" lIns="7200" tIns="0" rIns="7200" bIns="0" anchor="ctr" anchorCtr="0" upright="1">
+                    <a:noAutofit />
+                  </wps:bodyPr>
+                </wps:wsp>
+                <wps:wsp>
+                  <wps:cNvPr id="520019" name="Rectangle 41" />
+                  <wps:cNvSpPr>
+                    <a:spLocks noChangeArrowheads="1" />
+                  </wps:cNvSpPr>
+                  <wps:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="2373425" y="9935182" />
+                      <a:ext cx="3896668" cy="243259" />
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                      <a:avLst />
+                    </a:prstGeom>
+                    <a:noFill />
+                    <a:ln>
+                      <a:noFill />
+                    </a:ln>
+                    <a:extLst>
+                      <a:ext uri="{909E8E84-426E-40DD-AFC4-6F175D3DCCD1}">
+                        <a14:hiddenFill xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+                          <a:solidFill>
+                            <a:srgbClr val="FFFFFF" />
+                          </a:solidFill>
+                        </a14:hiddenFill>
+                      </a:ext>
+                      <a:ext uri="{91240B29-F687-4F45-9708-019B960494DF}">
+                        <a14:hiddenLine xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" w="3175">
+                          <a:solidFill>
+                            <a:srgbClr val="000000" />
+                          </a:solidFill>
+                          <a:miter lim="800000" />
+                          <a:headEnd />
+                          <a:tailEnd />
+                        </a14:hiddenLine>
+                      </a:ext>
+                    </a:extLst>
+                  </wps:spPr>
+                  <wps:txbx>
+                    <w:txbxContent>
+                      <w:p>
+                        <w:pPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                          <w:spacing w:before="0" w:after="0" w:line="294" w:lineRule="exact" />
+                          <w:ind w:left="0" w:right="0" w:firstLine="0" />
+                          <w:jc w:val="center" />
+                          <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                            <w:color w:val="000000" />
+                            <w:sz w:val="28" />
+                          </w:rPr>
+                        </w:pPr>
+                        <w:sdt>
+                          <w:sdtPr>
+                            <w:tag w:val="AcademicStamp.document-code" />
+                          </w:sdtPr>
+                          <w:sdtContent>
+                            <w:r>
+                              <w:rPr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+                                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" />
+                                <w:i />
+                                <w:color w:val="000000" />
+                                <w:sz w:val="28" />
+                              </w:rPr>
+                              <w:t></w:t>
+                            </w:r>
+                          </w:sdtContent>
+                        </w:sdt>
+                      </w:p>
+                    </w:txbxContent>
+                  </wps:txbx>
+                  <wps:bodyPr rot="0" vert="horz" wrap="square" lIns="7200" tIns="0" rIns="7200" bIns="0" anchor="ctr" anchorCtr="0" upright="1">
+                    <a:noAutofit />
+                  </wps:bodyPr>
+                </wps:wsp>
+              </wpg:wgp>
+            </a:graphicData>
+          </a:graphic>
+          <wp14:sizeRelH relativeFrom="page">
+            <wp14:pctWidth>0</wp14:pctWidth>
+          </wp14:sizeRelH>
+          <wp14:sizeRelV relativeFrom="page">
+            <wp14:pctHeight>0</wp14:pctHeight>
+          </wp14:sizeRelV>
+        </wp:anchor>
+      </w:drawing>
+    </w:r>
+  </w:p>
+</w:hdr>

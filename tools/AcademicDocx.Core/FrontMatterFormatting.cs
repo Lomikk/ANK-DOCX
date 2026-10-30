@@ -8,7 +8,7 @@ namespace AcademicDocx.Core;
 
 public sealed record AnnotationStatistics(int Figures, int Tables, int Sources, int Appendices);
 
-/// <summary>Layout of the supported university forms, using native Word styles and sections.</summary>
+/// <summary>Shared sheet styles and annotation statistics; page sections belong to DocumentPageLayout.</summary>
 public static class FrontMatterFormatting
 {
     private static void Set<T>(OpenXmlCompositeElement parent, T value) where T : OpenXmlElement
@@ -30,9 +30,6 @@ public static class FrontMatterFormatting
         string NamedStyle(W.Paragraph p) => styleNames.GetValueOrDefault(Style(p), Style(p));
         var title = paragraphs.FirstOrDefault(p => Style(p) is "AcademicCourseworkTitle" or "AcademicReferatTitle");
         if (title is null) return null; // Older documents keep their original section layout.
-        var coursework = Style(title) == "AcademicCourseworkTitle";
-        var end = paragraphs.Single(p => Style(p) == "AcademicBodyStart");
-        var titleEnd = paragraphs.Single(p => Style(p) == "AcademicTitleEnd");
         void Define(string id, W.JustificationValues? alignment = null,
             int before = 0, int after = 0, int left = 0, bool bold = false, bool keepNext = false)
         {
@@ -84,34 +81,6 @@ public static class FrontMatterFormatting
         var tocStyle = styles.Elements<W.Style>().FirstOrDefault(s => s.StyleId == "TOCHeading");
         if (tocStyle is not null) Set(tocStyle.StyleParagraphProperties ??= new W.StyleParagraphProperties(), new W.PageBreakBefore());
 
-        var finalSection = body.Elements<W.SectionProperties>().Single();
-        var boundary = coursework ? end : titleEnd;
-        // The section ending at this paragraph has no page number. The following
-        // section retains the reference footer, with continuous page counting.
-        var frontSection = (W.SectionProperties)finalSection.CloneNode(true);
-        frontSection.RemoveAllChildren<W.FooterReference>();
-        frontSection.RemoveAllChildren<W.HeaderReference>();
-        frontSection.RemoveAllChildren<W.TitlePage>();
-        frontSection.RemoveAllChildren<W.PageNumberType>();
-        Set(frontSection, new W.SectionType { Val = W.SectionMarkValues.NextPage });
-        var previousFooter = boundary.ParagraphProperties?.GetFirstChild<W.SectionProperties>()?.Elements<W.FooterReference>().FirstOrDefault()?.Id?.Value;
-        var emptyFooter = previousFooter is null ? main.AddNewPart<FooterPart>() : (FooterPart)main.GetPartById(previousFooter);
-        emptyFooter.Footer = new W.Footer(new W.Paragraph());
-        frontSection.PrependChild(new W.FooterReference { Type = W.HeaderFooterValues.Default, Id = main.GetIdOfPart(emptyFooter) });
-        finalSection.RemoveAllChildren<W.PageNumberType>();
-        foreach (var marker in paragraphs.Where(p => Style(p) is "AcademicTitleEnd" or "AcademicAssignmentPageEnd" or "AcademicAssignmentEnd" or "AcademicBodyStart"))
-        {
-            var props = marker.ParagraphProperties ??= new W.ParagraphProperties();
-            Set(props, new W.SpacingBetweenLines { Before = "0", After = "0", Line = "20", LineRule = W.LineSpacingRuleValues.Exact });
-            Set(props, new W.ParagraphMarkRunProperties(new W.FontSize { Val = "2" }));
-            marker.RemoveAllChildren<W.Run>();
-            if (marker == boundary) Set(props, frontSection);
-            else
-            {
-                // A native break also works when the next object is a table.
-                marker.Append(new W.Run(new W.RunProperties(new W.FontSize { Val = "2" }), new W.Break { Type = W.BreakValues.Page }));
-            }
-        }
         var fields = body.Descendants<W.FieldCode>().Select(f => f.Text.Trim()).ToArray();
         var statistics = new AnnotationStatistics(
             fields.Count(f => f.StartsWith("SEQ Рисунок", StringComparison.Ordinal)),

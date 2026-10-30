@@ -2,6 +2,8 @@ title: ""
 author: ""
 academic:
   profile: coursework
+  # Empty: coursework uses STO 21; referat uses STO 17. Technical coursework: susu-04-2008.
+  standard: ""
   parent-organization: ""
   university: ""
   university-short: ""
@@ -28,3 +30,6 @@ academic:
     due-date: ""
     questions: []
     calendar: [] # Each row: {section: "...", due: "...", status: ""}
+  stamp:
+    approver: "" # Optional name in the form 2 approval row; signatures stay blank.
+    organization: "" # Optional short organization text; default: university-short and group.

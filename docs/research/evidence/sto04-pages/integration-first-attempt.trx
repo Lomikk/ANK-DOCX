@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="7760a819-5f14-4c57-8e5b-d482e87d2f3a" name="2yash@DESKTOP-H9F324S 2026-10-31 01:49:23" runUser="DESKTOP-H9F324S\2yash" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-31T01:49:23.2022552+05:00" queuing="2026-10-31T01:49:23.2022553+05:00" start="2026-10-31T01:49:21.7502138+05:00" finish="2026-10-31T01:54:33.5690433+05:00" />
+  <TestSettings name="default" id="bdd9295b-e8ed-44e9-9ea7-9d84d967aeaf">
+    <Deployment runDeploymentRoot="2yash_DESKTOP-H9F324S_2026-10-31_01_49_23" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="ecddf282-a6e3-4e6e-a7b7-03b93ff6d148" testId="fb08c6ef-0520-dd31-4c52-ec2c50c24623" testName="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;inspect-word&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0974892" startTime="2026-10-31T01:49:23.0565595+05:00" endTime="2026-10-31T01:49:23.1540063+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ecddf282-a6e3-4e6e-a7b7-03b93ff6d148" />
+    <UnitTestResult executionId="c4da8814-eb97-4b5d-af97-857572028958" testId="2b2ce105-f6e2-2294-24d3-c18626d8353c" testName="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;check-word&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0963816" startTime="2026-10-31T01:49:22.8622825+05:00" endTime="2026-10-31T01:49:22.9585848+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c4da8814-eb97-4b5d-af97-857572028958" />
+    <UnitTestResult executionId="8499eae2-a5a9-4b7d-ba47-fe098844607d" testId="db106157-1cf6-9d69-16d6-7835dc8c23fd" testName="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;../outside&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0896291" startTime="2026-10-31T01:49:22.6737926+05:00" endTime="2026-10-31T01:49:22.7633777+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8499eae2-a5a9-4b7d-ba47-fe098844607d" />
+    <UnitTestResult executionId="8dc5b88d-1c58-4010-8f37-d3ac3f118d7e" testId="3550b1cc-f6c5-371b-d5fa-79a574d8d421" testName="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;CON&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.1186993" startTime="2026-10-31T01:49:22.2791888+05:00" endTime="2026-10-31T01:49:22.4041254+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8dc5b88d-1c58-4010-8f37-d3ac3f118d7e" />
+    <UnitTestResult executionId="e20dac65-b6bb-4a1f-8d39-a0ce5a05b851" testId="5f9f0d06-73bb-4b53-70ad-85c1789665ae" testName="AcademicDocx.Tests.QuartoStarterTests.TechnicalCourseworkKeepsNativeFramesAndUpdatesStampTotalsAfterGrowth" computerName="DESKTOP-H9F324S" duration="00:01:40.6297206" startTime="2026-10-31T01:49:56.1494826+05:00" endTime="2026-10-31T01:51:36.7846797+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e20dac65-b6bb-4a1f-8d39-a0ce5a05b851">
+      <Output>
+        <ErrorInfo>
+          <Message>{&#xD;
+  "file": "D:\\Repos\\ANK DOCX\\.tools\\sto04-implementation\\acceptance\\ANK technical 5ad52843bc5f4caeb3739a698097041a\\_output\\chapters\\main.docx",&#xD;
+  "passed": false,&#xD;
+  "schema_errors_before_word": 1871,&#xD;
+  "validation": null,&#xD;
+  "pages": 15,&#xD;
+  "annotation": {&#xD;
+    "figures": 4,&#xD;
+    "tables": 3,&#xD;
+    "sources": 3,&#xD;
+    "appendices": 2&#xD;
+  },&#xD;
+  "front_matter": {&#xD;
+    "title_end": 1,&#xD;
+    "assignment_first_end": 2,&#xD;
+    "assignment_end": 3,&#xD;
+    "annotation_start": 4,&#xD;
+    "body_boundary": 5&#xD;
+  },&#xD;
+  "page_layout": null,&#xD;
+  "split_tables": [&#xD;
+    {&#xD;
+      "name": "tbl_long_results",&#xD;
+      "table_indices": [&#xD;
+        4,&#xD;
+        5&#xD;
+      ]&#xD;
+    }&#xD;
+  ],&#xD;
+  "word": {&#xD;
+    "version": "16.0",&#xD;
+    "build": "16.0.20326",&#xD;
+    "process_id": 29472,&#xD;
+    "process_exited": true,&#xD;
+    "cleanup_errors": []&#xD;
+  },&#xD;
+  "error": "System.IO.InvalidDataException: STO 04 first stamp PAGE does not match the annotation page\r\n   at AcademicDocx.WordPageLayout.Verify(WordSession session, PageLayoutOptions options, Int32 pages, Nullable\u00601 annotationPage) in D:\\Repos\\ANK DOCX\\tools\\AcademicDocx\\WordPageLayout.cs:line 24\r\n   at AcademicDocx.WordFinalizer.Run(String path, PageLayoutOptions layout, String templates) in D:\\Repos\\ANK DOCX\\tools\\AcademicDocx\\WordFinalizer.cs:line 181"&#xD;
+}
+&#xD;
+&#xD;
+processing file: main.qmd&#xD;
+1/25                     &#xD;
+2/25 [academic-setup]    &#xD;
+3/25                     &#xD;
+4/25 [calculate-model]   &#xD;
+5/25                     &#xD;
+6/25 [prepare-views]     &#xD;
+7/25                     &#xD;
+8/25 [tbl-results]       &#xD;
+9/25                     &#xD;
+10/25 [fig-functions]     &#xD;
+11/25                     &#xD;
+12/25 [fig-patterns]      &#xD;
+13/25                     
+14/25 [fig-surface-wire]  
+15/25                     
+16/25 [fig-surface-shaded]
+17/25                     
+18/25 [validate-model]    
+19/25                     
+20/25 [show-calculation]  
+21/25                     
+22/25 [export-results]    
+23/25                     
+24/25 [tbl-long-results]  
+25/25                     
+output file: main.knit.md
+
+pandoc 
+  to: docx
+  output-file: main.docx
+  template: ../_extensions/academic/document.openxml
+  default-image-extension: png
+  reference-doc: ../_extensions/academic/academic.docx
+  toc: true
+  toc-depth: 3
+  number-sections: false
+  
+metadata
+  csl: ../_extensions/academic/gost-r-7-0-5-2008-numeric.csl
+  toc-title: Оглавление
+  knitr:
+    opts_chunk:
+      dev: svglite
+      dev.args:
+        bg: transparent
+  crossref:
+    fig-title: Рисунок
+    fig-prefix: рисунок
+    tbl-title: Таблица
+    tbl-prefix: таблица
+    lst-title: Листинг
+    lst-prefix: листинг
+    appendix-title: ПРИЛОЖЕНИЕ
+    title-delim: ' — '
+  lang: ru
+  bibliography:
+    - ../references.bib
+  link-citations: true
+  title: Воспроизводимый расчёт полиномиальной модели
+  author: Иванов Иван Иванович
+  academic:
+    profile: coursework
+    standard: susu-04-2008
+    parent-organization: Вышестоящая организация учебного примера
+    university: Название университета
+    university-short: Университет
+    school: Факультет учебного примера
+    department: Название кафедры
+    discipline: Математическое моделирование
+    group: Группа студента
+    supervisor: П.П. Петров
+    supervisor-position: доцент
+    author-short: И.И. Иванов
+    city: Челябинск
+    year: '2026'
+    summary: Исследуются квадратичный и линейный показатели и их сумма. Из единой модели на R формируются текстовые результаты, таблицы с математическими подстановками, графики и расширенный расчёт. Приведены программные проверки согласованности, исходный код и воспроизводимые файлы результатов.
+    direction-code: 00.00.00
+    direction: Направление учебного примера
+    document-code: Университет–000000.2026.000.ПЗ КР
+    normal-controller:
+      name: А.А. Сидорова
+      position: преподаватель
+    assignment:
+      head-of-department: С.С. Смирнов
+      approval-date: 01.10.2026
+      due-date: 30.11.2026
+      questions:
+        - Построить полиномиальную модель и вычислить её показатели.
+        - Подготовить таблицы, графики и проверки согласованности результатов.
+        - Описать воспроизводимый расчёт и представить исходный код в приложениях.
+      calendar:
+        - section: Модель и исходные данные
+          due: 15.10.2026
+          status: ''
+        - section: Расчёты и графики
+          due: 05.11.2026
+          status: ''
+        - section: Проверка и оформление
+          due: 30.11.2026
+          status: ''
+  
+Error in eval(ei, envir) : &#xD;
+  C# Word finalization failed; see D:\Repos\ANK DOCX\.tools\sto04-implementation\acceptance\ANK technical 5ad52843bc5f4caeb3739a698097041a\.quarto\main.docx.finalize.json&#xD;
+Calls: source -&gt; withVisible -&gt; eval -&gt; eval&#xD;
+Execution halted&#xD;
+</Message>
+          <StackTrace>   at AcademicDocx.Tests.QuartoStarterTests.MustRun(String directory, String command, String[] args) in D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\QuartoStarterTests.cs:line 228&#xD;
+   at AcademicDocx.Tests.QuartoStarterTests.TechnicalCourseworkKeepsNativeFramesAndUpdatesStampTotalsAfterGrowth() in D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\QuartoStarterTests.cs:line 187&#xD;
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="1c7a7504-5d6e-4838-bb4b-8e1371202540" testId="00c932f3-e18b-cb68-ce59-7a14bcf33143" testName="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;C:\\outside&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0896364" startTime="2026-10-31T01:49:22.5840991+05:00" endTime="2026-10-31T01:49:22.6736628+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1c7a7504-5d6e-4838-bb4b-8e1371202540" />
+    <UnitTestResult executionId="f3ce5f35-cb05-4cd9-b92f-0fa10d5eda8b" testId="4265f696-9794-c0e2-eef1-0a643fc3b29e" testName="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;..&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0893951" startTime="2026-10-31T01:49:22.4952770+05:00" endTime="2026-10-31T01:49:22.5839568+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f3ce5f35-cb05-4cd9-b92f-0fa10d5eda8b" />
+    <UnitTestResult executionId="ff1f0fda-f3c0-4f41-9940-cdc51657fc8f" testId="94df44b1-9eda-1cc9-b2af-bf2faf5389a1" testName="AcademicDocx.Tests.WordMigrationTests.MergedHeadersMathAndFootersSurviveCompleteFinalization" computerName="DESKTOP-H9F324S" duration="00:00:32.7999052" startTime="2026-10-31T01:49:23.3485669+05:00" endTime="2026-10-31T01:49:56.1490374+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ff1f0fda-f3c0-4f41-9940-cdc51657fc8f" />
+    <UnitTestResult executionId="7002198e-bcba-46f8-a9b4-073bb78ac648" testId="b8451ac6-841c-d9a4-2f29-825e0b12cedb" testName="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;export-pdf&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0983457" startTime="2026-10-31T01:49:22.7645364+05:00" endTime="2026-10-31T01:49:22.8621348+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7002198e-bcba-46f8-a9b4-073bb78ac648" />
+    <UnitTestResult executionId="28018792-60f4-4cf2-a045-7c1de17edac1" testId="f6378ebd-bcbe-f30e-1db0-2285b25f518d" testName="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;finalize-word&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0976583" startTime="2026-10-31T01:49:22.9587148+05:00" endTime="2026-10-31T01:49:23.0563745+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="28018792-60f4-4cf2-a045-7c1de17edac1" />
+    <UnitTestResult executionId="d1dc18d2-e52d-4a2a-9af3-f566ee31aa39" testId="46d6d6af-e562-fa5f-dcf2-c226b4d023ce" testName="AcademicDocx.Tests.QuartoStarterTests.IndependentProjectsUseProfilesAndFindTheServiceOnPath" computerName="DESKTOP-H9F324S" duration="00:02:56.7310203" startTime="2026-10-31T01:51:36.7904010+05:00" endTime="2026-10-31T01:54:33.5153127+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d1dc18d2-e52d-4a2a-9af3-f566ee31aa39" />
+    <UnitTestResult executionId="e89fee2e-a636-4a26-9573-25e6743d5ee0" testId="39a2cbff-d8c0-39ac-1c54-f064abafb3e0" testName="AcademicDocx.Tests.CliTests.NewWorkspaceDoesNotOverwriteExistingAuthoredFiles" computerName="DESKTOP-H9F324S" duration="00:00:00.0968272" startTime="2026-10-31T01:49:23.2492693+05:00" endTime="2026-10-31T01:49:23.3458022+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e89fee2e-a636-4a26-9573-25e6743d5ee0" />
+    <UnitTestResult executionId="175ed0ca-a2b2-4ede-ad21-e0e30b1f0402" testId="ba510509-3a09-02ba-7746-e93f32490532" testName="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;trailing.&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0902896" startTime="2026-10-31T01:49:22.4123913+05:00" endTime="2026-10-31T01:49:22.4945193+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="175ed0ca-a2b2-4ede-ad21-e0e30b1f0402" />
+    <UnitTestResult executionId="d4b3a42a-aa5e-4dcf-8b63-8e4fb8b486df" testId="c90f231f-9e8a-4f7d-f520-ee4e544cb158" testName="AcademicDocx.Tests.CliTests.PublishedApplicationRunsWithoutDotnetRootOrPath" computerName="DESKTOP-H9F324S" duration="00:00:00.0947716" startTime="2026-10-31T01:49:23.1779794+05:00" endTime="2026-10-31T01:49:23.2488736+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d4b3a42a-aa5e-4dcf-8b63-8e4fb8b486df" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="AcademicDocx.Tests.QuartoStarterTests.IndependentProjectsUseProfilesAndFindTheServiceOnPath" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="46d6d6af-e562-fa5f-dcf2-c226b4d023ce">
+      <Execution id="d1dc18d2-e52d-4a2a-9af3-f566ee31aa39" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.QuartoStarterTests" name="IndependentProjectsUseProfilesAndFindTheServiceOnPath" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;export-pdf&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="b8451ac6-841c-d9a4-2f29-825e0b12cedb">
+      <Execution id="7002198e-bcba-46f8-a9b4-073bb78ac648" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="ReportCannotOverwriteTheInputDocument" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.QuartoStarterTests.TechnicalCourseworkKeepsNativeFramesAndUpdatesStampTotalsAfterGrowth" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="5f9f0d06-73bb-4b53-70ad-85c1789665ae">
+      <Execution id="e20dac65-b6bb-4a1f-8d39-a0ce5a05b851" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.QuartoStarterTests" name="TechnicalCourseworkKeepsNativeFramesAndUpdatesStampTotalsAfterGrowth" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;finalize-word&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="f6378ebd-bcbe-f30e-1db0-2285b25f518d">
+      <Execution id="28018792-60f4-4cf2-a045-7c1de17edac1" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="ReportCannotOverwriteTheInputDocument" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.NewWorkspaceDoesNotOverwriteExistingAuthoredFiles" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="39a2cbff-d8c0-39ac-1c54-f064abafb3e0">
+      <Execution id="e89fee2e-a636-4a26-9573-25e6743d5ee0" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="NewWorkspaceDoesNotOverwriteExistingAuthoredFiles" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.PublishedApplicationRunsWithoutDotnetRootOrPath" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="c90f231f-9e8a-4f7d-f520-ee4e544cb158">
+      <Execution id="d4b3a42a-aa5e-4dcf-8b63-8e4fb8b486df" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="PublishedApplicationRunsWithoutDotnetRootOrPath" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;../outside&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="db106157-1cf6-9d69-16d6-7835dc8c23fd">
+      <Execution id="8499eae2-a5a9-4b7d-ba47-fe098844607d" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="WorkspaceRejectsPathsAndReservedNames" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.WordMigrationTests.MergedHeadersMathAndFootersSurviveCompleteFinalization" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="94df44b1-9eda-1cc9-b2af-bf2faf5389a1">
+      <Execution id="ff1f0fda-f3c0-4f41-9940-cdc51657fc8f" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.WordMigrationTests" name="MergedHeadersMathAndFootersSurviveCompleteFinalization" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;CON&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="3550b1cc-f6c5-371b-d5fa-79a574d8d421">
+      <Execution id="8dc5b88d-1c58-4010-8f37-d3ac3f118d7e" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="WorkspaceRejectsPathsAndReservedNames" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;C:\\outside&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="00c932f3-e18b-cb68-ce59-7a14bcf33143">
+      <Execution id="1c7a7504-5d6e-4838-bb4b-8e1371202540" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="WorkspaceRejectsPathsAndReservedNames" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;trailing.&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="ba510509-3a09-02ba-7746-e93f32490532">
+      <Execution id="175ed0ca-a2b2-4ede-ad21-e0e30b1f0402" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="WorkspaceRejectsPathsAndReservedNames" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames(name: &quot;..&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="4265f696-9794-c0e2-eef1-0a643fc3b29e">
+      <Execution id="f3ce5f35-cb05-4cd9-b92f-0fa10d5eda8b" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="WorkspaceRejectsPathsAndReservedNames" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;check-word&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="2b2ce105-f6e2-2294-24d3-c18626d8353c">
+      <Execution id="c4da8814-eb97-4b5d-af97-857572028958" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="ReportCannotOverwriteTheInputDocument" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument(command: &quot;inspect-word&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="fb08c6ef-0520-dd31-4c52-ec2c50c24623">
+      <Execution id="ecddf282-a6e3-4e6e-a7b7-03b93ff6d148" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="ReportCannotOverwriteTheInputDocument" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="fb08c6ef-0520-dd31-4c52-ec2c50c24623" executionId="ecddf282-a6e3-4e6e-a7b7-03b93ff6d148" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2b2ce105-f6e2-2294-24d3-c18626d8353c" executionId="c4da8814-eb97-4b5d-af97-857572028958" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="db106157-1cf6-9d69-16d6-7835dc8c23fd" executionId="8499eae2-a5a9-4b7d-ba47-fe098844607d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3550b1cc-f6c5-371b-d5fa-79a574d8d421" executionId="8dc5b88d-1c58-4010-8f37-d3ac3f118d7e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5f9f0d06-73bb-4b53-70ad-85c1789665ae" executionId="e20dac65-b6bb-4a1f-8d39-a0ce5a05b851" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="00c932f3-e18b-cb68-ce59-7a14bcf33143" executionId="1c7a7504-5d6e-4838-bb4b-8e1371202540" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4265f696-9794-c0e2-eef1-0a643fc3b29e" executionId="f3ce5f35-cb05-4cd9-b92f-0fa10d5eda8b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="94df44b1-9eda-1cc9-b2af-bf2faf5389a1" executionId="ff1f0fda-f3c0-4f41-9940-cdc51657fc8f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b8451ac6-841c-d9a4-2f29-825e0b12cedb" executionId="7002198e-bcba-46f8-a9b4-073bb78ac648" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f6378ebd-bcbe-f30e-1db0-2285b25f518d" executionId="28018792-60f4-4cf2-a045-7c1de17edac1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="46d6d6af-e562-fa5f-dcf2-c226b4d023ce" executionId="d1dc18d2-e52d-4a2a-9af3-f566ee31aa39" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="39a2cbff-d8c0-39ac-1c54-f064abafb3e0" executionId="e89fee2e-a636-4a26-9573-25e6743d5ee0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ba510509-3a09-02ba-7746-e93f32490532" executionId="175ed0ca-a2b2-4ede-ad21-e0e30b1f0402" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c90f231f-9e8a-4f7d-f520-ee4e544cb158" executionId="d4b3a42a-aa5e-4dcf-8b63-8e4fb8b486df" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Список результатов" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Все загруженные результаты" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="14" executed="14" passed="13" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.07]   Discovering: AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.12]   Discovered:  AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.14]   Starting:    AcademicDocx.Tests&#xD;
+[xUnit.net 00:02:14.67]       {&#xD;
+[xUnit.net 00:02:14.67]         "file": "D:\\Repos\\ANK DOCX\\.tools\\sto04-implementation\\acceptance\\ANK technical 5ad52843bc5f4caeb3739a698097041a\\_output\\chapters\\main.docx",&#xD;
+[xUnit.net 00:02:14.67]         "passed": false,&#xD;
+[xUnit.net 00:02:14.67]         "schema_errors_before_word": 1871,&#xD;
+[xUnit.net 00:02:14.67]         "validation": null,&#xD;
+[xUnit.net 00:02:14.67]         "pages": 15,&#xD;
+[xUnit.net 00:02:14.67]         "annotation": {&#xD;
+[xUnit.net 00:02:14.67]           "figures": 4,&#xD;
+[xUnit.net 00:02:14.67]           "tables": 3,&#xD;
+[xUnit.net 00:02:14.67]           "sources": 3,&#xD;
+[xUnit.net 00:02:14.67]           "appendices": 2&#xD;
+[xUnit.net 00:02:14.67]         },&#xD;
+[xUnit.net 00:02:14.67]         "front_matter": {&#xD;
+[xUnit.net 00:02:14.67]           "title_end": 1,&#xD;
+[xUnit.net 00:02:14.67]           "assignment_first_end": 2,&#xD;
+[xUnit.net 00:02:14.67]           "assignment_end": 3,&#xD;
+[xUnit.net 00:02:14.67]           "annotation_start": 4,&#xD;
+[xUnit.net 00:02:14.67]           "body_boundary": 5&#xD;
+[xUnit.net 00:02:14.67]         },&#xD;
+[xUnit.net 00:02:14.67]         "page_layout": null,&#xD;
+[xUnit.net 00:02:14.67]         "split_tables": [&#xD;
+[xUnit.net 00:02:14.67]           {&#xD;
+[xUnit.net 00:02:14.67]             "name": "tbl_long_results",&#xD;
+[xUnit.net 00:02:14.67]             "table_indices": [&#xD;
+[xUnit.net 00:02:14.67]               4,&#xD;
+[xUnit.net 00:02:14.67]               5&#xD;
+[xUnit.net 00:02:14.67]             ]&#xD;
+[xUnit.net 00:02:14.67]           }&#xD;
+[xUnit.net 00:02:14.67]         ],&#xD;
+[xUnit.net 00:02:14.67]         "word": {&#xD;
+[xUnit.net 00:02:14.67]           "version": "16.0",&#xD;
+[xUnit.net 00:02:14.67]           "build": "16.0.20326",&#xD;
+[xUnit.net 00:02:14.67]           "process_id": 29472,&#xD;
+[xUnit.net 00:02:14.67]           "process_exited": true,&#xD;
+[xUnit.net 00:02:14.67]           "cleanup_errors": []&#xD;
+[xUnit.net 00:02:14.67]         },&#xD;
+[xUnit.net 00:02:14.67]         "error": "System.IO.InvalidDataException: STO 04 first stamp PAGE does not match the annotation page\r\n   at AcademicDocx.WordPageLayout.Verify(WordSession session, PageLayoutOptions options, Int32 pages, Nullable\u00601 annotationPage) in D:\\Repos\\ANK DOCX\\tools\\AcademicDocx\\WordPageLayout.cs:line 24\r\n   at AcademicDocx.WordFinalizer.Run(String path, PageLayoutOptions layout, String templates) in D:\\Repos\\ANK DOCX\\tools\\AcademicDocx\\WordFinalizer.cs:line 181"&#xD;
+[xUnit.net 00:02:14.67]       }
+&#xD;
+[xUnit.net 00:02:14.67]       &#xD;
+[xUnit.net 00:02:14.67]       processing file: main.qmd&#xD;
+[xUnit.net 00:02:14.67]       1/25                     &#xD;
+[xUnit.net 00:02:14.67]       2/25 [academic-setup]    &#xD;
+[xUnit.net 00:02:14.67]       3/25                     &#xD;
+[xUnit.net 00:02:14.67]       4/25 [calculate-model]   &#xD;
+[xUnit.net 00:02:14.67]       5/25                     &#xD;
+[xUnit.net 00:02:14.67]       6/25 [prepare-views]     &#xD;
+[xUnit.net 00:02:14.67]       7/25                     &#xD;
+[xUnit.net 00:02:14.67]       8/25 [tbl-results]       &#xD;
+[xUnit.net 00:02:14.67]       9/25                     &#xD;
+[xUnit.net 00:02:14.67]       10/25 [fig-functions]     &#xD;
+[xUnit.net 00:02:14.67]       11/25                     &#xD;
+[xUnit.net 00:02:14.67]       12/25 [fig-patterns]      &#xD;
+[xUnit.net 00:02:14.67]       13/25                     
+14/25 [fig-surface-wire]  
+15/25                     
+16/25 [fig-surface-shaded]
+17/25                     
+18/25 [validate-model]    
+19/25                     
+20/25 [show-calculation]  
+21/25                     
+22/25 [export-results]    
+23/25                     
+24/25 [tbl-long-results]  
+25/25                     
+output file: main.knit.md
+
+pandoc 
+  to: docx
+  output-file: main.docx
+  template: ../_extensions/academic/document.openxml
+  default-image-extension: png
+  reference-doc: ../_extensions/academic/academic.docx
+  toc: true
+  toc-depth: 3
+  number-sections: false
+  
+metadata
+  csl: ../_extensions/academic/gost-r-7-0-5-2008-numeric.csl
+  toc-title: Оглавление
+  knitr:
+    opts_chunk:
+      dev: svglite
+      dev.args:
+        bg: transparent
+  crossref:
+    fig-title: Рисунок
+    fig-prefix: рисунок
+    tbl-title: Таблица
+    tbl-prefix: таблица
+    lst-title: Листинг
+    lst-prefix: листинг
+    appendix-title: ПРИЛОЖЕНИЕ
+    title-delim: ' — '
+  lang: ru
+  bibliography:
+    - ../references.bib
+  link-citations: true
+  title: Воспроизводимый расчёт полиномиальной модели
+  author: Иванов Иван Иванович
+  academic:
+    profile: coursework
+    standard: susu-04-2008
+    parent-organization: Вышестоящая организация учебного примера
+    university: Название университета
+    university-short: Университет
+    school: Факультет учебного примера
+    department: Название кафедры
+    discipline: Математическое моделирование
+    group: Группа студента
+    supervisor: П.П. Петров
+    supervisor-position: доцент
+    author-short: И.И. Иванов
+    city: Челябинск
+    year: '2026'
+    summary: Исследуются квадратичный и линейный показатели и их сумма. Из единой модели на R формируются текстовые результаты, таблицы с математическими подстановками, графики и расширенный расчёт. Приведены программные проверки согласованности, исходный код и воспроизводимые файлы результатов.
+    direction-code: 00.00.00
+    direction: Направление учебного примера
+    document-code: Университет–000000.2026.000.ПЗ КР
+    normal-controller:
+      name: А.А. Сидорова
+      position: преподаватель
+    assignment:
+      head-of-department: С.С. Смирнов
+      approval-date: 01.10.2026
+      due-date: 30.11.2026
+      questions:
+        - Построить полиномиальную модель и вычислить её показатели.
+        - Подготовить таблицы, графики и проверки согласованности результатов.
+        - Описать воспроизводимый расчёт и представить исходный код в приложениях.
+      calendar:
+        - section: Модель и исходные данные
+          due: 15.10.2026
+          status: ''
+        - section: Расчёты и графики
+          due: 05.11.2026
+          status: ''
+        - section: Проверка и оформление
+          due: 30.11.2026
+          status: ''
+  
+Error in eval(ei, envir) : &#xD;
+[xUnit.net 00:02:14.67]         C# Word finalization failed; see D:\Repos\ANK DOCX\.tools\sto04-implementation\acceptance\ANK technical 5ad52843bc5f4caeb3739a698097041a\.quarto\main.docx.finalize.json&#xD;
+[xUnit.net 00:02:14.67]       Calls: source -&gt; withVisible -&gt; eval -&gt; eval&#xD;
+[xUnit.net 00:02:14.67]       Execution halted&#xD;
+[xUnit.net 00:02:14.67]       &#xD;
+[xUnit.net 00:02:14.67]       Stack Trace:&#xD;
+[xUnit.net 00:02:14.67]         D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\QuartoStarterTests.cs(228,0): at AcademicDocx.Tests.QuartoStarterTests.MustRun(String directory, String command, String[] args)&#xD;
+[xUnit.net 00:02:14.67]         D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\QuartoStarterTests.cs(187,0): at AcademicDocx.Tests.QuartoStarterTests.TechnicalCourseworkKeepsNativeFramesAndUpdatesStampTotalsAfterGrowth()&#xD;
+[xUnit.net 00:02:14.67]            at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)&#xD;
+[xUnit.net 00:02:14.67]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+[xUnit.net 00:05:11.40]   Finished:    AcademicDocx.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="DESKTOP-H9F324S" outcome="Error" timestamp="2026-10-31T01:51:36.7869225+05:00">
+        <Text>[xUnit.net 00:02:14.67]     AcademicDocx.Tests.QuartoStarterTests.TechnicalCourseworkKeepsNativeFramesAndUpdatesStampTotalsAfterGrowth [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

@@ -19,19 +19,24 @@ internal static class Program
                 Console.WriteLine("""
                     Academic DOCX service
                       --version
-                      finalize-word DOCX [--report JSON]
+                      finalize-word DOCX [--report JSON] [--layout-metadata JSON] [--page-templates DIRECTORY]
                       validate DOCX [DOCX ...]
                       style-reference DOCX [--output DOCX] [--bottom-margin-mm 20|26]
                       check-word DOCX COPY REPORT [--expected-pages N]
                       export-pdf DOCX PDF REPORT
                       inspect-word DOCX REPORT
                       setup REPOSITORY_ROOT
+                      prepare-sto04 TEACHER_DOCX OUTPUT_DIRECTORY
                       workspace REPOSITORY_ROOT [new NAME [--profile coursework|referat] | build NAME | list]
                     """);
                 return 0;
             }
             switch (args[0])
             {
+                case "prepare-sto04":
+                    if (args.Length != 3) throw new ArgumentException("prepare-sto04 TEACHER_DOCX OUTPUT_DIRECTORY");
+                    TechnicalPageTemplates.Prepare(args[1], args[2]);
+                    return 0;
                 case "workspace":
                     Require(args, 2);
                     WorkspaceCommands.Run(args[1], args.Skip(2).ToArray());
@@ -72,9 +77,10 @@ internal static class Program
                 case "finalize-word":
                 {
                     Require(args, 2);
-                    CheckOptions(args, 2, "--report");
+                    CheckOptions(args, 2, "--report", "--layout-metadata", "--page-templates");
                     if (Option(args, "--report") is { } reportPath) RequireDistinctPaths(args[1], reportPath);
-                    var report = WordFinalizer.Run(args[1]);
+                    var layoutFile = Option(args, "--layout-metadata");
+                    var report = WordFinalizer.Run(args[1], layoutFile is null ? null : PageLayoutOptions.Read(layoutFile), Option(args, "--page-templates"));
                     if (Option(args, "--report") is { } output) JsonReport.Write(output, report);
                     Console.Write(JsonReport.Serialize(report));
                     return report.Passed ? 0 : 1;

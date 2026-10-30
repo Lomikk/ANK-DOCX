@@ -12,6 +12,7 @@ internal sealed class FinalizationReport
     public int? Pages { get; set; }
     public AnnotationStatistics? Annotation { get; set; }
     public FrontMatterPages? FrontMatter { get; set; }
+    public PageLayoutReport? PageLayout { get; set; }
     public List<TableSplitReport> SplitTables { get; } = [];
     public WordLifecycle? Word { get; set; }
     public string? Error { get; set; }
@@ -19,6 +20,42 @@ internal sealed class FinalizationReport
 
 internal static class WordFields
 {
+    public static IReadOnlyList<Word.Field> InShapes(WordSession session, Word.Shapes shapes)
+    {
+        var fields = new List<Word.Field>();
+        var scope = session.Objects;
+        void Visit(Word.Shape shape)
+        {
+            if ((int)shape.Type == 6) // Office msoGroup; recurse through native Word group shapes.
+            {
+                var items = scope.Own(shape.GroupItems);
+                for (var i = 1; i <= items.Count; i++) Visit(scope.Own(items[i]));
+                return;
+            }
+            var frame = scope.Own(shape.TextFrame);
+            if (frame.HasText == 0) return;
+            foreach (Word.Field field in scope.Own(scope.Own(frame.TextRange).Fields)) fields.Add(scope.Own(field));
+        }
+        foreach (Word.Shape shape in shapes) Visit(scope.Own(shape));
+        return fields;
+    }
+
+    public static IReadOnlyList<Word.Field> InPageDrawings(WordSession session)
+    {
+        var fields = new List<Word.Field>();
+        var scope = session.Objects;
+        foreach (Word.Section item in scope.Own(session.Document!.Sections))
+        {
+            var section = scope.Own(item);
+            foreach (var stories in new[] { scope.Own(section.Headers), scope.Own(section.Footers) })
+                foreach (Word.HeaderFooter storyItem in stories)
+                {
+                    var story = scope.Own(storyItem);
+                    if (story.Exists) fields.AddRange(InShapes(session, scope.Own(story.Shapes)));
+                }
+        }
+        return fields;
+    }
     public static void Refresh(WordSession session, bool rebuildToc = true)
     {
         var document = session.Document!;
@@ -58,6 +95,8 @@ internal static class WordFields
                 var figures = scope.Own(item);
                 if (rebuildToc) figures.Update(); else figures.UpdatePageNumbers();
             }
+            foreach (var field in InPageDrawings(session))
+                if (!field.Update()) throw new InvalidOperationException("Word page-drawing field update failed");
         }
     }
 
@@ -72,6 +111,7 @@ internal static class WordFields
             var field = scope.Own(item);
             if (scope.Own(field.Code).Text.Trim() == "NUMPAGES") fields.Add(field);
         }
+        fields.AddRange(InPageDrawings(session).Where(field => scope.Own(field.Code).Text.Trim() == "NUMPAGES"));
         for (var pass = 0; pass < 4; pass++)
         {
             foreach (var field in fields)
@@ -87,7 +127,7 @@ internal static class WordFields
 
 internal static class WordFinalizer
 {
-    public static FinalizationReport Run(string path)
+    public static FinalizationReport Run(string path, PageLayoutOptions? layout = null, string? templates = null)
     {
         path = Path.GetFullPath(path);
         var report = new FinalizationReport { File = path };
@@ -100,6 +140,7 @@ internal static class WordFinalizer
             File.Copy(path, staged);
             DocumentFormatting.Apply(staged);
             report.Annotation = FrontMatterFormatting.Apply(staged);
+            if (report.Annotation is not null) DocumentPageLayout.Apply(staged, layout, templates);
             session = new();
             var document = session.Open(staged);
             WordFrontMatter.Layout(session, report.Annotation);
@@ -137,6 +178,7 @@ internal static class WordFinalizer
             }
             report.Pages = WordFields.StabilizePages(session);
             report.FrontMatter = WordFrontMatter.Verify(session, report.Annotation);
+            report.PageLayout = WordPageLayout.Verify(session, layout, report.Pages.Value, report.FrontMatter?.AnnotationStart);
             document.Save();
             session.Close();
             session.RequireCleanExit();
