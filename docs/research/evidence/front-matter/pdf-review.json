@@ -1,0 +1,196 @@
+{
+  "coursework": {
+    "page_count": 15,
+    "pages": [
+      {
+        "page": 1,
+        "printed_page_number": [],
+        "characters": 690
+      },
+      {
+        "page": 2,
+        "printed_page_number": [],
+        "characters": 784
+      },
+      {
+        "page": 3,
+        "printed_page_number": [],
+        "characters": 384
+      },
+      {
+        "page": 4,
+        "printed_page_number": [],
+        "characters": 471
+      },
+      {
+        "page": 5,
+        "printed_page_number": [],
+        "characters": 1680
+      },
+      {
+        "page": 6,
+        "printed_page_number": [
+          "6"
+        ],
+        "characters": 1660
+      },
+      {
+        "page": 7,
+        "printed_page_number": [
+          "7"
+        ],
+        "characters": 1339
+      },
+      {
+        "page": 8,
+        "printed_page_number": [
+          "8"
+        ],
+        "characters": 593
+      },
+      {
+        "page": 9,
+        "printed_page_number": [
+          "9"
+        ],
+        "characters": 431
+      },
+      {
+        "page": 10,
+        "printed_page_number": [
+          "10"
+        ],
+        "characters": 1222
+      },
+      {
+        "page": 11,
+        "printed_page_number": [
+          "11"
+        ],
+        "characters": 408
+      },
+      {
+        "page": 12,
+        "printed_page_number": [
+          "12"
+        ],
+        "characters": 358
+      },
+      {
+        "page": 13,
+        "printed_page_number": [
+          "13"
+        ],
+        "characters": 1520
+      },
+      {
+        "page": 14,
+        "printed_page_number": [
+          "14"
+        ],
+        "characters": 1601
+      },
+      {
+        "page": 15,
+        "printed_page_number": [
+          "15"
+        ],
+        "characters": 1655
+      }
+    ]
+  },
+  "referat": {
+    "page_count": 13,
+    "pages": [
+      {
+        "page": 1,
+        "printed_page_number": [],
+        "characters": 651
+      },
+      {
+        "page": 2,
+        "printed_page_number": [
+          "2"
+        ],
+        "characters": 455
+      },
+      {
+        "page": 3,
+        "printed_page_number": [
+          "3"
+        ],
+        "characters": 1688
+      },
+      {
+        "page": 4,
+        "printed_page_number": [
+          "4"
+        ],
+        "characters": 1660
+      },
+      {
+        "page": 5,
+        "printed_page_number": [
+          "5"
+        ],
+        "characters": 1339
+      },
+      {
+        "page": 6,
+        "printed_page_number": [
+          "6"
+        ],
+        "characters": 592
+      },
+      {
+        "page": 7,
+        "printed_page_number": [
+          "7"
+        ],
+        "characters": 427
+      },
+      {
+        "page": 8,
+        "printed_page_number": [
+          "8"
+        ],
+        "characters": 1217
+      },
+      {
+        "page": 9,
+        "printed_page_number": [
+          "9"
+        ],
+        "characters": 407
+      },
+      {
+        "page": 10,
+        "printed_page_number": [
+          "10"
+        ],
+        "characters": 358
+      },
+      {
+        "page": 11,
+        "printed_page_number": [
+          "11"
+        ],
+        "characters": 1520
+      },
+      {
+        "page": 12,
+        "printed_page_number": [
+          "12"
+        ],
+        "characters": 1624
+      },
+      {
+        "page": 13,
+        "printed_page_number": [
+          "13"
+        ],
+        "characters": 1688
+      }
+    ]
+  }
+}

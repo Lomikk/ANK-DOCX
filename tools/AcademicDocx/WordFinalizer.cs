@@ -10,6 +10,8 @@ internal sealed class FinalizationReport
     public int? SchemaErrorsBeforeWord { get; set; }
     public ValidationReport? Validation { get; set; }
     public int? Pages { get; set; }
+    public AnnotationStatistics? Annotation { get; set; }
+    public FrontMatterPages? FrontMatter { get; set; }
     public List<TableSplitReport> SplitTables { get; } = [];
     public WordLifecycle? Word { get; set; }
     public string? Error { get; set; }
@@ -97,8 +99,10 @@ internal static class WordFinalizer
             var original = DocxInspection.Read(path);
             File.Copy(path, staged);
             DocumentFormatting.Apply(staged);
+            report.Annotation = FrontMatterFormatting.Apply(staged);
             session = new();
             var document = session.Open(staged);
+            WordFrontMatter.Layout(session, report.Annotation);
             WordFields.Refresh(session);
             var parts = WordTables.Split(session);
             var tables = session.Objects.Own(document.Tables);
@@ -132,6 +136,7 @@ internal static class WordFinalizer
                     throw new InvalidDataException($"Table fragment {index} spans pages after Word normalization");
             }
             report.Pages = WordFields.StabilizePages(session);
+            report.FrontMatter = WordFrontMatter.Verify(session, report.Annotation);
             document.Save();
             session.Close();
             session.RequireCleanExit();

@@ -2,11 +2,29 @@ title: ""
 author: ""
 academic:
   profile: coursework
+  parent-organization: ""
   university: ""
+  university-short: ""
+  school: ""
   department: ""
   discipline: ""
   group: ""
   supervisor: ""
+  supervisor-position: ""
+  author-short: ""
   city: ""
   year: ""
   summary: ""
+  # Fields below are required only for coursework.
+  direction-code: ""
+  direction: ""
+  document-code: ""
+  normal-controller:
+    name: ""
+    position: ""
+  assignment:
+    head-of-department: ""
+    approval-date: ""
+    due-date: ""
+    questions: []
+    calendar: [] # Each row: {section: "...", due: "...", status: ""}

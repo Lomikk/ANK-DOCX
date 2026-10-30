@@ -1,0 +1,42 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\examples\\book\\_book\\coursework.docx",
+  "passed": true,
+  "schema_errors_before_word": 1511,
+  "validation": {
+    "file": ".academic-65878fee6e3549fd9fe834a7b83cfb86.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 13,
+  "annotation": {
+    "figures": 4,
+    "tables": 3,
+    "sources": 1,
+    "appendices": 0
+  },
+  "front_matter": {
+    "title_end": 1,
+    "assignment_first_end": 2,
+    "assignment_end": 3,
+    "annotation_start": 4,
+    "body_boundary": 5
+  },
+  "split_tables": [
+    {
+      "name": "tbl_squares",
+      "table_indices": [
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 28652,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

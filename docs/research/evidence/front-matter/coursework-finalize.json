@@ -1,0 +1,41 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\Workspaces\\Пример\\_output\\chapters\\main.docx",
+  "passed": true,
+  "schema_errors_before_word": 1871,
+  "validation": {
+    "file": ".academic-2c0b10a21e394e68a7577f9cc8b7bb5d.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 15,
+  "annotation": {
+    "figures": 4,
+    "tables": 3,
+    "sources": 3,
+    "appendices": 2
+  },
+  "front_matter": {
+    "title_end": 1,
+    "assignment_first_end": 2,
+    "assignment_end": 3,
+    "annotation_start": 4,
+    "body_boundary": 5
+  },
+  "split_tables": [
+    {
+      "name": "tbl_long_results",
+      "table_indices": [
+        4,
+        5
+      ]
+    }
+  ],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 24044,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

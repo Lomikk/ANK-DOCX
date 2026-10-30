@@ -1,0 +1,41 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\.tools\\front-matter\\acceptance\\ANK starter проверка 46c1309e11504ce3bd373a41a4e33c91\\referat\\_output\\chapters\\main.docx",
+  "passed": true,
+  "schema_errors_before_word": 1871,
+  "validation": {
+    "file": ".academic-e3c73c5460584956b036e899d151fe06.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 13,
+  "annotation": {
+    "figures": 4,
+    "tables": 3,
+    "sources": 3,
+    "appendices": 2
+  },
+  "front_matter": {
+    "title_end": 1,
+    "assignment_first_end": null,
+    "assignment_end": null,
+    "annotation_start": 2,
+    "body_boundary": 3
+  },
+  "split_tables": [
+    {
+      "name": "tbl_long_results",
+      "table_indices": [
+        3,
+        4
+      ]
+    }
+  ],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 19460,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

@@ -194,8 +194,8 @@ for (output in outputs) {
       stop("Academic DOCX service is missing: add the published application to PATH or set ACADEMIC_DOCX_SERVICE to its EXE")
     version <- system2(normalizePath(service), "--version", stdout = TRUE, stderr = TRUE)
     if (!is.null(base::attr(version, "status")) || length(version) != 1L ||
-        !grepl("^0[.]2[.][0-9]+$", version))
-      stop("Incompatible Academic DOCX service: this extension requires version 0.2.x; select it through PATH or ACADEMIC_DOCX_SERVICE")
+        !grepl("^0[.]3[.][0-9]+$", version))
+      stop("Incompatible Academic DOCX service: this extension requires version 0.3.x; select it through PATH or ACADEMIC_DOCX_SERVICE")
     report <- normalizePath(file.path(".quarto",paste0(basename(output),".finalize.json")), mustWork=FALSE)
     status <- system2(normalizePath(service), c("finalize-word", shQuote(output), "--report", shQuote(report)))
     if (status != 0) stop("C# Word finalization failed; see ",report)

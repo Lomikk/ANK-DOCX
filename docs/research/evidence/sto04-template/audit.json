@@ -1,0 +1,323 @@
+{
+  "sources": [
+    {
+      "path": "D:\\Repos\\Курсовой проект\\Шаблон оформления курсовой работы.docx",
+      "sha256": "e367ecb5705ca408e18514015b4cb89de9c7baaefebccf8f128e23f36272deaa"
+    },
+    {
+      "path": "D:\\Repos\\Курсовой проект\\standart_kursovoe_i_diplomnoe_proektirovanie_04-2008_yuurgu.pdf",
+      "sha256": "db3a4ca969781fd8cbfa3899adfd93e18509cb5a8cc9fd4f7158caabdcec859a"
+    }
+  ],
+  "sections": [
+    {
+      "index": 1,
+      "type": "nextPage",
+      "margins_mm": {
+        "top": 20.002,
+        "bottom": 20.002,
+        "left": 22.507,
+        "right": 10.001
+      },
+      "references": [
+        {
+          "type": "default",
+          "id": "rId8"
+        },
+        {
+          "type": "default",
+          "id": "rId9"
+        },
+        {
+          "type": "first",
+          "id": "rId10"
+        }
+      ],
+      "different_first_page": true
+    },
+    {
+      "index": 2,
+      "type": "continuous",
+      "margins_mm": {
+        "top": 20.002,
+        "bottom": 20.002,
+        "left": 22.507,
+        "right": 10.001
+      },
+      "references": [
+        {
+          "type": "first",
+          "id": "rId11"
+        },
+        {
+          "type": "first",
+          "id": "rId12"
+        }
+      ],
+      "different_first_page": true
+    },
+    {
+      "index": 3,
+      "type": "continuous",
+      "margins_mm": {
+        "top": 20.002,
+        "bottom": 20.002,
+        "left": 22.507,
+        "right": 10.001
+      },
+      "references": [],
+      "different_first_page": true
+    },
+    {
+      "index": 4,
+      "type": "nextPage",
+      "margins_mm": {
+        "top": 20.002,
+        "bottom": 20.002,
+        "left": 22.507,
+        "right": 10.001
+      },
+      "references": [
+        {
+          "type": "first",
+          "id": "rId13"
+        },
+        {
+          "type": "first",
+          "id": "rId14"
+        }
+      ],
+      "different_first_page": true
+    },
+    {
+      "index": 5,
+      "type": "nextPage",
+      "margins_mm": {
+        "top": 20.002,
+        "bottom": 20.002,
+        "left": 25.012,
+        "right": 10.001
+      },
+      "references": [
+        {
+          "type": "default",
+          "id": "rId15"
+        },
+        {
+          "type": "default",
+          "id": "rId16"
+        }
+      ],
+      "different_first_page": false
+    }
+  ],
+  "parts": [
+    {
+      "part": "word/header2.xml",
+      "anchors": [
+        {
+          "width_mm": 182.645,
+          "height_mm": 282.84,
+          "wrapping": [
+            "wrapNone"
+          ]
+        }
+      ],
+      "field_codes": [],
+      "fonts": []
+    },
+    {
+      "part": "word/header4.xml",
+      "anchors": [
+        {
+          "width_mm": 181.419,
+          "height_mm": 283.381,
+          "wrapping": [
+            "wrapNone"
+          ]
+        }
+      ],
+      "field_codes": [],
+      "fonts": [
+        "Arial",
+        "ISOCPEUR",
+        "Times New Roman"
+      ]
+    },
+    {
+      "part": "word/footer4.xml",
+      "anchors": [
+        {
+          "width_mm": 183.021,
+          "height_mm": 281.993,
+          "wrapping": [
+            "wrapNone"
+          ]
+        }
+      ],
+      "field_codes": [
+        " PAGE   \\* MERGEFORMAT ",
+        "PAGE   \\* MERGEFORMAT",
+        " PAGE   \\* MERGEFORMAT ",
+        "PAGE   \\* MERGEFORMAT"
+      ],
+      "fonts": [
+        "Arial"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "has_frame": true,
+      "frame_mm": {
+        "left": 20.11,
+        "right": 7.23,
+        "top": 7.02,
+        "bottom": 7.15,
+        "width": 182.63,
+        "height": 282.84
+      },
+      "annotation": false,
+      "contents": false,
+      "characters": 1009
+    },
+    {
+      "page": 2,
+      "has_frame": false,
+      "frame_mm": null,
+      "annotation": false,
+      "contents": false,
+      "characters": 1476
+    },
+    {
+      "page": 3,
+      "has_frame": false,
+      "frame_mm": null,
+      "annotation": false,
+      "contents": false,
+      "characters": 473
+    },
+    {
+      "page": 4,
+      "has_frame": true,
+      "frame_mm": {
+        "left": 20.48,
+        "right": 8.08,
+        "top": 7.41,
+        "bottom": 6.23,
+        "width": 181.42,
+        "height": 283.37
+      },
+      "annotation": true,
+      "contents": false,
+      "characters": 437
+    },
+    {
+      "page": 5,
+      "has_frame": true,
+      "frame_mm": {
+        "left": 20.7,
+        "right": 6.25,
+        "top": 8.11,
+        "bottom": 6.9,
+        "width": 183.02,
+        "height": 281.99
+      },
+      "annotation": false,
+      "contents": true,
+      "characters": 1219
+    },
+    {
+      "page": 6,
+      "has_frame": true,
+      "frame_mm": {
+        "left": 20.7,
+        "right": 6.25,
+        "top": 8.11,
+        "bottom": 6.9,
+        "width": 183.02,
+        "height": 281.99
+      },
+      "annotation": false,
+      "contents": false,
+      "characters": 178
+    },
+    {
+      "page": 7,
+      "has_frame": true,
+      "frame_mm": {
+        "left": 20.7,
+        "right": 6.25,
+        "top": 8.11,
+        "bottom": 6.9,
+        "width": 183.02,
+        "height": 281.99
+      },
+      "annotation": false,
+      "contents": false,
+      "characters": 81
+    },
+    {
+      "page": 8,
+      "has_frame": true,
+      "frame_mm": {
+        "left": 20.7,
+        "right": 6.25,
+        "top": 8.11,
+        "bottom": 6.9,
+        "width": 183.02,
+        "height": 281.99
+      },
+      "annotation": false,
+      "contents": false,
+      "characters": 100
+    },
+    {
+      "page": 9,
+      "has_frame": true,
+      "frame_mm": {
+        "left": 20.7,
+        "right": 6.25,
+        "top": 8.11,
+        "bottom": 6.9,
+        "width": 183.02,
+        "height": 281.99
+      },
+      "annotation": false,
+      "contents": false,
+      "characters": 145
+    },
+    {
+      "page": 10,
+      "has_frame": true,
+      "frame_mm": {
+        "left": 20.7,
+        "right": 6.25,
+        "top": 8.11,
+        "bottom": 6.9,
+        "width": 183.02,
+        "height": 281.99
+      },
+      "annotation": false,
+      "contents": false,
+      "characters": 133
+    },
+    {
+      "page": 11,
+      "has_frame": true,
+      "frame_mm": {
+        "left": 20.7,
+        "right": 6.25,
+        "top": 8.11,
+        "bottom": 6.9,
+        "width": 183.02,
+        "height": 281.99
+      },
+      "annotation": false,
+      "contents": false,
+      "characters": 91
+    }
+  ],
+  "source_docx_unchanged": true
+}

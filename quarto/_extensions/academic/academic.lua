@@ -10,85 +10,11 @@ local function number(id,sequence,prefix,suffix)
   bid=bid+1
   return pandoc.RawInline('openxml','<w:r><w:t xml:space="preserve">'..esc(prefix)..'</w:t></w:r><w:bookmarkStart w:id="'..bid..'" w:name="'..bookmark(id)..'"/>'..field('SEQ '..sequence..' \\* ARABIC')..'<w:bookmarkEnd w:id="'..bid..'"/><w:r><w:t xml:space="preserve">'..esc(suffix)..'</w:t></w:r>')
 end
-local function pagebreak() return pandoc.RawBlock('openxml','<w:p><w:r><w:br w:type="page"/></w:r></w:p>') end
-local function styled(s,style)
-  return pandoc.Div({pandoc.Para(s)},{['custom-style']=style})
-end
--- Let Pandoc parse standard YAML; this is a small fixed profile configuration,
--- not an author-side include manifest or a new template/plugin language.
-local profile_file=assert(io.open(pandoc.path.join({
-  pandoc.path.directory(PANDOC_SCRIPT_FILE),'profiles.yml'}),'rb'))
-local profile_config=pandoc.read('---\n'..profile_file:read('*a')..'\n---\n','markdown').meta
-profile_file:close()
-local function metadata_value(meta,path)
-  local value=meta
-  for key in path:gmatch('[^.]+') do
-    if type(value)~='table' then return '' end
-    value=value[key]
-  end
-  return value and text(value) or ''
-end
-local function front_matter(doc)
-  local id=metadata_value(doc.meta,'academic.profile')
-  local profile=profile_config.profiles[id]
-  if not profile then
-    assert(false,'Unknown or missing academic.profile: "'..id..'". Available profiles: coursework, referat')
-  end
-  local missing={}
-  for _,sheet_id in ipairs(profile['before-body']) do
-    local sheet=profile_config.sheets[text(sheet_id)]
-    assert(sheet,'Unknown sheet in academic profile '..id..': '..text(sheet_id))
-    for _,required in ipairs(sheet.required or {}) do
-      local path=text(required)
-      if metadata_value(doc.meta,path):match('^%s*$') then
-        missing[path]=true
-      end
-    end
-  end
-  local fields={}
-  for path in pairs(missing) do fields[#fields+1]=path end
-  table.sort(fields)
-  if #fields>0 then
-    -- Quarto's filter environment supplies a non-throwing error logger.
-    -- The standard Lua assertion must abort instead of producing a blank sheet.
-    assert(false,'Missing metadata for academic.profile "'..id..'": '..table.concat(fields,', '))
-  end
-  local front=pandoc.Blocks({})
-  local function value(path) return metadata_value(doc.meta,path) end
-  for _,sheet_id in ipairs(profile['before-body']) do
-    local sheet_name=text(sheet_id)
-    local sheet=profile_config.sheets[sheet_name]
-    front:insert(styled(text(sheet.label)..' — ЗАГЛУШКА','FrontMatterHeading'))
-    front:insert(pandoc.Para('Демонстрационный лист. Нормативный образец и состав профиля ещё не утверждены.'))
-    if sheet_name=='title' then
-      front:insert(styled(value('academic.university'),'Institution'))
-      front:insert(styled(value('academic.department'),'Institution'))
-      front:insert(styled(text(profile.label),'WorkType'))
-      front:insert(styled(value('title'),'Title'))
-      front:insert(styled('По дисциплине «'..value('academic.discipline')..'»','TitleDetails'))
-      front:insert(styled('Выполнил: '..value('author')..', группа '..value('academic.group'),'StudentDetails'))
-      front:insert(styled('Руководитель: '..value('academic.supervisor'),'StudentDetails'))
-      front:insert(styled(value('academic.city')..' — '..value('academic.year'),'TitlePlace'))
-    elseif sheet_name=='assignment' then
-      front:insert(pandoc.Para('Тема: '..value('title')))
-      front:insert(pandoc.Para('Исполнитель: '..value('author')))
-      front:insert(pandoc.Para('Руководитель: '..value('academic.supervisor')))
-      front:insert(pandoc.Para('Содержание задания, сроки и подписи будут добавлены после проверки нормативного образца.'))
-    elseif sheet_name=='annotation' then
-      front:insert(pandoc.Para(value('title')..'. '..value('academic.summary')))
-      front:insert(pandoc.Para({pandoc.Str('Объём работы: '),
-        pandoc.RawInline('openxml',field('NUMPAGES')),pandoc.Str(' с.')}))
-    else
-      assert(false,'No sheet implementation: '..sheet_name)
-    end
-    front:insert(pagebreak())
-  end
-  quarto.log.warning('Academic profile "'..id..'" uses placeholder sheets; STO compliance is not confirmed.')
-  return front
-end
+local extension_dir=pandoc.path.directory(PANDOC_SCRIPT_FILE)
+local render_front_matter=dofile(pandoc.path.join({extension_dir,'front-matter.lua'}))
 local appendix_ids={}
 local function process(doc)
-  doc.meta['academic-front-matter']=pandoc.MetaBlocks(front_matter(doc))
+  doc.meta['academic-front-matter']=pandoc.MetaBlocks(render_front_matter(doc,field,extension_dir))
   local headings={}
   local numbered_chapters={}
   local marked_appendices={}

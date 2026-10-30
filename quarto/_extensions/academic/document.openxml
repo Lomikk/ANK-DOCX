@@ -4,8 +4,8 @@
 $academic-front-matter$
 $if(toc)$
 $toc$
-<w:p><w:r><w:br w:type="page"/></w:r></w:p>
 $endif$
+<w:p><w:pPr><w:pStyle w:val="AcademicBodyStart"/></w:pPr></w:p>
 $body$
 $sectpr$
 </w:body>

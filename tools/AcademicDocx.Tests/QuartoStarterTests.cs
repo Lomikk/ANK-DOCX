@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Text.Json;
 using AcademicDocx.Core;
 using DocumentFormat.OpenXml.Packaging;
 using W = DocumentFormat.OpenXml.Wordprocessing;
@@ -41,11 +42,12 @@ public sealed class QuartoStarterTests
             var yaml = Regex.Replace(File.ReadAllText(Path.Combine(reference, "metadata.yml")), "(?m)^title:.*$",
                 "title: Независимая работа " + profile).Replace("profile: coursework", "profile: " + profile);
             if (profile == "referat")
-                yaml = string.Join('\n', yaml.Split('\n').Where(line => !line.TrimStart().StartsWith("summary:", StringComparison.Ordinal)));
+                yaml = yaml.Replace("Название университета", "Федеральное государственное автономное образовательное учреждение высшего образования «Испытательный университет научных исследований и информационных технологий»");
             File.WriteAllText(metadata, yaml);
             var main = Path.Combine(project, "chapters", "main.qmd");
             File.Copy(Path.Combine(reference, "chapters", "main.qmd"), main, overwrite: true);
             File.Copy(Path.Combine(reference, "references.bib"), Path.Combine(project, "references.bib"), overwrite: true);
+            File.AppendAllText(Path.Combine(project, "references.bib"), "\n@book{unused-source, title={Unused source}, author={Example, A}, year={2020}}\n");
             if (profile == "referat")
                 File.WriteAllText(main, File.ReadAllText(main).Replace("a = 3,", "a = 5,"));
             MustRun(project, "Rscript", ["--vanilla", "tools/install.R"]);
@@ -86,7 +88,22 @@ public sealed class QuartoStarterTests
                     properties.Justification?.Val?.Value == W.JustificationValues.Left);
             var text = string.Join(" ", mainPart.Document.Descendants<W.Text>().Select(t => t.Text));
             Assert.Contains("Независимая работа " + profile, text);
-            Assert.Contains("Титульный лист — ЗАГЛУШКА", text);
+            Assert.DoesNotContain("ЗАГЛУШКА", text);
+            Assert.Contains("АННОТАЦИЯ", text);
+            Assert.Contains("DOCPROPERTY AcademicFigures", facts.Fields);
+            Assert.Contains("DOCPROPERTY AcademicTables", facts.Fields);
+            Assert.Contains("DOCPROPERTY AcademicSources", facts.Fields);
+            Assert.Contains("DOCPROPERTY AcademicAppendices", facts.Fields);
+            Assert.Equal(2, mainPart.Document.Descendants<W.SectionProperties>().Count());
+            using var report = JsonDocument.Parse(File.ReadAllText(Path.Combine(project, ".quarto", "main.docx.finalize.json")));
+            var annotation = report.RootElement.GetProperty("annotation");
+            Assert.Equal(4, annotation.GetProperty("figures").GetInt32());
+            Assert.Equal(3, annotation.GetProperty("tables").GetInt32());
+            Assert.Equal(3, annotation.GetProperty("sources").GetInt32());
+            Assert.Equal(2, annotation.GetProperty("appendices").GetInt32());
+            var front = report.RootElement.GetProperty("front_matter");
+            Assert.Equal(1, front.GetProperty("title_end").GetInt32());
+            Assert.Equal(profile == "coursework" ? 4 : 2, front.GetProperty("annotation_start").GetInt32());
             Assert.Contains("ПРИЛОЖЕНИЕ А", text);
             Assert.Contains("ПРИЛОЖЕНИЕ Б", text);
             Assert.Contains("Полный исходный код вычисления показателей", text);
@@ -102,19 +119,28 @@ public sealed class QuartoStarterTests
             Assert.True(File.Exists(Path.Combine(project, "_output", "assets", "results.csv")));
             if (profile == "coursework")
             {
-                Assert.Contains("Задание — ЗАГЛУШКА", text);
-                Assert.Contains("Аннотация — ЗАГЛУШКА", text);
+                Assert.Contains("ЗАДАНИЕ", text);
+                Assert.Contains("5 Календарный план", text);
+                Assert.Contains("УТВЕРЖДАЮ", text);
                 // Fail before DOCX generation instead of silently blanking a sheet.
                 File.WriteAllText(metadata, string.Join('\n', yaml.Split('\n')
                     .Where(line => !line.TrimStart().StartsWith("summary:", StringComparison.Ordinal))));
                 var missing = Run(project, "quarto", ["render"]);
                 Assert.NotEqual(0, missing.Code);
                 Assert.Contains("academic.summary", missing.Output);
+                File.WriteAllText(metadata, Regex.Replace(yaml, @"(?ms)^    questions:.*?(?=^    calendar:)", "    questions: []\n"));
+                var emptyQuestions = Run(project, "quarto", ["render"]);
+                Assert.NotEqual(0, emptyQuestions.Code);
+                Assert.Contains("academic.assignment.questions", emptyQuestions.Output);
+                File.WriteAllText(metadata, yaml.Replace("due: \"15.10.2026\"", "due: \"\""));
+                var missingDue = Run(project, "quarto", ["render"]);
+                Assert.NotEqual(0, missingDue.Code);
+                Assert.Contains("academic.assignment.calendar", missingDue.Output);
             }
             else
             {
-                Assert.DoesNotContain("Задание — ЗАГЛУШКА", text);
-                Assert.DoesNotContain("Аннотация — ЗАГЛУШКА", text);
+                Assert.DoesNotContain("5 Календарный план", text);
+                Assert.DoesNotContain("УТВЕРЖДАЮ", text);
                 File.WriteAllText(metadata, yaml.Replace("profile: referat", "profile: missing-profile"));
                 var unknown = Run(project, "quarto", ["render"]);
                 Assert.NotEqual(0, unknown.Code);

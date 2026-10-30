@@ -1,11 +1,15 @@
-# Demonstration composition only. Replace stubs after checking real STO samples.
+# Forms and numbering: STO 21-2008 (coursework), STO 17-2008 (referat).
 profiles:
   coursework:
     label: "Курсовая работа"
     before-body: [title, assignment, annotation]
+    required:
+      - academic.document-code
+      - academic.normal-controller.name
+      - academic.normal-controller.position
   referat:
     label: "Реферат"
-    before-body: [title]
+    before-body: [title, annotation]
 sheets:
   title:
     label: "Титульный лист"
@@ -13,15 +17,25 @@ sheets:
       - title
       - author
       - academic.university
+      - academic.parent-organization
+      - academic.university-short
+      - academic.school
       - academic.department
       - academic.discipline
       - academic.group
       - academic.supervisor
+      - academic.supervisor-position
+      - academic.author-short
       - academic.city
       - academic.year
   assignment:
     label: "Задание"
-    required: [title, author, academic.supervisor]
+    required:
+      - academic.direction-code
+      - academic.direction
+      - academic.assignment.head-of-department
+      - academic.assignment.approval-date
+      - academic.assignment.due-date
   annotation:
     label: "Аннотация"
     required: [academic.summary]

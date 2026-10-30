@@ -1,13 +1,36 @@
 title: "Воспроизводимый расчёт полиномиальной модели"
 author: "Иванов Иван Иванович"
 academic:
-  # Demonstration profiles: their sheet composition is not an approved STO rule.
+  # All personal and institutional details in this teaching example are fictitious.
   profile: coursework
+  parent-organization: "Вышестоящая организация учебного примера"
   university: "Название университета"
+  university-short: "Университет"
+  school: "Факультет учебного примера"
   department: "Название кафедры"
   discipline: "Математическое моделирование"
   group: "Группа студента"
-  supervisor: "Фамилия Имя Отчество руководителя"
+  supervisor: "П.П. Петров"
+  supervisor-position: "доцент"
+  author-short: "И.И. Иванов"
   city: "Челябинск"
   year: "2026"
   summary: "Исследуются квадратичный и линейный показатели и их сумма. Из единой модели на R формируются текстовые результаты, таблицы с математическими подстановками, графики и расширенный расчёт. Приведены программные проверки согласованности, исходный код и воспроизводимые файлы результатов."
+  direction-code: "00.00.00"
+  direction: "Направление учебного примера"
+  document-code: "Университет–000000.2026.000.ПЗ КР"
+  normal-controller:
+    name: "А.А. Сидорова"
+    position: "преподаватель"
+  assignment:
+    head-of-department: "С.С. Смирнов"
+    approval-date: "01.10.2026"
+    due-date: "30.11.2026"
+    questions:
+      - "Построить полиномиальную модель и вычислить её показатели."
+      - "Подготовить таблицы, графики и проверки согласованности результатов."
+      - "Описать воспроизводимый расчёт и представить исходный код в приложениях."
+    calendar:
+      - {section: "Модель и исходные данные", due: "15.10.2026", status: ""}
+      - {section: "Расчёты и графики", due: "05.11.2026", status: ""}
+      - {section: "Проверка и оформление", due: "30.11.2026", status: ""}

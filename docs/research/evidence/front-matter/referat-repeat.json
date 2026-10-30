@@ -1,0 +1,33 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\.tools\\front-matter\\referat-final.docx",
+  "passed": true,
+  "schema_errors_before_word": 0,
+  "validation": {
+    "file": ".academic-5c8e3180e05a483fb23f4698db549d75.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 13,
+  "annotation": {
+    "figures": 4,
+    "tables": 3,
+    "sources": 3,
+    "appendices": 2
+  },
+  "front_matter": {
+    "title_end": 1,
+    "assignment_first_end": null,
+    "assignment_end": null,
+    "annotation_start": 2,
+    "body_boundary": 3
+  },
+  "split_tables": [],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 11060,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

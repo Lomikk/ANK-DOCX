@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="2f1d4828-e31f-4e21-b7e4-3c963955fd70" name="2yash@DESKTOP-H9F324S 2026-10-31 00:31:46" runUser="DESKTOP-H9F324S\2yash" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-31T00:31:46.3499919+05:00" queuing="2026-10-31T00:31:46.3499921+05:00" start="2026-10-31T00:31:45.4625021+05:00" finish="2026-10-31T00:31:46.8932023+05:00" />
+  <TestSettings name="default" id="339ed20f-cac6-4bd6-a6e9-88a2abc34e86">
+    <Deployment runDeploymentRoot="2yash_DESKTOP-H9F324S_2026-10-31_00_31_46" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="cf841291-8dd6-455d-a927-bfb8753731dc" testId="a8a5d8e8-6eaa-49d7-db7e-710e47e026ac" testName="AcademicDocx.Tests.DocumentFormattingTests.CompactsOnlyTheEmptyStructuralParagraphAfterAFinalTable(existingParagraph: True)" computerName="DESKTOP-H9F324S" duration="00:00:00.0220930" startTime="2026-10-31T00:31:46.3576396+05:00" endTime="2026-10-31T00:31:46.3796964+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cf841291-8dd6-455d-a927-bfb8753731dc" />
+    <UnitTestResult executionId="eb7d8cee-785d-411c-9078-9ebf83696322" testId="5d18b48e-b5f7-6858-47eb-4b191545b2c5" testName="AcademicDocx.Tests.ReferenceTests.AcademicStylesCoverMarkdownTablesLinksAndCenteredObjects" computerName="DESKTOP-H9F324S" duration="00:00:00.0690136" startTime="2026-10-31T00:31:46.4977590+05:00" endTime="2026-10-31T00:31:46.5667271+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eb7d8cee-785d-411c-9078-9ebf83696322" />
+    <UnitTestResult executionId="6e53d853-bf62-4348-adfc-13c447d63a0b" testId="557dc13d-6fbd-f68c-b2e4-5ea53fe9dd01" testName="AcademicDocx.Tests.ReferenceTests.StylesKeepNativeHeadingNumbersAndPageFields" computerName="DESKTOP-H9F324S" duration="00:00:00.0697929" startTime="2026-10-31T00:31:46.6628646+05:00" endTime="2026-10-31T00:31:46.7325720+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6e53d853-bf62-4348-adfc-13c447d63a0b" />
+    <UnitTestResult executionId="569c9574-c79c-4d8e-8978-821147533736" testId="b8861e44-638b-0498-fc7f-b9616251403a" testName="AcademicDocx.Tests.ReferenceTests.UnchangedStylesMatchTheRetiredPythonEditor" computerName="DESKTOP-H9F324S" duration="00:00:00.0592293" startTime="2026-10-31T00:31:46.6035009+05:00" endTime="2026-10-31T00:31:46.6627150+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="569c9574-c79c-4d8e-8978-821147533736" />
+    <UnitTestResult executionId="efda663d-1480-4629-b2d5-6c6d55cd1eaa" testId="e0e0ecab-d186-5170-a4c4-5c4cefbc77ee" testName="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames" computerName="DESKTOP-H9F324S" duration="00:00:00.0010000" startTime="2026-10-31T00:31:46.0064847+05:00" endTime="2026-10-31T00:31:46.0065160+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="efda663d-1480-4629-b2d5-6c6d55cd1eaa">
+      <Output>
+        <ErrorInfo>
+          <Message>Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="29d0cbd3-c991-4157-ad50-72d7dc52285c" testId="00aa8911-64c9-33e8-9e59-426e464c880d" testName="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument" computerName="DESKTOP-H9F324S" duration="00:00:00.0010000" startTime="2026-10-31T00:31:45.9965625+05:00" endTime="2026-10-31T00:31:45.9969466+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="29d0cbd3-c991-4157-ad50-72d7dc52285c">
+      <Output>
+        <ErrorInfo>
+          <Message>Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f8ff09c1-863d-49a3-9a90-57d1b5b148af" testId="78a81211-13e8-d001-94e2-52d3a1cd2450" testName="AcademicDocx.Tests.DocumentFormattingTests.CentersDisplayObjectsPreservingNumberAtRightAndIsIdempotent(pandocDisplay: True)" computerName="DESKTOP-H9F324S" duration="00:00:00.0328567" startTime="2026-10-31T00:31:46.2805259+05:00" endTime="2026-10-31T00:31:46.3257706+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f8ff09c1-863d-49a3-9a90-57d1b5b148af" />
+    <UnitTestResult executionId="b093ea39-eaf1-40a7-9bf6-319ad5421f03" testId="19f4873f-90a2-0cef-cb75-aaae8b789aee" testName="AcademicDocx.Tests.ReferenceTests.ReapplyingStylesDoesNotDuplicateOrChangeXml" computerName="DESKTOP-H9F324S" duration="00:00:00.4983686" startTime="2026-10-31T00:31:45.9953443+05:00" endTime="2026-10-31T00:31:46.4976393+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b093ea39-eaf1-40a7-9bf6-319ad5421f03" />
+    <UnitTestResult executionId="23381df2-3ed8-40d0-bc8c-77dca72b98b1" testId="39a2cbff-d8c0-39ac-1c54-f064abafb3e0" testName="AcademicDocx.Tests.CliTests.NewWorkspaceDoesNotOverwriteExistingAuthoredFiles" computerName="DESKTOP-H9F324S" duration="00:00:00.0010000" startTime="2026-10-31T00:31:46.0075041+05:00" endTime="2026-10-31T00:31:46.0075185+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="23381df2-3ed8-40d0-bc8c-77dca72b98b1">
+      <Output>
+        <ErrorInfo>
+          <Message>Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="7f8a140d-bdb5-4d41-8aaa-a1ead3458ea3" testId="20ac6ac9-9735-588e-6df6-33a46edb101e" testName="AcademicDocx.Tests.ReferenceTests.InvalidMarginLeavesExistingOutputUntouched" computerName="DESKTOP-H9F324S" duration="00:00:00.0084744" startTime="2026-10-31T00:31:46.7327036+05:00" endTime="2026-10-31T00:31:46.7411078+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7f8a140d-bdb5-4d41-8aaa-a1ead3458ea3" />
+    <UnitTestResult executionId="4d5a134e-36dc-4b99-9711-fae45a58e961" testId="3600eafc-b11e-5121-91a1-34d46223ce97" testName="AcademicDocx.Tests.DocumentFormattingTests.CentersDisplayObjectsPreservingNumberAtRightAndIsIdempotent(pandocDisplay: False)" computerName="DESKTOP-H9F324S" duration="00:00:00.0192400" startTime="2026-10-31T00:31:46.3260123+05:00" endTime="2026-10-31T00:31:46.3325149+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4d5a134e-36dc-4b99-9711-fae45a58e961" />
+    <UnitTestResult executionId="88b48126-22f9-4d9f-9e90-aa477b9eb119" testId="0c743683-82b3-c75d-4974-aa8f96b96cc2" testName="AcademicDocx.Tests.DocumentFormattingTests.FormatsPlainAndMathTableTextWithoutChangingContentsOrFields" computerName="DESKTOP-H9F324S" duration="00:00:00.0192221" startTime="2026-10-31T00:31:46.3798419+05:00" endTime="2026-10-31T00:31:46.3989813+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="88b48126-22f9-4d9f-9e90-aa477b9eb119" />
+    <UnitTestResult executionId="13677b9a-6bca-4811-8b21-20dca1b643cd" testId="ec251cfd-51bd-fbcf-bdda-ab5a27142df7" testName="AcademicDocx.Tests.DocumentFormattingTests.RemovesCaptionAlignmentFromEveryPreWordPropertyBlock(sequence: &quot;Рисунок&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.0206548" startTime="2026-10-31T00:31:46.2605811+05:00" endTime="2026-10-31T00:31:46.2803160+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="13677b9a-6bca-4811-8b21-20dca1b643cd" />
+    <UnitTestResult executionId="cce9ef8d-32d7-4fef-92b5-355045a1837b" testId="616b105e-85ab-5ad5-9f1e-b1a3588f483e" testName="AcademicDocx.Tests.WordMigrationTests.TableReflowsAfterPrecedingContentChanges" computerName="DESKTOP-H9F324S" duration="00:00:00.0010000" startTime="2026-10-31T00:31:46.8493052+05:00" endTime="2026-10-31T00:31:46.8493210+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cce9ef8d-32d7-4fef-92b5-355045a1837b">
+      <Output>
+        <ErrorInfo>
+          <Message>Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f45c2fa8-e04c-43eb-a2f4-bcc9516ce894" testId="687a20b2-5cac-7e10-a925-7fa6013f2035" testName="AcademicDocx.Tests.WordMigrationTests.UnsupportedTablesFailWithoutReplacingInput" computerName="DESKTOP-H9F324S" duration="00:00:00.0010000" startTime="2026-10-31T00:31:46.8485316+05:00" endTime="2026-10-31T00:31:46.8485471+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f45c2fa8-e04c-43eb-a2f4-bcc9516ce894">
+      <Output>
+        <ErrorInfo>
+          <Message>Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="8d98de94-4989-4fc2-b861-1b1582f0c153" testId="9971ad17-c4e2-69c8-5b62-d32bfe06623c" testName="AcademicDocx.Tests.FrontMatterTests.FrontSectionHidesNumbersAndCountsSemanticObjects(coursework: False)" computerName="DESKTOP-H9F324S" duration="00:00:00.0561334" startTime="2026-10-31T00:31:46.3256651+05:00" endTime="2026-10-31T00:31:46.3570416+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8d98de94-4989-4fc2-b861-1b1582f0c153" />
+    <UnitTestResult executionId="85c0be65-673d-43b0-8a41-39e08c0be7ad" testId="514c8b75-97e6-7808-4cd6-090d36a635d2" testName="AcademicDocx.Tests.DocumentFormattingTests.RemovesCaptionAlignmentFromEveryPreWordPropertyBlock(sequence: &quot;РисунокAppendixA&quot;)" computerName="DESKTOP-H9F324S" duration="00:00:00.2581411" startTime="2026-10-31T00:31:45.9965118+05:00" endTime="2026-10-31T00:31:46.2597731+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="85c0be65-673d-43b0-8a41-39e08c0be7ad" />
+    <UnitTestResult executionId="126d0a43-8574-4b55-b958-82db96e373b9" testId="35e54123-79a9-1855-aa45-e83be7cf2f3b" testName="AcademicDocx.Tests.ReferenceTests.FailedStyleValidationPreservesExistingReference" computerName="DESKTOP-H9F324S" duration="00:00:00.0365814" startTime="2026-10-31T00:31:46.5678658+05:00" endTime="2026-10-31T00:31:46.6033849+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="126d0a43-8574-4b55-b958-82db96e373b9" />
+    <UnitTestResult executionId="6e0b6fa8-3217-4cc9-be84-789352865451" testId="f715244e-1513-b24d-ad39-86d05829f699" testName="AcademicDocx.Tests.FrontMatterTests.LegacyDocumentsKeepTheirSectionsAndHaveNoInventedStatistics" computerName="DESKTOP-H9F324S" duration="00:00:00.0199543" startTime="2026-10-31T00:31:46.3571636+05:00" endTime="2026-10-31T00:31:46.3770712+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6e0b6fa8-3217-4cc9-be84-789352865451" />
+    <UnitTestResult executionId="66da9546-a449-4824-a835-cf8205e8173d" testId="ca7bfc12-7288-cb5d-bac6-3df3a4b490ec" testName="AcademicDocx.Tests.DocumentFormattingTests.CompactsOnlyTheEmptyStructuralParagraphAfterAFinalTable(existingParagraph: False)" computerName="DESKTOP-H9F324S" duration="00:00:00.0249868" startTime="2026-10-31T00:31:46.3326783+05:00" endTime="2026-10-31T00:31:46.3575628+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="66da9546-a449-4824-a835-cf8205e8173d" />
+    <UnitTestResult executionId="2f7cef3f-13ec-446e-894a-245f7dd5abcd" testId="e60bd215-b512-93e7-f398-01ed71669e33" testName="AcademicDocx.Tests.ReferenceTests.BottomMarginVariantKeepsTheSameStylesAndNumbering" computerName="DESKTOP-H9F324S" duration="00:00:00.0970589" startTime="2026-10-31T00:31:46.7412286+05:00" endTime="2026-10-31T00:31:46.8382416+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2f7cef3f-13ec-446e-894a-245f7dd5abcd" />
+    <UnitTestResult executionId="e965ae02-1124-4576-98a6-c941d1d13f25" testId="c90f231f-9e8a-4f7d-f520-ee4e544cb158" testName="AcademicDocx.Tests.CliTests.PublishedApplicationRunsWithoutDotnetRootOrPath" computerName="DESKTOP-H9F324S" duration="00:00:00.0010000" startTime="2026-10-31T00:31:46.0072390+05:00" endTime="2026-10-31T00:31:46.0072540+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e965ae02-1124-4576-98a6-c941d1d13f25">
+      <Output>
+        <ErrorInfo>
+          <Message>Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d64603e7-eaf8-44f2-9619-5045c0cde7db" testId="7dff50f6-c732-f202-bde2-6e6aee89f963" testName="AcademicDocx.Tests.ReferenceTests.SchemaValidationFindsDuplicateParagraphProperties" computerName="DESKTOP-H9F324S" duration="00:00:00.0089607" startTime="2026-10-31T00:31:46.8383736+05:00" endTime="2026-10-31T00:31:46.8472569+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d64603e7-eaf8-44f2-9619-5045c0cde7db" />
+    <UnitTestResult executionId="2db3bd0c-f165-4641-9210-807f711bc97a" testId="5a0ef8be-d6d0-0bdf-7fd5-35b851e80695" testName="AcademicDocx.Tests.WordMigrationTests.RectangularTableHasCorrectLastCaptionAndPreservesRows" computerName="DESKTOP-H9F324S" duration="00:00:00.0010000" startTime="2026-10-31T00:31:46.8483391+05:00" endTime="2026-10-31T00:31:46.8483507+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2db3bd0c-f165-4641-9210-807f711bc97a">
+      <Output>
+        <ErrorInfo>
+          <Message>Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4e8654b6-21c4-4c2e-a750-f9cac4bca2a8" testId="94df44b1-9eda-1cc9-b2af-bf2faf5389a1" testName="AcademicDocx.Tests.WordMigrationTests.MergedHeadersMathAndFootersSurviveCompleteFinalization" computerName="DESKTOP-H9F324S" duration="00:00:00.0010000" startTime="2026-10-31T00:31:46.8479171+05:00" endTime="2026-10-31T00:31:46.8479294+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4e8654b6-21c4-4c2e-a750-f9cac4bca2a8">
+      <Output>
+        <ErrorInfo>
+          <Message>Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="5a531ec8-b3d0-48a1-b89c-c539d83879f3" testId="5ccb67d6-2713-62eb-e02b-893c72ba432d" testName="AcademicDocx.Tests.FrontMatterTests.FrontSectionHidesNumbersAndCountsSemanticObjects(coursework: True)" computerName="DESKTOP-H9F324S" duration="00:00:00.3014848" startTime="2026-10-31T00:31:45.9965462+05:00" endTime="2026-10-31T00:31:46.3008499+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5a531ec8-b3d0-48a1-b89c-c539d83879f3" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.StylesKeepNativeHeadingNumbersAndPageFields" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="557dc13d-6fbd-f68c-b2e4-5ea53fe9dd01">
+      <Execution id="6e53d853-bf62-4348-adfc-13c447d63a0b" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="StylesKeepNativeHeadingNumbersAndPageFields" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.DocumentFormattingTests.CentersDisplayObjectsPreservingNumberAtRightAndIsIdempotent(pandocDisplay: False)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="3600eafc-b11e-5121-91a1-34d46223ce97">
+      <Execution id="4d5a134e-36dc-4b99-9711-fae45a58e961" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.DocumentFormattingTests" name="CentersDisplayObjectsPreservingNumberAtRightAndIsIdempotent" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.DocumentFormattingTests.FormatsPlainAndMathTableTextWithoutChangingContentsOrFields" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="0c743683-82b3-c75d-4974-aa8f96b96cc2">
+      <Execution id="88b48126-22f9-4d9f-9e90-aa477b9eb119" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.DocumentFormattingTests" name="FormatsPlainAndMathTableTextWithoutChangingContentsOrFields" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.ReapplyingStylesDoesNotDuplicateOrChangeXml" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="19f4873f-90a2-0cef-cb75-aaae8b789aee">
+      <Execution id="b093ea39-eaf1-40a7-9bf6-319ad5421f03" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="ReapplyingStylesDoesNotDuplicateOrChangeXml" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="00aa8911-64c9-33e8-9e59-426e464c880d">
+      <Execution id="29d0cbd3-c991-4157-ad50-72d7dc52285c" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="ReportCannotOverwriteTheInputDocument" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.FailedStyleValidationPreservesExistingReference" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="35e54123-79a9-1855-aa45-e83be7cf2f3b">
+      <Execution id="126d0a43-8574-4b55-b958-82db96e373b9" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="FailedStyleValidationPreservesExistingReference" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.DocumentFormattingTests.RemovesCaptionAlignmentFromEveryPreWordPropertyBlock(sequence: &quot;РисунокAppendixA&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="514c8b75-97e6-7808-4cd6-090d36a635d2">
+      <Execution id="85c0be65-673d-43b0-8a41-39e08c0be7ad" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.DocumentFormattingTests" name="RemovesCaptionAlignmentFromEveryPreWordPropertyBlock" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.NewWorkspaceDoesNotOverwriteExistingAuthoredFiles" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="39a2cbff-d8c0-39ac-1c54-f064abafb3e0">
+      <Execution id="23381df2-3ed8-40d0-bc8c-77dca72b98b1" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="NewWorkspaceDoesNotOverwriteExistingAuthoredFiles" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.DocumentFormattingTests.CentersDisplayObjectsPreservingNumberAtRightAndIsIdempotent(pandocDisplay: True)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="78a81211-13e8-d001-94e2-52d3a1cd2450">
+      <Execution id="f8ff09c1-863d-49a3-9a90-57d1b5b148af" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.DocumentFormattingTests" name="CentersDisplayObjectsPreservingNumberAtRightAndIsIdempotent" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.UnchangedStylesMatchTheRetiredPythonEditor" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="b8861e44-638b-0498-fc7f-b9616251403a">
+      <Execution id="569c9574-c79c-4d8e-8978-821147533736" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="UnchangedStylesMatchTheRetiredPythonEditor" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.DocumentFormattingTests.CompactsOnlyTheEmptyStructuralParagraphAfterAFinalTable(existingParagraph: False)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="ca7bfc12-7288-cb5d-bac6-3df3a4b490ec">
+      <Execution id="66da9546-a449-4824-a835-cf8205e8173d" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.DocumentFormattingTests" name="CompactsOnlyTheEmptyStructuralParagraphAfterAFinalTable" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.WordMigrationTests.TableReflowsAfterPrecedingContentChanges" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="616b105e-85ab-5ad5-9f1e-b1a3588f483e">
+      <Execution id="cce9ef8d-32d7-4fef-92b5-355045a1837b" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.WordMigrationTests" name="TableReflowsAfterPrecedingContentChanges" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.WordMigrationTests.RectangularTableHasCorrectLastCaptionAndPreservesRows" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="5a0ef8be-d6d0-0bdf-7fd5-35b851e80695">
+      <Execution id="2db3bd0c-f165-4641-9210-807f711bc97a" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.WordMigrationTests" name="RectangularTableHasCorrectLastCaptionAndPreservesRows" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.DocumentFormattingTests.CompactsOnlyTheEmptyStructuralParagraphAfterAFinalTable(existingParagraph: True)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="a8a5d8e8-6eaa-49d7-db7e-710e47e026ac">
+      <Execution id="cf841291-8dd6-455d-a927-bfb8753731dc" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.DocumentFormattingTests" name="CompactsOnlyTheEmptyStructuralParagraphAfterAFinalTable" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="e0e0ecab-d186-5170-a4c4-5c4cefbc77ee">
+      <Execution id="efda663d-1480-4629-b2d5-6c6d55cd1eaa" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="WorkspaceRejectsPathsAndReservedNames" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.WordMigrationTests.MergedHeadersMathAndFootersSurviveCompleteFinalization" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="94df44b1-9eda-1cc9-b2af-bf2faf5389a1">
+      <Execution id="4e8654b6-21c4-4c2e-a750-f9cac4bca2a8" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.WordMigrationTests" name="MergedHeadersMathAndFootersSurviveCompleteFinalization" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.InvalidMarginLeavesExistingOutputUntouched" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="20ac6ac9-9735-588e-6df6-33a46edb101e">
+      <Execution id="7f8a140d-bdb5-4d41-8aaa-a1ead3458ea3" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="InvalidMarginLeavesExistingOutputUntouched" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.SchemaValidationFindsDuplicateParagraphProperties" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="7dff50f6-c732-f202-bde2-6e6aee89f963">
+      <Execution id="d64603e7-eaf8-44f2-9619-5045c0cde7db" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="SchemaValidationFindsDuplicateParagraphProperties" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.BottomMarginVariantKeepsTheSameStylesAndNumbering" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="e60bd215-b512-93e7-f398-01ed71669e33">
+      <Execution id="2f7cef3f-13ec-446e-894a-245f7dd5abcd" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="BottomMarginVariantKeepsTheSameStylesAndNumbering" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.CliTests.PublishedApplicationRunsWithoutDotnetRootOrPath" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="c90f231f-9e8a-4f7d-f520-ee4e544cb158">
+      <Execution id="e965ae02-1124-4576-98a6-c941d1d13f25" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="PublishedApplicationRunsWithoutDotnetRootOrPath" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ReferenceTests.AcademicStylesCoverMarkdownTablesLinksAndCenteredObjects" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="5d18b48e-b5f7-6858-47eb-4b191545b2c5">
+      <Execution id="eb7d8cee-785d-411c-9078-9ebf83696322" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ReferenceTests" name="AcademicStylesCoverMarkdownTablesLinksAndCenteredObjects" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.FrontMatterTests.FrontSectionHidesNumbersAndCountsSemanticObjects(coursework: False)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="9971ad17-c4e2-69c8-5b62-d32bfe06623c">
+      <Execution id="8d98de94-4989-4fc2-b861-1b1582f0c153" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.FrontMatterTests" name="FrontSectionHidesNumbersAndCountsSemanticObjects" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.DocumentFormattingTests.RemovesCaptionAlignmentFromEveryPreWordPropertyBlock(sequence: &quot;Рисунок&quot;)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="ec251cfd-51bd-fbcf-bdda-ab5a27142df7">
+      <Execution id="13677b9a-6bca-4811-8b21-20dca1b643cd" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.DocumentFormattingTests" name="RemovesCaptionAlignmentFromEveryPreWordPropertyBlock" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.WordMigrationTests.UnsupportedTablesFailWithoutReplacingInput" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="687a20b2-5cac-7e10-a925-7fa6013f2035">
+      <Execution id="f45c2fa8-e04c-43eb-a2f4-bcc9516ce894" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.WordMigrationTests" name="UnsupportedTablesFailWithoutReplacingInput" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.FrontMatterTests.FrontSectionHidesNumbersAndCountsSemanticObjects(coursework: True)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="5ccb67d6-2713-62eb-e02b-893c72ba432d">
+      <Execution id="5a531ec8-b3d0-48a1-b89c-c539d83879f3" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.FrontMatterTests" name="FrontSectionHidesNumbersAndCountsSemanticObjects" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.FrontMatterTests.LegacyDocumentsKeepTheirSectionsAndHaveNoInventedStatistics" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="f715244e-1513-b24d-ad39-86d05829f699">
+      <Execution id="6e0b6fa8-3217-4cc9-be84-789352865451" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.FrontMatterTests" name="LegacyDocumentsKeepTheirSectionsAndHaveNoInventedStatistics" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="a8a5d8e8-6eaa-49d7-db7e-710e47e026ac" executionId="cf841291-8dd6-455d-a927-bfb8753731dc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5d18b48e-b5f7-6858-47eb-4b191545b2c5" executionId="eb7d8cee-785d-411c-9078-9ebf83696322" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="557dc13d-6fbd-f68c-b2e4-5ea53fe9dd01" executionId="6e53d853-bf62-4348-adfc-13c447d63a0b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b8861e44-638b-0498-fc7f-b9616251403a" executionId="569c9574-c79c-4d8e-8978-821147533736" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e0e0ecab-d186-5170-a4c4-5c4cefbc77ee" executionId="efda663d-1480-4629-b2d5-6c6d55cd1eaa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="00aa8911-64c9-33e8-9e59-426e464c880d" executionId="29d0cbd3-c991-4157-ad50-72d7dc52285c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="78a81211-13e8-d001-94e2-52d3a1cd2450" executionId="f8ff09c1-863d-49a3-9a90-57d1b5b148af" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="19f4873f-90a2-0cef-cb75-aaae8b789aee" executionId="b093ea39-eaf1-40a7-9bf6-319ad5421f03" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="39a2cbff-d8c0-39ac-1c54-f064abafb3e0" executionId="23381df2-3ed8-40d0-bc8c-77dca72b98b1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="20ac6ac9-9735-588e-6df6-33a46edb101e" executionId="7f8a140d-bdb5-4d41-8aaa-a1ead3458ea3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3600eafc-b11e-5121-91a1-34d46223ce97" executionId="4d5a134e-36dc-4b99-9711-fae45a58e961" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0c743683-82b3-c75d-4974-aa8f96b96cc2" executionId="88b48126-22f9-4d9f-9e90-aa477b9eb119" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ec251cfd-51bd-fbcf-bdda-ab5a27142df7" executionId="13677b9a-6bca-4811-8b21-20dca1b643cd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="616b105e-85ab-5ad5-9f1e-b1a3588f483e" executionId="cce9ef8d-32d7-4fef-92b5-355045a1837b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="687a20b2-5cac-7e10-a925-7fa6013f2035" executionId="f45c2fa8-e04c-43eb-a2f4-bcc9516ce894" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9971ad17-c4e2-69c8-5b62-d32bfe06623c" executionId="8d98de94-4989-4fc2-b861-1b1582f0c153" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="514c8b75-97e6-7808-4cd6-090d36a635d2" executionId="85c0be65-673d-43b0-8a41-39e08c0be7ad" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="35e54123-79a9-1855-aa45-e83be7cf2f3b" executionId="126d0a43-8574-4b55-b958-82db96e373b9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f715244e-1513-b24d-ad39-86d05829f699" executionId="6e0b6fa8-3217-4cc9-be84-789352865451" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ca7bfc12-7288-cb5d-bac6-3df3a4b490ec" executionId="66da9546-a449-4824-a835-cf8205e8173d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e60bd215-b512-93e7-f398-01ed71669e33" executionId="2f7cef3f-13ec-446e-894a-245f7dd5abcd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c90f231f-9e8a-4f7d-f520-ee4e544cb158" executionId="e965ae02-1124-4576-98a6-c941d1d13f25" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7dff50f6-c732-f202-bde2-6e6aee89f963" executionId="d64603e7-eaf8-44f2-9619-5045c0cde7db" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5a0ef8be-d6d0-0bdf-7fd5-35b851e80695" executionId="2db3bd0c-f165-4641-9210-807f711bc97a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="94df44b1-9eda-1cc9-b2af-bf2faf5389a1" executionId="4e8654b6-21c4-4c2e-a750-f9cac4bca2a8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5ccb67d6-2713-62eb-e02b-893c72ba432d" executionId="5a531ec8-b3d0-48a1-b89c-c539d83879f3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Список результатов" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Все загруженные результаты" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="26" executed="18" passed="18" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.08]   Discovering: AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.12]   Discovered:  AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.14]   Starting:    AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.17]       Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word&#xD;
+[xUnit.net 00:00:00.18]       Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word&#xD;
+[xUnit.net 00:00:00.18]       Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word&#xD;
+[xUnit.net 00:00:00.18]       Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word&#xD;
+Тест "AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument" пропущен в тестовом запуске.&#xD;
+Тест "AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames" пропущен в тестовом запуске.&#xD;
+Тест "AcademicDocx.Tests.CliTests.PublishedApplicationRunsWithoutDotnetRootOrPath" пропущен в тестовом запуске.&#xD;
+Тест "AcademicDocx.Tests.CliTests.NewWorkspaceDoesNotOverwriteExistingAuthoredFiles" пропущен в тестовом запуске.&#xD;
+[xUnit.net 00:00:01.02]       Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word&#xD;
+[xUnit.net 00:00:01.02]       Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word&#xD;
+[xUnit.net 00:00:01.02]       Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word&#xD;
+Тест "AcademicDocx.Tests.WordMigrationTests.MergedHeadersMathAndFootersSurviveCompleteFinalization" пропущен в тестовом запуске.&#xD;
+Тест "AcademicDocx.Tests.WordMigrationTests.RectangularTableHasCorrectLastCaptionAndPreservesRows" пропущен в тестовом запуске.&#xD;
+Тест "AcademicDocx.Tests.WordMigrationTests.UnsupportedTablesFailWithoutReplacingInput" пропущен в тестовом запуске.&#xD;
+[xUnit.net 00:00:01.02]       Set ACADEMIC_RUN_WORD_TESTS=1 and ACADEMIC_DOCX_SERVICE to the published service on a Windows machine with Word&#xD;
+[xUnit.net 00:00:01.02]   Finished:    AcademicDocx.Tests&#xD;
+Тест "AcademicDocx.Tests.WordMigrationTests.TableReflowsAfterPrecedingContentChanges" пропущен в тестовом запуске.&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="DESKTOP-H9F324S" outcome="Warning" timestamp="2026-10-31T00:31:45.9981213+05:00">
+        <Text>[xUnit.net 00:00:00.17]     AcademicDocx.Tests.CliTests.ReportCannotOverwriteTheInputDocument [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-H9F324S" outcome="Warning" timestamp="2026-10-31T00:31:46.0067661+05:00">
+        <Text>[xUnit.net 00:00:00.18]     AcademicDocx.Tests.CliTests.WorkspaceRejectsPathsAndReservedNames [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-H9F324S" outcome="Warning" timestamp="2026-10-31T00:31:46.0073949+05:00">
+        <Text>[xUnit.net 00:00:00.18]     AcademicDocx.Tests.CliTests.PublishedApplicationRunsWithoutDotnetRootOrPath [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-H9F324S" outcome="Warning" timestamp="2026-10-31T00:31:46.0076650+05:00">
+        <Text>[xUnit.net 00:00:00.18]     AcademicDocx.Tests.CliTests.NewWorkspaceDoesNotOverwriteExistingAuthoredFiles [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-H9F324S" outcome="Warning" timestamp="2026-10-31T00:31:46.8481735+05:00">
+        <Text>[xUnit.net 00:00:01.02]     AcademicDocx.Tests.WordMigrationTests.MergedHeadersMathAndFootersSurviveCompleteFinalization [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-H9F324S" outcome="Warning" timestamp="2026-10-31T00:31:46.8484567+05:00">
+        <Text>[xUnit.net 00:00:01.02]     AcademicDocx.Tests.WordMigrationTests.RectangularTableHasCorrectLastCaptionAndPreservesRows [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-H9F324S" outcome="Warning" timestamp="2026-10-31T00:31:46.8486527+05:00">
+        <Text>[xUnit.net 00:00:01.02]     AcademicDocx.Tests.WordMigrationTests.UnsupportedTablesFailWithoutReplacingInput [SKIP]</Text>
+      </RunInfo>
+      <RunInfo computerName="DESKTOP-H9F324S" outcome="Warning" timestamp="2026-10-31T00:31:46.8511057+05:00">
+        <Text>[xUnit.net 00:00:01.02]     AcademicDocx.Tests.WordMigrationTests.TableReflowsAfterPrecedingContentChanges [SKIP]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>
