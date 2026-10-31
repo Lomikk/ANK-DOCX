@@ -15,7 +15,13 @@ internal static class WordPageLayout
         var totals = fields.Where(f => scope.Own(f.Code).Text.Trim() == "NUMPAGES").ToArray();
         if (totals.Length == 0 || totals.Any(f => !int.TryParse(scope.Own(f.Result).Text.Trim(), out var value) || value != pages))
             throw new InvalidDataException("STO 04 stamp NUMPAGES is missing or does not match final pagination");
-        var firstSection = scope.Own(scope.Own(session.Document!.Sections)[3]);
+        Word.Section? firstSection = null;
+        foreach (Word.Section item in scope.Own(session.Document!.Sections))
+        {
+            var section = scope.Own(item);
+            if (WordTables.Page(scope, scope.Own(section.Range)) == annotationPage) { firstSection = section; break; }
+        }
+        if (firstSection is null) throw new InvalidDataException("STO 04 annotation must begin a page-layout section");
         var headers = scope.Own(firstSection.Headers);
         var first = scope.Own(headers[Word.WdHeaderFooterIndex.wdHeaderFooterFirstPage]);
         var firstFields = WordFields.InShapes(session, scope.Own(first.Shapes));

@@ -28,7 +28,7 @@ public static class FrontMatterFormatting
         var styleNames = styles.Elements<W.Style>().Where(s => s.StyleId?.Value is not null)
             .ToDictionary(s => s.StyleId!.Value!, s => s.StyleName?.Val?.Value?.Replace(" ", "", StringComparison.Ordinal) ?? "", StringComparer.Ordinal);
         string NamedStyle(W.Paragraph p) => styleNames.GetValueOrDefault(Style(p), Style(p));
-        var title = paragraphs.FirstOrDefault(p => Style(p) is "AcademicCourseworkTitle" or "AcademicReferatTitle");
+        var title = paragraphs.FirstOrDefault(p => Style(p) is "AcademicCourseworkTitle" or "AcademicReferatTitle" or "AcademicResearchTitle");
         if (title is null) return null; // Older documents keep their original section layout.
         void Define(string id, W.JustificationValues? alignment = null,
             int before = 0, int after = 0, int left = 0, bool bold = false, bool keepNext = false)
@@ -58,6 +58,7 @@ public static class FrontMatterFormatting
         Define("AcademicInstitution", W.JustificationValues.Center, keepNext: true);
         Define("AcademicCourseworkTitle", W.JustificationValues.Center, before: 35, after: 28, keepNext: true);
         Define("AcademicReferatTitle", W.JustificationValues.Center, before: 56, after: 28, keepNext: true);
+        Define("AcademicResearchTitle", W.JustificationValues.Center, before: 21, after: 14, keepNext: true);
         Define("AcademicWorkType", W.JustificationValues.Center, bold: true, keepNext: true);
         Define("AcademicCentered", W.JustificationValues.Center, keepNext: true);
         Define("AcademicSignColumns");
@@ -68,6 +69,7 @@ public static class FrontMatterFormatting
         Define("AcademicTitlePlace", W.JustificationValues.Center, before: 28);
         Define("AcademicApprovalStart", before: 14, left: 5100, bold: true, keepNext: true);
         Define("AcademicSheetHeading", W.JustificationValues.Center, before: 14, after: 14, bold: true, keepNext: true);
+        Define("AcademicSummaryHeading", W.JustificationValues.Center, before: 14, after: 14, bold: true, keepNext: true);
         Define("AcademicStudentName", W.JustificationValues.Center, before: 7, keepNext: true);
         Define("AcademicFormItem", before: 14, keepNext: true);
         Define("AcademicFormText");

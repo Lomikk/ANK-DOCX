@@ -19,25 +19,27 @@ internal static class WordFrontMatter
             var range = scope.Own(paragraph.Range);
             if (range.get_Style() is not Word.Style styleObject) continue;
             var style = scope.Own(styleObject).NameLocal;
-            if (style is "AcademicCourseworkTitle" or "AcademicReferatTitle") title = paragraph;
-            if (style is "AcademicSignColumns" or "AcademicRightBlock" && signatures is null) signatures = paragraph;
+            if (style is "AcademicCourseworkTitle" or "AcademicReferatTitle" or "AcademicResearchTitle") title = paragraph;
+            if (title is not null && (style is "AcademicSignColumns" or "AcademicRightBlock" or "AcademicRightBlockStart") && signatures is null) signatures = paragraph;
             if (style == "AcademicTitlePlace") { place = paragraph; break; }
         }
         if (title is null || signatures is null || place is null) throw new InvalidDataException("Incomplete title form");
         var setup = scope.Own(scope.Own(scope.Own(document.Sections)[1]).PageSetup);
         document.Repaginate();
         Word.Paragraph? firstSignature = null, lastSignature = null;
+        var fixedAssignment = false;
         foreach (Word.Paragraph item in scope.Own(document.Paragraphs))
         {
             var paragraph = scope.Own(item);
             var range = scope.Own(paragraph.Range);
             if (range.get_Style() is not Word.Style styleObject) continue;
             var style = scope.Own(styleObject).NameLocal;
+            if (style == "AcademicAssignmentPageEnd") fixedAssignment = true;
             if (style == "AcademicFormSignature") firstSignature = paragraph;
             if (firstSignature is not null && style == "AcademicFormText") lastSignature = paragraph;
             if (style == "AcademicAssignmentEnd") break;
         }
-        if (firstSignature is not null && lastSignature is not null)
+        if (fixedAssignment && firstSignature is not null && lastSignature is not null)
         {
             var lastRange = scope.Own(lastSignature.Range);
             if (WordTables.Page(scope, lastRange) == 3)
@@ -93,7 +95,7 @@ internal static class WordFrontMatter
             var name = style.NameLocal;
             if (name is "AcademicTitleEnd" or "AcademicAssignmentPageEnd" or "AcademicAssignmentEnd" or "AcademicBodyStart")
                 pages[name] = WordTables.Page(scope, range);
-            if (name == "AcademicSheetHeading" && range.Text.Trim() == "АННОТАЦИЯ")
+            if (name == "AcademicSummaryHeading" || name == "AcademicSheetHeading" && range.Text.Trim() == "АННОТАЦИЯ")
                 pages["Annotation"] = WordTables.Page(scope, range);
             if (name == "AcademicBodyStart") break;
         }

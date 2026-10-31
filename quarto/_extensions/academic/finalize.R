@@ -18,6 +18,8 @@ outputs <- outputs[grepl("[.]docx$", outputs, ignore.case = TRUE)]
 if (!length(outputs)) stop("Academic hook did not receive a DOCX output")
 
 for (output in outputs) {
+  layout_path <- normalizePath(file.path('.quarto', 'academic-layout.json'), mustWork=TRUE)
+  layout <- jsonlite::fromJSON(layout_path)
   output <- normalizePath(output, mustWork = TRUE)
   folder <- tempfile("academic-docx-")
   dir.create(folder)
@@ -122,6 +124,9 @@ for (output in outputs) {
       Filter(function(a) identical(xml_path(a$p),xml_path(appendix_heading)),appendix_headings)
     appendix_prefix <- if (length(appendix)) paste0(appendix[[1]]$letter,".") else ""
     sequence <- if (length(appendix)) paste0(label,"Appendix",appendix[[1]]$latin) else label
+    section_numbered <- !length(appendix) && label == "Рисунок" && identical(layout$FigureNumbering, "section")
+    if (section_numbered && inherits(appendix_heading, "xml_missing"))
+      stop("Section-numbered figure needs a preceding numbered top-level section: ", name)
     old_id <- attr(bookmark, "w:id")
     xml_remove(xml_find_all(doc, paste0("//w:bookmarkEnd[@w:id='", old_id, "']"), ns))
     xml_remove(bookmark)
@@ -129,7 +134,11 @@ for (output in outputs) {
     xml_add_child(caption, node(run(paste0(label, " "))))
     xml_add_child(caption, node(paste0('<w:bookmarkStart w:id="', next_id, '" w:name="', normalized, '"/>')))
     if (nzchar(appendix_prefix)) xml_add_child(caption,node(run(appendix_prefix)))
-    for (part in xml_children(read_xml(paste0('<root xmlns:w="', W, '">', field(paste0("SEQ ", sequence, " \\* ARABIC")), '</root>')))) xml_add_child(caption, part)
+    if (section_numbered) {
+      for (part in xml_children(read_xml(paste0('<root xmlns:w="', W, '">', field("STYLEREF 1 \\s"), run("."), '</root>')))) xml_add_child(caption, part)
+    }
+    sequence_code <- paste0("SEQ ", sequence, " \\* ARABIC", if (section_numbered) " \\s 1" else "")
+    for (part in xml_children(read_xml(paste0('<root xmlns:w="', W, '">', field(sequence_code), '</root>')))) xml_add_child(caption, part)
     xml_add_child(caption, node(paste0('<w:bookmarkEnd w:id="', next_id, '"/>')))
     xml_add_child(caption, node(run(paste0(" — ", caption_text))))
     next_id <- next_id + 1
@@ -194,11 +203,9 @@ for (output in outputs) {
       stop("Academic DOCX service is missing: add the published application to PATH or set ACADEMIC_DOCX_SERVICE to its EXE")
     version <- system2(normalizePath(service), "--version", stdout = TRUE, stderr = TRUE)
     if (!is.null(base::attr(version, "status")) || length(version) != 1L ||
-        !grepl("^0[.]4[.][0-9]+$", version))
-      stop("Incompatible Academic DOCX service: this extension requires version 0.4.x; update the service and the installed extension together")
+        !grepl("^0[.]4[.][0-9]+$", version) || numeric_version(version) < numeric_version("0.4.1"))
+      stop("Incompatible Academic DOCX service: this extension requires >=0.4.1 within 0.4.x; update the service and the installed extension together")
     report <- normalizePath(file.path(".quarto",paste0(basename(output),".finalize.json")), mustWork=FALSE)
-    layout_path <- normalizePath(file.path('.quarto', 'academic-layout.json'), mustWork=TRUE)
-    layout <- jsonlite::fromJSON(layout_path)
     arguments <- c("finalize-word", shQuote(output), "--report", shQuote(report), "--layout-metadata", shQuote(layout_path))
     if (identical(layout$PageLayout, 'technical')) {
       templates <- normalizePath(file.path(academic_candidates[[1]], 'page-templates', 'sto04'), mustWork=TRUE)

@@ -106,5 +106,28 @@ public sealed class FrontMatterTests : IDisposable
         Assert.Empty(DocxInspection.Validate(file).Errors);
     }
 
+    [Fact]
+    public void ResearchFormsShareStatisticsAndAllowAFlowingAssignment()
+    {
+        var file = Path.Combine(folder, "research.docx");
+        File.Copy(Path.Combine(AppContext.BaseDirectory, "reference.docx"), file);
+        using (var package = WordprocessingDocument.Open(file, true))
+        {
+            var body = package.MainDocumentPart!.Document.Body!;
+            var section = (W.SectionProperties)body.Elements<W.SectionProperties>().Single().CloneNode(true);
+            body.RemoveAllChildren();
+            W.Paragraph P(string style, string text = "") => new(new W.ParagraphProperties(new W.ParagraphStyleId { Val = style }), new W.Run(new W.Text(text)));
+            body.Append(P("AcademicResearchTitle", "НИР"), P("AcademicTitleEnd"), P("AcademicFormText", "Задание"),
+                P("AcademicAssignmentEnd"), P("AcademicSummaryHeading", "РЕФЕРАТ"), P("AcademicBodyStart"),
+                P("Normal", "Текст"), section);
+        }
+        Assert.Equal(new AnnotationStatistics(0, 0, 0, 0), FrontMatterFormatting.Apply(file));
+        DocumentPageLayout.Apply(file, new PageLayoutOptions("susu-19-2008", "research-susu-19-2008", "НИР", "КОД", "Автор", "Руководитель", "", "", "Вуз", "plain-body"));
+        using var saved = WordprocessingDocument.Open(file, false);
+        Assert.Equal(2, saved.MainDocumentPart!.Document.Descendants<W.SectionProperties>().Count());
+        Assert.DoesNotContain(saved.MainDocumentPart.Document.Descendants<W.Paragraph>(), p => p.ParagraphProperties?.ParagraphStyleId?.Val == "AcademicAssignmentPageEnd");
+        Assert.Empty(DocxInspection.Validate(file).Errors);
+    }
+
     public void Dispose() => Directory.Delete(folder, true);
 }

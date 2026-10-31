@@ -1,0 +1,141 @@
+{
+  "snapshot": {
+    "label": "opened",
+    "fields": [
+      {
+        "code": "NUMPAGES",
+        "result": "8"
+      },
+      {
+        "code": "DOCPROPERTY AcademicFigures",
+        "result": "2"
+      },
+      {
+        "code": "DOCPROPERTY AcademicTables",
+        "result": "1"
+      },
+      {
+        "code": "DOCPROPERTY AcademicSources",
+        "result": "1"
+      },
+      {
+        "code": "DOCPROPERTY AcademicAppendices",
+        "result": "0"
+      },
+      {
+        "code": "TOC \\o \u00221-3\u0022 \\h \\z \\u",
+        "result": "Введение\t5\r1 Первая модель\t5\r2 Вторая модель\t6\rЗаключение\t7\rСписок литературы\t8"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022_Toc244348544\u0022",
+        "result": "Введение\t5"
+      },
+      {
+        "code": "PAGEREF _Toc244348544 \\h",
+        "result": "5"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022_Toc244348545\u0022",
+        "result": "1 Первая модель\t5"
+      },
+      {
+        "code": "PAGEREF _Toc244348545 \\h",
+        "result": "5"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022_Toc244348546\u0022",
+        "result": "2 Вторая модель\t6"
+      },
+      {
+        "code": "PAGEREF _Toc244348546 \\h",
+        "result": "6"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022_Toc244348547\u0022",
+        "result": "Заключение\t7"
+      },
+      {
+        "code": "PAGEREF _Toc244348547 \\h",
+        "result": "7"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022_Toc244348548\u0022",
+        "result": "Список литературы\t8"
+      },
+      {
+        "code": "PAGEREF _Toc244348548 \\h",
+        "result": "8"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022ref-knuth1984\u0022 \\h",
+        "result": "1"
+      },
+      {
+        "code": "REF fig_one \\h",
+        "result": "1.1"
+      },
+      {
+        "code": "STYLEREF 1 \\s",
+        "result": "1"
+      },
+      {
+        "code": "SEQ Рисунок \\* ARABIC \\s 1",
+        "result": "1"
+      },
+      {
+        "code": "SEQ Таблица \\* ARABIC",
+        "result": "1"
+      },
+      {
+        "code": "REF fig_two \\h",
+        "result": "2.1"
+      },
+      {
+        "code": "REF fig_one \\h",
+        "result": "1.1"
+      },
+      {
+        "code": "REF tbl_results \\h",
+        "result": "1"
+      },
+      {
+        "code": "STYLEREF 1 \\s",
+        "result": "2"
+      },
+      {
+        "code": "SEQ Рисунок \\* ARABIC \\s 1",
+        "result": "1"
+      },
+      {
+        "code": "HYPERLINK \u0022https://doi.org/10.1093/comjnl/27.2.97\u0022 \\h",
+        "result": "Literate Programming"
+      }
+    ],
+    "sources": [],
+    "bookmarks": {
+      "fig_one": "1.1",
+      "fig_two": "2.1",
+      "sec_conclusion": "ЗАКЛЮЧЕНИЕ\rСопоставлены две зависимости. Научные таблицы и вычисления используют общий путь R и Quarto.",
+      "sec_introduction": "ВВЕДЕНИЕ\rДокумент содержит условные данные для проверки нового комплекта. Основной научный текст остаётся обычным QMD. Источник: [1].",
+      "sec_model_one": "ПЕРВАЯ МОДЕЛЬ\rСумма результатов равна 14. Первый график приведён на рисунке 1.1.\r/\rРисунок 1.1 — Квадратичная зависимость\rТаблица 1 — Результаты расчёта\rАргумент\r\u0007Значение\r\u0007\r\u00071\r\u00071\r\u0007\r\u00072\r\u00074\r\u0007\r\u00073\r\u00079\r\u0007\r\u0007",
+      "sec_model_two": "ВТОРАЯ МОДЕЛЬ\rВторой график приведён на рисунке 2.1. Ссылка на первый сохраняется: 1.1. Результаты представлены в таблице 1.\r/\rРисунок 2.1 — Линейная зависимость",
+      "sec_references": "СПИСОК ЛИТЕРАТУРЫ\r1 \tKnuth D. E. Literate Programming // The Computer Journal. 1984. Т. 27, № 2. С. 97–111.",
+      "tbl_results": "1"
+    },
+    "pages": 8,
+    "equations": 0,
+    "table_math": 0,
+    "toc": 1,
+    "table_text_font_sizes": [
+      12
+    ],
+    "table_math_font_sizes": []
+  },
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 26488,
+    "process_exited": true,
+    "cleanup_errors": []
+  }
+}

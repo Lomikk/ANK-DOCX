@@ -4,7 +4,7 @@ local function marker(style)
   return pandoc.RawBlock('openxml', '<w:p><w:pPr><w:pStyle w:val="'..style..'"/></w:pPr></w:p>')
 end
 
-return function(doc, forms, field, value, questions, calendar)
+return function(doc, forms, field, value, questions, calendar, directory)
   local out = pandoc.Blocks({})
   local function v(path) return value(doc.meta, 'academic.'..path) end
   local function p(content, style)
@@ -22,6 +22,29 @@ return function(doc, forms, field, value, questions, calendar)
   end
   local date = '«_____» ______________ '..v('year')..' г.'
   local author = v('author-short')
+  local function assignment_data()
+    assert(pandoc.utils.type(questions) == 'List' and #questions > 0,
+      'academic.assignment.questions must be a nonempty YAML list')
+    assert(pandoc.utils.type(calendar) == 'List' and #calendar > 0,
+      'academic.assignment.calendar must be a nonempty YAML list')
+    for _, question in ipairs(questions) do
+      assert(not text(question):match('^%s*$'), 'academic.assignment.questions contains an empty question')
+    end
+    for _, row in ipairs(calendar) do
+      assert(value(row, 'section') ~= '' and value(row, 'due') ~= '',
+        'academic.assignment.calendar rows require section and due')
+    end
+  end
+  local function statistics()
+    local summary = {pandoc.Str(author..' '..value(doc.meta, 'title')..'. — '..v('city')..': '..v('university-short')..', '..v('group')..', '..v('year')..'. — '),
+      pandoc.RawInline('openxml', field('NUMPAGES')), pandoc.Str(' с., ')}
+    for _, counter in ipairs({{'Figures',' ил., '}, {'Tables',' табл., библиогр. список — '},
+        {'Sources',' наим., '}, {'Appendices',' прил.'}}) do
+      summary[#summary+1] = pandoc.RawInline('openxml', field('DOCPROPERTY Academic'..counter[1]))
+      summary[#summary+1] = pandoc.Str(counter[2])
+    end
+    return summary
+  end
   local function title_end(defense)
     p('Автор работы', 'RightBlockStart')
     p('Студент группы '..v('group'), 'RightBlock')
@@ -64,6 +87,7 @@ return function(doc, forms, field, value, questions, calendar)
     title_end('Реферат защищён')
   end
   renderers['coursework-assignment'] = function()
+    assignment_data()
     institution(true)
     p('УТВЕРЖДАЮ', 'ApprovalStart')
     p('Заведующий кафедрой', 'RightBlock')
@@ -95,17 +119,18 @@ return function(doc, forms, field, value, questions, calendar)
     out:insert(marker('AcademicAssignmentEnd'))
   end
   renderers.annotation = function()
-    p('АННОТАЦИЯ', 'SheetHeading')
-    local summary = {pandoc.Str(author..' '..value(doc.meta, 'title')..'. — '..v('city')..': '..v('university-short')..', '..v('group')..', '..v('year')..'. — '),
-      pandoc.RawInline('openxml', field('NUMPAGES')), pandoc.Str(' с., ')}
-    for _, counter in ipairs({{'Figures',' ил., '}, {'Tables',' табл., библиогр. список — '},
-        {'Sources',' наим., '}, {'Appendices',' прил.'}}) do
-      summary[#summary+1] = pandoc.RawInline('openxml', field('DOCPROPERTY Academic'..counter[1]))
-      summary[#summary+1] = pandoc.Str(counter[2])
-    end
-    p(summary, 'AnnotationReference')
+    p('АННОТАЦИЯ', 'SummaryHeading')
+    p(statistics(), 'AnnotationReference')
     p(v('summary'), 'AnnotationText')
   end
+  local research = dofile(pandoc.path.join({directory, 'forms-research.lua'}))({
+    p=p, tab=tab, institution=institution, v=v, date=date, author=author,
+    title=value(doc.meta, 'title'), full_name=value(doc.meta, 'author'),
+    mark=function(style) out:insert(marker(style)) end,
+    assignment_data=assignment_data, questions=questions, calendar=calendar,
+    value=value, meta=doc.meta, statistics=statistics
+  })
+  for name, render in pairs(research) do renderers[name] = render end
   for _, form in ipairs(forms) do
     assert(renderers[form], 'No sheet implementation: '..form)()
   end

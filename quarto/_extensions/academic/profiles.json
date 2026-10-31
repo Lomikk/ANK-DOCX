@@ -20,7 +20,7 @@
       "standard": "susu-21-2008",
       "page-layout": "plain-body",
       "forms": ["coursework-title-21", "coursework-assignment", "annotation"],
-      "requires": ["title", "coursework", "assignment", "annotation"]
+      "requires": ["institution", "supervisor", "discipline", "document", "assignment", "summary"]
     },
     "referat-susu-17-2008": {
       "label": "Учебный реферат — СТО ЮУрГУ 17–2008",
@@ -28,7 +28,7 @@
       "standard": "susu-17-2008",
       "page-layout": "plain-after-title",
       "forms": ["referat-title-17", "annotation"],
-      "requires": ["title", "annotation"]
+      "requires": ["institution", "supervisor", "discipline", "summary"]
     },
     "coursework-susu-04-2008": {
       "label": "Техническая курсовая — СТО ЮУрГУ 04–2008",
@@ -36,23 +36,40 @@
       "standard": "susu-04-2008",
       "page-layout": "technical",
       "forms": ["coursework-title-04", "coursework-assignment", "annotation"],
-      "requires": ["title", "coursework", "assignment", "annotation"]
+      "requires": ["institution", "supervisor", "discipline", "document", "assignment", "summary"]
+    },
+    "research-susu-19-2008": {
+      "label": "Выпускная квалификационная НИР — СТО 19 (экспериментальный)",
+      "kind": "research",
+      "standard": "susu-19-2008",
+      "page-layout": "plain-body",
+      "figure-numbering": "section",
+      "forms": ["research-title-19", "research-assignment-19", "research-summary-19"],
+      "requires": ["institution", "supervisor", "document", "research", "summary"]
     }
   },
   "requirements": {
-    "title": [
+    "institution": [
       "title", "author", "academic.university", "academic.parent-organization",
       "academic.university-short", "academic.school", "academic.department",
-      "academic.discipline", "academic.group", "academic.supervisor",
-      "academic.supervisor-position", "academic.author-short", "academic.city", "academic.year"
+      "academic.group", "academic.author-short", "academic.city", "academic.year"
     ],
-    "coursework": [
+    "supervisor": ["academic.supervisor", "academic.supervisor-position"],
+    "discipline": ["academic.discipline"],
+    "document": [
       "academic.document-code", "academic.normal-controller.name", "academic.normal-controller.position"
     ],
     "assignment": [
       "academic.direction-code", "academic.direction", "academic.assignment.head-of-department",
       "academic.assignment.approval-date", "academic.assignment.due-date"
     ],
-    "annotation": ["academic.summary"]
+    "summary": ["academic.summary"],
+    "research": [
+      "academic.udc", "academic.reviewer.name", "academic.reviewer.position",
+      "academic.direction-code", "academic.direction",
+      "academic.assignment.head-of-department", "academic.assignment.head-of-department-position",
+      "academic.assignment.approval-document", "academic.assignment.due-date",
+      "academic.assignment.source-data", "academic.assignment.illustrations"
+    ]
   }
 }

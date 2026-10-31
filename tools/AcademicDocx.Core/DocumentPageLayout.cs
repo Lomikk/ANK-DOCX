@@ -32,7 +32,7 @@ public static class DocumentPageLayout
         var body = main.Document.Body!;
         static string Style(W.Paragraph p) => p.ParagraphProperties?.ParagraphStyleId?.Val?.Value ?? "";
         var paragraphs = body.Elements<W.Paragraph>().ToArray();
-        var title = paragraphs.FirstOrDefault(p => Style(p) is "AcademicCourseworkTitle" or "AcademicReferatTitle");
+        var title = paragraphs.FirstOrDefault(p => Style(p) is "AcademicCourseworkTitle" or "AcademicReferatTitle" or "AcademicResearchTitle");
         if (title is null) return;
         var markers = paragraphs.Where(p => Style(p) is "AcademicTitleEnd" or "AcademicAssignmentPageEnd" or "AcademicAssignmentEnd" or "AcademicBodyStart").ToArray();
         var final = body.Elements<W.SectionProperties>().Single();

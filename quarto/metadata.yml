@@ -15,7 +15,7 @@ academic:
   city: ""
   year: ""
   summary: ""
-  # Fields below are required only for coursework.
+  # Coursework/research fields; exact requirements depend on the selected bundle.
   direction-code: ""
   direction: ""
   document-code: ""
@@ -28,6 +28,16 @@ academic:
     due-date: ""
     questions: []
     calendar: [] # Each row: {section: "...", due: "...", status: ""}
+    # Research only: uncomment and fill these fields.
+    # head-of-department-position: ""
+    # approval-document: ""
+    # source-data: ""
+    # illustrations: ""
+  # Research only: uncomment and fill these fields.
+  # udc: ""
+  # reviewer: {name: "", position: ""}
+  # keywords: [] # 5–15 nonempty lowercase entries.
+  # consultants: [] # Optional rows: {name: "", position: ""}.
   stamp:
     approver: "" # Optional name in the form 2 approval row; signatures stay blank.
     organization: "" # Optional short organization text; default: university-short and group.

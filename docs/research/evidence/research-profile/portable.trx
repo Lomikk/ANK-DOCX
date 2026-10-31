@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="33ca063b-1239-4999-83ca-dc872ef4e8ea" name="2yash@DESKTOP-H9F324S 2026-10-31 14:13:10" runUser="DESKTOP-H9F324S\2yash" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-31T14:13:10.7734728+05:00" queuing="2026-10-31T14:13:10.7734731+05:00" start="2026-10-31T14:13:08.9989961+05:00" finish="2026-10-31T14:13:10.7780033+05:00" />
+  <TestSettings name="default" id="e8d67b02-0ebb-4974-bdab-8aa0de9d4a19">
+    <Deployment runDeploymentRoot="2yash_DESKTOP-H9F324S_2026-10-31_14_13_10" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="502f7c8a-09c2-472f-b1fe-a4d5b51705af" testId="9971ad17-c4e2-69c8-5b62-d32bfe06623c" testName="AcademicDocx.Tests.FrontMatterTests.FrontSectionHidesNumbersAndCountsSemanticObjects(coursework: False)" computerName="DESKTOP-H9F324S" duration="00:00:00.0702390" startTime="2026-10-31T14:13:10.5959922+05:00" endTime="2026-10-31T14:13:10.6661922+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="502f7c8a-09c2-472f-b1fe-a4d5b51705af" />
+    <UnitTestResult executionId="94bbd5c7-a278-4bcb-858c-4b5ee357b46a" testId="dfab9622-3ca7-3d0f-50a5-a15b7daca074" testName="AcademicDocx.Tests.FrontMatterTests.TechnicalLayoutUsesNormativeFramesAndDifferentFirstPageAfterAssignment" computerName="DESKTOP-H9F324S" duration="00:00:00.8940778" startTime="2026-10-31T14:13:09.5537888+05:00" endTime="2026-10-31T14:13:10.4504904+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="94bbd5c7-a278-4bcb-858c-4b5ee357b46a" />
+    <UnitTestResult executionId="edba69b6-1180-4640-8270-81e2f989c6f6" testId="7a0b43bf-2a45-9480-4695-27b2f1f00dff" testName="AcademicDocx.Tests.ProfilesTests.WorkspaceCatalogResolvesOldNamesAndKeepsExplicitBundles" computerName="DESKTOP-H9F324S" duration="00:00:00.1759817" startTime="2026-10-31T14:13:09.5525802+05:00" endTime="2026-10-31T14:13:09.7346976+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="edba69b6-1180-4640-8270-81e2f989c6f6" />
+    <UnitTestResult executionId="eba664eb-9d45-41dd-b65a-950d320896a4" testId="5ccb67d6-2713-62eb-e02b-893c72ba432d" testName="AcademicDocx.Tests.FrontMatterTests.FrontSectionHidesNumbersAndCountsSemanticObjects(coursework: True)" computerName="DESKTOP-H9F324S" duration="00:00:00.0763612" startTime="2026-10-31T14:13:10.5195992+05:00" endTime="2026-10-31T14:13:10.5958895+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eba664eb-9d45-41dd-b65a-950d320896a4" />
+    <UnitTestResult executionId="a23c9631-5b59-479c-9d9a-ec7049ddf668" testId="f715244e-1513-b24d-ad39-86d05829f699" testName="AcademicDocx.Tests.FrontMatterTests.LegacyDocumentsKeepTheirSectionsAndHaveNoInventedStatistics" computerName="DESKTOP-H9F324S" duration="00:00:00.0212358" startTime="2026-10-31T14:13:10.6663235+05:00" endTime="2026-10-31T14:13:10.6875187+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a23c9631-5b59-479c-9d9a-ec7049ddf668" />
+    <UnitTestResult executionId="9b0eb174-6019-4bb9-b5f5-3e0199f50383" testId="5fc97cff-2c00-3dbe-39d5-83c44b769d89" testName="AcademicDocx.Tests.FrontMatterTests.ResearchFormsShareStatisticsAndAllowAFlowingAssignment" computerName="DESKTOP-H9F324S" duration="00:00:00.0691058" startTime="2026-10-31T14:13:10.4512256+05:00" endTime="2026-10-31T14:13:10.5194624+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9b0eb174-6019-4bb9-b5f5-3e0199f50383" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="AcademicDocx.Tests.FrontMatterTests.FrontSectionHidesNumbersAndCountsSemanticObjects(coursework: True)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="5ccb67d6-2713-62eb-e02b-893c72ba432d">
+      <Execution id="eba664eb-9d45-41dd-b65a-950d320896a4" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.FrontMatterTests" name="FrontSectionHidesNumbersAndCountsSemanticObjects" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.ProfilesTests.WorkspaceCatalogResolvesOldNamesAndKeepsExplicitBundles" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="7a0b43bf-2a45-9480-4695-27b2f1f00dff">
+      <Execution id="edba69b6-1180-4640-8270-81e2f989c6f6" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.ProfilesTests" name="WorkspaceCatalogResolvesOldNamesAndKeepsExplicitBundles" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.FrontMatterTests.ResearchFormsShareStatisticsAndAllowAFlowingAssignment" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="5fc97cff-2c00-3dbe-39d5-83c44b769d89">
+      <Execution id="9b0eb174-6019-4bb9-b5f5-3e0199f50383" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.FrontMatterTests" name="ResearchFormsShareStatisticsAndAllowAFlowingAssignment" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.FrontMatterTests.FrontSectionHidesNumbersAndCountsSemanticObjects(coursework: False)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="9971ad17-c4e2-69c8-5b62-d32bfe06623c">
+      <Execution id="502f7c8a-09c2-472f-b1fe-a4d5b51705af" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.FrontMatterTests" name="FrontSectionHidesNumbersAndCountsSemanticObjects" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.FrontMatterTests.LegacyDocumentsKeepTheirSectionsAndHaveNoInventedStatistics" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="f715244e-1513-b24d-ad39-86d05829f699">
+      <Execution id="a23c9631-5b59-479c-9d9a-ec7049ddf668" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.FrontMatterTests" name="LegacyDocumentsKeepTheirSectionsAndHaveNoInventedStatistics" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.FrontMatterTests.TechnicalLayoutUsesNormativeFramesAndDifferentFirstPageAfterAssignment" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="dfab9622-3ca7-3d0f-50a5-a15b7daca074">
+      <Execution id="94bbd5c7-a278-4bcb-858c-4b5ee357b46a" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.FrontMatterTests" name="TechnicalLayoutUsesNormativeFramesAndDifferentFirstPageAfterAssignment" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="9971ad17-c4e2-69c8-5b62-d32bfe06623c" executionId="502f7c8a-09c2-472f-b1fe-a4d5b51705af" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dfab9622-3ca7-3d0f-50a5-a15b7daca074" executionId="94bbd5c7-a278-4bcb-858c-4b5ee357b46a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7a0b43bf-2a45-9480-4695-27b2f1f00dff" executionId="edba69b6-1180-4640-8270-81e2f989c6f6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5ccb67d6-2713-62eb-e02b-893c72ba432d" executionId="eba664eb-9d45-41dd-b65a-950d320896a4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f715244e-1513-b24d-ad39-86d05829f699" executionId="a23c9631-5b59-479c-9d9a-ec7049ddf668" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5fc97cff-2c00-3dbe-39d5-83c44b769d89" executionId="9b0eb174-6019-4bb9-b5f5-3e0199f50383" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Список результатов" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Все загруженные результаты" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="6" executed="6" passed="6" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.08]   Discovering: AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.12]   Discovered:  AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.15]   Starting:    AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:01.31]   Finished:    AcademicDocx.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>
