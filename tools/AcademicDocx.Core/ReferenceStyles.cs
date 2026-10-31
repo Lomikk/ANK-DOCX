@@ -10,7 +10,7 @@ namespace AcademicDocx.Core;
 public static class ReferenceStyles
 {
     public const string TextColor = "000000";
-    public const string TableFontSize = "22";
+    public const string TableFontSize = "24";
     private static string Twips(double mm) => Math.Round(mm * 1440 / 25.4).ToString(CultureInfo.InvariantCulture);
 
     private static T Set<T>(OpenXmlCompositeElement parent, T child) where T : OpenXmlElement
@@ -163,7 +163,7 @@ public static class ReferenceStyles
         foreach (var name in new[] { "Caption", "Image Caption", "Table Caption", "Figure", "Captioned Figure" })
             Style(name, name == "Table Caption" ? W.JustificationValues.Left : W.JustificationValues.Center,
                 indent: 0, keepNext: name is "Table Caption" or "Figure" or "Captioned Figure", keepLines: true);
-        // Character styles inherit the surrounding size, including 11 pt tables.
+        // Character styles inherit the surrounding size, including 12 pt tables.
         foreach (var name in new[] { "Hyperlink", "FollowedHyperlink" })
         {
             var link = styles.Elements<W.Style>().FirstOrDefault(s =>

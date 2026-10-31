@@ -1,7 +1,7 @@
 required <- c("flextable", "equatags", "officer", "yaml", "xml2", "zip", "jsonlite", "ggplot2", "ggpattern", "ragg", "svglite")
 missing <- required[!vapply(required, requireNamespace, logical(1), quietly = TRUE)]
 if (length(missing)) stop("Install the declared R dependencies: ", paste(missing, collapse = ", "))
-flextable::set_flextable_defaults(font.family = "Times New Roman", font.size = 11, padding = 3, decimal.mark = ",", big.mark = " ")
+flextable::set_flextable_defaults(font.family = "Times New Roman", font.size = 12, padding = 3, decimal.mark = ",", big.mark = " ")
 
 
 # Common, print-friendly plotting defaults for the academic Quarto MVP.
@@ -20,7 +20,7 @@ ank_decimal_labels <- scales::label_number(decimal.mark = ",")
 ank_style_table <- function(ft, layout = "autofit", width = 1) {
   ft <- flextable::theme_box(ft)
   ft <- flextable::font(ft, fontname = "Times New Roman", part = "all")
-  ft <- flextable::fontsize(ft, size = 11, part = "all")
+  ft <- flextable::fontsize(ft, size = 12, part = "all")
   ft <- flextable::align(ft, align = "center", part = "header")
   ft <- flextable::valign(ft, valign = "center", part = "all")
   # Word interprets width as a fraction of the available text area. Explicit

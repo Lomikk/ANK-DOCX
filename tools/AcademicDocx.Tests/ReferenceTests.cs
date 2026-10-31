@@ -117,7 +117,7 @@ public sealed class ReferenceTests : IDisposable
             Assert.Null(properties.GetFirstChild<W.FontSizeComplexScript>());
         }
         var table = styles.Single(s => s.StyleId == "Table");
-        Assert.Equal("22", table.StyleRunProperties!.GetFirstChild<W.FontSize>()!.Val!.Value);
+        Assert.Equal("24", table.StyleRunProperties!.GetFirstChild<W.FontSize>()!.Val!.Value);
         var borders = table.StyleTableProperties!.TableBorders!;
         Assert.Equal(6, borders.ChildElements.Count);
         Assert.All(borders.ChildElements, border => Assert.Equal("single", border.GetAttribute("val", border.NamespaceUri).Value));

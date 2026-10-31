@@ -22,8 +22,8 @@ public sealed class DocumentFormattingTests : IDisposable
         Assert.Equal("параметрx2", table.InnerText);
         Assert.All(table.Descendants<W.RunProperties>(), properties =>
         {
-            Assert.Equal("22", properties.GetFirstChild<W.FontSize>()!.Val!.Value);
-            Assert.Equal("22", properties.GetFirstChild<W.FontSizeComplexScript>()!.Val!.Value);
+            Assert.Equal("24", properties.GetFirstChild<W.FontSize>()!.Val!.Value);
+            Assert.Equal("24", properties.GetFirstChild<W.FontSizeComplexScript>()!.Val!.Value);
         });
         Assert.All(table.Descendants<M.Run>(), run => Assert.NotNull(run.GetFirstChild<W.RunProperties>()));
         Assert.All(table.Descendants<M.ControlProperties>(), control => Assert.NotNull(control.GetFirstChild<W.RunProperties>()));
