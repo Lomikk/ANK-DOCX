@@ -50,6 +50,70 @@ public sealed class BuildOutputTests
             Assert.DoesNotContain("metadata", warning.Output);
             Assert.Contains("metadata", File.ReadAllText(full));
 
+            File.Copy(Path.Combine(source, "_extensions", "academic", "content-advice.lua"), Path.Combine(extension, "content-advice.lua"));
+            File.WriteAllText(Path.Combine(extension, "_extension.yml"), "title: Fixture\ncontributes:\n  formats:\n    docx:\n      filters: [content-advice.lua]\n");
+            File.WriteAllText(input, """
+                # Глава
+
+                <!-- comment does not count -->
+
+                ## Подраздел
+
+                Упомянута другая таблица [-@tbl-other].
+
+                | A | B |
+                |---|---|
+                | 1 | 2 |
+
+                : Данные {#tbl-data}
+
+                Упоминание после объекта [-@tbl-data].
+
+                # Без подраздела
+
+                Текст.
+                """);
+            var advice = Run(root, project);
+            Assert.Equal(0, advice.Code);
+            Assert.Equal(advice.Output, File.ReadAllText(summary));
+            Assert.Contains("раздел «Глава»", advice.Output);
+            Assert.Contains("таблицей tbl-data", advice.Output);
+            Assert.DoesNotContain("раздел «Без подраздела»", advice.Output);
+
+            File.WriteAllText(input, """
+                # Глава
+
+                Вводный текст.
+
+                ## Подраздел
+
+                Результат приведён в таблице [-@tbl-data].
+
+                | A | B |
+                |---|---|
+                | 1 | 2 |
+
+                : Данные {#tbl-data}
+
+                # Глава со списком
+
+                - Содержательный пункт.
+
+                ## Подраздел списка
+
+                # Глава с цитатой
+
+                > Содержательная цитата.
+
+                ## Подраздел цитаты
+                """);
+            var fixedAdvice = Run(root, project);
+            Assert.Equal(0, fixedAdvice.Code);
+            Assert.Equal(fixedAdvice.Output, File.ReadAllText(summary));
+            Assert.DoesNotContain("Рекомендация:", fixedAdvice.Output + File.ReadAllText(full));
+            Assert.Contains("не обнаружено", fixedAdvice.Output);
+            File.WriteAllText(Path.Combine(extension, "_extension.yml"), "title: Fixture\ncontributes:\n  formats:\n    docx: default\n");
+
             // The old warning and an obsolete failed Word report must disappear.
             File.WriteAllText(Path.Combine(project, ".quarto", "main.docx.finalize.json"), "{\"error\":\"stale Word failure\"}");
             File.WriteAllText(input, "# Clean\nNo warnings.\n");
