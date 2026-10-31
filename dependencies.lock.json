@@ -24,7 +24,7 @@
     "runtime_identifier": "win-x64",
     "deployment": "self-contained",
     "sdk_verified": "10.0.401",
-    "runtime_verified": "10.0.12",
+    "runtime_verified": "10.0.14",
     "openxml_sdk": "3.3.0",
     "office_interop": "Official installed Word PIA; EmbedInteropTypes=true",
     "project": "tools/AcademicDocx/AcademicDocx.csproj",

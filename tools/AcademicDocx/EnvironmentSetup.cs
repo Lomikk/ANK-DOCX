@@ -33,7 +33,7 @@ internal static class EnvironmentSetup
         if (!File.Exists(rScript))
         {
             var setup = Path.Combine(tools, "downloads", $"R-{rVersion}-win.exe");
-            Download($"https://cran.r-project.org/bin/windows/base/R-{rVersion}-win.exe", setup);
+            Download($"https://cran.r-project.org/bin/windows/base/old/{rVersion}/R-{rVersion}-win.exe", setup);
             Authenticode.RequireTrusted(setup);
             Execute(setup, ["/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART", "/CURRENTUSER", "/NOICONS", "/TASKS=", "/DIR=" + rRoot], root, root);
         }

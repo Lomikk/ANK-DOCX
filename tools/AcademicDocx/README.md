@@ -4,10 +4,10 @@
 
 ## Установка и сборка
 
-Нужны Windows, .NET 10 SDK и официальные Word PIA и Office core PIA из установленного Office или Visual Studio Tools for Office. PIA определяются по стандартным каталогам средств разработки и GAC. При отсутствии либо неоднозначности укажите пути явно:
+Для пользователя `ANK-DOCX.cmd setup` получает готовое приложение с собственным .NET Runtime. .NET SDK и PIA нужны разработчику для компиляции. Ему требуются Windows, .NET 10 SDK и официальные Word PIA и Office core PIA из установленного Office или Visual Studio Tools for Office. PIA определяются по стандартным каталогам средств разработки и GAC. При отсутствии либо неоднозначности укажите пути явно:
 
 ```powershell
-.\setup-academic.cmd '-p:WordPiaPath=C:/path/to/Microsoft.Office.Interop.Word.dll' '-p:OfficePiaPath=C:/path/to/office.dll'
+.\build-service.cmd '-p:WordPiaPath=C:/path/to/Microsoft.Office.Interop.Word.dll' '-p:OfficePiaPath=C:/path/to/office.dll'
 ```
 
 Не устанавливайте неподдерживаемую NuGet-перепаковку `Microsoft.Office.Interop.Word`. Использованные interop-типы встраиваются компилятором; распространять отдельную DLL PIA с приложением не требуется для проверенных сценариев.
@@ -19,7 +19,7 @@ dotnet build tools/AcademicDocx/AcademicDocx.csproj -p:RestoreLockedMode=true
 dotnet publish tools/AcademicDocx/AcademicDocx.csproj -c Release -r win-x64 --self-contained true -p:RestoreLockedMode=true -o .tools/academic-docx
 ```
 
-Публикация включает .NET runtime. Сохраняйте весь каталог публикации, а не только EXE. Настольный Word нужен командам, использующим COM. Переносимая библиотека `AcademicDocx.Core` не ссылается на Word/PIA и проверяется отдельно.
+Публикация включает .NET runtime. Сохраняйте весь каталог публикации, а не только EXE. `pack-service.cmd` готовит архив и закреплённый SHA-256 для начального загрузчика. Настольный Word нужен командам, использующим COM. Переносимая библиотека `AcademicDocx.Core` не ссылается на Word/PIA и проверяется отдельно. Устройство локального окружения и порядок выпуска — [ENVIRONMENT_SETUP.md](../../docs/ENVIRONMENT_SETUP.md).
 
 Для независимых работ добавьте каталог публикации в PATH либо задайте `ACADEMIC_DOCX_SERVICE`. Команда `--version` сообщает версию приложения; расширение 0.4.2 требует приложение не ниже 0.4.2 в ветке 0.4.x: единый каталог комплектов, явный выбор оформления страниц и приложения НИР. Настройка окружения терминала также должна обеспечивать Quarto, R и rsvg-convert. `setup` не меняет глобальный PATH. Новый авторский проект создаётся из [Starter](../../quarto/), отдельный CLI создания не нужен.
 
