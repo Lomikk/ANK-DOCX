@@ -132,6 +132,76 @@ public sealed class BuildOutputTests
             Assert.Equal(includedAdvice.Output, File.ReadAllText(summary));
             Assert.Contains("раздел «Подключённый раздел»", includedAdvice.Output);
             Assert.Contains("таблицей tbl-included", includedAdvice.Output);
+
+            File.WriteAllText(input, """
+                # Объекты
+
+                Параметр задаёт формула [-@eq-good].
+
+                $$
+                x=1
+                $$ {#eq-good}
+
+                В листинге [-@lst-good] приведён код.
+
+                ```{#lst-good .r lst-cap="Рисунок 88 в подписи"}
+                # Таблица 77 в коде
+                x <- 1
+                ```
+
+                Таблица 3, рисунке 2.1, листинге 5, формуле (4).
+
+                Ссылка на другой объект [-@eq-good].
+
+                $$
+                y=2
+                $$ {#eq-missing}
+
+                Упоминание после формулы [-@eq-missing].
+
+                Листинг без вводной ссылки.
+
+                ```{#lst-missing .r lst-cap="Листинг 44 в подписи"}
+                x <- 2
+                ```
+
+                Текст `рисунок 80` и значение $x=42$.
+                """);
+            var objects = Run(root, project);
+            Assert.Equal(0, objects.Code);
+            Assert.Equal(objects.Output, File.ReadAllText(summary));
+            Assert.Contains("найдено «Таблица 3»", objects.Output);
+            Assert.Contains("рисунке 2.1", objects.Output);
+            Assert.Contains("листинге 5", objects.Output);
+            Assert.Contains("формуле (4)", objects.Output);
+            Assert.Contains("формулой eq-missing", objects.Output);
+            Assert.Contains("листингом lst-missing", objects.Output);
+            Assert.DoesNotContain("формулой eq-good", objects.Output);
+            Assert.DoesNotContain("листингом lst-good", objects.Output);
+            Assert.DoesNotContain("рисунок 80", objects.Output);
+            Assert.DoesNotContain("Рисунок 88", objects.Output);
+            Assert.DoesNotContain("Таблица 77", objects.Output);
+
+            File.WriteAllText(input, """
+                # Объекты
+
+                Зависимость представлена формулой [-@eq-missing].
+
+                $$
+                y=2
+                $$ {#eq-missing}
+
+                Алгоритм приведён в листинге [-@lst-missing].
+
+                ```{#lst-missing .r lst-cap="Код"}
+                x <- 2
+                ```
+                """);
+            var fixedObjects = Run(root, project);
+            Assert.Equal(0, fixedObjects.Code);
+            Assert.Equal(fixedObjects.Output, File.ReadAllText(summary));
+            Assert.DoesNotContain("Рекомендация:", fixedObjects.Output + File.ReadAllText(full));
+            Assert.Contains("не обнаружено", fixedObjects.Output);
             File.WriteAllText(Path.Combine(extension, "_extension.yml"), "title: Fixture\ncontributes:\n  formats:\n    docx: default\n");
 
             // The old warning and an obsolete failed Word report must disappear.
