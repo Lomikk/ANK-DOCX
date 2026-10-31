@@ -1,6 +1,7 @@
 local chapter, has_text, previous = nil, false, nil
 local function recommend(message)
-  io.stderr:write('Рекомендация: '..message..'\n')
+  -- Separate diagnostics from subsequent Quarto/Word output in the short log.
+  io.stderr:write('Рекомендация: '..message..'\n\n')
 end
 local function meaningful(block)
   return pandoc.utils.stringify(block):match('%S') ~= nil

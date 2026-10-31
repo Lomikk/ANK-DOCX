@@ -112,6 +112,26 @@ public sealed class BuildOutputTests
             Assert.Equal(fixedAdvice.Output, File.ReadAllText(summary));
             Assert.DoesNotContain("Рекомендация:", fixedAdvice.Output + File.ReadAllText(full));
             Assert.Contains("не обнаружено", fixedAdvice.Output);
+
+            File.WriteAllText(Path.Combine(project, "chapters", "_included.qmd"), """
+                # Подключённый раздел
+
+                ## Подраздел
+
+                Без упоминания таблицы.
+
+                | A | B |
+                |---|---|
+                | 1 | 2 |
+
+                : Данные {#tbl-included}
+                """);
+            File.WriteAllText(input, "{{< include _included.qmd >}}\n");
+            var includedAdvice = Run(root, project);
+            Assert.Equal(0, includedAdvice.Code);
+            Assert.Equal(includedAdvice.Output, File.ReadAllText(summary));
+            Assert.Contains("раздел «Подключённый раздел»", includedAdvice.Output);
+            Assert.Contains("таблицей tbl-included", includedAdvice.Output);
             File.WriteAllText(Path.Combine(extension, "_extension.yml"), "title: Fixture\ncontributes:\n  formats:\n    docx: default\n");
 
             // The old warning and an obsolete failed Word report must disappear.
