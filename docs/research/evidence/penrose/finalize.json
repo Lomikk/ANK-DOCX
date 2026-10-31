@@ -1,0 +1,48 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\Workspaces\\Пример\\_output\\chapters\\main.docx",
+  "passed": true,
+  "schema_errors_before_word": 1872,
+  "validation": {
+    "file": ".academic-f7b1e71b20ee4ddcab9c8bb9022aae40.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 19,
+  "annotation": {
+    "figures": 5,
+    "tables": 3,
+    "sources": 3,
+    "appendices": 2
+  },
+  "front_matter": {
+    "title_end": 1,
+    "assignment_first_end": 2,
+    "assignment_end": 3,
+    "annotation_start": 4,
+    "body_boundary": 5
+  },
+  "page_layout": {
+    "standard": "susu-04-2008",
+    "first_stamped_page": 4,
+    "stamp_total_pages": 19
+  },
+  "split_tables": [
+    {
+      "name": "tbl_long_results",
+      "table_indices": [
+        4,
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 18324,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

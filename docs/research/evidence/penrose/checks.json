@@ -1,0 +1,20 @@
+{
+  "service": "0.4.4",
+  "extension": "0.4.3",
+  "node": "24.22.2",
+  "roger": "3.3.1",
+  "canvas": "3.2.3",
+  "jsdom": "22.1.0",
+  "npm_clean_install_packages": 173,
+  "cli_source_commit": "78075df",
+  "archive": "academic-docx-0.4.4-win-x64.zip",
+  "bytes": 38944911,
+  "sha256": "3E33BBB3282DA1F355F08F7733A872459B1146065CCFD6F9A0D675A86A1BBEB7",
+  "docx_pages": 19,
+  "docx_schema_errors": 0,
+  "figures": 5,
+  "diagram_page": 11,
+  "svg_text_elements": 0,
+  "svg_path_elements": 6,
+  "seed_repeatable": true
+}

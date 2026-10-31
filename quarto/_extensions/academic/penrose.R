@@ -19,14 +19,18 @@ if (length(trios)) {
     trio <- normalizePath(trio, winslash = "/", mustWork = TRUE)
     log <- system2(node, c(shQuote(cli), "trio", "--trio", shQuote(trio), "--out", shQuote(temporary)),
                    stdout = TRUE, stderr = TRUE, timeout = 120)
-    if (!is.null(attr(log, "status")) || !file.exists(temporary) || file.info(temporary)$size == 0)
-      stop("Penrose rendering failed for ", relative, ":\n", paste(log, collapse = "\n"))
+    if (!is.null(attr(log, "status")) || !file.exists(temporary) || file.info(temporary)$size == 0) {
+      cat(paste(log, collapse = "\n"), "\n", file = stderr())
+      stop("Penrose rendering failed for ", relative)
+    }
     # Word ignores Penrose's CSS font shorthand. Cairo's SVG output outlines
     # the glyphs while keeping the entire diagram vector, without our own parser.
     converted <- system2(converter, c("--format", "svg", "--output", shQuote(compatible), shQuote(temporary)),
                          stdout = TRUE, stderr = TRUE, timeout = 120)
-    if (!is.null(attr(converted, "status")) || !file.exists(compatible) || file.info(compatible)$size == 0)
-      stop("Penrose SVG normalization failed:\n", paste(converted, collapse = "\n"))
+    if (!is.null(attr(converted, "status")) || !file.exists(compatible) || file.info(compatible)$size == 0) {
+      cat(paste(converted, collapse = "\n"), "\n", file = stderr())
+      stop("Penrose SVG normalization failed for ", relative)
+    }
     if (!file.copy(compatible, output, overwrite = TRUE)) stop("Cannot save Penrose SVG: ", output)
     message("Penrose SVG: ", output)
   }
