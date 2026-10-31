@@ -1,0 +1,34 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\.tools\\setup-acceptance\\Чистый клон\\Workspaces\\Реферат\\_output\\chapters\\main.docx",
+  "passed": true,
+  "schema_errors_before_word": 80,
+  "validation": {
+    "file": ".academic-19042ce0f1fb46e393910baa7b3eafb3.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 6,
+  "annotation": {
+    "figures": 1,
+    "tables": 1,
+    "sources": 1,
+    "appendices": 0
+  },
+  "front_matter": {
+    "title_end": 1,
+    "assignment_first_end": null,
+    "assignment_end": null,
+    "annotation_start": 2,
+    "body_boundary": 3
+  },
+  "page_layout": null,
+  "split_tables": [],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 14216,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

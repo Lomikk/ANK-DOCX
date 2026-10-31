@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="ad258f44-2d3f-453c-a512-9f0217eb75ca" name="2yash@DESKTOP-H9F324S 2026-10-31 19:49:20" runUser="DESKTOP-H9F324S\2yash" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-10-31T19:49:20.4079264+05:00" queuing="2026-10-31T19:49:20.4079265+05:00" start="2026-10-31T19:49:18.3811103+05:00" finish="2026-10-31T19:49:22.3009782+05:00" />
+  <TestSettings name="default" id="75423534-9b07-4841-9943-060ee7c9a936">
+    <Deployment runDeploymentRoot="2yash_DESKTOP-H9F324S_2026-10-31_19_49_20" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="b80105c2-39fb-4bee-9f0d-ca041fd454ff" testId="d8b8806f-93a0-09b6-3b9f-c3e2debeaba4" testName="AcademicDocx.Tests.BootstrapTests.QuartoAliasPreservesLiteralUnicodeAndShellCharactersInTheTarget" computerName="DESKTOP-H9F324S" duration="00:00:00.2340906" startTime="2026-10-31T19:49:22.0201876+05:00" endTime="2026-10-31T19:49:22.2531043+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b80105c2-39fb-4bee-9f0d-ca041fd454ff" />
+    <UnitTestResult executionId="22c150df-2a43-4499-8aa6-4dffc53e7f2c" testId="586ddb93-eee7-ffc2-a349-1cbfe2e4576a" testName="AcademicDocx.Tests.LocalToolchainTests.ManagedProcessUsesLocalToolsAndCacheWithoutChangingTheParent" computerName="DESKTOP-H9F324S" duration="00:00:00.1762286" startTime="2026-10-31T19:49:19.1699795+05:00" endTime="2026-10-31T19:49:19.3519431+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="22c150df-2a43-4499-8aa6-4dffc53e7f2c" />
+    <UnitTestResult executionId="a55e8d95-5bea-490d-8df2-c8f601990ff8" testId="5b911af2-9fb0-6d3c-6ea8-7b0e1491e759" testName="AcademicDocx.Tests.BootstrapTests.BootstrapRequiresThePinnedArchiveAndNoSystemDotnet(corrupt: True)" computerName="DESKTOP-H9F324S" duration="00:00:00.2716293" startTime="2026-10-31T19:49:19.1699145+05:00" endTime="2026-10-31T19:49:19.4443117+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a55e8d95-5bea-490d-8df2-c8f601990ff8" />
+    <UnitTestResult executionId="a4193457-935a-44df-8650-dfe53eda43ef" testId="9c23791b-1b83-090b-bf8a-1ba73081ba65" testName="AcademicDocx.Tests.BootstrapTests.BootstrapRequiresThePinnedArchiveAndNoSystemDotnet(corrupt: False)" computerName="DESKTOP-H9F324S" duration="00:00:02.5742890" startTime="2026-10-31T19:49:19.4446720+05:00" endTime="2026-10-31T19:49:22.0188491+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a4193457-935a-44df-8650-dfe53eda43ef" />
+    <UnitTestResult executionId="79360912-3d73-4e62-89f8-625567aa7df1" testId="c90f231f-9e8a-4f7d-f520-ee4e544cb158" testName="AcademicDocx.Tests.CliTests.PublishedApplicationRunsWithoutDotnetRootOrPath" computerName="DESKTOP-H9F324S" duration="00:00:00.1877728" startTime="2026-10-31T19:49:19.1680295+05:00" endTime="2026-10-31T19:49:19.3666046+05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="79360912-3d73-4e62-89f8-625567aa7df1" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="AcademicDocx.Tests.CliTests.PublishedApplicationRunsWithoutDotnetRootOrPath" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="c90f231f-9e8a-4f7d-f520-ee4e544cb158">
+      <Execution id="79360912-3d73-4e62-89f8-625567aa7df1" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.CliTests" name="PublishedApplicationRunsWithoutDotnetRootOrPath" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.LocalToolchainTests.ManagedProcessUsesLocalToolsAndCacheWithoutChangingTheParent" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="586ddb93-eee7-ffc2-a349-1cbfe2e4576a">
+      <Execution id="22c150df-2a43-4499-8aa6-4dffc53e7f2c" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.LocalToolchainTests" name="ManagedProcessUsesLocalToolsAndCacheWithoutChangingTheParent" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.BootstrapTests.BootstrapRequiresThePinnedArchiveAndNoSystemDotnet(corrupt: True)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="5b911af2-9fb0-6d3c-6ea8-7b0e1491e759">
+      <Execution id="a55e8d95-5bea-490d-8df2-c8f601990ff8" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.BootstrapTests" name="BootstrapRequiresThePinnedArchiveAndNoSystemDotnet" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.BootstrapTests.QuartoAliasPreservesLiteralUnicodeAndShellCharactersInTheTarget" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="d8b8806f-93a0-09b6-3b9f-c3e2debeaba4">
+      <Execution id="b80105c2-39fb-4bee-9f0d-ca041fd454ff" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.BootstrapTests" name="QuartoAliasPreservesLiteralUnicodeAndShellCharactersInTheTarget" />
+    </UnitTest>
+    <UnitTest name="AcademicDocx.Tests.BootstrapTests.BootstrapRequiresThePinnedArchiveAndNoSystemDotnet(corrupt: False)" storage="d:\repos\ank docx\tools\academicdocx.tests\bin\release\net10.0\academicdocx.tests.dll" id="9c23791b-1b83-090b-bf8a-1ba73081ba65">
+      <Execution id="a4193457-935a-44df-8650-dfe53eda43ef" />
+      <TestMethod codeBase="D:\Repos\ANK DOCX\tools\AcademicDocx.Tests\bin\Release\net10.0\AcademicDocx.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="AcademicDocx.Tests.BootstrapTests" name="BootstrapRequiresThePinnedArchiveAndNoSystemDotnet" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="d8b8806f-93a0-09b6-3b9f-c3e2debeaba4" executionId="b80105c2-39fb-4bee-9f0d-ca041fd454ff" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="586ddb93-eee7-ffc2-a349-1cbfe2e4576a" executionId="22c150df-2a43-4499-8aa6-4dffc53e7f2c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5b911af2-9fb0-6d3c-6ea8-7b0e1491e759" executionId="a55e8d95-5bea-490d-8df2-c8f601990ff8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9c23791b-1b83-090b-bf8a-1ba73081ba65" executionId="a4193457-935a-44df-8650-dfe53eda43ef" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c90f231f-9e8a-4f7d-f520-ee4e544cb158" executionId="79360912-3d73-4e62-89f8-625567aa7df1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Список результатов" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Все загруженные результаты" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="5" executed="5" passed="5" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.12)&#xD;
+[xUnit.net 00:00:00.10]   Discovering: AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.16]   Discovered:  AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:00.19]   Starting:    AcademicDocx.Tests&#xD;
+[xUnit.net 00:00:03.30]   Finished:    AcademicDocx.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

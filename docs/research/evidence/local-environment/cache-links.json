@@ -1,0 +1,20 @@
+[
+  {
+    "project": "Пример",
+    "junction_count": 84,
+    "jsonlite_target": "D:\\Repos\\ANK DOCX\\.tools\\setup-acceptance\\Чистый клон\\.tools\\renv\\cache\\v5\\windows\\R-4.6\\x86_64-w64-mingw32\\jsonlite\\2.0.0\\b0776f526d36d8bd4a3344a88fe165c4\\jsonlite",
+    "all_targets_local": true
+  },
+  {
+    "project": "Курсовая",
+    "junction_count": 84,
+    "jsonlite_target": "D:\\Repos\\ANK DOCX\\.tools\\setup-acceptance\\Чистый клон\\.tools\\renv\\cache\\v5\\windows\\R-4.6\\x86_64-w64-mingw32\\jsonlite\\2.0.0\\b0776f526d36d8bd4a3344a88fe165c4\\jsonlite",
+    "all_targets_local": true
+  },
+  {
+    "project": "Реферат",
+    "junction_count": 84,
+    "jsonlite_target": "D:\\Repos\\ANK DOCX\\.tools\\setup-acceptance\\Чистый клон\\.tools\\renv\\cache\\v5\\windows\\R-4.6\\x86_64-w64-mingw32\\jsonlite\\2.0.0\\b0776f526d36d8bd4a3344a88fe165c4\\jsonlite",
+    "all_targets_local": true
+  }
+]

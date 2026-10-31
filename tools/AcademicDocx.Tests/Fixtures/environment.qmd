@@ -1,0 +1,35 @@
+```{r}
+#| label: setup
+#| include: false
+source('tools/academic.R')
+values <- 1:5
+```
+
+# Введение {.unnumbered #sec-introduction}
+
+Учебная проверка локального окружения. Сумма исходных значений равна `r sum(values)`. Источник: [@knuth1984].
+
+# Расчёт {#sec-calculation}
+
+В таблице [-@tbl-probe] приведены квадраты значений, на рисунке [-@fig-probe] показана зависимость.
+
+```{r}
+#| label: tbl-probe
+#| tbl-cap: Значения и квадраты
+ank_style_table(flextable::flextable(data.frame(x = values, y = values^2)))
+```
+
+```{r}
+#| label: fig-probe
+#| fig-cap: Зависимость квадрата от аргумента
+ggplot2::ggplot(data.frame(x = values, y = values^2), ggplot2::aes(x, y)) + ggplot2::geom_line()
+```
+
+# Заключение {.unnumbered #sec-conclusion}
+
+Расчёт, таблица и график сформированы автоматически средствами локальной среды.
+
+# Список литературы {.unnumbered #sec-references}
+
+::: {#refs}
+:::

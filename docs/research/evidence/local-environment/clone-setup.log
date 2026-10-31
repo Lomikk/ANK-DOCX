@@ -1,0 +1,707 @@
+Downloading R-4.6.1-win.exe
+Rscript (R) version 4.6.1 (2026-06-24)
+Downloading quarto-1.10.19-win.zip
+1.10.19
+Downloading rsvg-convert-static-1.0.0.zip
+rsvg-convert version 2.60.0
+    Found 1 extension.
+
+The following changes will be made:
+Academic DOCX   [Install]   0.4.2 (format)
+
+[2K[G
+[>] Copying
+[2K[G
+[>] Extension installation complete
+# Bootstrapping renv 1.3.1 ---------------------------------------------------
+- Downloading renv ... OK
+- Installing renv  ... OK
+
+- One or more packages recorded in the lockfile are not installed.
+- Use `renv::status()` for more details.
+The following package(s) will be updated:
+
+# CRAN -----------------------------------------------------------------------
+- askpass             [* -> 1.2.1]
+- base64enc           [* -> 0.1-6]
+- bslib               [* -> 0.12.0]
+- cachem              [* -> 1.1.0]
+- classInt            [* -> 0.4-11]
+- cli                 [* -> 3.6.6]
+- cpp11               [* -> 0.5.5]
+- curl                [* -> 8.1.0]
+- data.table          [* -> 1.18.6.1]
+- DBI                 [* -> 1.3.0]
+- digest              [* -> 0.6.39]
+- dplyr               [* -> 1.2.1]
+- e1071               [* -> 1.7-17]
+- equatags            [* -> 0.2.2]
+- evaluate            [* -> 1.0.5]
+- farver              [* -> 2.1.2]
+- fastmap             [* -> 1.2.0]
+- flextable           [* -> 0.10.3]
+- fontawesome         [* -> 0.5.3]
+- fontBitstreamVera   [* -> 0.1.1]
+- fontLiberation      [* -> 0.1.0]
+- fontquiver          [* -> 0.2.1]
+- fs                  [* -> 2.1.0]
+- gdtools             [* -> 0.5.2]
+- generics            [* -> 0.1.4]
+- ggpattern           [* -> 1.3.1]
+- ggplot2             [* -> 4.0.3]
+- glue                [* -> 1.8.1]
+- gridpattern         [* -> 1.5.1]
+- gtable              [* -> 0.3.6]
+- highr               [* -> 0.12]
+- htmltools           [* -> 0.5.9]
+- isoband             [* -> 0.3.0]
+- jquerylib           [* -> 0.1.4]
+- jsonlite            [* -> 2.0.0]
+- katex               [* -> 1.5.0]
+- knitr               [* -> 1.52]
+- labeling            [* -> 0.4.3]
+- lifecycle           [* -> 1.0.5]
+- magrittr            [* -> 2.0.5]
+- memoise             [* -> 2.0.1]
+- mime                [* -> 0.13]
+- officer             [* -> 0.7.7]
+- openssl             [* -> 2.4.2]
+- pillar              [* -> 1.11.1]
+- pkgconfig           [* -> 2.0.3]
+- png                 [* -> 0.1-9]
+- proxy               [* -> 0.4-29]
+- purrr               [* -> 1.2.2]
+- R6                  [* -> 2.6.1]
+- ragg                [* -> 1.5.2]
+- rappdirs            [* -> 0.3.4]
+- RColorBrewer        [* -> 1.1-3]
+- Rcpp                [* -> 1.1.2]
+- rlang               [* -> 1.3.0]
+- rmarkdown           [* -> 2.32]
+- s2                  [* -> 1.1.13]
+- S7                  [* -> 0.2.2]
+- sass                [* -> 0.4.10]
+- scales              [* -> 1.4.0]
+- sf                  [* -> 1.1-3]
+- stringi             [* -> 1.8.9]
+- stringr             [* -> 1.6.0]
+- svglite             [* -> 2.2.2]
+- sys                 [* -> 3.4.3]
+- systemfonts         [* -> 1.3.2]
+- textshaping         [* -> 1.0.5]
+- tibble              [* -> 3.3.1]
+- tidyr               [* -> 1.3.2]
+- tidyselect          [* -> 1.2.1]
+- tinytex             [* -> 0.61]
+- units               [* -> 1.0-1]
+- utf8                [* -> 1.2.6]
+- uuid                [* -> 1.2-2]
+- V8                  [* -> 8.2.1]
+- vctrs               [* -> 0.7.3]
+- viridisLite         [* -> 0.4.3]
+- withr               [* -> 3.0.3]
+- wk                  [* -> 0.9.5]
+- xfun                [* -> 0.62]
+- xml2                [* -> 1.6.0]
+- xslt                [* -> 1.5.1]
+- yaml                [* -> 2.3.12]
+- zip                 [* -> 3.0.2]
+
+- Querying repositories for available source packages ... Done!
+# Downloading packages -------------------------------------------------------
+[?25l
+  (0/84) Downloading: xslt, gtable, xfun, bslib, ...                            
+                                                                                
+[32m✔[0m pkgconfig 2.0.3                          [23 kB in 0.45s]
+
+  (1/84) Downloading: xslt, gtable, xfun, bslib, ...                            
+                                                                                
+[32m✔[0m highr 0.12                               [45 kB in 0.5s]
+
+  (2/84) Downloading: xslt, gtable, xfun, bslib, ...                            
+                                                                                
+[32m✔[0m RColorBrewer 1.1-3                       [55 kB in 0.54s]
+
+  (3/84) Downloading: xslt, gtable, xfun, bslib, ...                            
+                                                                                
+[32m✔[0m generics 0.1.4                           [86 kB in 0.55s]
+
+  (4/84) Downloading: xslt, gtable, xfun, bslib, ...                            
+                                                                                
+[32m✔[0m uuid 1.2-2                               [54 kB in 0.21s]
+
+  (5/84) Downloading: xslt, gtable, xfun, bslib, ...                            
+                                                                                
+[32m✔[0m proxy 0.4-29                             [178 kB in 0.8s]
+
+  (6/84) Downloading: xslt, gtable, xfun, bslib, ...                            
+                                                                                
+[32m✔[0m gtable 0.3.6                             [253 kB in 1.1s]
+
+  (7/84) Downloading: xslt, xfun, bslib, ggplot2, ...                           
+                                                                                
+[32m✔[0m lifecycle 1.0.5                          [151 kB in 0.55s]
+
+  (8/84) Downloading: xslt, xfun, bslib, ggplot2, ...                           
+                                                                                
+[32m✔[0m katex 1.5.0                              [225 kB in 1.2s]
+
+  (9/84) Downloading: xslt, xfun, bslib, ggplot2, ...                           
+                                                                                
+[32m✔[0m tibble 3.3.1                             [669 kB in 1.6s]
+
+  (10/84) Downloading: xslt, xfun, bslib, ggplot2, ...                          
+                                                                                
+[32m✔[0m tinytex 0.61                             [153 kB in 0.63s]
+
+  (11/84) Downloading: xslt, xfun, bslib, ggplot2, ...                          
+                                                                                
+[32m✔[0m stringr 1.6.0                            [353 kB in 0.94s]
+
+  (12/84) Downloading: xslt, xfun, bslib, ggplot2, ...                          
+                                                                                
+[32m✔[0m S7 0.2.2                                 [352 kB in 1.4s]
+
+  (13/84) Downloading: xslt, xfun, bslib, ggplot2, ...                          
+                                                                                
+[32m✔[0m sys 3.4.3                                [48 kB in 0.27s]
+
+  (14/84) Downloading: xslt, xfun, bslib, ggplot2, ...                          
+                                                                                
+[32m✔[0m htmltools 0.5.9                          [365 kB in 0.72s]
+
+  (15/84) Downloading: xslt, xfun, bslib, ggplot2, ...                          
+                                                                                
+[32m✔[0m yaml 2.3.12                              [126 kB in 0.67s]
+
+  (16/84) Downloading: xslt, xfun, bslib, ggplot2, ...                          
+                                                                                
+[32m✔[0m xfun 0.62                                [703 kB in 3.2s]
+
+  (17/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m jquerylib 0.1.4                          [527 kB in 1.0s]
+
+  (18/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m pillar 1.11.1                            [676 kB in 1.2s]
+
+  (19/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m farver 2.1.2                             [1.5 MB in 4.0s]
+
+  (20/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m vctrs 0.7.3                              [1.9 MB in 4.9s]
+
+  (21/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m fontquiver 0.2.1                         [2.3 MB in 3.3s]
+
+  (22/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m flextable 0.10.3                         [1.7 MB in 4.5s]
+
+  (23/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m cachem 1.1.0                             [80 kB in 0.91s]
+
+  (24/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m fontawesome 0.5.3                        [1.4 MB in 4.6s]
+
+  (25/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m mime 0.13                                [53 kB in 0.82s]
+
+  (26/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m classInt 0.4-11                          [504 kB in 1.3s]
+
+  (27/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m textshaping 1.0.5                        [1.6 MB in 5.0s]
+
+  (28/84) Downloading: xslt, bslib, ggplot2, gridpattern, ...                   
+                                                                                
+[32m✔[0m xslt 1.5.1                               [1.8 MB in 6.8s]
+
+  (29/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m tidyselect 1.2.1                         [230 kB in 0.88s]
+
+  (30/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m tidyr 1.3.2                              [1.3 MB in 2.7s]
+
+  (31/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m digest 0.6.39                            [229 kB in 0.9s]
+
+  (32/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m wk 0.9.5                                 [2.1 MB in 2.8s]
+
+  (33/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m labeling 0.4.3                           [64 kB in 0.62s]
+
+  (34/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m zip 3.0.2                                [766 kB in 2.4s]
+
+  (35/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m openssl 2.4.2                            [3.6 MB in 3.9s]
+
+  (36/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m data.table 1.18.6.1                      [3.2 MB in 8.3s]
+
+  (37/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m fontBitstreamVera 0.1.1                  [698 kB in 2.5s]
+
+  (38/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m base64enc 0.1-6                          [35 kB in 0.29s]
+
+  (39/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m fastmap 1.2.0                            [144 kB in 0.34s]
+
+  (40/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m equatags 0.2.2                           [37 kB in 0.4s]
+
+  (41/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m magrittr 2.0.5                           [231 kB in 0.44s]
+
+  (42/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m purrr 1.2.2                              [574 kB in 1.8s]
+
+  (43/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m utf8 1.2.6                               [158 kB in 0.68s]
+
+  (44/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m dplyr 1.2.1                              [1.6 MB in 2.4s]
+
+  (45/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m withr 3.0.3                              [235 kB in 0.96s]
+
+  (46/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m e1071 1.7-17                             [670 kB in 1.0s]
+
+  (47/84) Downloading: bslib, ggplot2, gridpattern, curl, ...                   
+                                                                                
+[32m✔[0m curl 8.1.0                               [3.7 MB in 9.7s]
+
+  (48/84) Downloading: bslib, ggplot2, gridpattern, fontLiberation, ...         
+                                                                                
+[32m✔[0m rappdirs 0.3.4                           [55 kB in 0.44s]
+
+  (49/84) Downloading: bslib, ggplot2, gridpattern, fontLiberation, ...         
+                                                                                
+[32m✔[0m cpp11 0.5.5                              [327 kB in 0.73s]
+
+  (50/84) Downloading: bslib, ggplot2, gridpattern, fontLiberation, ...         
+                                                                                
+[32m✔[0m askpass 1.2.1                            [75 kB in 0.48s]
+
+  (51/84) Downloading: bslib, ggplot2, gridpattern, fontLiberation, ...         
+                                                                                
+[32m✔[0m gridpattern 1.5.1                        [2.5 MB in 10s]
+
+  (52/84) Downloading: bslib, ggplot2, fontLiberation, sass, ...                
+                                                                                
+[32m✔[0m memoise 2.0.1                            [54 kB in 0.41s]
+
+  (53/84) Downloading: bslib, ggplot2, fontLiberation, sass, ...                
+                                                                                
+[32m✔[0m png 0.1-9                                [198 kB in 0.5s]
+
+  (54/84) Downloading: bslib, ggplot2, fontLiberation, sass, ...                
+                                                                                
+[32m✔[0m evaluate 1.0.5                           [106 kB in 0.66s]
+
+  (55/84) Downloading: bslib, ggplot2, fontLiberation, sass, ...                
+                                                                                
+[32m✔[0m fontLiberation 0.1.0                     [4.5 MB in 10s]
+
+  (56/84) Downloading: bslib, ggplot2, sass, ggpattern, ...                     
+                                                                                
+[32m✔[0m sass 0.4.10                              [2.6 MB in 9.9s]
+
+  (57/84) Downloading: bslib, ggplot2, ggpattern, stringi, ...                  
+                                                                                
+[32m✔[0m scales 1.4.0                             [882 kB in 3.3s]
+
+  (58/84) Downloading: bslib, ggplot2, ggpattern, stringi, ...                  
+                                                                                
+[32m✔[0m cli 3.6.6                                [1.4 MB in 4.3s]
+
+  (59/84) Downloading: bslib, ggplot2, ggpattern, stringi, ...                  
+                                                                                
+[32m✔[0m gdtools 0.5.2                            [3.7 MB in 5.3s]
+
+  (60/84) Downloading: bslib, ggplot2, ggpattern, stringi, ...                  
+                                                                                
+[32m✔[0m officer 0.7.7                            [2.5 MB in 4.5s]
+
+  (61/84) Downloading: bslib, ggplot2, ggpattern, stringi, ...                  
+                                                                                
+[32m✔[0m glue 1.8.1                               [192 kB in 0.42s]
+
+  (62/84) Downloading: bslib, ggplot2, ggpattern, stringi, ...                  
+                                                                                
+[32m✔[0m knitr 1.52                               [1.1 MB in 3.9s]
+
+  (63/84) Downloading: bslib, ggplot2, ggpattern, stringi, ...                  
+                                                                                
+[32m✔[0m DBI 1.3.0                                [967 kB in 2.3s]
+
+  (64/84) Downloading: bslib, ggplot2, ggpattern, stringi, ...                  
+                                                                                
+[32m✔[0m bslib 0.12.0                             [6.5 MB in 16s]
+
+  (65/84) Downloading: ggplot2, ggpattern, stringi, sf, ...                     
+                                                                                
+[32m✔[0m viridisLite 0.4.3                        [1.3 MB in 5.5s]
+
+  (66/84) Downloading: ggplot2, ggpattern, stringi, sf, ...                     
+                                                                                
+[32m✔[0m ggpattern 1.3.1                          [3.2 MB in 11s]
+
+  (67/84) Downloading: ggplot2, stringi, sf, rmarkdown, ...                     
+                                                                                
+[32m✔[0m R6 2.6.1                                 [90 kB in 0.47s]
+
+  (68/84) Downloading: ggplot2, stringi, sf, rmarkdown, ...                     
+                                                                                
+[32m✔[0m xml2 1.6.0                               [1.6 MB in 2.5s]
+
+  (69/84) Downloading: ggplot2, stringi, sf, rmarkdown, ...                     
+                                                                                
+[32m✔[0m svglite 2.2.2                            [732 kB in 2.8s]
+
+  (70/84) Downloading: ggplot2, stringi, sf, rmarkdown, ...                     
+                                                                                
+[32m✔[0m rlang 1.3.0                              [1.7 MB in 5.7s]
+
+  (71/84) Downloading: ggplot2, stringi, sf, rmarkdown, ...                     
+                                                                                
+[32m✔[0m rmarkdown 2.32                           [2.7 MB in 8.3s]
+
+  (72/84) Downloading: ggplot2, stringi, sf, ragg, ...                          
+                                                                                
+[32m✔[0m fs 2.1.0                                 [429 kB in 1.5s]
+
+  (73/84) Downloading: ggplot2, stringi, sf, ragg, ...                          
+                                                                                
+[32m✔[0m jsonlite 2.0.0                           [1.1 MB in 1.9s]
+
+  (74/84) Downloading: ggplot2, stringi, sf, ragg, ...                          
+                                                                                
+[32m✔[0m isoband 0.3.0                            [2.0 MB in 6.3s]
+
+  (75/84) Downloading: ggplot2, stringi, sf, ragg, ...                          
+                                                                                
+[32m✔[0m units 1.0-1                              [932 kB in 2.2s]
+
+  (76/84) Downloading: ggplot2, stringi, sf, ragg, ...                          
+                                                                                
+[32m✔[0m ragg 1.5.2                               [3.4 MB in 10s]
+
+  (77/84) Downloading: ggplot2, stringi, sf, V8, ...                            
+                                                                                
+[32m✔[0m Rcpp 1.1.2                               [3.0 MB in 8.1s]
+
+  (78/84) Downloading: ggplot2, stringi, sf, V8, ...                            
+                                                                                
+[32m✔[0m ggplot2 4.0.3                            [8.5 MB in 20s]
+
+  (79/84) Downloading: stringi, sf, V8, s2, ...                                 
+                                                                                
+[32m✔[0m s2 1.1.13                                [4.6 MB in 8.6s]
+
+  (80/84) Downloading: stringi, sf, V8, systemfonts                             
+                                                                                
+[32m✔[0m systemfonts 1.3.2                        [2.2 MB in 5.4s]
+
+  (81/84) Downloading: stringi, sf, V8                                          
+                                                                                
+[32m✔[0m V8 8.2.1                                 [13.0 MB in 14s]
+
+  (82/84) Downloading: stringi, sf                                              
+                                                                                
+[32m✔[0m stringi 1.8.9                            [15.0 MB in 20s]
+
+  (83/84) Downloading: sf                                                       
+                                                                                
+[32m✔[0m sf 1.1-3                                 [51.3 MB in 26s]
+
+                                                                                
+Successfully downloaded 84 packages in 33 seconds.
+
+# Installing packages --------------------------------------------------------
+
+                                                                                
+[32m✔[0m base64enc 0.1-6                          [installed binary]
+
+                                                                                
+[32m✔[0m cli 3.6.6                                [installed binary]
+
+                                                                                
+[32m✔[0m cpp11 0.5.5                              [installed binary]
+
+                                                                                
+[32m✔[0m curl 8.1.0                               [installed binary]
+
+                                                                                
+[32m✔[0m data.table 1.18.6.1                      [installed binary]
+
+                                                                                
+[32m✔[0m DBI 1.3.0                                [installed binary]
+
+                                                                                
+[32m✔[0m digest 0.6.39                            [installed binary]
+
+                                                                                
+[32m✔[0m evaluate 1.0.5                           [installed binary]
+
+                                                                                
+[32m✔[0m farver 2.1.2                             [installed binary]
+
+                                                                                
+[32m✔[0m fastmap 1.2.0                            [installed binary]
+
+                                                                                
+[32m✔[0m fontBitstreamVera 0.1.1                  [installed binary]
+
+                                                                                
+[32m✔[0m fontLiberation 0.1.0                     [installed binary]
+
+                                                                                
+[32m✔[0m fs 2.1.0                                 [installed binary]
+
+                                                                                
+[32m✔[0m generics 0.1.4                           [installed binary]
+
+                                                                                
+[32m✔[0m glue 1.8.1                               [installed binary]
+
+                                                                                
+[32m✔[0m jsonlite 2.0.0                           [installed binary]
+
+                                                                                
+[32m✔[0m labeling 0.4.3                           [installed binary]
+
+                                                                                
+[32m✔[0m magrittr 2.0.5                           [installed binary]
+
+                                                                                
+[32m✔[0m mime 0.13                                [installed binary]
+
+                                                                                
+[32m✔[0m pkgconfig 2.0.3                          [installed binary]
+
+                                                                                
+[32m✔[0m png 0.1-9                                [installed binary]
+
+                                                                                
+[32m✔[0m proxy 0.4-29                             [installed binary]
+
+                                                                                
+[32m✔[0m R6 2.6.1                                 [installed binary]
+
+                                                                                
+[32m✔[0m rappdirs 0.3.4                           [installed binary]
+
+                                                                                
+[32m✔[0m RColorBrewer 1.1-3                       [installed binary]
+
+                                                                                
+[32m✔[0m Rcpp 1.1.2                               [installed binary in 1.3s]
+
+                                                                                
+[32m✔[0m rlang 1.3.0                              [installed binary]
+
+                                                                                
+[32m✔[0m S7 0.2.2                                 [installed binary]
+
+                                                                                
+[32m✔[0m stringi 1.8.9                            [installed binary]
+
+                                                                                
+[32m✔[0m sys 3.4.3                                [installed binary]
+
+                                                                                
+[32m✔[0m utf8 1.2.6                               [installed binary]
+
+                                                                                
+[32m✔[0m uuid 1.2-2                               [installed binary]
+
+                                                                                
+[32m✔[0m viridisLite 0.4.3                        [installed binary]
+
+                                                                                
+[32m✔[0m withr 3.0.3                              [installed binary]
+
+                                                                                
+[32m✔[0m wk 0.9.5                                 [installed binary]
+
+                                                                                
+[32m✔[0m xfun 0.62                                [installed binary]
+
+                                                                                
+[32m✔[0m yaml 2.3.12                              [installed binary]
+
+                                                                                
+[32m✔[0m zip 3.0.2                                [installed binary]
+
+                                                                                
+[32m✔[0m fontquiver 0.2.1                         [installed binary]
+
+                                                                                
+[32m✔[0m e1071 1.7-17                             [installed binary]
+
+                                                                                
+[32m✔[0m units 1.0-1                              [installed binary]
+
+                                                                                
+[32m✔[0m V8 8.2.1                                 [installed binary]
+
+                                                                                
+[32m✔[0m cachem 1.1.0                             [installed binary]
+
+                                                                                
+[32m✔[0m htmltools 0.5.9                          [installed binary]
+
+                                                                                
+[32m✔[0m isoband 0.3.0                            [installed binary]
+
+                                                                                
+[32m✔[0m lifecycle 1.0.5                          [installed binary]
+
+                                                                                
+[32m✔[0m xml2 1.6.0                               [installed binary]
+
+                                                                                
+[32m✔[0m askpass 1.2.1                            [installed binary]
+
+                                                                                
+[32m✔[0m s2 1.1.13                                [installed binary]
+
+                                                                                
+[32m✔[0m highr 0.12                               [installed binary]
+
+                                                                                
+[32m✔[0m tinytex 0.61                             [installed binary]
+
+                                                                                
+[32m✔[0m classInt 0.4-11                          [installed binary]
+
+                                                                                
+[32m✔[0m katex 1.5.0                              [installed binary]
+
+                                                                                
+[32m✔[0m memoise 2.0.1                            [installed binary]
+
+                                                                                
+[32m✔[0m fontawesome 0.5.3                        [installed binary]
+
+                                                                                
+[32m✔[0m jquerylib 0.1.4                          [installed binary]
+
+                                                                                
+[32m✔[0m sass 0.4.10                              [installed binary]
+
+                                                                                
+[32m✔[0m gtable 0.3.6                             [installed binary]
+
+                                                                                
+[32m✔[0m scales 1.4.0                             [installed binary]
+
+                                                                                
+[32m✔[0m systemfonts 1.3.2                        [installed binary]
+
+                                                                                
+[32m✔[0m vctrs 0.7.3                              [installed binary]
+
+                                                                                
+[32m✔[0m xslt 1.5.1                               [installed binary]
+
+                                                                                
+[32m✔[0m openssl 2.4.2                            [installed binary]
+
+                                                                                
+[32m✔[0m knitr 1.52                               [installed binary]
+
+                                                                                
+[32m✔[0m sf 1.1-3                                 [installed binary in 0.84s]
+
+                                                                                
+[32m✔[0m bslib 0.12.0                             [installed binary in 1.9s]
+
+                                                                                
+[32m✔[0m gdtools 0.5.2                            [installed binary]
+
+                                                                                
+[32m✔[0m textshaping 1.0.5                        [installed binary]
+
+                                                                                
+[32m✔[0m ggplot2 4.0.3                            [installed binary]
+
+                                                                                
+[32m✔[0m pillar 1.11.1                            [installed binary]
+
+                                                                                
+[32m✔[0m purrr 1.2.2                              [installed binary]
+
+                                                                                
+[32m✔[0m stringr 1.6.0                            [installed binary]
+
+                                                                                
+[32m✔[0m tidyselect 1.2.1                         [installed binary]
+
+                                                                                
+[32m✔[0m equatags 0.2.2                           [installed binary]
+
+                                                                                
+[32m✔[0m gridpattern 1.5.1                        [installed binary]
+
+                                                                                
+[32m✔[0m rmarkdown 2.32                           [installed binary in 0.63s]
+
+                                                                                
+[32m✔[0m ragg 1.5.2                               [installed binary]
+
+                                                                                
+[32m✔[0m svglite 2.2.2                            [installed binary]
+
+                                                                                
+[32m✔[0m tibble 3.3.1                             [installed binary]
+
+                                                                                
+[32m✔[0m ggpattern 1.3.1                          [installed binary]
+
+                                                                                
+[32m✔[0m dplyr 1.2.1                              [installed binary]
+
+                                                                                
+[32m✔[0m tidyr 1.3.2                              [installed binary]
+
+                                                                                
+[32m✔[0m officer 0.7.7                            [installed binary]
+
+                                                                                
+[32m✔[0m flextable 0.10.3                         [installed binary]
+Successfully installed 84 packages in 39 seconds.
+[?25hLocal dependency cache: D:\Repos\ANK DOCX\.tools\setup-acceptance\Чистый клон\.tools\renv
+Academic DOCX environment is ready.

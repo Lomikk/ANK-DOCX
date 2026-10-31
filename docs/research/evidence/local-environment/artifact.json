@@ -1,0 +1,13 @@
+{
+  "service": "0.4.3",
+  "runtime": "10.0.14",
+  "artifact": "academic-docx-0.4.3-win-x64.zip",
+  "bytes": 38942461,
+  "sha256": "AFB38CEBD6BA6D7CAB6A571992490DE3CC93ECBE660C9D247AA6A830C842F25E",
+  "binary_source_commit": "9775402",
+  "tested_without_dotnet_on_path": true,
+  "full_fresh_downloads": true,
+  "installed_r_packages": 84,
+  "document_pages": 6,
+  "document_schema_errors": 0
+}
