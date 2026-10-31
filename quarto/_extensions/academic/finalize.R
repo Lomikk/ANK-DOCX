@@ -96,6 +96,7 @@ for (output in outputs) {
     # Keep these source heading positions for the shared object-numbering pass.
   }
   bookmarks <- xml_find_all(doc, "//w:bookmarkStart", ns)
+  table_sources <- list()
   next_id <- max(c(0, as.integer(vapply(bookmarks, attr, "", name = "w:id"))), na.rm = TRUE) + 1
   for (bookmark in bookmarks) {
     name <- attr(bookmark, "w:name")
@@ -113,6 +114,7 @@ for (output in outputs) {
     appendix_heading <- xml_find_first(caption,"preceding::w:p[w:pPr/w:pStyle[@w:val='Heading1']][1]",ns)
     appendix <- if (inherits(appendix_heading,"xml_missing")) list() else
       Filter(function(a) identical(xml_path(a$p),xml_path(appendix_heading)),appendix_headings)
+    if (label == "Таблица") table_sources[[normalized]] <- list(id = name, appendix = length(appendix) > 0L)
     appendix_prefix <- if (length(appendix)) paste0(appendix[[1]]$letter,".") else ""
     sequence <- if (length(appendix)) paste0(label,"Appendix",appendix[[1]]$latin) else label
     section_numbered <- !length(appendix) && label == "Рисунок" && identical(layout$FigureNumbering, "section")
@@ -204,6 +206,18 @@ for (output in outputs) {
     }
     status <- system2(normalizePath(service), arguments)
     if (status != 0) stop("C# Word finalization failed; see ",report)
+    # Word has already split numbered tables at actual page boundaries. Reuse
+    # its report and the source IDs retained before Word bookmark normalization.
+    result <- jsonlite::fromJSON(report, simplifyVector = FALSE)
+    for (table in result$split_tables) {
+      source <- table_sources[[table$name]]
+      pages <- length(table$table_indices)
+      if (!is.null(source) && !source$appendix && pages >= 3L) {
+        ending <- if (pages %% 100L %in% 11:14) "страниц" else if (pages %% 10L == 1L) "страницу" else if (pages %% 10L %in% 2:4) "страницы" else "страниц"
+        message("Рекомендация: таблица ", source$id, " занимает ", pages,
+                " ", ending, "; рассмотрите возможность перенести её в приложение.\n")
+      }
+    }
     message("Academic DOCX finalized: ",basename(output))
   } else {
     warning("Diagnostic draft only: fields are not updated; the pre-Word package has known schema errors. Do not treat this file as a final document.")
