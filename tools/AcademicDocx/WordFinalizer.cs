@@ -147,11 +147,11 @@ internal static class WordFinalizer
             DocumentFormatting.Apply(staged);
             AppendixFormatting.Apply(staged, layout);
             report.Annotation = FrontMatterFormatting.Apply(staged);
-            if (report.Annotation is not null) DocumentPageLayout.Apply(staged, layout, templates);
+            DocumentPageLayout.Apply(staged, layout, templates);
             session = new();
             var document = session.Open(staged);
             WordAppendices.MarkContents(session, layout);
-            WordFrontMatter.Layout(session, report.Annotation);
+            WordFrontMatter.Layout(session);
             WordFields.Refresh(session);
             var parts = WordTables.Split(session);
             var tables = session.Objects.Own(document.Tables);

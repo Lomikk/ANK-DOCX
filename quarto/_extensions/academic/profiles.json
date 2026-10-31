@@ -41,6 +41,16 @@
       "forms": ["coursework-title-04", "coursework-assignment", "annotation"],
       "requires": ["institution", "supervisor", "discipline", "document", "assignment", "summary"]
     },
+    "practical-local": {
+      "label": "Практическая работа — локальный комплект",
+      "description": "Без рамок, задания и аннотации. Общий титул и оформление; состав по требованиям преподавателя, без привязки к СТО.",
+      "kind": "study",
+      "standard": "local",
+      "page-layout": "plain-after-title",
+      "toc": false,
+      "forms": ["practical-title-local"],
+      "requires": ["institution", "supervisor", "discipline"]
+    },
     "research-susu-19-2008": {
       "label": "Выпускная квалификационная НИР — СТО 19 (экспериментальный)",
       "description": "Исследовательская ВКР без рамок. Титульный лист, задание и реферат с ключевыми словами. Экспериментальный комплект.",
@@ -56,7 +66,7 @@
   "requirements": {
     "institution": [
       "title", "author", "academic.university", "academic.parent-organization",
-      "academic.university-short", "academic.school", "academic.department",
+      "academic.school", "academic.department",
       "academic.group", "academic.author-short", "academic.city", "academic.year"
     ],
     "supervisor": ["academic.supervisor", "academic.supervisor-position"],
@@ -68,7 +78,7 @@
       "academic.direction-code", "academic.direction", "academic.assignment.head-of-department",
       "academic.assignment.approval-date", "academic.assignment.due-date"
     ],
-    "summary": ["academic.summary"],
+    "summary": ["academic.summary", "academic.university-short"],
     "research": [
       "academic.udc", "academic.reviewer.name", "academic.reviewer.position",
       "academic.direction-code", "academic.direction",

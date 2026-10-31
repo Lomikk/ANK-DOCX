@@ -31,22 +31,31 @@ function Pandoc(doc)
         'Legacy and explicit forms differ: '..id)
     end
     local plain = pandoc.write(pandoc.Pandoc(explicit), 'plain')
-    assert(plain:find(profile.kind == 'research' and 'РЕФЕРАТ' or 'АННОТАЦИЯ', 1, true))
-    assert((plain:find('ЗАДАНИЕ', 1, true) ~= nil) == (profile.kind ~= 'referat'))
+    if profile.kind == 'study' then
+      assert(not plain:find('АННОТАЦИЯ', 1, true) and not plain:find('РЕФЕРАТ', 1, true))
+      assert(plain:find('ПРАКТИЧЕСКАЯ РАБОТА', 1, true))
+    else
+      assert(plain:find(profile.kind == 'research' and 'РЕФЕРАТ' or 'АННОТАЦИЯ', 1, true))
+    end
+    assert((plain:find('ЗАДАНИЕ', 1, true) ~= nil) == (profile.kind == 'coursework' or profile.kind == 'research'))
     if profile.kind == 'research' then
       assert(plain:find('004.02', 1, true) and plain:find('Исходные данные', 1, true) and plain:find('Ключевые слова', 1, true))
     end
     layout = pandoc.json.decode(pandoc.json.encode(layout))
     assert(layout.Profile == id and layout.Standard == profile.standard and layout.PageLayout == profile['page-layout'])
   end
-  for _, pair in ipairs({{'referat', 'susu-04-2008'}, {'referat-susu-17-2008', 'susu-04-2008'}, {'missing-profile', ''}}) do
+  for _, pair in ipairs({{'referat', 'susu-04-2008'}, {'referat-susu-17-2008', 'susu-04-2008'}, {'practical-local', 'susu-21-2008'}, {'missing-profile', ''}}) do
     assert(not pcall(blocks, pair[1], pair[2]), 'Unsupported combination accepted')
   end
   local summary = meta.academic.summary
+  local university_short = meta.academic['university-short']
   meta.academic.summary = nil
+  meta.academic['university-short'] = nil
+  assert(pcall(blocks, 'practical-local'))
   local ok, err = pcall(blocks, 'referat-susu-17-2008')
   assert(not ok and tostring(err):find('academic.summary', 1, true))
   meta.academic.summary = summary
+  meta.academic['university-short'] = university_short
   meta.academic.keywords = pandoc.MetaList({pandoc.MetaString('один')})
   local keywords_ok, keywords_error = pcall(blocks, 'research-susu-19-2008')
   assert(not keywords_ok and tostring(keywords_error):find('academic.keywords', 1, true))

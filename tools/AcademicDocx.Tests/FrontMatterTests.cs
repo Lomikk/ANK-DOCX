@@ -52,6 +52,34 @@ public sealed class FrontMatterTests : IDisposable
         Assert.Equal("2", saved.CustomFilePropertiesPart!.Properties!.Elements<C.CustomDocumentProperty>().Single(p => p.Name == "AcademicTables").InnerText);
     }
 
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void TitleWithoutSummaryGetsSectionsButNoStatisticsOrExtraPageBreak(bool explicitLayout)
+    {
+        var file = Path.Combine(folder, "study.docx");
+        File.Copy(Path.Combine(AppContext.BaseDirectory, "reference.docx"), file);
+        string? propertiesBefore;
+        using (var package = WordprocessingDocument.Open(file, true))
+        {
+            propertiesBefore = package.CustomFilePropertiesPart?.Properties?.OuterXml;
+            var body = package.MainDocumentPart!.Document.Body!;
+            var section = body.Elements<W.SectionProperties>().Single();
+            section.Remove(); body.RemoveAllChildren();
+            W.Paragraph P(string style) => new(new W.ParagraphProperties(new W.ParagraphStyleId { Val = style }));
+            body.Append(P("AcademicStudyTitle"), P("AcademicTitleEnd"), P("AcademicBodyStart"),
+                new W.Paragraph(new W.Run(new W.Text("Решение"))), section);
+            package.MainDocumentPart.Document.Save();
+        }
+        Assert.Null(FrontMatterFormatting.Apply(file));
+        DocumentPageLayout.Apply(file, explicitLayout ? new("local", "practical-local", "Тема", "", "", "", "", "", "", "plain-after-title") : null);
+        using var saved = WordprocessingDocument.Open(file, false);
+        Assert.Equal(2, saved.MainDocumentPart!.Document.Descendants<W.SectionProperties>().Count());
+        Assert.Empty(saved.MainDocumentPart.Document.Descendants<W.Break>());
+        Assert.Equal(propertiesBefore, saved.CustomFilePropertiesPart?.Properties?.OuterXml);
+        Assert.Empty(DocxInspection.Validate(file).Errors);
+    }
+
     [Fact]
     public void LegacyDocumentsKeepTheirSectionsAndHaveNoInventedStatistics()
     {

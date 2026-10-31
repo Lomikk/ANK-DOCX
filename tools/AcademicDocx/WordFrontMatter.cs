@@ -3,13 +3,12 @@ using Word = Microsoft.Office.Interop.Word;
 
 namespace AcademicDocx;
 
-internal sealed record FrontMatterPages(int TitleEnd, int? AssignmentFirstEnd, int? AssignmentEnd, int AnnotationStart, int BodyBoundary);
+internal sealed record FrontMatterPages(int TitleEnd, int? AssignmentFirstEnd, int? AssignmentEnd, int? AnnotationStart, int BodyBoundary);
 
 internal static class WordFrontMatter
 {
-    public static void Layout(WordSession session, AnnotationStatistics? statistics)
+    public static void Layout(WordSession session)
     {
-        if (statistics is null) return;
         var document = session.Document!;
         var scope = session.Objects;
         Word.Paragraph? title = null, signatures = null, place = null;
@@ -19,11 +18,12 @@ internal static class WordFrontMatter
             var range = scope.Own(paragraph.Range);
             if (range.get_Style() is not Word.Style styleObject) continue;
             var style = scope.Own(styleObject).NameLocal;
-            if (style is "AcademicCourseworkTitle" or "AcademicReferatTitle" or "AcademicResearchTitle") title = paragraph;
+            if (FrontMatterFormatting.IsTitleStyle(style)) title = paragraph;
             if (title is not null && (style is "AcademicSignColumns" or "AcademicRightBlock" or "AcademicRightBlockStart") && signatures is null) signatures = paragraph;
             if (style == "AcademicTitlePlace") { place = paragraph; break; }
         }
-        if (title is null || signatures is null || place is null) throw new InvalidDataException("Incomplete title form");
+        if (title is null) return; // Legacy documents without generated front matter.
+        if (signatures is null || place is null) throw new InvalidDataException("Incomplete title form");
         var setup = scope.Own(scope.Own(scope.Own(document.Sections)[1]).PageSetup);
         document.Repaginate();
         Word.Paragraph? firstSignature = null, lastSignature = null;
@@ -67,10 +67,9 @@ internal static class WordFrontMatter
 
     public static FrontMatterPages? Verify(WordSession session, AnnotationStatistics? statistics)
     {
-        if (statistics is null) return null;
         var document = session.Document!;
         var scope = session.Objects;
-        var expected = new Dictionary<string, int>
+        var expected = statistics is null ? new Dictionary<string, int>() : new Dictionary<string, int>
         {
             ["AcademicFigures"] = statistics.Figures, ["AcademicTables"] = statistics.Tables,
             ["AcademicSources"] = statistics.Sources, ["AcademicAppendices"] = statistics.Appendices
@@ -99,6 +98,7 @@ internal static class WordFrontMatter
                 pages["Annotation"] = WordTables.Page(scope, range);
             if (name == "AcademicBodyStart") break;
         }
+        if (!pages.ContainsKey("AcademicTitleEnd")) return null;
         if (pages["AcademicTitleEnd"] != 1)
             throw new InvalidDataException("Title form exceeds one page; shorten the supplied fields or revise the supported form layout");
         if (pages.TryGetValue("AcademicAssignmentPageEnd", out var firstEnd) &&
@@ -106,6 +106,6 @@ internal static class WordFrontMatter
             throw new InvalidDataException("Assignment exceeds its two-page form; revise the layout for this assignment before release");
         return new(pages["AcademicTitleEnd"], pages.GetValueOrDefault("AcademicAssignmentPageEnd") is 0 ? null : firstEnd,
             pages.GetValueOrDefault("AcademicAssignmentEnd") is 0 ? null : pages["AcademicAssignmentEnd"],
-            pages["Annotation"], pages["AcademicBodyStart"]);
+            pages.TryGetValue("Annotation", out var annotation) ? annotation : null, pages["AcademicBodyStart"]);
     }
 }

@@ -1,6 +1,6 @@
 {
   "academic_extension": {
-    "version": "0.4.3",
+    "version": "0.4.4",
     "r_lockfile": "quarto/renv.lock",
     "required_finalizer": "Microsoft Word desktop on Windows"
   },
@@ -23,7 +23,7 @@
     "npm_lockfile": "tools/Penrose/package-lock.json"
   },
   "docx_service": {
-    "version": "0.4.6",
+    "version": "0.4.7",
     "language": "C#",
     "framework": "net10.0-windows",
     "portable_core": "net10.0",

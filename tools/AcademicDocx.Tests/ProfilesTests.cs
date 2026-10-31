@@ -13,6 +13,8 @@ public sealed class ProfilesTests
         Assert.Equal("referat-susu-17-2008", catalog.Resolve("referat"));
         Assert.Equal("coursework-susu-04-2008", catalog.Resolve("coursework-susu-04-2008"));
         Assert.Equal("research-susu-19-2008", catalog.Resolve("research-susu-19-2008"));
+        Assert.Equal("practical-local", catalog.Resolve("practical-local"));
+        Assert.False(catalog.Profiles["practical-local"].Toc);
         Assert.Throws<ArgumentException>(() => catalog.Resolve("referat-susu-04-2008"));
     }
 }

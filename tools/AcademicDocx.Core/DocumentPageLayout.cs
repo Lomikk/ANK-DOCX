@@ -34,7 +34,7 @@ public static class DocumentPageLayout
         static string Style(W.Paragraph p) => p.ParagraphProperties?.ParagraphStyleId?.Val?.Value ?? "";
         foreach (var boundary in body.Elements<W.Paragraph>().Where(p => Style(p) == "AcademicAppendixBoundary").ToArray()) boundary.Remove();
         var paragraphs = body.Elements<W.Paragraph>().ToArray();
-        var title = paragraphs.FirstOrDefault(p => Style(p) is "AcademicCourseworkTitle" or "AcademicReferatTitle" or "AcademicResearchTitle");
+        var title = paragraphs.FirstOrDefault(p => FrontMatterFormatting.IsTitleStyle(Style(p)));
         if (title is null) return;
         var markers = paragraphs.Where(p => Style(p) is "AcademicTitleEnd" or "AcademicAssignmentPageEnd" or "AcademicAssignmentEnd" or "AcademicBodyStart").ToArray();
         var final = body.Elements<W.SectionProperties>().Single();
@@ -77,7 +77,7 @@ public static class DocumentPageLayout
         if (!technical)
         {
             var front = Section(); Header(front, emptyHeader, W.HeaderFooterValues.Default); AddFooter(front, emptyFooter, W.HeaderFooterValues.Default);
-            var afterTitle = options is null ? Style(title) == "AcademicReferatTitle" : options.PageLayout == "plain-after-title";
+            var afterTitle = options is null ? Style(title) is "AcademicReferatTitle" or "AcademicStudyTitle" : options.PageLayout == "plain-after-title";
             boundaries[afterTitle ? "AcademicTitleEnd" : "AcademicBodyStart"] = front;
             final.RemoveAllChildren<W.PageNumberType>();
             final.RemoveAllChildren<W.HeaderReference>(); final.RemoveAllChildren<W.TitlePage>();
@@ -127,7 +127,9 @@ public static class DocumentPageLayout
         foreach (var marker in markers)
         {
             if (boundaries.TryGetValue(Style(marker), out var section)) Set(marker.ParagraphProperties!, section);
-            else marker.Append(new W.Run(new W.RunProperties(new W.FontSize { Val = "2" }), new W.Break { Type = W.BreakValues.Page }));
+            else if (marker.PreviousSibling() is not W.Paragraph previous ||
+                !boundaries.ContainsKey(Style(previous)))
+                marker.Append(new W.Run(new W.RunProperties(new W.FontSize { Val = "2" }), new W.Break { Type = W.BreakValues.Page }));
         }
         if (options?.AppendixLayout == "research" && options.Appendices is { Count: > 0 } appendices)
         {

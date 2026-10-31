@@ -11,6 +11,9 @@ public sealed record AnnotationStatistics(int Figures, int Tables, int Sources, 
 /// <summary>Shared sheet styles and annotation statistics; page sections belong to DocumentPageLayout.</summary>
 public static class FrontMatterFormatting
 {
+    public static bool IsTitleStyle(string style) => style is
+        "AcademicCourseworkTitle" or "AcademicReferatTitle" or "AcademicResearchTitle" or "AcademicStudyTitle";
+
     private static void Set<T>(OpenXmlCompositeElement parent, T value) where T : OpenXmlElement
     {
         parent.RemoveAllChildren<T>();
@@ -28,7 +31,7 @@ public static class FrontMatterFormatting
         var styleNames = styles.Elements<W.Style>().Where(s => s.StyleId?.Value is not null)
             .ToDictionary(s => s.StyleId!.Value!, s => s.StyleName?.Val?.Value?.Replace(" ", "", StringComparison.Ordinal) ?? "", StringComparer.Ordinal);
         string NamedStyle(W.Paragraph p) => styleNames.GetValueOrDefault(Style(p), Style(p));
-        var title = paragraphs.FirstOrDefault(p => Style(p) is "AcademicCourseworkTitle" or "AcademicReferatTitle" or "AcademicResearchTitle");
+        var title = paragraphs.FirstOrDefault(p => IsTitleStyle(Style(p)));
         if (title is null) return null; // Older documents keep their original section layout.
         void Define(string id, W.JustificationValues? alignment = null,
             int before = 0, int after = 0, int left = 0, bool bold = false, bool keepNext = false)
@@ -59,6 +62,7 @@ public static class FrontMatterFormatting
         Define("AcademicCourseworkTitle", W.JustificationValues.Center, before: 35, after: 28, keepNext: true);
         Define("AcademicReferatTitle", W.JustificationValues.Center, before: 56, after: 28, keepNext: true);
         Define("AcademicResearchTitle", W.JustificationValues.Center, before: 21, after: 14, keepNext: true);
+        Define("AcademicStudyTitle", W.JustificationValues.Center, before: 35, after: 14, bold: true, keepNext: true);
         Define("AcademicWorkType", W.JustificationValues.Center, bold: true, keepNext: true);
         Define("AcademicCentered", W.JustificationValues.Center, keepNext: true);
         Define("AcademicSignColumns");
@@ -83,6 +87,14 @@ public static class FrontMatterFormatting
         var tocStyle = styles.Elements<W.Style>().FirstOrDefault(s => s.StyleId == "TOCHeading");
         if (tocStyle is not null) Set(tocStyle.StyleParagraphProperties ??= new W.StyleParagraphProperties(), new W.PageBreakBefore());
 
+        // Title formatting is independent of optional summary/statistics fields.
+        if (!paragraphs.Any(p => Style(p) == "AcademicSummaryHeading" ||
+            Style(p) == "AcademicSheetHeading" && p.InnerText.Trim() == "АННОТАЦИЯ"))
+        {
+            styles.Save();
+            main.Document.Save();
+            return null;
+        }
         var fields = body.Descendants<W.FieldCode>().Select(f => f.Text.Trim()).ToArray();
         var statistics = new AnnotationStatistics(
             fields.Count(f => f.StartsWith("SEQ Рисунок", StringComparison.Ordinal)),

@@ -12,6 +12,87 @@ namespace AcademicDocx.Tests;
 public sealed class QuartoStarterTests
 {
     [WordFact]
+    public void ShortStudyWorksHaveOptionalContentsAndNoSummaryDependency()
+    {
+        var source = TemplateSource();
+        var root = Environment.GetEnvironmentVariable("ACADEMIC_TEST_ARTIFACTS") ?? Path.GetTempPath();
+        var parent = Path.Combine(root, "ANK study " + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(parent);
+        foreach (var (profile, toc) in new[] { ("practical-local", false), ("practical-local", true), ("referat-susu-17-2008", true) })
+        {
+            var study = profile != "referat-susu-17-2008";
+            var project = Path.Combine(parent, profile + (toc ? "-toc" : "-short"));
+            Directory.CreateDirectory(project);
+            MustRun(project, "quarto", ["use", "template", source, "--no-prompt"]);
+            File.WriteAllText(Path.Combine(project, "metadata.yml"), $$"""
+                title: "Расчёт суммы квадратов"
+                author: "Иванов Иван Иванович"
+                toc: {{toc.ToString().ToLowerInvariant()}}
+                academic:
+                  profile: {{profile}}
+                  parent-organization: "Министерство науки и высшего образования Российской Федерации"
+                  university: "Южно-Уральский государственный университет"
+                  school: "Учебный институт"
+                  department: "Учебная кафедра"
+                  discipline: "Математика"
+                  group: "У-101"
+                  author-short: "И.И. Иванов"
+                  supervisor: "П.П. Петров"
+                  supervisor-position: "доцент"
+                  city: "Челябинск"
+                  year: "2026"
+                """ + (study ? "" : "\n  summary: Проверка общего оформления.\n  university-short: ЮУрГУ\n"));
+            File.WriteAllText(Path.Combine(project, "chapters", "main.qmd"), """
+                ```{r}
+                #| label: setup
+                #| include: false
+                source("tools/academic.R")
+                values <- (1:3)^2
+                ```
+
+                # Решение
+
+                Результат вычисления: `r sum(values)`.
+
+                $$s = \sum_{i=1}^{3} i^2 = 14$$ {#eq-sum}
+
+                Значение получено по формуле [-@eq-sum].
+
+                ```{r}
+                #| label: tbl-values
+                #| tbl-cap: "Квадраты чисел"
+                ank_style_table(flextable::flextable(data.frame(i = 1:3, square = values)))
+                ```
+
+                Результаты представлены в таблице [-@tbl-values].
+                """);
+            MustRun(project, "Rscript", ["--vanilla", "tools/install.R"]);
+            MustRun(project, "quarto", ["render"]);
+            var output = Path.Combine(project, "_output", "chapters", "main.docx");
+            Assert.Empty(DocxInspection.Validate(output).Errors);
+            var facts = DocxInspection.Read(output);
+            Assert.Equal(toc, facts.Fields.Any(f => f.StartsWith("TOC ", StringComparison.Ordinal)));
+            using var saved = WordprocessingDocument.Open(output, false);
+            var main = saved.MainDocumentPart!;
+            var text = main.Document.InnerText;
+            Assert.Contains("Результат вычисления: 14", text);
+            Assert.Equal(2, main.Document.Descendants<W.SectionProperties>().Count());
+            Assert.DoesNotContain("ЗАДАНИЕ", text);
+            Assert.True(facts.MathCount > 0);
+            Assert.Contains(facts.Fields, f => f.StartsWith("REF eq_sum", StringComparison.Ordinal));
+            Assert.Equal(!study, text.Contains("АННОТАЦИЯ", StringComparison.Ordinal));
+            Assert.Equal(!study, facts.Fields.Contains("DOCPROPERTY AcademicFigures"));
+            if (study) Assert.Contains("ПРАКТИЧЕСКАЯ РАБОТА", text);
+            using var report = JsonDocument.Parse(File.ReadAllText(Path.Combine(project, ".quarto", "main.docx.finalize.json")));
+            var front = report.RootElement.GetProperty("front_matter");
+            Assert.Equal(1, front.GetProperty("title_end").GetInt32());
+            if (study) Assert.Equal(JsonValueKind.Null, front.GetProperty("annotation_start").ValueKind);
+            Assert.Equal(study ? JsonValueKind.Null : JsonValueKind.Object, report.RootElement.GetProperty("annotation").ValueKind);
+            Assert.Equal(study ? toc ? 3 : 2 : 4, report.RootElement.GetProperty("pages").GetInt32());
+        }
+    }
+
+    [WordFact]
     public void IndependentProjectsUseProfilesAndFindTheServiceOnPath()
     {
         var source = TemplateSource();

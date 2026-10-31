@@ -69,6 +69,9 @@ internal static class WorkspaceCommands
         // Only the known, freshly generated Starter metadata is changed here.
         var metadata = Path.Combine(project, "metadata.yml");
         File.WriteAllText(metadata, File.ReadAllText(metadata).Replace("profile: " + catalog.Default, "profile: " + selected, StringComparison.Ordinal));
+        // A creation preset, stored as an ordinary editable Quarto option.
+        if (catalog.Profiles[selected].Toc is bool toc)
+            File.AppendAllText(metadata, "\ntoc: " + (toc ? "true" : "false") + "\n");
         Execute(root, project, r, ["--vanilla", "tools/install.R"]);
         Console.WriteLine("Создано: " + project);
         Console.WriteLine("Заполните metadata.yml и chapters/main.qmd, затем выберите «Собрать DOCX» в меню ANK-DOCX.cmd.");
