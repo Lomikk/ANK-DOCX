@@ -25,7 +25,8 @@ internal static class Program
                       check-word DOCX COPY REPORT [--expected-pages N]
                       export-pdf DOCX PDF REPORT
                       inspect-word DOCX REPORT
-                      setup REPOSITORY_ROOT
+                      setup REPOSITORY_ROOT [--development]
+                      package-service REPOSITORY_ROOT PUBLICATION_DIRECTORY
                       prepare-sto04 TEACHER_DOCX OUTPUT_DIRECTORY
                       workspace REPOSITORY_ROOT [new NAME [--profile PROFILE] | build NAME | list | profiles]
                     """);
@@ -33,6 +34,10 @@ internal static class Program
             }
             switch (args[0])
             {
+                case "package-service":
+                    if (args.Length != 3) throw new ArgumentException("package-service REPOSITORY_ROOT PUBLICATION_DIRECTORY");
+                    ServiceDistribution.Package(args[1], args[2]);
+                    return 0;
                 case "prepare-sto04":
                     if (args.Length != 3) throw new ArgumentException("prepare-sto04 TEACHER_DOCX OUTPUT_DIRECTORY");
                     TechnicalPageTemplates.Prepare(args[1], args[2]);
@@ -51,8 +56,8 @@ internal static class Program
                     return 0;
                 }
                 case "setup":
-                    if (args.Length != 2) throw new ArgumentException("setup REPOSITORY_ROOT");
-                    EnvironmentSetup.Run(args[1]);
+                    if (args.Length != 2 && !(args.Length == 3 && args[2] == "--development")) throw new ArgumentException("setup REPOSITORY_ROOT [--development]");
+                    EnvironmentSetup.Run(args[1], args.Length == 3);
                     return 0;
                 case "check-word":
                 {

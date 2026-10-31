@@ -4,18 +4,22 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using AcademicDocx.Core;
 
 namespace AcademicDocx;
 
 internal static class EnvironmentSetup
 {
-    public static void Run(string root)
+    public static void Run(string root, bool development = false)
     {
         root = Path.GetFullPath(root);
         var lockPath = Path.Combine(root, "dependencies.lock.json");
         var template = Path.Combine(root, "quarto");
         var installer = Path.Combine(template, "tools", "install.R");
         if (!File.Exists(lockPath) || !File.Exists(installer)) throw new ArgumentException("Setup root must be an Academic DOCX repository");
+        if (Type.GetTypeFromProgID("Word.Application") is null)
+            throw new InvalidOperationException("Microsoft Word desktop is required. Install Word, then run ANK-DOCX.cmd setup again.");
+        var environment = new LocalToolchain(root);
         using var dependencies = JsonDocument.Parse(File.ReadAllText(lockPath));
         var data = dependencies.RootElement;
         var rVersion = data.GetProperty("r").GetString()!;
@@ -28,17 +32,26 @@ internal static class EnvironmentSetup
         var rScript = Path.Combine(rRoot, "bin", "Rscript.exe");
         if (!File.Exists(rScript))
         {
-            var setup = Path.Combine(tools, $"R-{rVersion}-win.exe");
+            var setup = Path.Combine(tools, "downloads", $"R-{rVersion}-win.exe");
             Download($"https://cran.r-project.org/bin/windows/base/R-{rVersion}-win.exe", setup);
             Authenticode.RequireTrusted(setup);
-            Execute(setup, ["/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART", "/CURRENTUSER", "/NOICONS", "/TASKS=", "/DIR=" + rRoot], root);
+            Execute(setup, ["/VERYSILENT", "/SUPPRESSMSGBOXES", "/NORESTART", "/CURRENTUSER", "/NOICONS", "/TASKS=", "/DIR=" + rRoot], root, root);
         }
         RequireVersion(rScript, ["--version"], rVersion, exact: false, root);
+        // This belongs to our local R installation, never the user's R profile.
+        File.WriteAllText(Path.Combine(tools, "R", "etc", "Renviron.site"), """
+            # Managed by ANK DOCX setup. Paths remain relative to this R installation.
+            RENV_PATHS_ROOT="${RENV_PATHS_ROOT:-${R_HOME}/../renv}"
+            RENV_PATHS_CACHE="${RENV_PATHS_CACHE:-${RENV_PATHS_ROOT}/cache}"
+            RENV_PATHS_SOURCE="${RENV_PATHS_SOURCE:-${RENV_PATHS_ROOT}/source}"
+            RENV_PATHS_BINARY="${RENV_PATHS_BINARY:-${RENV_PATHS_ROOT}/binary}"
+            RENV_PATHS_SANDBOX="${RENV_PATHS_SANDBOX:-${RENV_PATHS_ROOT}/sandbox}"
+            """ + "\n", new UTF8Encoding(false));
         var quartoRoot = Path.Combine(tools, "quarto-" + quartoVersion);
         var quartoExe = Path.Combine(quartoRoot, "bin", "quarto.exe");
         if (!File.Exists(quartoExe))
         {
-            var zip = Path.Combine(tools, $"quarto-{quartoVersion}-win.zip");
+            var zip = Path.Combine(tools, "downloads", $"quarto-{quartoVersion}-win.zip");
             Download($"https://github.com/quarto-dev/quarto-cli/releases/download/v{quartoVersion}/quarto-{quartoVersion}-win.zip", zip);
             RequireHash(zip, quarto.GetProperty("windows_zip_sha256").GetString()!);
             ZipFile.ExtractToDirectory(zip, quartoRoot, overwriteFiles: true);
@@ -48,20 +61,20 @@ internal static class EnvironmentSetup
         var svgExe = Path.Combine(svgRoot, "rsvg-convert.exe");
         if (!File.Exists(svgExe))
         {
-            var zip = svgRoot + ".zip";
+            var zip = Path.Combine(tools, "downloads", Path.GetFileName(svgRoot) + ".zip");
             Download(svg.GetProperty("url").GetString()!, zip);
             RequireHash(zip, svg.GetProperty("sha256").GetString()!);
             ZipFile.ExtractToDirectory(zip, svgRoot, overwriteFiles: true);
         }
         RequireVersion(svgExe, ["--version"], svg.GetProperty("version").GetString()!.Replace("librsvg ", "rsvg-convert version ", StringComparison.Ordinal), exact: true, root);
         // Process-local environment only. Do not change the user's locale/PATH.
-        Execute(rScript, ["--vanilla", installer], template, clearLocale: true);
-        var example = Path.Combine(root, "examples", "book");
-        Execute(quartoExe, ["add", template, "--no-prompt"], example);
-        // These are installed template dependencies, ignored in the developer
-        // checkout. Their only maintained source is the starter directory.
-        File.Copy(Path.Combine(template, "tools", "academic.R"), Path.Combine(example, "tools", "academic.R"), overwrite: true);
-        Execute(rScript, ["--vanilla", installer], example, clearLocale: true);
+        if (development)
+        {
+            var example = Path.Combine(root, "examples", "book");
+            Execute(quartoExe, ["add", template, "--no-prompt"], example, root);
+            File.Copy(Path.Combine(template, "tools", "academic.R"), Path.Combine(example, "tools", "academic.R"), overwrite: true);
+            Execute(rScript, ["--vanilla", installer], example, root, clearLocale: true);
+        }
         var reference = Path.Combine(root, "Workspaces", "Пример");
         // Install the starter's runtime files, not a second maintained implementation.
         foreach (var file in new[] { ".Rprofile", "DESCRIPTION", "renv.lock", "renv/activate.R", "renv/settings.json", "tools/install.R", "tools/academic.R" })
@@ -70,14 +83,16 @@ internal static class EnvironmentSetup
             Directory.CreateDirectory(Path.GetDirectoryName(destination)!);
             File.Copy(Path.Combine(template, file), destination, overwrite: true);
         }
-        Execute(quartoExe, ["add", template, "--no-prompt"], reference);
-        Execute(rScript, ["--vanilla", installer], reference, clearLocale: true);
+        Execute(quartoExe, ["add", template, "--no-prompt"], reference, root);
+        Execute(rScript, ["--vanilla", installer], reference, root, clearLocale: true);
+        Console.WriteLine("Local dependency cache: " + environment.Renv);
         Console.WriteLine("Academic DOCX environment is ready.");
     }
 
     private static void Download(string url, string path)
     {
         if (File.Exists(path)) return;
+        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
         Console.WriteLine("Downloading " + Path.GetFileName(path));
         var partial = path + ".partial-" + Guid.NewGuid().ToString("N");
         try
@@ -100,13 +115,13 @@ internal static class EnvironmentSetup
 
     private static void RequireVersion(string exe, string[] args, string expected, bool exact, string root)
     {
-        var actual = Execute(exe, args, root, echo: false).Trim();
+        var actual = Execute(exe, args, root, root, echo: false).Trim();
         if (exact ? actual != expected : !actual.Contains(expected, StringComparison.Ordinal))
             throw new InvalidOperationException($"Unexpected tool version: {exe}: {actual}");
         Console.WriteLine(actual);
     }
 
-    private static string Execute(string executable, string[] arguments, string directory, bool clearLocale = false, bool echo = true)
+    private static string Execute(string executable, string[] arguments, string directory, string root, bool clearLocale = false, bool echo = true)
     {
         var info = new ProcessStartInfo(executable)
         {
@@ -115,6 +130,7 @@ internal static class EnvironmentSetup
             StandardOutputEncoding = Encoding.UTF8, StandardErrorEncoding = Encoding.UTF8
         };
         foreach (var argument in arguments) info.ArgumentList.Add(argument);
+        new LocalToolchain(root).Configure(info);
         if (clearLocale)
             foreach (var key in new[] { "LC_ALL", "LC_CTYPE", "LC_COLLATE", "LC_MONETARY", "LC_TIME" }) info.Environment.Remove(key);
         using var process = Process.Start(info) ?? throw new InvalidOperationException("Cannot start " + executable);
@@ -126,6 +142,7 @@ internal static class EnvironmentSetup
         if (process.ExitCode != 0) throw new InvalidOperationException($"{Path.GetFileName(executable)} exited with {process.ExitCode}: {output}");
         return output;
     }
+
 }
 
 internal static class Authenticode

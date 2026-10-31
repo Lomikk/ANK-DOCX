@@ -1,6 +1,6 @@
 {
   "academic_extension": {
-    "version": "0.2.0",
+    "version": "0.4.2",
     "r_lockfile": "quarto/renv.lock",
     "required_finalizer": "Microsoft Word desktop on Windows"
   },
@@ -17,6 +17,7 @@
     "sha256": "e3ece37e9b80e907d1c0d4cf6e952c60f9e8d1e9a293f140b32b2ec665a809d3"
   },
   "docx_service": {
+    "version": "0.4.3",
     "language": "C#",
     "framework": "net10.0-windows",
     "portable_core": "net10.0",

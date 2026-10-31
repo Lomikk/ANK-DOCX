@@ -1,6 +1,11 @@
 @echo off
 setlocal
 set "TASK_ROOT=%~dp0"
+set "RENV_PATHS_ROOT=%TASK_ROOT%.tools\renv"
+set "RENV_PATHS_CACHE=%TASK_ROOT%.tools\renv\cache"
+set "RENV_PATHS_SOURCE=%TASK_ROOT%.tools\renv\source"
+set "RENV_PATHS_BINARY=%TASK_ROOT%.tools\renv\binary"
+set "RENV_PATHS_SANDBOX=%TASK_ROOT%.tools\renv\sandbox"
 if not defined ACADEMIC_DOCX_SERVICE set "ACADEMIC_DOCX_SERVICE=%TASK_ROOT%.tools\academic-docx\academic-docx.exe"
 if not exist "%ACADEMIC_DOCX_SERVICE%" (
   echo Academic DOCX service is missing. Run setup-academic.cmd. 1>&2

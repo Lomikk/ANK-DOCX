@@ -9,5 +9,5 @@ if not exist "%~dp0.tools\academic-docx\academic-docx.exe" (
 "%~dp0.tools\academic-docx\academic-docx.exe" workspace "%~dp0." %*
 exit /b %ERRORLEVEL%
 :setup
-call "%~dp0setup-academic.cmd"
+call "%~dp0setup-academic.cmd" %2 %3
 exit /b %ERRORLEVEL%

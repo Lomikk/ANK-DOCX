@@ -2,7 +2,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <AssemblyName>academic-docx</AssemblyName>
-    <Version>0.4.2</Version>
+    <Version>0.4.3</Version>
     <TargetFramework>net10.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -26,6 +26,7 @@
     <OfficePiaPath>@(OfficePiaCandidate->'%(FullPath)')</OfficePiaPath>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="../licenses/OpenXML.txt" Link="licenses/OpenXML.txt" CopyToPublishDirectory="PreserveNewest" />
     <ProjectReference Include="../AcademicDocx.Core/AcademicDocx.Core.csproj" />
     <Reference Include="Microsoft.Office.Interop.Word">
       <HintPath>$(WordPiaPath)</HintPath>
@@ -41,5 +42,12 @@
   <Target Name="RequireWordPia" BeforeTargets="ResolveAssemblyReferences">
     <Error Condition="!Exists('$(WordPiaPath)')" Text="Official Word PIA not found uniquely. Install the Office development assemblies or set -p:WordPiaPath=path/to/Microsoft.Office.Interop.Word.dll. Do not use an unsupported NuGet repackaging." />
     <Error Condition="!Exists('$(OfficePiaPath)')" Text="Official Office core PIA not found uniquely. Install the Office development assemblies or set -p:OfficePiaPath=path/to/office.dll. It is required for native page shapes." />
+  </Target>
+  <Target Name="CopyRuntimeNotices" AfterTargets="Publish" Condition="'$(SelfContained)' == 'true'">
+    <ItemGroup>
+      <RedistributedRuntime Include="@(ResolvedRuntimePack)" Condition="'%(ResolvedRuntimePack.FrameworkName)' == 'Microsoft.NETCore.App'" />
+      <RuntimeNotice Include="@(RedistributedRuntime->'%(PackageDirectory)/LICENSE.TXT');@(RedistributedRuntime->'%(PackageDirectory)/THIRD-PARTY-NOTICES.TXT')" />
+    </ItemGroup>
+    <Copy SourceFiles="@(RuntimeNotice)" DestinationFolder="$(PublishDir)licenses/dotnet" SkipUnchangedFiles="true" />
   </Target>
 </Project>

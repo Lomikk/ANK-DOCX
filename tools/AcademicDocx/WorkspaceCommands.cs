@@ -116,8 +116,9 @@ internal static class WorkspaceCommands
 
     private static string Quarto(string root)
     {
-        using var dependencies = JsonDocument.Parse(File.ReadAllText(Path.Combine(root, "dependencies.lock.json")));
-        return Tool(root, "quarto-" + dependencies.RootElement.GetProperty("quarto").GetProperty("version").GetString(), "bin", "quarto.exe");
+        var path = new LocalToolchain(root).Quarto;
+        if (!File.Exists(path)) throw new FileNotFoundException("Run ANK-DOCX.cmd setup first. Missing tool: " + path);
+        return path;
     }
 
     private static void Execute(string root, string project, string executable, string[] args)
@@ -126,11 +127,7 @@ internal static class WorkspaceCommands
             RedirectStandardOutput = true, RedirectStandardError = true,
             StandardOutputEncoding = Encoding.UTF8, StandardErrorEncoding = Encoding.UTF8 };
         foreach (var arg in args) start.ArgumentList.Add(arg);
-        var paths = new[] { Path.Combine(root, ".tools", "academic-docx"), Path.Combine(root, ".tools", "R", "bin"), Path.Combine(root, ".tools", "rsvg-convert-static-1.0.0"), Path.GetDirectoryName(executable)! };
-        start.Environment["PATH"] = string.Join(Path.PathSeparator, paths) + Path.PathSeparator + start.Environment["PATH"];
-        start.Environment["QUARTO_R"] = Tool(root, "R", "bin", "Rscript.exe");
-        start.Environment["ACADEMIC_DOCX_SERVICE"] = Environment.ProcessPath!;
-        foreach (var key in new[] { "LC_ALL", "LC_CTYPE", "LC_COLLATE", "LC_MONETARY", "LC_TIME" }) start.Environment.Remove(key);
+        new LocalToolchain(root).Configure(start);
         using var process = new Process { StartInfo = start };
         process.OutputDataReceived += (_, item) => { if (item.Data is not null) Console.WriteLine(item.Data); };
         process.ErrorDataReceived += (_, item) => { if (item.Data is not null) Console.Error.WriteLine(item.Data); };
