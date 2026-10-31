@@ -7,17 +7,17 @@ namespace AcademicDocx;
 // Convenience commands only: Quarto and renv still own project creation/build.
 internal static class WorkspaceCommands
 {
-    public static void Run(string root, string[] args)
+    public static int Run(string root, string[] args)
     {
         root = Path.GetFullPath(root);
+        Console.OutputEncoding = new UTF8Encoding(false);
         if (args.Length == 0)
         {
-            Console.OutputEncoding = new UTF8Encoding(false);
             Console.InputEncoding = new UTF8Encoding(false);
             WorkspaceMenu.Run(root);
         }
         else if (args is ["help"] or ["--help"] or ["-h"])
-            Console.WriteLine("ANK-DOCX.cmd — интерактивное меню\nANK-DOCX.cmd setup | new NAME [--profile PROFILE] | build NAME | list | profiles | penrose [ROGER_ARGUMENTS]");
+            Console.WriteLine("ANK-DOCX.cmd — интерактивное меню\nANK-DOCX.cmd setup | new NAME [--profile PROFILE] | build NAME [--verbose] | list | profiles | penrose [ROGER_ARGUMENTS]");
         else if (args is ["list"]) List(root);
         else if (args is ["profiles"])
         {
@@ -26,7 +26,8 @@ internal static class WorkspaceCommands
         }
         else if (args is ["new", var name]) Create(root, name);
         else if (args is ["new", var profiledName, "--profile", var profile]) Create(root, profiledName, profile);
-        else if (args is ["build", var buildName]) Build(root, buildName);
+        else if (args is ["build", var buildName]) return Build(root, buildName);
+        else if (args is ["build", var verboseName, "--verbose"]) return Build(root, verboseName, verbose: true);
         else if (args is ["penrose", .. var penroseArgs])
         {
             var environment = new LocalToolchain(root);
@@ -34,7 +35,8 @@ internal static class WorkspaceCommands
                 throw new FileNotFoundException("Penrose is missing. Run ANK-DOCX.cmd setup first.");
             Execute(root, Environment.CurrentDirectory, environment.Node, [environment.PenroseCli, .. penroseArgs]);
         }
-        else throw new ArgumentException("Usage: ANK-DOCX.cmd new NAME [--profile PROFILE] | build NAME | list | profiles | penrose [ROGER_ARGUMENTS]");
+        else throw new ArgumentException("Usage: ANK-DOCX.cmd new NAME [--profile PROFILE] | build NAME [--verbose] | list | profiles | penrose [ROGER_ARGUMENTS]");
+        return 0;
     }
 
     internal static string Project(string root, string name)
@@ -77,13 +79,12 @@ internal static class WorkspaceCommands
         Console.WriteLine("Заполните metadata.yml и chapters/main.qmd, затем выберите «Собрать DOCX» в меню ANK-DOCX.cmd.");
     }
 
-    internal static void Build(string root, string name)
+    internal static int Build(string root, string name, bool verbose = false)
     {
         var project = Project(root, name);
-        if (!File.Exists(Path.Combine(project, "_quarto.yml")) || !File.Exists(Path.Combine(project, "chapters", "main.qmd")))
+        if (!Directory.Exists(project))
             throw new DirectoryNotFoundException("Workspace not found: " + project);
-        Execute(root, project, Quarto(root), ["render", "--to", "academic-docx"]);
-        Console.WriteLine("Результат: " + Path.Combine(project, "_output", "chapters", "main.docx"));
+        return WorkspaceBuild.Run(root, project, verbose);
     }
 
     private static void List(string root)

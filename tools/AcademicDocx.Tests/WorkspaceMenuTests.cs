@@ -37,8 +37,10 @@ public sealed class WorkspaceMenuTests
         });
     }
 
-    [WordFact]
-    public void BuildSelectsExistingWorkByNumberAndReturnsToMenuOnFailure()
+    [WordTheory]
+    [InlineData("2")]
+    [InlineData("7")]
+    public void BuildSelectsExistingWorkByNumberAndReturnsToMenuOnFailure(string action)
     {
         WithRoot(root =>
         {
@@ -46,10 +48,10 @@ public sealed class WorkspaceMenuTests
             Directory.CreateDirectory(Path.Combine(project, "chapters"));
             File.WriteAllText(Path.Combine(project, "_quarto.yml"), "project: default");
             File.WriteAllText(Path.Combine(project, "chapters", "main.qmd"), "Текст");
-            var result = Run(root, "2\n1\n0\n");
+            var result = Run(root, action + "\n1\n0\n");
             Assert.Equal(0, result.Code);
             Assert.Contains("1. Курсовая [тест]", result.Output);
-            Assert.Contains("Не удалось выполнить действие", result.Output);
+            Assert.Contains("Ошибка сборки", result.Output);
             Assert.Equal("Текст", File.ReadAllText(Path.Combine(project, "chapters", "main.qmd")));
             Assert.Equal(2, result.Output.Split("Что сделать?", StringSplitOptions.None).Length - 1);
         });

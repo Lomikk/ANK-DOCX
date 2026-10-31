@@ -29,7 +29,7 @@ internal static class Program
                       package-service REPOSITORY_ROOT PUBLICATION_DIRECTORY
                       quarto-path REPOSITORY_ROOT
                       prepare-sto04 TEACHER_DOCX OUTPUT_DIRECTORY
-                      workspace REPOSITORY_ROOT [new NAME [--profile PROFILE] | build NAME | list | profiles]
+                      workspace REPOSITORY_ROOT [new NAME [--profile PROFILE] | build NAME [--verbose] | list | profiles]
                     """);
                 return 0;
             }
@@ -49,8 +49,7 @@ internal static class Program
                     return 0;
                 case "workspace":
                     Require(args, 2);
-                    WorkspaceCommands.Run(args[1], args.Skip(2).ToArray());
-                    return 0;
+                    return WorkspaceCommands.Run(args[1], args.Skip(2).ToArray());
                 case "inspect-word":
                 {
                     if (args.Length != 3) throw new ArgumentException("inspect-word DOCX REPORT");

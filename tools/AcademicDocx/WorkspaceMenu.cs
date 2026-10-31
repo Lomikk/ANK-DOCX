@@ -18,7 +18,8 @@ internal static class WorkspaceMenu
                 new("new", "Создать работу"), new("build", "Собрать DOCX"),
                 new("folder", "Открыть папку работы"), new("document", "Открыть готовый DOCX"),
                 new("profiles", "Справочник СТО и комплектов"),
-                new("setup", "Установить / восстановить зависимости")], "Выход");
+                new("setup", "Установить / восстановить зависимости"),
+                new("debug-build", "Собрать DOCX (подробный вывод)")], "Выход");
             if (action is null) return;
             try
             {
@@ -39,7 +40,7 @@ internal static class WorkspaceMenu
                     }
                     var name = Select("Выберите работу", names.Select(n => new Choice(n, n)).ToArray());
                     if (name is null) continue;
-                    if (action == "build") WorkspaceCommands.Build(root, name);
+                    if (action is "build" or "debug-build") WorkspaceCommands.Build(root, name, verbose: action == "debug-build");
                     else
                     {
                         var path = WorkspaceCommands.Project(root, name);
