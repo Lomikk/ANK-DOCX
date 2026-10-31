@@ -44,6 +44,7 @@
       "standard": "susu-19-2008",
       "page-layout": "plain-body",
       "figure-numbering": "section",
+      "appendix-layout": "research",
       "forms": ["research-title-19", "research-assignment-19", "research-summary-19"],
       "requires": ["institution", "supervisor", "document", "research", "summary"]
     }

@@ -14,7 +14,8 @@ local extension_dir=pandoc.path.directory(PANDOC_SCRIPT_FILE)
 local render_front_matter=dofile(pandoc.path.join({extension_dir,'front-matter.lua'}))
 local appendix_ids={}
 local function process(doc)
-  doc.meta['academic-front-matter']=pandoc.MetaBlocks(render_front_matter(doc,field,extension_dir))
+  local front, layout = render_front_matter(doc,field,extension_dir)
+  doc.meta['academic-front-matter']=pandoc.MetaBlocks(front)
   local headings={}
   local numbered_chapters={}
   local marked_appendices={}
@@ -52,7 +53,11 @@ local function process(doc)
   local appendices={}
   for i,h in ipairs(appendix_headers) do
     assert(h.identifier~='','Appendix needs a Quarto heading identifier')
-    appendices[#appendices+1]={id=h.identifier,letter=letters[i],latin=string.char(64+i),title=text(h)}
+    local kind = h.attributes['appendix-kind']
+    assert(not kind or layout.AppendixLayout == 'research', 'appendix-kind requires a profile with appendix status labels')
+    assert(not kind or kind == 'mandatory' or kind == 'informational', 'appendix-kind must be mandatory or informational')
+    appendices[#appendices+1]={id=h.identifier,letter=letters[i],latin=string.char(64+i),title=text(h),
+      kind=kind or 'informational'}
     appendix_ids[h.identifier]=letters[i]
   end
   -- Pandoc runs beside the source file. The public relative offset also avoids
@@ -63,6 +68,9 @@ local function process(doc)
   out:write(quarto.json.encode(headings));out:close()
   local appendix_out=assert(io.open(pandoc.path.join({scratch,'academic-appendices.json'}),'wb'))
   appendix_out:write(quarto.json.encode(appendices));appendix_out:close()
+  layout.Appendices = appendices
+  local layout_out=assert(io.open(pandoc.path.join({scratch,'academic-layout.json'}),'wb'))
+  layout_out:write(quarto.json.encode(layout));layout_out:close()
   return doc
 end
 local function para(p)

@@ -92,17 +92,8 @@ for (output in outputs) {
     if (inherits(style,"xml_missing") || attr(style,"w:val")!="Heading1")
       stop("Appendix must begin with a top-level heading: ",appendix$id)
     appendix_headings[[length(appendix_headings)+1L]] <- c(list(p=p),appendix)
-    pr <- xml_find_first(p,"./w:pPr",ns)
-    xml_remove(xml_find_all(pr,"./w:numPr|./w:jc|./w:pageBreakBefore",ns))
-    xml_add_child(pr,node('<w:numPr><w:numId w:val="0"/></w:numPr>'))
-    xml_add_child(pr,node('<w:jc w:val="center"/>'))
-    xml_add_child(pr,node('<w:pageBreakBefore/>'))
-    xml_remove(xml_find_all(p,"./w:r|./w:hyperlink",ns))
-    xml_add_child(p,node(run(paste0("ПРИЛОЖЕНИЕ ",appendix$letter))))
-    xml_add_child(p,node('<w:r><w:br/></w:r>'))
-    # Heading1 uses all-caps for chapter titles. The thematic appendix title
-    # must retain its sentence case on the second line (§4.14).
-    xml_add_child(p,node(paste0('<w:r><w:rPr><w:caps w:val="0"/></w:rPr><w:t xml:space="preserve">',escape(appendix$title),'</w:t></w:r>')))
+    # Native heading formatting and optional TC entries are applied by the SDK.
+    # Keep these source heading positions for the shared object-numbering pass.
   }
   bookmarks <- xml_find_all(doc, "//w:bookmarkStart", ns)
   next_id <- max(c(0, as.integer(vapply(bookmarks, attr, "", name = "w:id"))), na.rm = TRUE) + 1
@@ -203,8 +194,8 @@ for (output in outputs) {
       stop("Academic DOCX service is missing: add the published application to PATH or set ACADEMIC_DOCX_SERVICE to its EXE")
     version <- system2(normalizePath(service), "--version", stdout = TRUE, stderr = TRUE)
     if (!is.null(base::attr(version, "status")) || length(version) != 1L ||
-        !grepl("^0[.]4[.][0-9]+$", version) || numeric_version(version) < numeric_version("0.4.1"))
-      stop("Incompatible Academic DOCX service: this extension requires >=0.4.1 within 0.4.x; update the service and the installed extension together")
+        !grepl("^0[.]4[.][0-9]+$", version) || numeric_version(version) < numeric_version("0.4.2"))
+      stop("Incompatible Academic DOCX service: this extension requires >=0.4.2 within 0.4.x; update the service and the installed extension together")
     report <- normalizePath(file.path(".quarto",paste0(basename(output),".finalize.json")), mustWork=FALSE)
     arguments <- c("finalize-word", shQuote(output), "--report", shQuote(report), "--layout-metadata", shQuote(layout_path))
     if (identical(layout$PageLayout, 'technical')) {

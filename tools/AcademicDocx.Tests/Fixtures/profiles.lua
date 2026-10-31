@@ -24,7 +24,7 @@ function Pandoc(doc)
     return render(pandoc.Pandoc({}, meta), field, directory)
   end
   for id, profile in pairs(config.profiles) do
-    local explicit = blocks(id)
+    local explicit, layout = blocks(id)
     if config.aliases[profile.kind] then
       local legacy = blocks(profile.kind, profile.standard)
       assert(pandoc.write(pandoc.Pandoc(explicit), 'json') == pandoc.write(pandoc.Pandoc(legacy), 'json'),
@@ -36,8 +36,7 @@ function Pandoc(doc)
     if profile.kind == 'research' then
       assert(plain:find('004.02', 1, true) and plain:find('Исходные данные', 1, true) and plain:find('Ключевые слова', 1, true))
     end
-    local file = assert(io.open('.quarto/academic-layout.json', 'rb'))
-    local layout = pandoc.json.decode(file:read('*a')); file:close()
+    layout = pandoc.json.decode(pandoc.json.encode(layout))
     assert(layout.Profile == id and layout.Standard == profile.standard and layout.PageLayout == profile['page-layout'])
   end
   for _, pair in ipairs({{'referat', 'susu-04-2008'}, {'referat-susu-17-2008', 'susu-04-2008'}, {'missing-profile', ''}}) do

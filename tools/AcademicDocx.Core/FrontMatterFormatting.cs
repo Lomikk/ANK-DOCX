@@ -88,7 +88,7 @@ public static class FrontMatterFormatting
             fields.Count(f => f.StartsWith("SEQ Рисунок", StringComparison.Ordinal)),
             fields.Count(f => f.StartsWith("SEQ Таблица", StringComparison.Ordinal)),
             paragraphs.Count(p => NamedStyle(p).Equals("Bibliography", StringComparison.OrdinalIgnoreCase)),
-            paragraphs.Count(p => NamedStyle(p).Equals("Heading1", StringComparison.OrdinalIgnoreCase) && p.InnerText.StartsWith("ПРИЛОЖЕНИЕ ", StringComparison.Ordinal)));
+            paragraphs.Count(p => (NamedStyle(p).Equals("Heading1", StringComparison.OrdinalIgnoreCase) || Style(p) == "AcademicAppendixLabel") && p.InnerText.StartsWith("ПРИЛОЖЕНИЕ ", StringComparison.Ordinal)));
         var part = package.CustomFilePropertiesPart ?? package.AddCustomFilePropertiesPart();
         var properties = part.Properties ??= new C.Properties();
         foreach (var (name, value) in new[] { ("Figures", statistics.Figures), ("Tables", statistics.Tables),

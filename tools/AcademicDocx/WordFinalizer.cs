@@ -139,6 +139,7 @@ internal static class WordFinalizer
             var original = DocxInspection.Read(path);
             File.Copy(path, staged);
             DocumentFormatting.Apply(staged);
+            AppendixFormatting.Apply(staged, layout);
             report.Annotation = FrontMatterFormatting.Apply(staged);
             if (report.Annotation is not null) DocumentPageLayout.Apply(staged, layout, templates);
             session = new();

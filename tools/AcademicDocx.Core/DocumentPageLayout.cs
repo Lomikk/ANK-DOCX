@@ -7,7 +7,8 @@ using W = DocumentFormat.OpenXml.Wordprocessing;
 namespace AcademicDocx.Core;
 
 public sealed record PageLayoutOptions(string Standard, string Profile, string Title, string DocumentCode,
-    string Author, string Supervisor, string NormalController, string Approver, string Organization, string PageLayout)
+    string Author, string Supervisor, string NormalController, string Approver, string Organization, string PageLayout,
+    string AppendixLayout = "basic", IReadOnlyList<AppendixInfo>? Appendices = null)
 {
     public bool Technical => PageLayout == "technical";
     public static PageLayoutOptions Read(string path) => JsonSerializer.Deserialize<PageLayoutOptions>(File.ReadAllText(path),
@@ -31,6 +32,7 @@ public static class DocumentPageLayout
         var main = package.MainDocumentPart!;
         var body = main.Document.Body!;
         static string Style(W.Paragraph p) => p.ParagraphProperties?.ParagraphStyleId?.Val?.Value ?? "";
+        foreach (var boundary in body.Elements<W.Paragraph>().Where(p => Style(p) == "AcademicAppendixBoundary").ToArray()) boundary.Remove();
         var paragraphs = body.Elements<W.Paragraph>().ToArray();
         var title = paragraphs.FirstOrDefault(p => Style(p) is "AcademicCourseworkTitle" or "AcademicReferatTitle" or "AcademicResearchTitle");
         if (title is null) return;
@@ -78,6 +80,8 @@ public static class DocumentPageLayout
             var afterTitle = options is null ? Style(title) == "AcademicReferatTitle" : options.PageLayout == "plain-after-title";
             boundaries[afterTitle ? "AcademicTitleEnd" : "AcademicBodyStart"] = front;
             final.RemoveAllChildren<W.PageNumberType>();
+            final.RemoveAllChildren<W.HeaderReference>(); final.RemoveAllChildren<W.TitlePage>();
+            Header(final, emptyHeader, W.HeaderFooterValues.Default);
         }
         else
         {
@@ -124,6 +128,49 @@ public static class DocumentPageLayout
         {
             if (boundaries.TryGetValue(Style(marker), out var section)) Set(marker.ParagraphProperties!, section);
             else marker.Append(new W.Run(new W.RunProperties(new W.FontSize { Val = "2" }), new W.Break { Type = W.BreakValues.Page }));
+        }
+        if (options?.AppendixLayout == "research" && options.Appendices is { Count: > 0 } appendices)
+        {
+            if (technical) throw new InvalidDataException("Appendix continuation headers with technical frames are not supported");
+            var basis = (W.SectionProperties)final.CloneNode(true);
+            var current = (W.SectionProperties)basis.CloneNode(true);
+            var footer = basis.Elements<W.FooterReference>().Single(f => f.Type?.Value == W.HeaderFooterValues.Default);
+            foreach (var appendix in appendices)
+            {
+                var heading = AppendixFormatting.Heading(body, appendix);
+                var before = heading.ElementsBefore().OfType<W.Paragraph>().LastOrDefault();
+                var start = before?.ParagraphProperties?.ParagraphStyleId?.Val == "AcademicAppendixCollection" ? before : heading;
+                var previous = new W.Paragraph(new W.ParagraphProperties(
+                    new W.ParagraphStyleId { Val = "AcademicAppendixBoundary" }, new W.KeepNext { Val = false },
+                    new W.SpacingBetweenLines { Before = "0", After = "0", Line = "20", LineRule = W.LineSpacingRuleValues.Exact },
+                    new W.ParagraphMarkRunProperties(new W.FontSize { Val = "2" })));
+                var normalized = AppendixFormatting.BookmarkId(appendix);
+                var anchor = start == heading ? start.ElementsBefore().OfType<W.BookmarkStart>()
+                    .LastOrDefault(b => b.Name == appendix.Id || b.Name == normalized) : null;
+                if (anchor is not null) anchor.InsertBeforeSelf(previous); else start.InsertBeforeSelf(previous);
+                Set(previous.ParagraphProperties ??= new W.ParagraphProperties(), current);
+                heading.ParagraphProperties!.RemoveAllChildren<W.PageBreakBefore>();
+                current = (W.SectionProperties)basis.CloneNode(true);
+                current.RemoveAllChildren<W.HeaderReference>(); current.RemoveAllChildren<W.FooterReference>();
+                current.RemoveAllChildren<W.PageNumberType>();
+                Set(current, new W.SectionType { Val = W.SectionMarkValues.NextPage });
+                Set(current, new W.TitlePage());
+                var margins = current.GetFirstChild<W.PageMargin>() ?? throw new InvalidDataException("Missing appendix page margins");
+                margins.Header = 283; // 5 mm; a 14 pt header fits above the 20 mm text margin.
+                var continuation = main.AddNewPart<HeaderPart>();
+                continuation.Header = new W.Header(new W.Paragraph(
+                    new W.ParagraphProperties(new W.SpacingBetweenLines { Before = "0", After = "0" },
+                        new W.Indentation { FirstLine = "0", Left = "0", Right = "0" },
+                        new W.Justification { Val = W.JustificationValues.Right }),
+                    new W.Run(new W.RunProperties(new W.Bold { Val = false }, new W.Color { Val = "000000" }, new W.FontSize { Val = "28" }),
+                        new W.Text("Продолжение приложения " + appendix.Letter))));
+                Header(current, emptyHeader, W.HeaderFooterValues.First);
+                Header(current, continuation, W.HeaderFooterValues.Default);
+                Header(current, continuation, W.HeaderFooterValues.Even);
+                foreach (var type in new[] { W.HeaderFooterValues.First, W.HeaderFooterValues.Default, W.HeaderFooterValues.Even })
+                    current.PrependChild(new W.FooterReference { Type = type, Id = footer.Id });
+            }
+            body.ReplaceChild(current, final);
         }
         main.Document.Save();
     }

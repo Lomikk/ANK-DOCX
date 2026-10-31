@@ -30,14 +30,11 @@ return function(doc, field, directory)
   local calendar = get(doc.meta, 'academic.assignment.calendar')
   local render = dofile(pandoc.path.join({directory, 'forms.lua'}))
   local blocks = render(doc, profile.forms, field, value, questions, calendar, directory)
-  local scratch = pandoc.path.join({quarto.project.offset or '.', '.quarto'})
-  pandoc.system.make_directory(scratch, true)
-  local layout = assert(io.open(pandoc.path.join({scratch, 'academic-layout.json'}), 'wb'))
-  layout:write(quarto.json.encode({Standard=profile.standard, Profile=id, PageLayout=profile['page-layout'],
+  local layout = {Standard=profile.standard, Profile=id, PageLayout=profile['page-layout'],
+    AppendixLayout=profile['appendix-layout'] or 'basic',
     FigureNumbering=profile['figure-numbering'] or 'continuous',
     Title=value(doc.meta,'title'), DocumentCode=v('document-code'), Author=v('author-short'), Supervisor=v('supervisor'),
     NormalController=v('normal-controller.name'), Approver=v('stamp.approver'),
-    Organization=v('stamp.organization') ~= '' and v('stamp.organization') or v('university-short')..'\n'..v('group')}))
-  layout:close()
-  return blocks
+    Organization=v('stamp.organization') ~= '' and v('stamp.organization') or v('university-short')..'\n'..v('group')}
+  return blocks, layout
 end
