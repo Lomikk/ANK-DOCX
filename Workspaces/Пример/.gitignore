@@ -10,6 +10,8 @@
 *_files/
 /*.docx
 /*.pdf
+/chapters/*.docx
+/chapters/*.pdf
 ~$*
 
 **/*.quarto_ipynb
