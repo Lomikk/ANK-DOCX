@@ -63,6 +63,31 @@ internal static class WorkspaceBuild
             diagnostics.Add(BuildDiagnostics.Compact(error.Message));
         }
 
+        // Inspect supplies original locations for labelled knitr cells, including
+        // cells in Quarto includes. Failure here must never change build status.
+        if (DiagnosticSources.NeedsInspection(diagnostics))
+        {
+            try
+            {
+                var inspect = new ProcessStartInfo(QuartoLauncher.Executable(root))
+                {
+                    WorkingDirectory = project, UseShellExecute = false, CreateNoWindow = true,
+                    RedirectStandardOutput = true, RedirectStandardError = true,
+                    StandardOutputEncoding = Encoding.UTF8, StandardErrorEncoding = Encoding.UTF8
+                };
+                inspect.ArgumentList.Add("inspect"); inspect.ArgumentList.Add(Path.Combine("chapters", "main.qmd"));
+                new LocalToolchain(root).Configure(inspect);
+                using var process = Process.Start(inspect)!;
+                var stdout = process.StandardOutput.ReadToEndAsync();
+                var stderr = process.StandardError.ReadToEndAsync();
+                if (!process.WaitForExit(15_000)) { process.Kill(entireProcessTree: true); process.WaitForExit(); }
+                else if (process.ExitCode == 0)
+                    diagnostics = DiagnosticSources.AddLocations(diagnostics, stdout.GetAwaiter().GetResult(), project).ToList();
+                _ = stderr.GetAwaiter().GetResult();
+            }
+            catch (Exception error) when (error is IOException or InvalidOperationException or JsonException or ArgumentException or System.ComponentModel.Win32Exception) { }
+        }
+
         void Write(string line) { Console.WriteLine(line); summary.WriteLine(line); }
         if (exitCode != 0) Write("Ошибка сборки (код " + exitCode + ").");
         var lines = diagnostics.Where(message => message.Length != 0).Distinct(StringComparer.Ordinal)
