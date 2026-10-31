@@ -116,9 +116,7 @@ internal static class WorkspaceCommands
 
     private static string Quarto(string root)
     {
-        var path = new LocalToolchain(root).Quarto;
-        if (!File.Exists(path)) throw new FileNotFoundException("Run ANK-DOCX.cmd setup first. Missing tool: " + path);
-        return path;
+        return QuartoLauncher.Executable(root);
     }
 
     private static void Execute(string root, string project, string executable, string[] args)
@@ -128,6 +126,7 @@ internal static class WorkspaceCommands
             StandardOutputEncoding = Encoding.UTF8, StandardErrorEncoding = Encoding.UTF8 };
         foreach (var arg in args) start.ArgumentList.Add(arg);
         new LocalToolchain(root).Configure(start);
+        start.Environment["PATH"] = Path.GetDirectoryName(executable) + Path.PathSeparator + start.Environment["PATH"];
         using var process = new Process { StartInfo = start };
         process.OutputDataReceived += (_, item) => { if (item.Data is not null) Console.WriteLine(item.Data); };
         process.ErrorDataReceived += (_, item) => { if (item.Data is not null) Console.Error.WriteLine(item.Data); };

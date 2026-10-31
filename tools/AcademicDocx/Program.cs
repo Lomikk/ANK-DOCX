@@ -27,6 +27,7 @@ internal static class Program
                       inspect-word DOCX REPORT
                       setup REPOSITORY_ROOT [--development]
                       package-service REPOSITORY_ROOT PUBLICATION_DIRECTORY
+                      quarto-path REPOSITORY_ROOT
                       prepare-sto04 TEACHER_DOCX OUTPUT_DIRECTORY
                       workspace REPOSITORY_ROOT [new NAME [--profile PROFILE] | build NAME | list | profiles]
                     """);
@@ -34,6 +35,10 @@ internal static class Program
             }
             switch (args[0])
             {
+                case "quarto-path":
+                    if (args.Length != 2) throw new ArgumentException("quarto-path REPOSITORY_ROOT");
+                    Console.WriteLine(QuartoLauncher.Executable(args[1]));
+                    return 0;
                 case "package-service":
                     if (args.Length != 3) throw new ArgumentException("package-service REPOSITORY_ROOT PUBLICATION_DIRECTORY");
                     ServiceDistribution.Package(args[1], args[2]);
