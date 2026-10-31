@@ -15,6 +15,7 @@ public sealed class BuildDiagnosticsTests
                 "[WARNING] Citeproc: citation missing not found\n" +
                 "Error in failing-cell: computation failed\nCalls: implementation -> details\n" +
                 "Quitting from lines 7-9 [failing-cell] (chapters/main.qmd)\n" +
+                "\nQuitting from main.qmd:1-4 [syntax-check]\n\n" +
                 "Error running filter\nprofile.lua:22: Missing metadata: academic.title\nstack traceback:\n internal details\n" +
                 "Output created: example.docx\n");
             var messages = string.Join('\n', BuildDiagnostics.Read(file));
@@ -22,6 +23,7 @@ public sealed class BuildDiagnosticsTests
             Assert.Contains("Citeproc: citation missing", messages);
             Assert.Contains("computation failed", messages);
             Assert.Contains("chapters/main.qmd", messages);
+            Assert.Contains("main.qmd:1-4 [syntax-check]", messages);
             Assert.Contains("academic.title", messages);
             Assert.DoesNotContain("private-group", messages);
             Assert.DoesNotContain("internal details", messages);

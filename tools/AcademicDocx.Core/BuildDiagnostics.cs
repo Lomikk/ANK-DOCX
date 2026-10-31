@@ -6,7 +6,7 @@ namespace AcademicDocx.Core;
 public static class BuildDiagnostics
 {
     private static readonly Regex Ansi = new(@"\x1B\[[0-?]*[ -/]*[@-~]", RegexOptions.CultureInvariant);
-    private static readonly Regex Diagnostic = new(@"^\[?(?:ERROR\b|WARN(?:ING)?\b|Error\b|Warning\b|Ошибка\b|Предупреждени[ея]\b|Рекомендаци[яи]\b|Recommendation\b|Quitting from lines\b)", RegexOptions.CultureInvariant);
+    private static readonly Regex Diagnostic = new(@"^\[?(?:ERROR\b|WARN(?:ING)?\b|Error\b|Warning\b|Ошибка\b|Предупреждени[ея]\b|Рекомендаци[яи]\b|Recommendation\b|Quitting from\b)", RegexOptions.CultureInvariant);
     private static readonly Regex ErrorHeader = new(@"^\[?(?:ERROR|Error|Ошибка)\b", RegexOptions.CultureInvariant);
     private static readonly Regex Trace = new(@"^(?:\s*(?:stack traceback:|Stack trace:|Backtrace:|Calls:)|\s+(?:at|в) \S+\()", RegexOptions.CultureInvariant);
 
