@@ -1,0 +1,58 @@
+{
+  "default": "coursework-susu-21-2008",
+  "aliases": {
+    "coursework": {
+      "default": "coursework-susu-21-2008",
+      "standards": {
+        "susu-21-2008": "coursework-susu-21-2008",
+        "susu-04-2008": "coursework-susu-04-2008"
+      }
+    },
+    "referat": {
+      "default": "referat-susu-17-2008",
+      "standards": { "susu-17-2008": "referat-susu-17-2008" }
+    }
+  },
+  "profiles": {
+    "coursework-susu-21-2008": {
+      "label": "Курсовая работа — СТО ЮУрГУ 21–2008",
+      "kind": "coursework",
+      "standard": "susu-21-2008",
+      "page-layout": "plain-body",
+      "forms": ["coursework-title-21", "coursework-assignment", "annotation"],
+      "requires": ["title", "coursework", "assignment", "annotation"]
+    },
+    "referat-susu-17-2008": {
+      "label": "Учебный реферат — СТО ЮУрГУ 17–2008",
+      "kind": "referat",
+      "standard": "susu-17-2008",
+      "page-layout": "plain-after-title",
+      "forms": ["referat-title-17", "annotation"],
+      "requires": ["title", "annotation"]
+    },
+    "coursework-susu-04-2008": {
+      "label": "Техническая курсовая — СТО ЮУрГУ 04–2008",
+      "kind": "coursework",
+      "standard": "susu-04-2008",
+      "page-layout": "technical",
+      "forms": ["coursework-title-04", "coursework-assignment", "annotation"],
+      "requires": ["title", "coursework", "assignment", "annotation"]
+    }
+  },
+  "requirements": {
+    "title": [
+      "title", "author", "academic.university", "academic.parent-organization",
+      "academic.university-short", "academic.school", "academic.department",
+      "academic.discipline", "academic.group", "academic.supervisor",
+      "academic.supervisor-position", "academic.author-short", "academic.city", "academic.year"
+    ],
+    "coursework": [
+      "academic.document-code", "academic.normal-controller.name", "academic.normal-controller.position"
+    ],
+    "assignment": [
+      "academic.direction-code", "academic.direction", "academic.assignment.head-of-department",
+      "academic.assignment.approval-date", "academic.assignment.due-date"
+    ],
+    "annotation": ["academic.summary"]
+  }
+}

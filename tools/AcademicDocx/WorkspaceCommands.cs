@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
+using AcademicDocx.Core;
 
 namespace AcademicDocx;
 
@@ -26,9 +27,13 @@ internal static class WorkspaceCommands
                 {
                     if (choice == "1")
                     {
-                        Console.Write("Профиль coursework/referat [coursework]: ");
+                        var catalog = Profiles(root);
+                        var ids = catalog.Profiles.Keys.ToArray();
+                        for (var i = 0; i < ids.Length; i++) Console.WriteLine($"{i + 1} — {catalog.Profiles[ids[i]].Label}");
+                        Console.Write("Профиль (номер или имя, Enter — " + catalog.Profiles[catalog.Default].Label + "): ");
                         var profile = Console.ReadLine();
-                        Create(root, name, string.IsNullOrWhiteSpace(profile) ? "coursework" : profile);
+                        if (int.TryParse(profile, out var number) && number >= 1 && number <= ids.Length) profile = ids[number - 1];
+                        Create(root, name, string.IsNullOrWhiteSpace(profile) ? null : profile);
                     }
                     else Build(root, name);
                 }
@@ -36,12 +41,16 @@ internal static class WorkspaceCommands
             }
         }
         else if (args is ["help"] or ["--help"] or ["-h"])
-            Console.WriteLine("ANK-DOCX.cmd setup | new NAME [--profile coursework|referat] | build NAME | list");
+            Console.WriteLine("ANK-DOCX.cmd setup | new NAME [--profile PROFILE] | build NAME | list | profiles");
         else if (args is ["list"]) List(root);
-        else if (args is ["new", var name]) Create(root, name, "coursework");
+        else if (args is ["profiles"])
+        {
+            foreach (var (id, profile) in Profiles(root).Profiles) Console.WriteLine(id + " — " + profile.Label);
+        }
+        else if (args is ["new", var name]) Create(root, name);
         else if (args is ["new", var profiledName, "--profile", var profile]) Create(root, profiledName, profile);
         else if (args is ["build", var buildName]) Build(root, buildName);
-        else throw new ArgumentException("Usage: ANK-DOCX.cmd new NAME [--profile coursework|referat] | build NAME | list");
+        else throw new ArgumentException("Usage: ANK-DOCX.cmd new NAME [--profile PROFILE] | build NAME | list | profiles");
     }
 
     private static string Project(string root, string name)
@@ -60,18 +69,22 @@ internal static class WorkspaceCommands
         return project;
     }
 
-    private static void Create(string root, string name, string profile)
+    private static AcademicProfiles Profiles(string root) =>
+        AcademicProfiles.Read(Path.Combine(root, "quarto", "_extensions", "academic", "profiles.json"));
+
+    private static void Create(string root, string name, string? profile = null)
     {
         var project = Project(root, name);
-        if (profile is not ("coursework" or "referat")) throw new ArgumentException("Unknown profile: " + profile);
         if (Directory.Exists(project) || File.Exists(project)) throw new IOException("Workspace already exists; nothing was changed: " + project);
+        var catalog = Profiles(root);
+        var selected = catalog.Resolve(profile);
         var quarto = Quarto(root);
         var r = Tool(root, "R", "bin", "Rscript.exe");
         Directory.CreateDirectory(project);
         Execute(root, project, quarto, ["use", "template", Path.Combine(root, "quarto"), "--no-prompt"]);
         // Only the known, freshly generated Starter metadata is changed here.
         var metadata = Path.Combine(project, "metadata.yml");
-        if (profile == "referat") File.WriteAllText(metadata, File.ReadAllText(metadata).Replace("profile: coursework", "profile: referat", StringComparison.Ordinal));
+        File.WriteAllText(metadata, File.ReadAllText(metadata).Replace("profile: " + catalog.Default, "profile: " + selected, StringComparison.Ordinal));
         Execute(root, project, r, ["--vanilla", "tools/install.R"]);
         Console.WriteLine("Создано: " + project);
         Console.WriteLine("Заполните metadata.yml и chapters/main.qmd. Сборка: ANK-DOCX.cmd build \"" + name + "\"");

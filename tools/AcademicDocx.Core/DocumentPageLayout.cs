@@ -7,9 +7,9 @@ using W = DocumentFormat.OpenXml.Wordprocessing;
 namespace AcademicDocx.Core;
 
 public sealed record PageLayoutOptions(string Standard, string Profile, string Title, string DocumentCode,
-    string Author, string Supervisor, string NormalController, string Approver, string Organization)
+    string Author, string Supervisor, string NormalController, string Approver, string Organization, string PageLayout)
 {
-    public bool Technical => Standard == "susu-04-2008";
+    public bool Technical => PageLayout == "technical";
     public static PageLayoutOptions Read(string path) => JsonSerializer.Deserialize<PageLayoutOptions>(File.ReadAllText(path),
         new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? throw new InvalidDataException("Missing layout metadata");
 }
@@ -25,10 +25,8 @@ public static class DocumentPageLayout
     private static string Twips(double mm) => Math.Round(mm * 1440 / 25.4).ToString(System.Globalization.CultureInfo.InvariantCulture);
     public static void Apply(string path, PageLayoutOptions? options = null, string? templates = null)
     {
-        if (options is not null && !(options.Standard == "susu-04-2008" && options.Profile == "coursework" ||
-            options.Standard == "susu-21-2008" && options.Profile == "coursework" ||
-            options.Standard == "susu-17-2008" && options.Profile == "referat"))
-            throw new InvalidDataException("Unsupported academic.standard / academic.profile combination");
+        if (options is not null && options.PageLayout is not ("technical" or "plain-body" or "plain-after-title"))
+            throw new InvalidDataException("Unsupported page layout: " + options.PageLayout);
         using var package = WordprocessingDocument.Open(path, true);
         var main = package.MainDocumentPart!;
         var body = main.Document.Body!;
@@ -77,7 +75,8 @@ public static class DocumentPageLayout
         if (!technical)
         {
             var front = Section(); Header(front, emptyHeader, W.HeaderFooterValues.Default); AddFooter(front, emptyFooter, W.HeaderFooterValues.Default);
-            boundaries[Style(title) == "AcademicCourseworkTitle" ? "AcademicBodyStart" : "AcademicTitleEnd"] = front;
+            var afterTitle = options is null ? Style(title) == "AcademicReferatTitle" : options.PageLayout == "plain-after-title";
+            boundaries[afterTitle ? "AcademicTitleEnd" : "AcademicBodyStart"] = front;
             final.RemoveAllChildren<W.PageNumberType>();
         }
         else

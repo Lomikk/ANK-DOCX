@@ -78,7 +78,7 @@ public sealed class FrontMatterTests : IDisposable
                 P("AcademicSheetHeading", "АННОТАЦИЯ"), P("AcademicBodyStart"), P("Normal", "Основной текст"), section);
         }
         FrontMatterFormatting.Apply(file);
-        var options = new PageLayoutOptions("susu-04-2008", "coursework", "Тема", "КОД ПЗ КР", "А.А. Автор", "Б.Б. Руководитель", "В.В. Контролер", "", "Вуз\nГруппа");
+        var options = new PageLayoutOptions("susu-04-2008", "coursework-susu-04-2008", "Тема", "КОД ПЗ КР", "А.А. Автор", "Б.Б. Руководитель", "В.В. Контролер", "", "Вуз\nГруппа", "technical");
         DocumentPageLayout.Apply(file, options, Path.Combine(AppContext.BaseDirectory, "PageTemplates"));
         using var result = WordprocessingDocument.Open(file, false);
         var main = result.MainDocumentPart!;

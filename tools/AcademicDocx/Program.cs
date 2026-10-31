@@ -27,7 +27,7 @@ internal static class Program
                       inspect-word DOCX REPORT
                       setup REPOSITORY_ROOT
                       prepare-sto04 TEACHER_DOCX OUTPUT_DIRECTORY
-                      workspace REPOSITORY_ROOT [new NAME [--profile coursework|referat] | build NAME | list]
+                      workspace REPOSITORY_ROOT [new NAME [--profile PROFILE] | build NAME | list | profiles]
                     """);
                 return 0;
             }

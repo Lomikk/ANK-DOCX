@@ -40,8 +40,9 @@ public sealed class QuartoStarterTests
             // reference example, after asserting that the new work is clean.
             var reference = Path.GetFullPath(Path.Combine(source, "..", "Workspaces", "Пример"));
             var yaml = Regex.Replace(File.ReadAllText(Path.Combine(reference, "metadata.yml")), "(?m)^title:.*$",
-                "title: Независимая работа " + profile).Replace("profile: coursework", "profile: " + profile);
-            yaml = Regex.Replace(yaml, "(?m)^  standard:.*$", "  standard: " + (profile == "coursework" ? "susu-21-2008" : "susu-17-2008"));
+                "title: Независимая работа " + profile);
+            // Retain one legacy profile path while the technical test uses a full ID.
+            yaml = Regex.Replace(yaml, "(?m)^  profile:.*$", "  profile: " + profile);
             if (profile == "referat")
                 yaml = yaml.Replace("Название университета", "Федеральное государственное автономное образовательное учреждение высшего образования «Испытательный университет научных исследований и информационных технологий»");
             File.WriteAllText(metadata, yaml);
@@ -170,7 +171,7 @@ public sealed class QuartoStarterTests
         Directory.CreateDirectory(project);
         MustRun(project, "quarto", ["use", "template", source, "--no-prompt"]);
         var yaml = File.ReadAllText(Path.Combine(reference, "metadata.yml"));
-        if (!yaml.Contains("standard: susu-04-2008", StringComparison.Ordinal)) throw new InvalidDataException("Reference example must exercise the technical profile");
+        if (!yaml.Contains("profile: coursework-susu-04-2008", StringComparison.Ordinal)) throw new InvalidDataException("Reference example must exercise the technical profile");
         File.WriteAllText(Path.Combine(project, "metadata.yml"), yaml);
         var main = Path.Combine(project, "chapters", "main.qmd");
         File.Copy(Path.Combine(reference, "chapters", "main.qmd"), main, true);
@@ -205,10 +206,10 @@ public sealed class QuartoStarterTests
             File.Copy(Path.Combine(project, ".quarto", "main.docx.finalize.json"), Path.Combine(project, pass == 0 ? "baseline.json" : "expanded.json"), true);
         }
         Assert.True(pageCounts[1] > pageCounts[0], "Added text must increase the physical page count and stamp total");
-        File.WriteAllText(Path.Combine(project, "metadata.yml"), yaml.Replace("standard: susu-04-2008", "standard: unsupported-standard", StringComparison.Ordinal));
+        File.WriteAllText(Path.Combine(project, "metadata.yml"), yaml.Replace("profile: coursework-susu-04-2008", "profile: coursework-susu-04-2008\n  standard: unsupported-standard", StringComparison.Ordinal));
         var invalid = Run(project, "quarto", ["render"]);
         Assert.NotEqual(0, invalid.Code);
-        Assert.Contains("Unsupported academic.standard", invalid.Output);
+        Assert.Contains("academic.standard conflicts", invalid.Output);
         File.WriteAllText(Path.Combine(project, "metadata.yml"), yaml);
     }
 
