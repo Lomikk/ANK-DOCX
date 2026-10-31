@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "version": "0.4.3",
+  "source": "https://github.com/Lomikk/ANK-DOCX/releases/tag/v0.4.3",
+  "sha256": "AFB38CEBD6BA6D7CAB6A571992490DE3CC93ECBE660C9D247AA6A830C842F25E",
+  "local_archive_override": false,
+  "system_dotnet_on_path": false
+}
