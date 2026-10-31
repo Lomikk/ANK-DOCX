@@ -26,11 +26,11 @@ internal static class QuartoLauncher
         {
             var start = new ProcessStartInfo(Path.Combine(Environment.SystemDirectory, "cmd.exe"))
             {
+                Arguments = "/d /v:off /c mklink /J \"%ANK_LINK%\" \"%ANK_TARGET%\"",
                 UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true
             };
             // Fixed command; quoted paths enter through environment expansion,
             // with delayed expansion disabled and no CALL/double expansion.
-            foreach (var arg in new[] { "/d", "/v:off", "/c", "mklink /J \"%ANK_LINK%\" \"%ANK_TARGET%\"" }) start.ArgumentList.Add(arg);
             start.Environment["ANK_LINK"] = alias;
             start.Environment["ANK_TARGET"] = target;
             using var process = Process.Start(start)!;

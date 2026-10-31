@@ -4,6 +4,46 @@ namespace AcademicDocx.Tests;
 
 public sealed class BootstrapTests
 {
+    [WordFact]
+    public void QuartoAliasPreservesLiteralUnicodeAndShellCharactersInTheTarget()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "ANK & %TEMP% ! Кириллица " + Guid.NewGuid().ToString("N"));
+        var target = Path.Combine(root, ".tools", "quarto-1.10.19");
+        Directory.CreateDirectory(Path.Combine(target, "bin"));
+        string? alias = null;
+        try
+        {
+            File.WriteAllText(Path.Combine(target, "bin", "quarto.exe"), "fixture; not executed");
+            File.WriteAllText(Path.Combine(root, "dependencies.lock.json"), """
+                {"quarto":{"version":"1.10.19"},"svg_converter":{"distribution_release":"v1.0.0"}}
+                """);
+            string Resolve()
+            {
+                var info = new ProcessStartInfo(Environment.GetEnvironmentVariable("ACADEMIC_DOCX_SERVICE")!)
+                {
+                    UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true
+                };
+                foreach (var arg in new[] { "quarto-path", root }) info.ArgumentList.Add(arg);
+                using var process = Process.Start(info)!;
+                var output = process.StandardOutput.ReadToEndAsync();
+                var error = process.StandardError.ReadToEndAsync();
+                Assert.True(process.WaitForExit(20_000), "Alias command timed out");
+                Assert.True(process.ExitCode == 0, error.GetAwaiter().GetResult());
+                return output.GetAwaiter().GetResult().Trim();
+            }
+            var executable = Resolve();
+            alias = Path.GetDirectoryName(Path.GetDirectoryName(executable)!)!;
+            Assert.StartsWith(Path.Combine(Path.GetTempPath(), "ank-quarto-"), alias);
+            Assert.Equal(target, new DirectoryInfo(alias).ResolveLinkTarget(false)!.FullName);
+            Assert.Equal(executable, Resolve());
+        }
+        finally
+        {
+            if (alias is not null) Directory.Delete(alias);
+            Directory.Delete(root, recursive: true);
+        }
+    }
+
     [WordTheory]
     [InlineData(false)]
     [InlineData(true)]
