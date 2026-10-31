@@ -57,7 +57,7 @@ public static class AppendixFormatting
             var appendix = appendices[index];
             var p = Heading(body, appendix);
             var pp = p.ParagraphProperties ?? new W.ParagraphProperties();
-            foreach (var child in pp.ChildElements.Where(e => e is W.NumberingProperties or W.Justification or W.PageBreakBefore).ToArray()) child.Remove();
+            foreach (var child in pp.ChildElements.Where(e => e is W.NumberingProperties or W.Justification or W.PageBreakBefore or W.OutlineLevel).ToArray()) child.Remove();
             pp.AddChild(new W.NumberingProperties(new W.NumberingId { Val = 0 }), true);
             pp.AddChild(new W.Justification { Val = W.JustificationValues.Center }, true);
             pp.AddChild(new W.PageBreakBefore(), true);
@@ -77,6 +77,7 @@ public static class AppendixFormatting
                 _ => throw new InvalidDataException("Unsupported appendix kind: " + appendix.Kind)
             };
             pp.ParagraphStyleId = new W.ParagraphStyleId { Val = "AcademicAppendixLabel" };
+            pp.AddChild(new W.OutlineLevel { Val = 9 }, true);
             if (index == 0)
             {
                 var collection = Paragraph("AcademicAppendixCollection", "ПРИЛОЖЕНИЯ");
@@ -87,11 +88,6 @@ public static class AppendixFormatting
             var kindParagraph = Paragraph("AcademicAppendixKind", "(" + kind + ")");
             p.InsertAfterSelf(kindParagraph);
             kindParagraph.InsertAfterSelf(Paragraph("AcademicAppendixTitle", appendix.Title));
-            // Native TC gives the contents an entry without the status line.
-            var entry = ("ПРИЛОЖЕНИЕ " + appendix.Letter + ". " + appendix.Title).Replace("\\", "\\\\").Replace("\"", "\\\"");
-            p.Append(new W.Run(new W.RunProperties(new W.Vanish()), new W.FieldChar { FieldCharType = W.FieldCharValues.Begin }),
-                new W.Run(new W.RunProperties(new W.Vanish()), new W.FieldCode($" TC \"{entry}\" \\f A \\l 1 ") { Space = SpaceProcessingModeValues.Preserve }),
-                new W.Run(new W.RunProperties(new W.Vanish()), new W.FieldChar { FieldCharType = W.FieldCharValues.End }));
         }
         if (research)
             foreach (var toc in body.Descendants<W.FieldCode>().Where(f => f.Text.TrimStart().StartsWith("TOC ", StringComparison.Ordinal)))

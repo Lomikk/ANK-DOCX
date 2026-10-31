@@ -88,6 +88,12 @@ internal static class WordFields
             foreach (Word.TableOfContents item in scope.Own(document.TablesOfContents))
             {
                 var toc = scope.Own(item);
+                var tocFields = scope.Own(scope.Own(toc.Range).Fields);
+                if (tocFields.Count > 0 && scope.Own(scope.Own(tocFields[1]).Code).Text.Contains("\\f A", StringComparison.Ordinal))
+                {
+                    toc.UseFields = true;
+                    toc.TableID = "A";
+                }
                 if (rebuildToc) toc.Update(); else toc.UpdatePageNumbers();
             }
             foreach (Word.TableOfFigures item in scope.Own(document.TablesOfFigures))
@@ -144,6 +150,7 @@ internal static class WordFinalizer
             if (report.Annotation is not null) DocumentPageLayout.Apply(staged, layout, templates);
             session = new();
             var document = session.Open(staged);
+            WordAppendices.MarkContents(session, layout);
             WordFrontMatter.Layout(session, report.Annotation);
             WordFields.Refresh(session);
             var parts = WordTables.Split(session);
@@ -178,6 +185,7 @@ internal static class WordFinalizer
                     throw new InvalidDataException($"Table fragment {index} spans pages after Word normalization");
             }
             report.Pages = WordFields.StabilizePages(session);
+            WordAppendices.VerifyContents(session, layout);
             report.FrontMatter = WordFrontMatter.Verify(session, report.Annotation);
             report.PageLayout = WordPageLayout.Verify(session, layout, report.Pages.Value, report.FrontMatter?.AnnotationStart);
             document.Save();

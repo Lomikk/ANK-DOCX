@@ -44,7 +44,8 @@ internal static class WordInspection
         foreach (Word.Field item in scope.Own(document.Fields))
         {
             var field = scope.Own(item);
-            fields.Add(new(scope.Own(field.Code).Text.Trim(), scope.Own(field.Result).Text.Trim()));
+            // TC is an index marker, not a field with a displayable Result range.
+            fields.Add(new(scope.Own(field.Code).Text.Trim(), field.Type == Word.WdFieldType.wdFieldTOCEntry ? "" : scope.Own(field.Result).Text.Trim()));
         }
         var sources = new List<SourceSnapshot>();
         foreach (Word.Source item in scope.Own(scope.Own(document.Bibliography).Sources))

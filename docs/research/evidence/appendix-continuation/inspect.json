@@ -1,0 +1,144 @@
+{
+  "snapshot": {
+    "label": "opened",
+    "fields": [
+      {
+        "code": "NUMPAGES",
+        "result": "13"
+      },
+      {
+        "code": "DOCPROPERTY AcademicFigures",
+        "result": "0"
+      },
+      {
+        "code": "DOCPROPERTY AcademicTables",
+        "result": "1"
+      },
+      {
+        "code": "DOCPROPERTY AcademicSources",
+        "result": "1"
+      },
+      {
+        "code": "DOCPROPERTY AcademicAppendices",
+        "result": "2"
+      },
+      {
+        "code": "TOC \\o \u00221-3\u0022 \\f A \\h \\z \\u",
+        "result": "Введение\t5\r1 Основная часть\t5\rЗаключение\t6\rСписок литературы\t7\rПРИЛОЖЕНИЕ А. Расчётные данные\t8\rПРИЛОЖЕНИЕ Б. Пояснения к расчёту\t11"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022_Toc244365364\u0022",
+        "result": "Введение\t5"
+      },
+      {
+        "code": "PAGEREF _Toc244365364 \\h",
+        "result": "5"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022_Toc244365365\u0022",
+        "result": "1 Основная часть\t5"
+      },
+      {
+        "code": "PAGEREF _Toc244365365 \\h",
+        "result": "5"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022_Toc244365366\u0022",
+        "result": "Заключение\t6"
+      },
+      {
+        "code": "PAGEREF _Toc244365366 \\h",
+        "result": "6"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022_Toc244365367\u0022",
+        "result": "Список литературы\t7"
+      },
+      {
+        "code": "PAGEREF _Toc244365367 \\h",
+        "result": "7"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022_Toc244365368\u0022",
+        "result": "ПРИЛОЖЕНИЕ А. Расчётные данные\t8"
+      },
+      {
+        "code": "PAGEREF _Toc244365368 \\h",
+        "result": "8"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022_Toc244365369\u0022",
+        "result": "ПРИЛОЖЕНИЕ Б. Пояснения к расчёту\t11"
+      },
+      {
+        "code": "PAGEREF _Toc244365369 \\h",
+        "result": "11"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022sec_app_a\u0022 \\h",
+        "result": "приложение А"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022sec_app_b\u0022 \\h",
+        "result": "приложение Б"
+      },
+      {
+        "code": "REF tbl_app_data \\h",
+        "result": "А.1"
+      },
+      {
+        "code": "HYPERLINK \\l \u0022ref-knuth1984\u0022 \\h",
+        "result": "1"
+      },
+      {
+        "code": "HYPERLINK \u0022https://doi.org/10.1093/comjnl/27.2.97\u0022 \\h",
+        "result": "Literate Programming"
+      },
+      {
+        "code": "TC \u0022ПРИЛОЖЕНИЕ А. Расчётные данные\u0022 \\f A \\l \u00221\u0022",
+        "result": ""
+      },
+      {
+        "code": "SEQ ТаблицаAppendixA \\* ARABIC",
+        "result": "1"
+      },
+      {
+        "code": "REF tbl_app_data \\h",
+        "result": "А.1"
+      },
+      {
+        "code": "REF tbl_app_data \\h",
+        "result": "А.1"
+      },
+      {
+        "code": "TC \u0022ПРИЛОЖЕНИЕ Б. Пояснения к расчёту\u0022 \\f A \\l \u00221\u0022",
+        "result": ""
+      }
+    ],
+    "sources": [],
+    "bookmarks": {
+      "sec_app_a": "\u0013 TC \u0022ПРИЛОЖЕНИЕ А. Расчётные данные\u0022 \\f A \\l \u00221\u0022 \u0015ПРИЛОЖЕНИЕ А\r(обязательное)\rРасчётные данные\rВ приложении представлены значения аргумента и рассчитанного показателя.\rТаблица А.1 — Исходные значения и квадрат аргумента\rАргумент\r\u0007Показатель\r\u0007\r\u00071\r\u00071\r\u0007\r\u00072\r\u0007…",
+      "sec_app_b": "\u0013 TC \u0022ПРИЛОЖЕНИЕ Б. Пояснения к расчёту\u0022 \\f A \\l \u00221\u0022 \u0015ПРИЛОЖЕНИЕ Б\r(информационное)\rПояснения к расчёту\rРезультат вычисления определяется однозначно исходным значением аргумента. Дополнительное пояснение показывает автоматическое продолжение приложения при…",
+      "sec_conclusion": "ЗАКЛЮЧЕНИЕ\rВынесены исходные данные и пояснения. Буквы приложений, подписи продолжений и записи оглавления формируются при сборке.",
+      "sec_introduction": "ВВЕДЕНИЕ\rПроверочный пример использует условные данные. Исходные значения приведены в приложение А, пояснения — в приложение Б. Таблица А.1 содержит вычисляемые показатели. Источник: [1].",
+      "sec_main": "ОСНОВНАЯ ЧАСТЬ\rЗначение показателя определяется как квадрат аргумента. Материал приложений остаётся частью той же пояснительной записки со сквозной нумерацией страниц.",
+      "sec_references": "СПИСОК ЛИТЕРАТУРЫ\r1 \tKnuth D. E. Literate Programming // The Computer Journal. 1984. Т. 27, № 2. С. 97–111.",
+      "tbl_app_data": "А.1"
+    },
+    "pages": 13,
+    "equations": 0,
+    "table_math": 0,
+    "toc": 1,
+    "table_text_font_sizes": [
+      12
+    ],
+    "table_math_font_sizes": []
+  },
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 15652,
+    "process_exited": true,
+    "cleanup_errors": []
+  }
+}

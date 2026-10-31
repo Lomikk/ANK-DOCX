@@ -44,7 +44,8 @@ public sealed class AppendixFormattingTests
                 Assert.Contains("Материал А", main.Document.InnerText);
                 Assert.Contains("Материал Б", main.Document.InnerText);
                 if (mode != "research") continue;
-                Assert.Equal(2, main.Document.Descendants<W.FieldCode>().Count(f => f.Text.TrimStart().StartsWith("TC ", StringComparison.Ordinal)));
+                Assert.All(main.Document.Descendants<W.Paragraph>().Where(p => p.ParagraphProperties?.ParagraphStyleId?.Val == "AcademicAppendixLabel"),
+                    p => Assert.Equal(9, p.ParagraphProperties!.OutlineLevel!.Val!.Value));
                 Assert.Equal(1, main.Document.Descendants<W.Paragraph>().Count(p => p.InnerText == "ПРИЛОЖЕНИЯ"));
                 Assert.Contains("(обязательное)", main.Document.InnerText);
                 Assert.Contains("(информационное)", main.Document.InnerText);

@@ -1,0 +1,34 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\.tools\\appendix-continuation\\repeated.docx",
+  "passed": true,
+  "schema_errors_before_word": 0,
+  "validation": {
+    "file": ".academic-5bab5701218345c0b397a1bf6c9b50b8.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 13,
+  "annotation": {
+    "figures": 0,
+    "tables": 1,
+    "sources": 1,
+    "appendices": 2
+  },
+  "front_matter": {
+    "title_end": 1,
+    "assignment_first_end": null,
+    "assignment_end": 2,
+    "annotation_start": 3,
+    "body_boundary": 4
+  },
+  "page_layout": null,
+  "split_tables": [],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 26056,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}

@@ -17,7 +17,7 @@
 - [Приёмка Starter](research/STARTER_TEMPLATE_ACCEPTANCE.md) — независимые работы, проверки Word/SDK и сохранение приложений.
 - [Полный учебный пример](research/COMPREHENSIVE_EXAMPLE.md) — все текущие элементы в одном QMD, расчёты R и приложения без Book.
 - [Единое оформление](research/FORMATTING_CONSISTENCY.md) — причина отличия Markdown-таблицы А.1, общие 11 пт, цвет ссылок, центрирование и проверка фактического кегля через Word.
-- [Приложения](APPENDIX_RULES.md) — штатный Book, обозначения А/Б, SEQ/REF и ограничения продолжений.
+- [Приложения](APPENDIX_RULES.md) — штатный Book, обозначения А/Б, SEQ/REF, виды и автоматические продолжения НИР; [приёмка](research/APPENDIX_CONTINUATION.md).
 - [Архитектура служебного слоя](SERVICE_LAYER_ARCHITECTURE.md) — C# для собственной обработки DOCX и Word, границы Quarto/R/Lua; рабочая сборка переключена, собственные Python/PS1 удалены.
 - [Приёмка перехода на C#](research/SERVICE_LAYER_MIGRATION.md) — команды, проверки, сборки двух профилей, PDF и оставшиеся ограничения.
 - [План разработки](DEVELOPMENT_PLAN.md) — этапы и критерии; статус реализации сверяйте с README действующего расширения.

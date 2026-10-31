@@ -1,0 +1,43 @@
+{
+  "file": "D:\\Repos\\ANK DOCX\\.tools\\appendix-continuation\\appendices.docx",
+  "passed": true,
+  "schema_errors_before_word": 1097,
+  "validation": {
+    "file": ".academic-c8a78e53db124b98a61c44456f216fe7.docx",
+    "error_count": 0,
+    "errors": []
+  },
+  "pages": 13,
+  "annotation": {
+    "figures": 0,
+    "tables": 1,
+    "sources": 1,
+    "appendices": 2
+  },
+  "front_matter": {
+    "title_end": 1,
+    "assignment_first_end": null,
+    "assignment_end": 2,
+    "annotation_start": 3,
+    "body_boundary": 4
+  },
+  "page_layout": null,
+  "split_tables": [
+    {
+      "name": "tbl_app_data",
+      "table_indices": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "word": {
+    "version": "16.0",
+    "build": "16.0.20326",
+    "process_id": 24784,
+    "process_exited": true,
+    "cleanup_errors": []
+  },
+  "error": null
+}
