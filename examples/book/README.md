@@ -5,10 +5,10 @@
 Из корня репозитория:
 
 ```powershell
-.\setup-academic.cmd
-.\build-academic.cmd
-.\build-academic.cmd --profile referat
-.\build-academic.cmd --profile appendices
+.\tools\setup-academic.cmd
+.\tools\build-academic.cmd
+.\tools\build-academic.cmd --profile referat
+.\tools\build-academic.cmd --profile appendices
 ```
 
 Setup устанавливает расширение из `quarto/`, копирует его проектную точку входа и восстанавливает R-пакеты. `_extensions/` и `tools/academic.R` здесь — установленные зависимости, игнорируемые Git. Правки оформления делаются только в `quarto/_extensions/academic/`; повторный setup обновляет пример.

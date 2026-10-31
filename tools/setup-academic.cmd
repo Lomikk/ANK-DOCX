@@ -1,13 +1,14 @@
 @echo off
+rem Install the released service and local dependencies. See tools/README.md.
 setlocal EnableExtensions DisableDelayedExpansion
-set "TASK_ROOT=%~dp0"
+set "TASK_ROOT=%~dp0..\"
 set "TASK_SERVICE=%TASK_ROOT%.tools\academic-docx\academic-docx.exe"
 if /I "%~1"=="--development" goto development
 if not "%~1"=="" if /I not "%~1"=="--service-only" (
-  echo Usage: setup-academic.cmd [--service-only ^| --development] 1>&2
+  echo Usage: tools\setup-academic.cmd [--service-only ^| --development] 1>&2
   exit /b 1
 )
-call "%TASK_ROOT%tools\service-release.cmd"
+call "%~dp0service-release.cmd"
 if not defined TASK_SERVICE_SHA256 exit /b 1
 if not exist "%TASK_ROOT%.tools\downloads" mkdir "%TASK_ROOT%.tools\downloads"
 set "TASK_ARCHIVE=%TASK_ROOT%.tools\downloads\academic-docx-%TASK_SERVICE_VERSION%-win-x64.zip"
@@ -49,7 +50,7 @@ if /I "%~1"=="--service-only" exit /b 0
 "%TASK_SERVICE%" setup "%TASK_ROOT%."
 exit /b %ERRORLEVEL%
 :development
-call "%TASK_ROOT%build-service.cmd"
+call "%~dp0build-service.cmd"
 if errorlevel 1 exit /b %ERRORLEVEL%
 "%TASK_SERVICE%" setup "%TASK_ROOT%." --development
 exit /b %ERRORLEVEL%

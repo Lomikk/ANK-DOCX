@@ -45,22 +45,24 @@ CMD вызывает штатные `quarto use template`, `renv::restore` и `q
 
 ## Среда разработчика
 
+Служебные CMD находятся в `tools/`; рядом есть [краткое описание каждого инструмента](tools/README.md).
+
 На Windows нужны .NET 10 SDK, официальная Word PIA и настольный Word:
 
 ```powershell
-.\setup-academic.cmd --development
-.\build-academic.cmd
-.\build-academic.cmd --profile referat
+.\tools\setup-academic.cmd --development
+.\tools\build-academic.cmd
+.\tools\build-academic.cmd --profile referat
 ```
 
-Режим разработчика публикует C#-приложение в `.tools/academic-docx/`, подготавливает закреплённые инструменты и R-пакеты. В Book-пример расширение и проектная точка входа устанавливаются из `quarto/`; их копии в примере игнорируются Git. Изменения библиотеки делайте в `quarto/_extensions/academic/`, затем повторяйте setup в режиме разработчика для обновления Book. Пакеты новых работ используют локальный кэш `.tools/renv/`. Для отдельной компиляции есть `build-service.cmd`, для подготовки архива выпуска — `pack-service.cmd`.
+Режим разработчика публикует C#-приложение в `.tools/academic-docx/`, подготавливает закреплённые инструменты и R-пакеты. В Book-пример расширение и проектная точка входа устанавливаются из `quarto/`; их копии в примере игнорируются Git. Изменения библиотеки делайте в `quarto/_extensions/academic/`, затем повторяйте setup в режиме разработчика для обновления Book. Пакеты новых работ используют локальный кэш `.tools/renv/`. Для отдельной компиляции есть `tools\build-service.cmd`, для подготовки архива выпуска — `tools\pack-service.cmd`.
 
-Без аргумента `build-academic.cmd` собирает интеграционный Book-пример: `examples/book/_book/coursework.docx`. Его вариант `referat` выпускается из того же демонстрационного содержания. Это сохранённая проверка многофайловой сборки и приложений, а не обязательная структура новой работы.
+Без аргумента `tools\build-academic.cmd` собирает интеграционный Book-пример: `examples/book/_book/coursework.docx`. Его вариант `referat` выпускается из того же демонстрационного содержания. Это сохранённая проверка многофайловой сборки и приложений, а не обязательная структура новой работы.
 
 Для сборки самостоятельного проекта подготовленными инструментами репозитория передайте путь штатному Quarto:
 
 ```powershell
-.\build-academic.cmd "D:/Учеба/Моя курсовая"
+.\tools\build-academic.cmd "D:/Учеба/Моя курсовая"
 ```
 
 Закройте целевой DOCX перед пересборкой либо задайте другое имя через `--output`. Результат обычного проекта находится в `_output/`; Quarto сохраняет вложенный путь исходника, например `_output/chapters/main.docx`.
@@ -85,9 +87,9 @@ CMD вызывает штатные `quarto use template`, `renv::restore` и `q
 ## Проверки и ограничения
 
 ```powershell
-.\academic-docx.cmd validate examples/book/_book/coursework.docx
-.\academic-docx.cmd check-word examples/book/_book/coursework.docx build/qa/copy.docx build/qa/word.json
-.\academic-docx.cmd export-pdf examples/book/_book/coursework.docx output/coursework.pdf build/qa/pdf.json
+.\tools\academic-docx.cmd validate examples/book/_book/coursework.docx
+.\tools\academic-docx.cmd check-word examples/book/_book/coursework.docx build/qa/copy.docx build/qa/word.json
+.\tools\academic-docx.cmd export-pdf examples/book/_book/coursework.docx output/coursework.pdf build/qa/pdf.json
 ```
 
 Проверены нативные заголовки, TOC, SEQ/REF, редактируемая математика OMML и поддержанные таблицы. Графики строятся преимущественно ggplot2, SVG создаётся svglite; TeX для сборки не нужен. Библиографию обрабатывает штатный Citeproc. Полный нормативный профиль и автоматический анализ вёрстки ещё не реализованы.

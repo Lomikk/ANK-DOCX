@@ -45,9 +45,10 @@ public sealed class BootstrapTests
     }
 
     [WordTheory]
-    [InlineData(false)]
-    [InlineData(true)]
-    public void BootstrapRequiresThePinnedArchiveAndNoSystemDotnet(bool corrupt)
+    [InlineData(false, false)]
+    [InlineData(false, true)]
+    [InlineData(true, false)]
+    public void BootstrapRequiresThePinnedArchiveAndNoSystemDotnet(bool corrupt, bool launcher)
     {
         var source = Environment.GetEnvironmentVariable("ACADEMIC_TEMPLATE_SOURCE") ?? throw new InvalidOperationException("Template source is required");
         var archive = Environment.GetEnvironmentVariable("ACADEMIC_SERVICE_ARCHIVE") ?? throw new InvalidOperationException("Release archive is required");
@@ -56,14 +57,15 @@ public sealed class BootstrapTests
         Directory.CreateDirectory(Path.Combine(root, "tools"));
         try
         {
-            File.Copy(Path.Combine(repository, "setup-academic.cmd"), Path.Combine(root, "setup-academic.cmd"));
+            File.Copy(Path.Combine(repository, "tools", "setup-academic.cmd"), Path.Combine(root, "tools", "setup-academic.cmd"));
+            File.Copy(Path.Combine(repository, "ANK-DOCX.cmd"), Path.Combine(root, "ANK-DOCX.cmd"));
             File.Copy(Path.Combine(repository, "tools", "service-release.cmd"), Path.Combine(root, "tools", "service-release.cmd"));
             if (corrupt)
             {
                 archive = Path.Combine(root, "invalid.zip");
                 File.WriteAllText(archive, "This is not the published release");
             }
-            var first = Install(root, archive);
+            var first = Install(root, archive, launcher);
             var service = Path.Combine(root, ".tools", "academic-docx", "academic-docx.exe");
             if (corrupt)
             {
@@ -76,14 +78,14 @@ public sealed class BootstrapTests
             Assert.True(File.Exists(service));
             Assert.True(File.Exists(Path.Combine(root, ".tools", "academic-docx", "coreclr.dll")));
             var before = File.GetLastWriteTimeUtc(service);
-            var second = Install(root, archive);
+            var second = Install(root, archive, launcher);
             Assert.True(second.Code == 0, second.Output);
             Assert.Equal(before, File.GetLastWriteTimeUtc(service));
         }
         finally { Directory.Delete(root, recursive: true); }
     }
 
-    private static (int Code, string Output) Install(string root, string archive)
+    private static (int Code, string Output) Install(string root, string archive, bool launcher)
     {
         var system = Environment.GetFolderPath(Environment.SpecialFolder.System);
         var info = new ProcessStartInfo(Path.Combine(system, "cmd.exe"))
@@ -91,7 +93,9 @@ public sealed class BootstrapTests
             WorkingDirectory = root, UseShellExecute = false, CreateNoWindow = true,
             RedirectStandardOutput = true, RedirectStandardError = true
         };
-        foreach (var argument in new[] { "/d", "/c", "setup-academic.cmd", "--service-only" }) info.ArgumentList.Add(argument);
+        string[] arguments = launcher ? ["/d", "/c", "ANK-DOCX.cmd", "setup", "--service-only"]
+            : ["/d", "/c", "tools\\setup-academic.cmd", "--service-only"];
+        foreach (var argument in arguments) info.ArgumentList.Add(argument);
         info.Environment["PATH"] = system;
         info.Environment["DOTNET_ROOT"] = Path.Combine(root, "missing-dotnet");
         info.Environment["ANK_DOCX_SERVICE_ARCHIVE"] = archive;

@@ -15,7 +15,7 @@ echo ANK DOCX — первый запуск
 echo Зависимости будут установлены в .tools внутри репозитория.
 choice /c 10 /n /m "1 — установить и продолжить, 0 — выход: "
 if errorlevel 2 goto cancel
-call "%~dp0setup-academic.cmd"
+call "%~dp0tools\setup-academic.cmd"
 set "TASK_SETUP_RESULT=%ERRORLEVEL%"
 chcp %TASK_CODEPAGE% >nul
 if not "%TASK_SETUP_RESULT%"=="0" (
@@ -27,5 +27,5 @@ goto run
 chcp %TASK_CODEPAGE% >nul
 exit /b 0
 :setup
-call "%~dp0setup-academic.cmd" %2 %3
+call "%~dp0tools\setup-academic.cmd" %2 %3
 exit /b %ERRORLEVEL%

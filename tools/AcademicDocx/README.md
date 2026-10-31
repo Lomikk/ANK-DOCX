@@ -7,7 +7,7 @@
 Для пользователя `ANK-DOCX.cmd setup` получает готовое приложение с собственным .NET Runtime. .NET SDK и PIA нужны разработчику для компиляции. Ему требуются Windows, .NET 10 SDK и официальные Word PIA и Office core PIA из установленного Office или Visual Studio Tools for Office. PIA определяются по стандартным каталогам средств разработки и GAC. При отсутствии либо неоднозначности укажите пути явно:
 
 ```powershell
-.\build-service.cmd '-p:WordPiaPath=C:/path/to/Microsoft.Office.Interop.Word.dll' '-p:OfficePiaPath=C:/path/to/office.dll'
+.\tools\build-service.cmd '-p:WordPiaPath=C:/path/to/Microsoft.Office.Interop.Word.dll' '-p:OfficePiaPath=C:/path/to/office.dll'
 ```
 
 Не устанавливайте неподдерживаемую NuGet-перепаковку `Microsoft.Office.Interop.Word`. Использованные interop-типы встраиваются компилятором; распространять отдельную DLL PIA с приложением не требуется для проверенных сценариев.
@@ -19,22 +19,22 @@ dotnet build tools/AcademicDocx/AcademicDocx.csproj -p:RestoreLockedMode=true
 dotnet publish tools/AcademicDocx/AcademicDocx.csproj -c Release -r win-x64 --self-contained true -p:RestoreLockedMode=true -o .tools/academic-docx
 ```
 
-Публикация включает .NET runtime. Сохраняйте весь каталог публикации, а не только EXE. `pack-service.cmd` готовит архив и закреплённый SHA-256 для начального загрузчика. Настольный Word нужен командам, использующим COM. Переносимая библиотека `AcademicDocx.Core` не ссылается на Word/PIA и проверяется отдельно. Устройство локального окружения и порядок выпуска — [ENVIRONMENT_SETUP.md](../../docs/ENVIRONMENT_SETUP.md).
+Публикация включает .NET runtime. Сохраняйте весь каталог публикации, а не только EXE. `tools\pack-service.cmd` готовит архив и закреплённый SHA-256 для начального загрузчика. Настольный Word нужен командам, использующим COM. Переносимая библиотека `AcademicDocx.Core` не ссылается на Word/PIA и проверяется отдельно. Устройство локального окружения и порядок выпуска — [ENVIRONMENT_SETUP.md](../../docs/ENVIRONMENT_SETUP.md).
 
 Для независимых работ добавьте каталог публикации в PATH либо задайте `ACADEMIC_DOCX_SERVICE`. Команда `--version` сообщает версию приложения; расширение 0.4.2 требует приложение не ниже 0.4.2 в ветке 0.4.x: единый каталог комплектов, явный выбор оформления страниц и приложения НИР. Настройка окружения терминала также должна обеспечивать Quarto, R и rsvg-convert. `setup` не меняет глобальный PATH. Новый авторский проект создаётся из [Starter](../../quarto/), отдельный CLI создания не нужен.
 
 ## Команды из корня
 
 ```powershell
-.\academic-docx.cmd help
-.\academic-docx.cmd setup .
-.\academic-docx.cmd validate examples/book/_book/coursework.docx
-.\academic-docx.cmd style-reference quarto/_extensions/academic/academic.docx --output build/reference.docx
-.\academic-docx.cmd style-reference quarto/_extensions/academic/academic.docx --output build/reference-sto04.docx --bottom-margin-mm 20
-.\academic-docx.cmd finalize-word build/input.docx --report build/finalize.json
-.\academic-docx.cmd inspect-word examples/book/_book/coursework.docx build/inspect.json
-.\academic-docx.cmd check-word examples/book/_book/coursework.docx build/mutated.docx build/check.json --expected-pages 11
-.\academic-docx.cmd export-pdf examples/book/_book/coursework.docx output/coursework.pdf build/export.json
+.\tools\academic-docx.cmd help
+.\tools\academic-docx.cmd setup .
+.\tools\academic-docx.cmd validate examples/book/_book/coursework.docx
+.\tools\academic-docx.cmd style-reference quarto/_extensions/academic/academic.docx --output build/reference.docx
+.\tools\academic-docx.cmd style-reference quarto/_extensions/academic/academic.docx --output build/reference-sto04.docx --bottom-margin-mm 20
+.\tools\academic-docx.cmd finalize-word build/input.docx --report build/finalize.json
+.\tools\academic-docx.cmd inspect-word examples/book/_book/coursework.docx build/inspect.json
+.\tools\academic-docx.cmd check-word examples/book/_book/coursework.docx build/mutated.docx build/check.json --expected-pages 11
+.\tools\academic-docx.cmd export-pdf examples/book/_book/coursework.docx output/coursework.pdf build/export.json
 ```
 
 `finalize-word` вызывается автоматически из Quarto hook. Вручную он нужен для диагностики уже подготовленного промежуточного DOCX, а не для преобразования произвольного файла Quarto в наш формат. Работает с временной копией и заменяет целевой файл после финализации, проверки схемы SDK и корректного завершения Word. Исходный файл при сбое не заменяется. Счётчик ошибок схемы до Word не обрезается на стандартном лимите SDK.

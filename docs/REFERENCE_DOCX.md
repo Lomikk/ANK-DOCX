@@ -56,7 +56,7 @@ Reference-doc не перекрывает прямое форматирован�
 Существующий Book использует общий файл автоматически:
 
 ```powershell
-.\build-academic.cmd
+.\tools\build-academic.cmd
 ```
 
 В отдельном Quarto-документе достаточно стандартной настройки:
@@ -75,18 +75,18 @@ format:
 Для сопровождения стилей, из корня репозитория:
 
 ```powershell
-.\academic-docx.cmd style-reference quarto/_extensions/academic/academic.docx
+.\tools\academic-docx.cmd style-reference quarto/_extensions/academic/academic.docx
 ```
 
 Отдельный вариант с нижним полем СТО 04 создаётся из той же основы:
 
 ```powershell
-.\academic-docx.cmd style-reference quarto/_extensions/academic/academic.docx --bottom-margin-mm 20 --output quarto/_extensions/academic/academic-sto04.docx
+.\tools\academic-docx.cmd style-reference quarto/_extensions/academic/academic.docx --bottom-margin-mm 20 --output quarto/_extensions/academic/academic-sto04.docx
 ```
 
 Его подключают обычным `reference-doc`. Отдельная система профилей или JSON-парсер требований не введены. Кафедральные интервалы и отступы не включены автоматически без конкретного решения кафедры; их можно менять штатным редактором стилей Word в копии reference-doc.
 
-Исходная заготовка при необходимости получается штатной командой `quarto pandoc -o reference.docx --print-default-data-file reference.docx`, затем к ней применяется `academic-docx.cmd style-reference`. Редактор использует типизированный API Open XML SDK для стилей, нумерации и PAGE. Он проверяет схему и заменяет целевой файл только после успеха. Сравнение с сохранённым результатом прежнего Python-редактора и идемпотентность проверяются в `tools/AcademicDocx.Tests/ReferenceTests.cs`. Новый writer не разрабатывался.
+Исходная заготовка при необходимости получается штатной командой `quarto pandoc -o reference.docx --print-default-data-file reference.docx`, затем к ней применяется `tools\academic-docx.cmd style-reference`. Редактор использует типизированный API Open XML SDK для стилей, нумерации и PAGE. Он проверяет схему и заменяет целевой файл только после успеха. Сравнение с сохранённым результатом прежнего Python-редактора и идемпотентность проверяются в `tools/AcademicDocx.Tests/ReferenceTests.cs`. Новый writer не разрабатывался.
 
 ## Проверка и ограничения
 
