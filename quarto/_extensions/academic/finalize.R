@@ -194,8 +194,8 @@ for (output in outputs) {
       stop("Academic DOCX service is missing: add the published application to PATH or set ACADEMIC_DOCX_SERVICE to its EXE")
     version <- system2(normalizePath(service), "--version", stdout = TRUE, stderr = TRUE)
     if (!is.null(base::attr(version, "status")) || length(version) != 1L ||
-        !grepl("^0[.]4[.][0-9]+$", version) || numeric_version(version) < numeric_version("0.4.2"))
-      stop("Incompatible Academic DOCX service: this extension requires >=0.4.2 within 0.4.x; update the service and the installed extension together")
+        !grepl("^0[.]4[.][0-9]+$", version) || numeric_version(version) < numeric_version("0.4.4"))
+      stop("Incompatible Academic DOCX service: this extension requires >=0.4.4 within 0.4.x; update the service and the installed extension together")
     report <- normalizePath(file.path(".quarto",paste0(basename(output),".finalize.json")), mustWork=FALSE)
     arguments <- c("finalize-word", shQuote(output), "--report", shQuote(report), "--layout-metadata", shQuote(layout_path))
     if (identical(layout$PageLayout, 'technical')) {

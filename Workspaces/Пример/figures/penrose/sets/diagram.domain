@@ -1,0 +1,3 @@
+type Set
+predicate Subset(Set a, Set b)
+predicate Disjoint(Set a, Set b)

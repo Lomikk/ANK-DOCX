@@ -3,6 +3,8 @@ project:
   render: [chapters/main.qmd]
   execute-dir: project
   output-dir: _output
+  pre-render:
+    - tools/academic.R diagrams
   post-render:
     - tools/academic.R finalize
 format:

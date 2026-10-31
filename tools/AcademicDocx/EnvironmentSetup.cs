@@ -26,6 +26,8 @@ internal static class EnvironmentSetup
         var quarto = data.GetProperty("quarto");
         var quartoVersion = quarto.GetProperty("version").GetString()!;
         var svg = data.GetProperty("svg_converter");
+        var nodeVersion = data.GetProperty("penrose").GetProperty("node_version").GetString()!;
+        var svgRelease = svg.GetProperty("distribution_release").GetString()!.TrimStart('v');
         var tools = Path.Combine(root, ".tools");
         Directory.CreateDirectory(tools);
         var rRoot = Path.Combine(tools, "R");
@@ -39,13 +41,16 @@ internal static class EnvironmentSetup
         }
         RequireVersion(rScript, ["--version"], rVersion, exact: false, root);
         // This belongs to our local R installation, never the user's R profile.
-        File.WriteAllText(Path.Combine(tools, "R", "etc", "Renviron.site"), """
+        File.WriteAllText(Path.Combine(tools, "R", "etc", "Renviron.site"), $$"""
             # Managed by ANK DOCX setup. Paths remain relative to this R installation.
             RENV_PATHS_ROOT="${RENV_PATHS_ROOT:-${R_HOME}/../renv}"
             RENV_PATHS_CACHE="${RENV_PATHS_CACHE:-${RENV_PATHS_ROOT}/cache}"
             RENV_PATHS_SOURCE="${RENV_PATHS_SOURCE:-${RENV_PATHS_ROOT}/source}"
             RENV_PATHS_BINARY="${RENV_PATHS_BINARY:-${RENV_PATHS_ROOT}/binary}"
             RENV_PATHS_SANDBOX="${RENV_PATHS_SANDBOX:-${RENV_PATHS_ROOT}/sandbox}"
+            ANK_PENROSE_NODE="${ANK_PENROSE_NODE:-${R_HOME}/../node-v{{nodeVersion}}-win-x64/node.exe}"
+            ANK_PENROSE_CLI="${ANK_PENROSE_CLI:-${R_HOME}/../penrose/node_modules/@penrose/roger/bin/run.js}"
+            ANK_SVG_CONVERTER="${ANK_SVG_CONVERTER:-${R_HOME}/../rsvg-convert-static-{{svgRelease}}/rsvg-convert.exe}"
             """ + "\n", new UTF8Encoding(false));
         var quartoRoot = Path.Combine(tools, "quarto-" + quartoVersion);
         var quartoExe = Path.Combine(quartoRoot, "bin", "quarto.exe");
@@ -67,6 +72,7 @@ internal static class EnvironmentSetup
             ZipFile.ExtractToDirectory(zip, svgRoot, overwriteFiles: true);
         }
         RequireVersion(svgExe, ["--version"], svg.GetProperty("version").GetString()!.Replace("librsvg ", "rsvg-convert version ", StringComparison.Ordinal), exact: true, root);
+        InstallPenrose(root, data.GetProperty("penrose"), environment);
         // Process-local environment only. Do not change the user's locale/PATH.
         if (development)
         {
@@ -87,6 +93,39 @@ internal static class EnvironmentSetup
         Execute(rScript, ["--vanilla", installer], reference, root, clearLocale: true);
         Console.WriteLine("Local dependency cache: " + environment.Renv);
         Console.WriteLine("Academic DOCX environment is ready.");
+    }
+
+    private static void InstallPenrose(string root, JsonElement settings, LocalToolchain environment)
+    {
+        var version = settings.GetProperty("node_version").GetString()!;
+        var node = environment.Node!;
+        if (!File.Exists(node))
+        {
+            var archive = Path.Combine(environment.Tools, "downloads", $"node-v{version}-win-x64.zip");
+            Download($"https://nodejs.org/dist/v{version}/node-v{version}-win-x64.zip", archive);
+            RequireHash(archive, settings.GetProperty("node_windows_zip_sha256").GetString()!);
+            ZipFile.ExtractToDirectory(archive, environment.Tools, overwriteFiles: true);
+        }
+        RequireVersion(node, ["--version"], "v" + version, exact: true, root);
+        var source = Path.Combine(root, "tools", "Penrose");
+        var target = Path.Combine(environment.Tools, "penrose");
+        Directory.CreateDirectory(target);
+        var fingerprint = string.Join(":", new[] { "package.json", "package-lock.json" }
+            .Select(file => Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(Path.Combine(source, file)))))) + ":" + version;
+        var marker = Path.Combine(target, ".installed-lock");
+        if (!File.Exists(marker) || File.ReadAllText(marker) != fingerprint || !File.Exists(environment.PenroseCli) ||
+            !File.Exists(Path.Combine(target, "node_modules", "canvas", "build", "Release", "canvas.node")))
+        {
+            foreach (var file in new[] { "package.json", "package-lock.json" }) File.Copy(Path.Combine(source, file), Path.Combine(target, file), overwrite: true);
+            var npm = Path.Combine(Path.GetDirectoryName(node)!, "node_modules", "npm", "bin", "npm-cli.js");
+            Execute(node, [npm, "ci", "--prefix", target, "--legacy-peer-deps", "--no-audit", "--no-fund"], root, root);
+        }
+        using var installed = JsonDocument.Parse(File.ReadAllText(Path.Combine(target, "node_modules", "@penrose", "roger", "package.json")));
+        if (installed.RootElement.GetProperty("version").GetString() != settings.GetProperty("roger_version").GetString())
+            throw new InvalidDataException("Installed Penrose version does not match dependencies.lock.json");
+        Execute(node, ["--input-type=module", "-e", "import 'global-jsdom/register'; if (!document.createElement('canvas').getContext('2d')) throw new Error('Penrose text measurement is unavailable');"], target, root, echo: false);
+        File.WriteAllText(marker, fingerprint);
+        Console.WriteLine("Penrose roger " + settings.GetProperty("roger_version").GetString());
     }
 
     private static void Download(string url, string path)

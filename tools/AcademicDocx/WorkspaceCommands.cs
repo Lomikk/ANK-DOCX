@@ -50,7 +50,14 @@ internal static class WorkspaceCommands
         else if (args is ["new", var name]) Create(root, name);
         else if (args is ["new", var profiledName, "--profile", var profile]) Create(root, profiledName, profile);
         else if (args is ["build", var buildName]) Build(root, buildName);
-        else throw new ArgumentException("Usage: ANK-DOCX.cmd new NAME [--profile PROFILE] | build NAME | list | profiles");
+        else if (args is ["penrose", .. var penroseArgs])
+        {
+            var environment = new LocalToolchain(root);
+            if (environment.Node is null || !File.Exists(environment.Node) || !File.Exists(environment.PenroseCli))
+                throw new FileNotFoundException("Penrose is missing. Run ANK-DOCX.cmd setup first.");
+            Execute(root, Environment.CurrentDirectory, environment.Node, [environment.PenroseCli, .. penroseArgs]);
+        }
+        else throw new ArgumentException("Usage: ANK-DOCX.cmd new NAME [--profile PROFILE] | build NAME | list | profiles | penrose [ROGER_ARGUMENTS]");
     }
 
     private static string Project(string root, string name)

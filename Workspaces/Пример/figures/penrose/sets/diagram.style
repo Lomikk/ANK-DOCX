@@ -1,0 +1,31 @@
+canvas {
+  width = 720
+  height = 420
+}
+
+forall Set x {
+  shape x.icon = Circle {
+    fillColor: rgba(0.95, 0.95, 0.95, 1)
+    strokeColor: rgba(0, 0, 0, 1)
+    strokeWidth: 2
+  }
+  shape x.text = Text {
+    string: x.label
+    fontSize: "28px"
+    fontFamily: "Times New Roman"
+  }
+  ensure contains(x.icon, x.text)
+  ensure x.icon.r > 45
+  encourage norm(x.text.center - x.icon.center) == 0
+  layer x.text above x.icon
+}
+
+forall Set x; Set y where Subset(x, y) {
+  ensure contains(y.icon, x.icon, 16)
+  ensure disjoint(y.text, x.icon, 12)
+  layer x.icon above y.icon
+}
+
+forall Set x; Set y where Disjoint(x, y) {
+  ensure disjoint(x.icon, y.icon, 18)
+}

@@ -59,6 +59,7 @@ Thumbs.db
 Desktop.ini
 
 # Optional scientific Python projects may exist; never commit their caches.
+**/node_modules/
 __pycache__/
 *.py[cod]
 .venv/

@@ -1,0 +1,5 @@
+Set A, B, C
+Subset(A, C)
+Subset(B, C)
+Disjoint(A, B)
+AutoLabel All

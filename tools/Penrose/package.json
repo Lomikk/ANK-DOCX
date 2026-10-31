@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@penrose/roger": "3.3.1",
+    "canvas": "3.2.3",
+    "jsdom": "22.1.0"
+  },
+  "allowScripts": {
+    "canvas@3.2.3": true
+  }
+}

@@ -11,9 +11,10 @@ if (length(academic_candidates) != 1L) {
 }
 academic_script <- "setup.R"
 if (sys.nframe() == 0L) {
-  if (!identical(commandArgs(trailingOnly = TRUE), "finalize"))
-    stop("Usage: Rscript tools/academic.R finalize")
-  academic_script <- "finalize.R"
+  args <- commandArgs(trailingOnly = TRUE)
+  if (identical(args, "finalize")) academic_script <- "finalize.R"
+  else if (identical(args, "diagrams")) academic_script <- "penrose.R"
+  else stop("Usage: Rscript tools/academic.R diagrams|finalize")
 }
 source(file.path(academic_candidates[[1]], academic_script),
        local = .GlobalEnv, encoding = "UTF-8")

@@ -15,6 +15,7 @@ ANK-DOCX.cmd build "Курсовая"
 | Git | Исходники, Starter, формы, reference DOCX, CSL, XML рамок, инструкции и lock-файлы |
 | `.tools/academic-docx/` | Готовое приложение, библиотеки, собственный .NET Runtime и уведомления о лицензиях |
 | `.tools/R/`, `.tools/quarto-*/`, `.tools/rsvg-convert-*/` | Локальные инструменты |
+| `.tools/node-v*-win-x64/`, `.tools/penrose/`, `.tools/npm-cache/` | Локальный Node.js, Penrose и кэш npm; SVG собираются автоматически по [правилам](PENROSE.md) |
 | `.tools/renv/` | Состояние renv, кэш установленных пакетов и загрузок |
 | `.tools/downloads/` | Архивы и установщик R; их можно скачать заново |
 | Система | Word, шрифты, Git, редактор; у разработчика также SDK и официальные PIA |
