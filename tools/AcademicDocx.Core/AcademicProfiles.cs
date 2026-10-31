@@ -3,7 +3,7 @@ using System.Text.Json;
 namespace AcademicDocx.Core;
 
 // The same small JSON catalog is consumed by the Quarto Lua filter.
-public sealed record AcademicProfile(string Label);
+public sealed record AcademicProfile(string Label, string Description = "");
 public sealed record AcademicProfileAlias(string Default);
 public sealed record AcademicProfiles(string Default, Dictionary<string, AcademicProfile> Profiles,
     Dictionary<string, AcademicProfileAlias> Aliases)

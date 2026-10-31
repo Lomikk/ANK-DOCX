@@ -2,7 +2,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <AssemblyName>academic-docx</AssemblyName>
-    <Version>0.4.4</Version>
+    <Version>0.4.5</Version>
     <TargetFramework>net10.0-windows</TargetFramework>
     <RuntimeFrameworkVersion>10.0.14</RuntimeFrameworkVersion>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -28,6 +28,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="../licenses/OpenXML.txt" Link="licenses/OpenXML.txt" CopyToPublishDirectory="PreserveNewest" />
+    <None Include="../licenses/Spectre.Console.txt" Link="licenses/Spectre.Console.txt" CopyToPublishDirectory="PreserveNewest" />
+    <PackageReference Include="Spectre.Console" Version="0.57.2" />
     <ProjectReference Include="../AcademicDocx.Core/AcademicDocx.Core.csproj" />
     <Reference Include="Microsoft.Office.Interop.Word">
       <HintPath>$(WordPiaPath)</HintPath>

@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using System.Text;
-using System.Text.Json;
 using AcademicDocx.Core;
 
 namespace AcademicDocx;
@@ -13,39 +12,17 @@ internal static class WorkspaceCommands
         root = Path.GetFullPath(root);
         if (args.Length == 0)
         {
-            while (true)
-            {
-                Console.WriteLine("ANK DOCX: 1 — создать работу, 2 — собрать, 3 — список, 0 — выход");
-                var choice = Console.ReadLine();
-                if (choice is null or "0") return;
-                if (choice == "3") { List(root); continue; }
-                if (choice is not ("1" or "2")) continue;
-                Console.Write("Название папки работы: ");
-                var name = Console.ReadLine();
-                if (name is null) return;
-                try
-                {
-                    if (choice == "1")
-                    {
-                        var catalog = Profiles(root);
-                        var ids = catalog.Profiles.Keys.ToArray();
-                        for (var i = 0; i < ids.Length; i++) Console.WriteLine($"{i + 1} — {catalog.Profiles[ids[i]].Label}");
-                        Console.Write("Профиль (номер или имя, Enter — " + catalog.Profiles[catalog.Default].Label + "): ");
-                        var profile = Console.ReadLine();
-                        if (int.TryParse(profile, out var number) && number >= 1 && number <= ids.Length) profile = ids[number - 1];
-                        Create(root, name, string.IsNullOrWhiteSpace(profile) ? null : profile);
-                    }
-                    else Build(root, name);
-                }
-                catch (Exception error) { Console.Error.WriteLine(error.Message); }
-            }
+            Console.OutputEncoding = new UTF8Encoding(false);
+            Console.InputEncoding = new UTF8Encoding(false);
+            WorkspaceMenu.Run(root);
         }
         else if (args is ["help"] or ["--help"] or ["-h"])
-            Console.WriteLine("ANK-DOCX.cmd setup | new NAME [--profile PROFILE] | build NAME | list | profiles");
+            Console.WriteLine("ANK-DOCX.cmd — интерактивное меню\nANK-DOCX.cmd setup | new NAME [--profile PROFILE] | build NAME | list | profiles | penrose [ROGER_ARGUMENTS]");
         else if (args is ["list"]) List(root);
         else if (args is ["profiles"])
         {
-            foreach (var (id, profile) in Profiles(root).Profiles) Console.WriteLine(id + " — " + profile.Label);
+            foreach (var (id, profile) in Profiles(root).Profiles)
+                Console.WriteLine(id + " — " + profile.Label + "\n  " + profile.Description);
         }
         else if (args is ["new", var name]) Create(root, name);
         else if (args is ["new", var profiledName, "--profile", var profile]) Create(root, profiledName, profile);
@@ -60,7 +37,7 @@ internal static class WorkspaceCommands
         else throw new ArgumentException("Usage: ANK-DOCX.cmd new NAME [--profile PROFILE] | build NAME | list | profiles | penrose [ROGER_ARGUMENTS]");
     }
 
-    private static string Project(string root, string name)
+    internal static string Project(string root, string name)
     {
         if (string.IsNullOrWhiteSpace(name) || name is "." or ".." || name.EndsWith('.') || name.EndsWith(' ') ||
             name.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0 || name.Length > 120)
@@ -76,10 +53,10 @@ internal static class WorkspaceCommands
         return project;
     }
 
-    private static AcademicProfiles Profiles(string root) =>
+    internal static AcademicProfiles Profiles(string root) =>
         AcademicProfiles.Read(Path.Combine(root, "quarto", "_extensions", "academic", "profiles.json"));
 
-    private static void Create(string root, string name, string? profile = null)
+    internal static void Create(string root, string name, string? profile = null)
     {
         var project = Project(root, name);
         if (Directory.Exists(project) || File.Exists(project)) throw new IOException("Workspace already exists; nothing was changed: " + project);
@@ -94,10 +71,10 @@ internal static class WorkspaceCommands
         File.WriteAllText(metadata, File.ReadAllText(metadata).Replace("profile: " + catalog.Default, "profile: " + selected, StringComparison.Ordinal));
         Execute(root, project, r, ["--vanilla", "tools/install.R"]);
         Console.WriteLine("Создано: " + project);
-        Console.WriteLine("Заполните metadata.yml и chapters/main.qmd. Сборка: ANK-DOCX.cmd build \"" + name + "\"");
+        Console.WriteLine("Заполните metadata.yml и chapters/main.qmd, затем выберите «Собрать DOCX» в меню ANK-DOCX.cmd.");
     }
 
-    private static void Build(string root, string name)
+    internal static void Build(string root, string name)
     {
         var project = Project(root, name);
         if (!File.Exists(Path.Combine(project, "_quarto.yml")) || !File.Exists(Path.Combine(project, "chapters", "main.qmd")))
@@ -108,10 +85,17 @@ internal static class WorkspaceCommands
 
     private static void List(string root)
     {
+        var projects = Projects(root);
+        if (projects.Length == 0) Console.WriteLine("Работ пока нет. Выберите «Создать работу» в меню ANK-DOCX.cmd.");
+        foreach (var project in projects) Console.WriteLine(project);
+    }
+
+    internal static string[] Projects(string root)
+    {
         var folder = Path.Combine(root, "Workspaces");
-        var projects = Directory.Exists(folder) ? Directory.GetDirectories(folder).Where(p => File.Exists(Path.Combine(p, "_quarto.yml"))).Order().ToArray() : [];
-        if (projects.Length == 0) Console.WriteLine("Работ пока нет. Создайте: ANK-DOCX.cmd new \"Название\"");
-        foreach (var project in projects) Console.WriteLine(Path.GetFileName(project));
+        return Directory.Exists(folder) ? Directory.GetDirectories(folder)
+            .Where(p => File.Exists(Path.Combine(p, "_quarto.yml")) && File.Exists(Path.Combine(p, "chapters", "main.qmd")))
+            .Select(p => Path.GetFileName(p)).Order(StringComparer.CurrentCultureIgnoreCase).ToArray() : [];
     }
 
     private static string Tool(string root, params string[] path)

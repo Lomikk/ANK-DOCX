@@ -23,7 +23,7 @@
     "npm_lockfile": "tools/Penrose/package-lock.json"
   },
   "docx_service": {
-    "version": "0.4.4",
+    "version": "0.4.5",
     "language": "C#",
     "framework": "net10.0-windows",
     "portable_core": "net10.0",
