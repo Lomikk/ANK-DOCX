@@ -19,7 +19,8 @@ internal static class WorkspaceMenu
                 new("folder", "Открыть папку работы"), new("document", "Открыть готовый DOCX"),
                 new("profiles", "Справочник СТО и комплектов"),
                 new("setup", "Установить / восстановить зависимости"),
-                new("debug-build", "Собрать DOCX (подробный вывод)")], "Выход");
+                new("debug-build", "Собрать DOCX (подробный вывод)"),
+                new("figures", "Рисунки Penrose")], "Выход");
             if (action is null) return;
             try
             {
@@ -40,7 +41,8 @@ internal static class WorkspaceMenu
                     }
                     var name = Select("Выберите работу", names.Select(n => new Choice(n, n)).ToArray());
                     if (name is null) continue;
-                    if (action is "build" or "debug-build") WorkspaceCommands.Build(root, name, verbose: action == "debug-build");
+                    if (action == "figures") Figures(root, name);
+                    else if (action is "build" or "debug-build") WorkspaceCommands.Build(root, name, verbose: action == "debug-build");
                     else
                     {
                         var path = WorkspaceCommands.Project(root, name);
@@ -61,6 +63,53 @@ internal static class WorkspaceMenu
             catch (Exception error) { Console.Error.WriteLine("Не удалось выполнить действие: " + error.Message); }
             Console.WriteLine();
         }
+    }
+
+    internal static void Figures(string root, string name)
+    {
+        PenroseEditor? editor = null;
+        try
+        {
+            while (true)
+            {
+                var diagrams = PenroseCommands.Diagrams(root, name);
+                if (diagrams.Length == 0) { Console.WriteLine("В figures/penrose/ этой работы пока нет рисунков Penrose."); return; }
+                var action = Select("Рисунки Penrose — " + name, [
+                    new("open", "Открыть локальный редактор Penrose"),
+                    new("apply", "Применить SVG из редактора"),
+                    new("generate", "Сгенерировать рисунок заново", "Сохранённая версия останется в истории"),
+                    new("build", "Собрать DOCX")]);
+                if (action is null) return;
+                try
+                {
+                    if (action == "open")
+                    {
+                        if (editor is null || !editor.IsRunning)
+                        {
+                            editor?.Dispose();
+                            editor = PenroseEditor.Start(root, WorkspaceCommands.Project(root, name));
+                        }
+                        else Process.Start(new ProcessStartInfo(PenroseEditor.Url) { UseShellExecute = true })?.Dispose();
+                    }
+                    else if (action == "build") WorkspaceCommands.Build(root, name);
+                    else
+                    {
+                        var id = Select("Выберите рисунок", diagrams.Select(d => new Choice(d.Id, d.Id,
+                            d.HasEdits ? "Сохранённый SVG" : "Автоматический")).ToArray());
+                        if (id is null) continue;
+                        if (action == "apply")
+                        {
+                            Console.Write("Путь к экспортированному SVG (Enter — назад): ");
+                            var svg = Console.ReadLine()?.Trim().Trim('"');
+                            if (!string.IsNullOrWhiteSpace(svg)) PenroseCommands.Run(root, name, ["apply", id, svg]);
+                        }
+                        else PenroseCommands.Run(root, name, ["generate", id]);
+                    }
+                }
+                catch (Exception error) { Console.Error.WriteLine("Не удалось обработать рисунок: " + error.Message); }
+            }
+        }
+        finally { editor?.Dispose(); }
     }
 
     private static void Create(string root)

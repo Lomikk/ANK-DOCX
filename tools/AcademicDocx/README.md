@@ -68,3 +68,11 @@ dotnet test tools/AcademicDocx.Tests/AcademicDocx.Tests.csproj -p:RestoreLockedM
 `QuartoStarterTests` дополнительно требует `quarto`, `Rscript` и rsvg-convert в PATH. Проверяет создание двух независимых работ штатным Starter, namespace расширения, профили и ошибки метаданных, OMML/REF и схему после Word. Дочерние сборки находят сервис через PATH. Тест выполняется из checkout; опубликованный GitHub-выпуск этим не проверяется.
 
 Для сохранения временных файлов тестов задайте `ACADEMIC_TEST_ARTIFACTS` каталогом под `build/`. По умолчанию тесты удаляют только собственные временные каталоги. На странице [архитектуры](../../docs/SERVICE_LAYER_ARCHITECTURE.md) приведены границы подтверждённой поддержки.
+
+## Локальное редактирование Penrose
+
+Сервис 0.4.12 добавляет `ANK-DOCX.cmd figures NAME`: официальный локальный editor,
+выбор trio через Roger, применение экспортированного SVG, история и возврат к генерации.
+Локальная конфигурация — `tools/PenroseEditor/`; при первом открытии она устанавливается
+из закреплённого исходника и npm lock. [Контракт](../../docs/PENROSE.md) и
+[результаты проверки](../../docs/research/PENROSE_EDITING.md).

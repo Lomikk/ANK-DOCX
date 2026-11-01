@@ -128,7 +128,7 @@ internal static class EnvironmentSetup
         Console.WriteLine("Penrose roger " + settings.GetProperty("roger_version").GetString());
     }
 
-    private static void Download(string url, string path)
+    internal static void Download(string url, string path)
     {
         if (File.Exists(path)) return;
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
@@ -145,7 +145,7 @@ internal static class EnvironmentSetup
         finally { if (File.Exists(partial)) File.Delete(partial); }
     }
 
-    private static void RequireHash(string path, string expected)
+    internal static void RequireHash(string path, string expected)
     {
         using var stream = File.OpenRead(path);
         if (!Convert.ToHexString(SHA256.HashData(stream)).Equals(expected, StringComparison.OrdinalIgnoreCase))
@@ -160,7 +160,7 @@ internal static class EnvironmentSetup
         Console.WriteLine(actual);
     }
 
-    private static string Execute(string executable, string[] arguments, string directory, string root, bool clearLocale = false, bool echo = true)
+    internal static string Execute(string executable, string[] arguments, string directory, string root, bool clearLocale = false, bool echo = true)
     {
         var info = new ProcessStartInfo(executable)
         {

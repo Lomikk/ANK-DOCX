@@ -1,6 +1,6 @@
 {
   "academic_extension": {
-    "version": "0.4.4",
+    "version": "0.4.9",
     "r_lockfile": "quarto/renv.lock",
     "required_finalizer": "Microsoft Word desktop on Windows"
   },
@@ -20,10 +20,12 @@
     "roger_version": "3.3.1",
     "node_version": "24.22.2",
     "node_windows_zip_sha256": "ca1bff5d8ead13c9f2ea404a176db46bd430704d5b5113734049fa365e7799e2",
-    "npm_lockfile": "tools/Penrose/package-lock.json"
+    "npm_lockfile": "tools/Penrose/package-lock.json",
+    "editor_source": "tools/PenroseEditor/source.json",
+    "editor_npm_lockfile": "tools/PenroseEditor/package-lock.json"
   },
   "docx_service": {
-    "version": "0.4.9",
+    "version": "0.4.13",
     "language": "C#",
     "framework": "net10.0-windows",
     "portable_core": "net10.0",

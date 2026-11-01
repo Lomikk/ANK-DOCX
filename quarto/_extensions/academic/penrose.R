@@ -6,8 +6,6 @@ if (length(trios)) {
   node <- Sys.getenv("ANK_PENROSE_NODE")
   cli <- Sys.getenv("ANK_PENROSE_CLI")
   converter <- Sys.getenv("ANK_SVG_CONVERTER", unset = Sys.which("rsvg-convert"))
-  if (!nzchar(node) || !file.exists(node) || !nzchar(cli) || !file.exists(cli))
-    stop("Penrose is missing: run ANK-DOCX.cmd setup and build through ANK, or use its local R installation")
   if (!nzchar(converter) || !file.exists(converter)) stop("SVG converter is missing: run ANK-DOCX.cmd setup")
   render_penrose <- function(trio) {
     relative <- substring(trio, nchar(source_root) + 2L)
@@ -16,12 +14,19 @@ if (length(trios)) {
     temporary <- tempfile("penrose-", tmpdir = dirname(output), fileext = ".svg")
     compatible <- paste0(temporary, ".word.svg")
     on.exit(unlink(c(temporary, compatible)), add = TRUE)
-    trio <- normalizePath(trio, winslash = "/", mustWork = TRUE)
-    log <- system2(node, c(shQuote(cli), "trio", "--trio", shQuote(trio), "--out", shQuote(temporary)),
-                   stdout = TRUE, stderr = TRUE, timeout = 120)
-    if (!is.null(attr(log, "status")) || !file.exists(temporary) || file.info(temporary)$size == 0) {
-      cat(paste(log, collapse = "\n"), "\n", file = stderr())
-      stop("Penrose rendering failed for ", relative)
+    edited <- sub("[.]trio[.]json$", ".edited.svg", trio)
+    if (file.exists(edited)) {
+      if (!file.copy(edited, temporary, overwrite = TRUE)) stop("Cannot read saved Penrose SVG: ", edited)
+    } else {
+      if (!nzchar(node) || !file.exists(node) || !nzchar(cli) || !file.exists(cli))
+        stop("Penrose is missing: run ANK-DOCX.cmd setup and build through ANK, or use its local R installation")
+      trio <- normalizePath(trio, winslash = "/", mustWork = TRUE)
+      log <- system2(node, c(shQuote(cli), "trio", "--trio", shQuote(trio), "--out", shQuote(temporary)),
+                     stdout = TRUE, stderr = TRUE, timeout = 120)
+      if (!is.null(attr(log, "status")) || !file.exists(temporary) || file.info(temporary)$size == 0) {
+        cat(paste(log, collapse = "\n"), "\n", file = stderr())
+        stop("Penrose rendering failed for ", relative)
+      }
     }
     # Word ignores Penrose's CSS font shorthand. Cairo's SVG output outlines
     # the glyphs while keeping the entire diagram vector, without our own parser.
@@ -32,7 +37,7 @@ if (length(trios)) {
       stop("Penrose SVG normalization failed for ", relative)
     }
     if (!file.copy(compatible, output, overwrite = TRUE)) stop("Cannot save Penrose SVG: ", output)
-    message("Penrose SVG: ", output)
+    message("Penrose SVG", if (file.exists(edited)) " (saved edit)" else " (automatic)", ": ", output)
   }
   invisible(lapply(trios, render_penrose))
 }

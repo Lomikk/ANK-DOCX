@@ -73,6 +73,28 @@ public sealed class WorkspaceMenuTests
         });
     }
 
+    [WordFact]
+    public void FigureMenuCanCancelImportWithoutChangingASavedSvg()
+    {
+        WithRoot(root =>
+        {
+            var project = Path.Combine(root, "Workspaces", "Рисунки");
+            Directory.CreateDirectory(Path.Combine(project, "chapters"));
+            var figures = Path.Combine(project, "figures", "penrose", "схема");
+            Directory.CreateDirectory(figures);
+            File.WriteAllText(Path.Combine(project, "_quarto.yml"), "project: default");
+            File.WriteAllText(Path.Combine(project, "chapters", "main.qmd"), "Текст");
+            File.WriteAllText(Path.Combine(figures, "diagram.trio.json"), "{}");
+            var edited = Path.Combine(figures, "diagram.edited.svg");
+            File.WriteAllText(edited, "Не изменять");
+            var result = Run(root, "8\n1\n2\n1\n\n0\n0\n");
+            Assert.Equal(0, result.Code);
+            Assert.Contains("Сохранённый SVG", result.Output);
+            Assert.Equal("Не изменять", File.ReadAllText(edited));
+            Assert.False(Directory.Exists(Path.Combine(figures, ".history")));
+        });
+    }
+
     private static void WithRoot(Action<string> test)
     {
         var root = Path.Combine(Path.GetTempPath(), "ANK меню " + Guid.NewGuid().ToString("N"));

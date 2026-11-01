@@ -17,7 +17,7 @@ internal static class WorkspaceCommands
             WorkspaceMenu.Run(root);
         }
         else if (args is ["help"] or ["--help"] or ["-h"])
-            Console.WriteLine("ANK-DOCX.cmd — интерактивное меню\nANK-DOCX.cmd setup | new NAME [--profile PROFILE] | build NAME [--verbose] | list | profiles | penrose [ROGER_ARGUMENTS]");
+            Console.WriteLine("ANK-DOCX.cmd — интерактивное меню\nANK-DOCX.cmd setup | new NAME [--profile PROFILE] | build NAME [--verbose] | list | profiles | penrose [ROGER_ARGUMENTS]\nANK-DOCX.cmd figures NAME [list | open | setup | prepare | apply ID SVG | generate ID]");
         else if (args is ["list"]) List(root);
         else if (args is ["profiles"])
         {
@@ -28,6 +28,8 @@ internal static class WorkspaceCommands
         else if (args is ["new", var profiledName, "--profile", var profile]) Create(root, profiledName, profile);
         else if (args is ["build", var buildName]) return Build(root, buildName);
         else if (args is ["build", var verboseName, "--verbose"]) return Build(root, verboseName, verbose: true);
+        else if (args is ["figures", var figuresName]) WorkspaceMenu.Figures(root, figuresName);
+        else if (args is ["figures", var figureProject, .. var figureArgs]) PenroseCommands.Run(root, figureProject, figureArgs);
         else if (args is ["penrose", .. var penroseArgs])
         {
             var environment = new LocalToolchain(root);
