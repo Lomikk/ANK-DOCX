@@ -12,6 +12,8 @@ academic:
   supervisor: ""
   supervisor-position: ""
   author-short: ""
+  # Optional student signature; image path is relative to the project root.
+  # author-signature: {image: figures/author-signature.svg, width-mm: 25}
   city: ""
   year: ""
   summary: ""

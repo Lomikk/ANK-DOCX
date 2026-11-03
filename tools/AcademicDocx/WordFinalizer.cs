@@ -147,6 +147,7 @@ internal static class WordFinalizer
             DocumentFormatting.Apply(staged);
             AppendixFormatting.Apply(staged, layout);
             report.Annotation = FrontMatterFormatting.Apply(staged);
+            AuthorSignatureFormatting.Apply(staged);
             DocumentPageLayout.Apply(staged, layout, templates);
             session = new();
             var document = session.Open(staged);

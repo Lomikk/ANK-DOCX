@@ -29,7 +29,7 @@ return function(c)
       p('____________ '..v('supervisor'), 'RightBlock')
       p(c.date, 'RightBlock')
       p('Автор НИР, студент группы '..v('group'), 'RightBlockStart')
-      p('____________ '..c.author, 'RightBlock')
+      c.author_signature('', '', 'RightBlock')
       p(c.date, 'RightBlock')
       p('Нормоконтролер, '..v('normal-controller.position'), 'RightBlockStart')
       p('____________ '..v('normal-controller.name'), 'RightBlock')
@@ -58,7 +58,7 @@ return function(c)
       p('Календарный план', 'FormItem')
       for i, row in ipairs(c.calendar) do p(tostring(i)..'. '..c.value(row, 'section')..' — '..c.value(row, 'due')) end
       p('Руководитель НИР: ____________ '..v('supervisor'), 'FormItem')
-      p('Студент: ____________ '..c.author)
+      c.author_signature('Студент: ')
       p(v('assignment.head-of-department-position')..': ____________ '..v('assignment.head-of-department'))
       c.mark('AcademicAssignmentEnd') -- Flow naturally; no fixed two-page assumption.
     end,

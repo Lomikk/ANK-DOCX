@@ -42,6 +42,12 @@ public sealed class QuartoStarterTests
                   city: "Челябинск"
                   year: "2026"
                 """ + (study ? "" : "\n  summary: Проверка общего оформления.\n  university-short: ЮУрГУ\n"));
+            if (toc)
+            {
+                File.AppendAllText(Path.Combine(project, "metadata.yml"), "\n  author-signature: {image: figures/signature-example.svg, width-mm: 25}\n");
+                File.Copy(Path.Combine(source, "..", "Workspaces", "Пример", "figures", "signature-example.svg"),
+                    Path.Combine(project, "figures", "signature-example.svg"));
+            }
             File.WriteAllText(Path.Combine(project, "chapters", "main.qmd"), """
                 ```{r}
                 #| label: setup
@@ -74,6 +80,15 @@ public sealed class QuartoStarterTests
             Assert.Equal(toc, facts.Fields.Any(f => f.StartsWith("TOC ", StringComparison.Ordinal)));
             using var saved = WordprocessingDocument.Open(output, false);
             var main = saved.MainDocumentPart!;
+            var signatures = main.Document.Descendants<W.Drawing>().Where(d =>
+                d.Descendants<DocumentFormat.OpenXml.Drawing.Wordprocessing.DocProperties>().Any(p => p.Description == "Подпись автора")).ToArray();
+            Assert.Equal(toc ? 1 : 0, signatures.Length);
+            Assert.All(signatures, drawing =>
+            {
+                Assert.Contains("____________ И.И. Иванов", drawing.Ancestors<W.Paragraph>().First().InnerText);
+                var anchor = Assert.Single(drawing.Elements<DocumentFormat.OpenXml.Drawing.Wordprocessing.Anchor>());
+                Assert.NotNull(anchor.GetFirstChild<DocumentFormat.OpenXml.Drawing.Wordprocessing.WrapNone>());
+            });
             var text = main.Document.InnerText;
             Assert.Contains("Результат вычисления: 14", text);
             Assert.Equal(2, main.Document.Descendants<W.SectionProperties>().Count());
@@ -130,6 +145,7 @@ public sealed class QuartoStarterTests
             var main = Path.Combine(project, "chapters", "main.qmd");
             File.Copy(Path.Combine(reference, "chapters", "main.qmd"), main, overwrite: true);
             File.Copy(Path.Combine(reference, "references.bib"), Path.Combine(project, "references.bib"), overwrite: true);
+            File.Copy(Path.Combine(reference, "figures", "signature-example.svg"), Path.Combine(project, "figures", "signature-example.svg"));
             File.AppendAllText(Path.Combine(project, "references.bib"), "\n@book{unused-source, title={Unused source}, author={Example, A}, year={2020}}\n");
             if (profile == "referat")
                 File.WriteAllText(main, File.ReadAllText(main).Replace("a = 3,", "a = 5,"));
@@ -159,6 +175,14 @@ public sealed class QuartoStarterTests
             Assert.Contains(facts.Fields, field => field.StartsWith("SEQ ТаблицаAppendixB", StringComparison.Ordinal));
             using var package = WordprocessingDocument.Open(output, false);
             var mainPart = package.MainDocumentPart!;
+            var signatures = mainPart.Document.Descendants<W.Drawing>().Where(d =>
+                d.Descendants<DocumentFormat.OpenXml.Drawing.Wordprocessing.DocProperties>().Any(p => p.Description == "Подпись автора")).ToArray();
+            Assert.Equal(profile == "coursework" ? 2 : 1, signatures.Length);
+            Assert.All(signatures, drawing =>
+            {
+                Assert.Contains("____________ И.И. Иванов", drawing.Ancestors<W.Paragraph>().First().InnerText);
+                Assert.Single(drawing.Elements<DocumentFormat.OpenXml.Drawing.Wordprocessing.Anchor>());
+            });
             // Word may deduplicate direct sizes into paragraph/table styles;
             // effective text and OMML sizes are checked through the Word API.
             var styles = mainPart.StyleDefinitionsPart!.Styles!;
@@ -257,6 +281,7 @@ public sealed class QuartoStarterTests
         var main = Path.Combine(project, "chapters", "main.qmd");
         File.Copy(Path.Combine(reference, "chapters", "main.qmd"), main, true);
         File.Copy(Path.Combine(reference, "references.bib"), Path.Combine(project, "references.bib"), true);
+        File.Copy(Path.Combine(reference, "figures", "signature-example.svg"), Path.Combine(project, "figures", "signature-example.svg"));
         MustRun(project, "Rscript", ["--vanilla", "tools/install.R"]);
         var pageCounts = new List<int>();
         for (var pass = 0; pass < 2; pass++)

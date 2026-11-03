@@ -22,6 +22,26 @@ return function(doc, forms, field, value, questions, calendar, directory)
   end
   local date = '«_____» ______________ '..v('year')..' г.'
   local author = v('author-short')
+  -- Pandoc owns image embedding, SVG/PNG fallback and aspect ratio. Quarto
+  -- already rebases metadata image paths to the current input file.
+  local signature = v('author-signature.image')
+  local signature_width = v('author-signature.width-mm')
+  if signature ~= '' then
+    signature_width = signature_width == '' and 25 or tonumber(signature_width)
+    assert(signature_width and signature_width >= 5 and signature_width <= 30,
+      'academic.author-signature.width-mm must be a number between 5 and 30')
+    local file = assert(io.open(signature, 'rb'), 'Cannot read academic.author-signature.image: '..signature)
+    file:close()
+  end
+  local function author_signature(prefix, suffix, style)
+    local content = {pandoc.Str(prefix or '')}
+    if signature ~= '' then
+      content[#content+1] = pandoc.Image({pandoc.Str('Подпись автора')}, signature, '',
+        pandoc.Attr('', {'academic-author-signature'}, {width=tostring(signature_width)..'mm'}))
+    end
+    content[#content+1] = pandoc.Str('____________ '..author..(suffix or ''))
+    p(content, style)
+  end
   local function assignment_data()
     assert(pandoc.utils.type(questions) == 'List' and #questions > 0,
       'academic.assignment.questions must be a nonempty YAML list')
@@ -48,7 +68,7 @@ return function(doc, forms, field, value, questions, calendar, directory)
   local function title_end(defense)
     p('Автор работы', 'RightBlockStart')
     p('Студент группы '..v('group'), 'RightBlock')
-    p('____________ '..author, 'RightBlock')
+    author_signature('', '', 'RightBlock')
     p(date, 'RightBlock')
     p(defense, 'RightBlockStart')
     p('с оценкой (прописью, цифрой)', 'RightBlock')
@@ -93,7 +113,7 @@ return function(doc, forms, field, value, questions, calendar, directory)
     p('на тему «'..value(doc.meta, 'title')..'»', 'Centered')
     p('Выполнил:', 'RightBlockStart')
     p('Студент группы '..v('group'), 'RightBlock')
-    p('____________ '..author, 'RightBlock')
+    author_signature('', '', 'RightBlock')
     p(date, 'RightBlock')
     p('Проверил:', 'RightBlockStart')
     p(v('supervisor-position'), 'RightBlock')
@@ -131,7 +151,7 @@ return function(doc, forms, field, value, questions, calendar, directory)
       {pandoc.AlignLeft, pandoc.AlignCenter, pandoc.AlignCenter}, {0.50, 0.24, 0.26},
       {cell('Наименование разделов курсовой работы'), cell('Срок выполнения'), cell('Отметка руководителя')}, rows)))
     p('Руководитель работы ____________ '..v('supervisor')..'   '..date, 'FormSignature')
-    p('Студент ____________ '..author..'   '..date, 'FormText')
+    author_signature('Студент ', '   '..date, 'FormText')
     out:insert(marker('AcademicAssignmentEnd'))
   end
   renderers.annotation = function()
@@ -140,7 +160,7 @@ return function(doc, forms, field, value, questions, calendar, directory)
     p(v('summary'), 'AnnotationText')
   end
   local research = dofile(pandoc.path.join({directory, 'forms-research.lua'}))({
-    p=p, tab=tab, institution=institution, v=v, date=date, author=author,
+    p=p, tab=tab, institution=institution, v=v, date=date, author=author, author_signature=author_signature,
     title=value(doc.meta, 'title'), full_name=value(doc.meta, 'author'),
     mark=function(style) out:insert(marker(style)) end,
     assignment_data=assignment_data, questions=questions, calendar=calendar,

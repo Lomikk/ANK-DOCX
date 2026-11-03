@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="100" viewBox="0 0 250 100">
+  <title>Искусственный учебный образец подписи</title>
+  <path d="M12 65 C42 54 54 12 65 15 C79 20 41 78 48 75 L93 39 C109 27 87 63 104 61 C117 59 121 42 129 44 C138 47 121 66 143 59 L205 45 M25 74 Q132 64 233 72" fill="none" stroke="#384f9c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="125" y="96" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#444">УЧЕБНЫЙ ОБРАЗЕЦ</text>
+</svg>

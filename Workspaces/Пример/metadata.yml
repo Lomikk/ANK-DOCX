@@ -13,6 +13,8 @@ academic:
   supervisor: "П.П. Петров"
   supervisor-position: "доцент"
   author-short: "И.И. Иванов"
+  # Artificial demonstration, not a real person's signature.
+  author-signature: {image: figures/signature-example.svg, width-mm: 25}
   city: "Челябинск"
   year: "2026"
   summary: "Исследуются квадратичный и линейный показатели и их сумма. Из единой модели на R формируются текстовые результаты, таблицы с математическими подстановками, графики и расширенный расчёт. Приведены программные проверки согласованности, исходный код и воспроизводимые файлы результатов."

@@ -45,6 +45,7 @@
 | [Первая версия расширения](research/EXTENSION_REPORT.md) | Book, flextable, OMML в ячейках, поля и библиография Word; ограничения финализации |
 | [Нормативные примечания](research/NOTES_REVIEW.md) | Callout и локальная нумерация по СТО, текстовый стиль, footer flextable и его проверка с разделением таблицы; ограничение закладок callout в DOCX |
 | [Качество графики](research/GRAPHICS_QUALITY.md) | SVG в DOCX, сохранение вектора при экспорте из Word, резервный PNG |
+| [Подпись автора](research/AUTHOR_SIGNATURE.md) | SVG поверх сохранённой линии, границы сопроводительных форм, Word/SDK/PDF и сравнение страниц |
 | [Выбор основы](research/STACK_DECISION.md) | Критерии выбора, семантика исходников и границы готовых инструментов |
 | [Аудит экосистемы](research/QUARTO_ECOSYSTEM_AUDIT.md) | Готовые агентные решения и возможности расширений Quarto |
 | [Quarto: третий прототип](research/QUARTO_REPORT.md) | Вычисляемый документ, профили и адаптер нативных объектов Word |
