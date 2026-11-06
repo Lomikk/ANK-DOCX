@@ -17,6 +17,7 @@ internal static class WorkspaceBuild
         var reportPath = Path.Combine(folder, "main.docx.finalize.json");
         var diagnostics = new List<string>();
         var exitCode = 1;
+        var progress = new WorkspaceProgress(folder, verbose);
         try
         {
             // A failed pre-render must not be explained using an earlier Word report.
@@ -32,6 +33,7 @@ internal static class WorkspaceBuild
             foreach (var arg in new[] { "render", "--to", "academic-docx" })
                 start.ArgumentList.Add(arg);
             new LocalToolchain(root).Configure(start);
+            start.Environment["ACADEMIC_BUILD_PROGRESS"] = "1";
             var gate = new object();
             void Output(string? line, bool error)
             {
@@ -39,14 +41,15 @@ internal static class WorkspaceBuild
                 lock (gate)
                 {
                     full.WriteLine(line);
-                    if (verbose) (error ? Console.Error : Console.Out).WriteLine(line);
+                    var operational = progress.Observe(line);
+                    if (verbose && !operational) (error ? Console.Error : Console.Out).WriteLine(line);
                 }
             }
             using var process = new Process { StartInfo = start };
             process.OutputDataReceived += (_, item) => Output(item.Data, false);
             process.ErrorDataReceived += (_, item) => Output(item.Data, true);
             if (!process.Start()) throw new InvalidOperationException("Cannot start Quarto");
-            process.BeginOutputReadLine(); process.BeginErrorReadLine(); process.WaitForExit();
+            process.BeginOutputReadLine(); process.BeginErrorReadLine(); progress.Wait(process);
             exitCode = process.ExitCode;
             if (exitCode != 0 && File.Exists(reportPath))
             {
@@ -88,6 +91,7 @@ internal static class WorkspaceBuild
             catch (Exception error) when (error is IOException or InvalidOperationException or JsonException or ArgumentException or System.ComponentModel.Win32Exception) { }
         }
 
+        progress.Finish(exitCode == 0);
         void Write(string line) { Console.WriteLine(line); summary.WriteLine(line); }
         if (exitCode != 0) Write("Ошибка сборки (код " + exitCode + ").");
         var lines = diagnostics.Where(message => message.Length != 0).Distinct(StringComparer.Ordinal)

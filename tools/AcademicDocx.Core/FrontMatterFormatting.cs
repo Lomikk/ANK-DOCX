@@ -80,7 +80,7 @@ public static class FrontMatterFormatting
         Define("AcademicFormSignature", before: 56, keepNext: true);
         Define("AcademicAnnotationReference", before: 14, after: 21, left: 4800);
         Define("AcademicAnnotationText", W.JustificationValues.Both);
-        foreach (var marker in new[] { "AcademicTitleEnd", "AcademicAssignmentPageEnd", "AcademicAssignmentEnd", "AcademicBodyStart" }) Define(marker);
+        foreach (var marker in new[] { "AcademicTitleEnd", "AcademicAssignmentPageEnd", "AcademicAssignmentEnd", "AcademicContentsStart", "AcademicBodyStart" }) Define(marker);
         Set(styles.Elements<W.Style>().Single(s => s.StyleId == "AcademicAnnotationText").StyleParagraphProperties!,
             new W.Indentation { FirstLine = "397" });
         // Pandoc's TOC remains native. Start it on its own page after the annotation.

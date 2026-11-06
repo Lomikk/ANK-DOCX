@@ -45,6 +45,9 @@ public sealed class BuildOutputTests
             var warning = Run(root, project);
             Assert.True(warning.Code == 0, warning.Output + File.ReadAllText(full));
             Assert.Equal(warning.Output, File.ReadAllText(summary));
+            Assert.Contains("Сборка:", warning.Progress);
+            Assert.Contains("прошло", warning.Progress);
+            Assert.Contains("Сборка завершена за", warning.Progress);
             Assert.Contains("@fig-missing", warning.Output);
             Assert.Contains("missing-source", warning.Output);
             Assert.DoesNotContain("metadata", warning.Output);
@@ -74,6 +77,7 @@ public sealed class BuildOutputTests
                 Текст.
                 """);
             var advice = Run(root, project);
+            Assert.Contains("по прошлой сборке", advice.Progress);
             Assert.Equal(0, advice.Code);
             Assert.Equal(advice.Output, File.ReadAllText(summary));
             Assert.Contains("раздел «Глава»", advice.Output);
@@ -213,10 +217,15 @@ public sealed class BuildOutputTests
             Assert.DoesNotContain("@fig-missing", clean.Output + File.ReadAllText(full));
             Assert.DoesNotContain("stale Word failure", clean.Output);
             Assert.Contains("не обнаружено", clean.Output);
+            var timing = Path.Combine(project, ".quarto", "build-duration.txt");
+            var successfulDuration = File.ReadAllText(timing);
+            Assert.True(double.Parse(successfulDuration, System.Globalization.CultureInfo.InvariantCulture) > 0);
 
             File.WriteAllText(input, "---\ntitle: [broken\n---\nText\n");
             var failure = Run(root, project);
             Assert.NotEqual(0, failure.Code);
+            Assert.Equal(successfulDuration, File.ReadAllText(timing));
+            Assert.Contains("Сборка остановлена", failure.Progress);
             Assert.Equal(failure.Output, File.ReadAllText(summary));
             Assert.Contains("Ошибка сборки", failure.Output);
             Assert.DoesNotContain("не обнаружено", failure.Output);
@@ -251,7 +260,7 @@ public sealed class BuildOutputTests
         }
     }
 
-    private static (int Code, string Output) Run(string root, string project, bool verbose = false)
+    private static (int Code, string Output, string Progress) Run(string root, string project, bool verbose = false)
     {
         var info = new ProcessStartInfo(Environment.GetEnvironmentVariable("ACADEMIC_DOCX_SERVICE")!)
         {
@@ -264,6 +273,8 @@ public sealed class BuildOutputTests
         var stdout = process.StandardOutput.ReadToEndAsync();
         var stderr = process.StandardError.ReadToEndAsync();
         if (!process.WaitForExit(30_000)) { process.Kill(entireProcessTree: true); throw new TimeoutException("Build fixture timed out"); }
-        return (process.ExitCode, stdout.GetAwaiter().GetResult() + stderr.GetAwaiter().GetResult());
+        var standard = stdout.GetAwaiter().GetResult();
+        var errors = stderr.GetAwaiter().GetResult();
+        return (process.ExitCode, standard + (verbose ? errors : ""), errors);
     }
 }

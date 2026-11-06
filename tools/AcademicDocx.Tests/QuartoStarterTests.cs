@@ -62,7 +62,7 @@ public sealed class QuartoStarterTests
 
                 $$s = \sum_{i=1}^{3} i^2 = 14$$ {#eq-sum}
 
-                Значение получено по формуле [-@eq-sum].
+                Значение получено по формуле @eq-sum.
 
                 ```{r}
                 #| label: tbl-values
@@ -91,7 +91,7 @@ public sealed class QuartoStarterTests
             });
             var text = main.Document.InnerText;
             Assert.Contains("Результат вычисления: 14", text);
-            Assert.Equal(2, main.Document.Descendants<W.SectionProperties>().Count());
+            Assert.Equal(study ? 2 : 4, main.Document.Descendants<W.SectionProperties>().Count());
             Assert.DoesNotContain("ЗАДАНИЕ", text);
             Assert.True(facts.MathCount > 0);
             Assert.Contains(facts.Fields, f => f.StartsWith("REF eq_sum", StringComparison.Ordinal));
@@ -201,7 +201,7 @@ public sealed class QuartoStarterTests
             Assert.Contains("DOCPROPERTY AcademicTables", facts.Fields);
             Assert.Contains("DOCPROPERTY AcademicSources", facts.Fields);
             Assert.Contains("DOCPROPERTY AcademicAppendices", facts.Fields);
-            Assert.Equal(2, mainPart.Document.Descendants<W.SectionProperties>().Count());
+            Assert.Equal(profile == "referat" ? 4 : 2, mainPart.Document.Descendants<W.SectionProperties>().Count());
             using var report = JsonDocument.Parse(File.ReadAllText(Path.Combine(project, ".quarto", "main.docx.finalize.json")));
             var annotation = report.RootElement.GetProperty("annotation");
             Assert.Equal(4, annotation.GetProperty("figures").GetInt32());

@@ -6,6 +6,7 @@ namespace AcademicDocx;
 internal sealed record WordRow(int Index, int Start, int End);
 internal sealed record SplitTable(string Name, IReadOnlyList<Word.Range> Parts);
 internal sealed record TableSplitReport(string Name, IReadOnlyList<int> TableIndices);
+internal sealed record TableTarget(string Name, Word.Paragraph Caption, Word.Table Table, int Index);
 
 internal static class WordTables
 {
@@ -33,7 +34,7 @@ internal static class WordTables
         return rows.Values.ToArray();
     }
 
-    public static IReadOnlyList<SplitTable> Split(WordSession session)
+    public static IReadOnlyList<SplitTable> Split(WordSession session, Action<int, int, string>? progress = null)
     {
         var document = session.Document!;
         var scope = session.Objects;
@@ -52,16 +53,27 @@ internal static class WordTables
             }
             if (sequences == 1) targets.Add((bookmark.Name, range.Start));
         }
-        var result = new List<SplitTable>();
+        // Index native tables once instead of repeatedly enumerating the entire
+        // suffix of the document for every caption. COM objects remain live as
+        // preceding tables are split and their range positions change.
+        var nativeTables = scope.Own(document.Tables);
+        var indexed = new List<(Word.Table Table, int Start, int Index)>();
+        for (var index = 1; index <= nativeTables.Count; index++)
+        {
+            var table = scope.Own(nativeTables[index]);
+            indexed.Add((table, scope.Own(table.Range).Start, index));
+        }
+        var prepared = new List<TableTarget>();
+        var cursor = 0;
         foreach (var target in targets.OrderBy(target => target.Start))
         {
+            progress?.Invoke(prepared.Count, targets.Count, "Подготовка ширины таблиц");
             var bookmark = scope.Own(bookmarks[target.Name]);
             var caption = scope.Own(scope.Own(scope.Own(bookmark.Range).Paragraphs)[1]);
             var captionRange = scope.Own(caption.Range);
-            var after = scope.Own(document.Range(captionRange.End, scope.Own(document.Content).End));
-            var following = scope.Own(after.Tables);
-            if (following.Count == 0) throw new InvalidDataException($"Missing table after caption {target.Name}");
-            var current = scope.Own(following[1]);
+            while (cursor < indexed.Count && indexed[cursor].Start < captionRange.End) cursor++;
+            if (cursor == indexed.Count) throw new InvalidDataException($"Missing table after caption {target.Name}");
+            var current = indexed[cursor].Table;
             var tableRange = scope.Own(current.Range);
             if (!string.IsNullOrWhiteSpace(scope.Own(document.Range(captionRange.End, tableRange.Start)).Text))
                 throw new InvalidDataException($"Table caption {target.Name} is not adjacent to its table");
@@ -77,7 +89,22 @@ internal static class WordTables
                 current.PreferredWidth = pageSetup.PageWidth - pageSetup.LeftMargin - pageSetup.RightMargin;
             }
             scope.Own(current.Rows).AllowBreakAcrossPages = 0;
-            document.Repaginate();
+            prepared.Add(new(target.Name, caption, current, indexed[cursor].Index));
+        }
+        var result = new List<SplitTable>();
+        var inserted = 0;
+        var completed = 0;
+        // Width and row rules must be applied before measuring pages, but a
+        // short, unchanged table never needs another whole-document pass.
+        var needsPagination = true;
+        foreach (var target in prepared)
+        {
+            progress?.Invoke(completed++, targets.Count, "Размещение таблиц по страницам");
+            var caption = target.Caption;
+            var current = target.Table;
+            var currentIndex = target.Index + inserted;
+            var tableRange = scope.Own(current.Range);
+            if (needsPagination) { document.Repaginate(); needsPagination = false; }
             var end = scope.Own(tableRange.Duplicate);
             end.End--;
             end.Collapse(Word.WdCollapseDirection.wdCollapseEnd);
@@ -103,7 +130,6 @@ internal static class WordTables
                     throw new InvalidDataException($"Nested tables in long table {target.Name} are not supported");
             }
             current.AutoFitBehavior(Word.WdAutoFitBehavior.wdAutoFitFixed);
-            document.Repaginate();
             var firstBody = Rows(scope, current).FirstOrDefault(row => row.Index > headerCount)
                 ?? throw new InvalidDataException($"No body rows in long table {target.Name}");
             var headerRange = scope.Own(document.Range(scope.Own(current.Range).Start, firstBody.Start));
@@ -132,17 +158,15 @@ internal static class WordTables
                     break;
                 }
                 var tables = scope.Own(document.Tables);
-                var index = 1;
-                while (index <= tables.Count && scope.Own(scope.Own(tables[index]).Range).Start != scope.Own(current.Range).Start) index++;
-                if (index > tables.Count) throw new InvalidDataException("Cannot locate table fragment");
                 scope.Own(document.Range(split.Start, split.Start)).Select();
                 scope.Own(session.Application.Selection).SplitTable();
                 parts.Add(scope.Own(scope.Own(current.Range).Duplicate));
-                var tail = scope.Own(tables[index + 1]);
+                currentIndex++; inserted++;
+                var tail = scope.Own(tables[currentIndex]);
                 var at = scope.Own(scope.Own(tail.Range).Duplicate);
                 at.Collapse(Word.WdCollapseDirection.wdCollapseStart);
                 at.FormattedText = scope.Own(headerRange.FormattedText);
-                tail = scope.Own(tables[index + 1]);
+                tail = scope.Own(tables[currentIndex]);
                 var start = scope.Own(tail.Range).Start;
                 var paragraph = scope.Own(scope.Own(scope.Own(document.Range(start - 1, start - 1)).Paragraphs)[1]);
                 var paragraphRange = scope.Own(paragraph.Range);
@@ -155,6 +179,8 @@ internal static class WordTables
                 format.RightIndent = 0;
                 format.FirstLineIndent = 0;
                 format.PageBreakBefore = -1;
+                // This caption always starts a page; no outer gap above it.
+                format.SpaceBefore = 0;
                 format.KeepWithNext = -1;
                 at = scope.Own(paragraphRange.Duplicate);
                 at.End--;
@@ -171,7 +197,9 @@ internal static class WordTables
                 last.Text = "Окончание";
             }
             result.Add(new(target.Name, parts));
+            needsPagination = true;
         }
+        progress?.Invoke(targets.Count, targets.Count, "Таблицы размещены");
         return result;
     }
 }

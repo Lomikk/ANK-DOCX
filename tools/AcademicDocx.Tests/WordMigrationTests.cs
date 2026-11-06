@@ -37,6 +37,31 @@ public sealed class WordMigrationTests : IDisposable
     private static string Fixture(string name) => Path.Combine(AppContext.BaseDirectory, "Fixtures", name);
 
     [WordFact]
+    public void TableNearBottomDoesNotCreateAnEmptySpacerPage()
+    {
+        var input = Path.Combine(folder, "table-bottom.docx");
+        ReferenceStyles.Apply(Path.Combine(AppContext.BaseDirectory, "reference.docx"), input);
+        using (var package = WordprocessingDocument.Open(input, true))
+        {
+            var body = package.MainDocumentPart!.Document.Body!;
+            var section = (W.SectionProperties)body.Elements<W.SectionProperties>().Last().CloneNode(true);
+            body.RemoveAllChildren();
+            body.Append(new W.Table(new W.TableProperties(), new W.TableGrid(new W.GridColumn { Width = "9922" }),
+                new W.TableRow(new W.TableRowProperties(new W.TableRowHeight { Val = 14000, HeightType = W.HeightRuleValues.Exact },
+                    new W.CantSplit()), new W.TableCell(new W.Paragraph(new W.Run(new W.Text("TABLE CONTENT")))))));
+            body.Append(new W.Paragraph(new W.ParagraphProperties(new W.ParagraphStyleId { Val = "BodyText" }),
+                new W.Run(new W.Text("AFTER TABLE"))), section);
+        }
+        var report = Finalize(input, expectedSuccess: true);
+        Assert.Equal(2, report.GetProperty("pages").GetInt32());
+        using var result = WordprocessingDocument.Open(input, false);
+        var paragraphs = result.MainDocumentPart!.Document.Body!.Elements<W.Paragraph>().ToArray();
+        Assert.Single(paragraphs);
+        Assert.Equal("AFTER TABLE", paragraphs[0].InnerText);
+        Assert.Equal("340", paragraphs[0].ParagraphProperties!.SpacingBetweenLines!.Before!.Value);
+    }
+
+    [WordFact]
     public void MergedHeadersMathAndFootersSurviveCompleteFinalization()
     {
         var input = Path.Combine(folder, "book.docx");
@@ -179,6 +204,22 @@ public sealed class WordMigrationTests : IDisposable
     private static void AssertCaptionOrder(string path, params string[] expected)
     {
         using var package = WordprocessingDocument.Open(path, false);
+        foreach (var paragraph in package.MainDocumentPart!.Document.Body!.Elements<W.Paragraph>().Where(p =>
+            p.InnerText.StartsWith("Продолжение таблицы", StringComparison.Ordinal) ||
+            p.InnerText.StartsWith("Окончание таблицы", StringComparison.Ordinal)))
+        {
+            var before = paragraph.ParagraphProperties?.SpacingBetweenLines?.Before?.Value;
+            var id = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value ?? "Normal";
+            var visited = new HashSet<string>(StringComparer.Ordinal);
+            while (before is null && visited.Add(id))
+            {
+                var style = package.MainDocumentPart.StyleDefinitionsPart?.Styles?.Elements<W.Style>().FirstOrDefault(s => s.StyleId == id);
+                before = style?.StyleParagraphProperties?.SpacingBetweenLines?.Before?.Value;
+                id = style?.BasedOn?.Val?.Value ?? "";
+            }
+            // Word omits a direct zero when the style already supplies zero.
+            Assert.Equal("0", before ?? "0");
+        }
         var captions = package.MainDocumentPart!.Document.Body!.Elements<W.Paragraph>().Select(p => string.Concat(p.Descendants<W.Text>().Select(text => text.Text)))
             .Where(text => text.StartsWith("Продолжение таблицы", StringComparison.Ordinal) || text.StartsWith("Окончание таблицы", StringComparison.Ordinal)).ToArray();
         Assert.Equal(expected, captions);

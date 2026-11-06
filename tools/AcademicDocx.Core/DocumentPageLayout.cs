@@ -36,7 +36,7 @@ public static class DocumentPageLayout
         var paragraphs = body.Elements<W.Paragraph>().ToArray();
         var title = paragraphs.FirstOrDefault(p => FrontMatterFormatting.IsTitleStyle(Style(p)));
         if (title is null) return;
-        var markers = paragraphs.Where(p => Style(p) is "AcademicTitleEnd" or "AcademicAssignmentPageEnd" or "AcademicAssignmentEnd" or "AcademicBodyStart").ToArray();
+        var markers = paragraphs.Where(p => Style(p) is "AcademicTitleEnd" or "AcademicAssignmentPageEnd" or "AcademicAssignmentEnd" or "AcademicContentsStart" or "AcademicBodyStart").ToArray();
         var final = body.Elements<W.SectionProperties>().Single();
         var technical = options?.Technical == true;
         var baseSection = (W.SectionProperties)final.CloneNode(true);
@@ -78,7 +78,26 @@ public static class DocumentPageLayout
         {
             var front = Section(); Header(front, emptyHeader, W.HeaderFooterValues.Default); AddFooter(front, emptyFooter, W.HeaderFooterValues.Default);
             var afterTitle = options is null ? Style(title) is "AcademicReferatTitle" or "AcademicStudyTitle" : options.PageLayout == "plain-after-title";
+            // With a contents field, keep every contents page in the unnumbered
+            // front section; AcademicBodyStart follows the complete Word TOC.
+            var localStudy = options is null ? Style(title) == "AcademicStudyTitle" : options.Profile == "practical-local";
+            if (afterTitle && localStudy && body.Descendants<W.FieldCode>().Any(f => f.Text.TrimStart().StartsWith("TOC ", StringComparison.OrdinalIgnoreCase)))
+                afterTitle = false;
             boundaries[afterTitle ? "AcademicTitleEnd" : "AcademicBodyStart"] = front;
+            if (afterTitle && markers.Any(p => Style(p) == "AcademicContentsStart"))
+            {
+                // Keep the referat annotation numbered while suppressing only
+                // the complete contents section, independently of its length.
+                var beforeContents = Section();
+                Header(beforeContents, emptyHeader, W.HeaderFooterValues.Default);
+                foreach (var footer in baseSection.Elements<W.FooterReference>())
+                    beforeContents.PrependChild((W.FooterReference)footer.CloneNode(true));
+                boundaries["AcademicContentsStart"] = beforeContents;
+                var contents = Section();
+                Header(contents, emptyHeader, W.HeaderFooterValues.Default);
+                AddFooter(contents, emptyFooter, W.HeaderFooterValues.Default);
+                boundaries["AcademicBodyStart"] = contents;
+            }
             final.RemoveAllChildren<W.PageNumberType>();
             final.RemoveAllChildren<W.HeaderReference>(); final.RemoveAllChildren<W.TitlePage>();
             Header(final, emptyHeader, W.HeaderFooterValues.Default);
@@ -127,6 +146,7 @@ public static class DocumentPageLayout
         foreach (var marker in markers)
         {
             if (boundaries.TryGetValue(Style(marker), out var section)) Set(marker.ParagraphProperties!, section);
+            else if (Style(marker) == "AcademicContentsStart") marker.Remove();
             else if (marker.PreviousSibling() is not W.Paragraph previous ||
                 !boundaries.ContainsKey(Style(previous)))
                 marker.Append(new W.Run(new W.RunProperties(new W.FontSize { Val = "2" }), new W.Break { Type = W.BreakValues.Page }));

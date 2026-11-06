@@ -54,6 +54,7 @@ internal sealed class WordSession : IDisposable
             Application.DisplayAlerts = Word.WdAlertLevel.wdAlertsNone;
             version = Application.Version;
             build = Application.Build;
+            Application.ScreenUpdating = false;
         }
         catch
         {
@@ -92,6 +93,7 @@ internal sealed class WordSession : IDisposable
         if (disposed) return;
         disposed = true;
         try { Close(); } catch (Exception error) { cleanupErrors.Add("Close: " + error.Message); }
+        try { Application.ScreenUpdating = true; } catch (Exception error) { cleanupErrors.Add("ScreenUpdating: " + error.Message); }
         try { Application.Quit(Word.WdSaveOptions.wdDoNotSaveChanges); } catch (Exception error) { cleanupErrors.Add("Quit: " + error.Message); }
         Objects.Dispose();
         applicationScope.Dispose();

@@ -106,6 +106,63 @@ public sealed class DocumentFormattingTests : IDisposable
         Assert.Equal("параметрx2", result.MainDocumentPart.Document.Body.Elements<W.Table>().Single().InnerText);
     }
 
+    [Theory]
+    [InlineData("Таблица")]
+    [InlineData("ТаблицаAppendixA")]
+    public void QuartoTableCaptionsUseTableStyleInsteadOfImageStyleAndDirectGap(string sequence)
+    {
+        Create();
+        using (var doc = WordprocessingDocument.Open(path, true))
+        {
+            var caption = doc.MainDocumentPart!.Document.Body!.Elements<W.Paragraph>().First();
+            caption.Descendants<W.FieldCode>().Single().Text = " SEQ " + sequence + " \\* ARABIC ";
+            caption.ParagraphProperties!.AddChild(new W.SpacingBetweenLines { Before = "200", After = "200", Line = "240" }, true);
+        }
+        DocumentFormatting.Apply(path);
+        using var result = WordprocessingDocument.Open(path, false);
+        var properties = result.MainDocumentPart!.Document.Body!.Elements<W.Paragraph>().First().ParagraphProperties!;
+        Assert.Equal("TableCaption", properties.ParagraphStyleId!.Val!.Value);
+        Assert.Null(properties.SpacingBetweenLines!.Before);
+        Assert.Null(properties.SpacingBetweenLines.After);
+        Assert.Equal("240", properties.SpacingBetweenLines.Line!.Value);
+        Assert.Null(properties.Justification);
+        Assert.Empty(DocxInspection.Validate(path).Errors);
+    }
+
+    [Theory]
+    [InlineData("BodyText", "0", "340")]
+    [InlineData("Heading2", "560", "560")]
+    [InlineData("AcademicFormText", "0", "0")]
+    public void TableGapUsesFollowingContentWithoutBlankParagraphsOrShrinkingStyleSpacing(string style, string before, string expected)
+    {
+        Create();
+        using (var doc = WordprocessingDocument.Open(path, true))
+        {
+            var main = doc.MainDocumentPart!;
+            main.AddNewPart<StyleDefinitionsPart>().Styles = new W.Styles(new W.Style(
+                new W.StyleParagraphProperties(new W.SpacingBetweenLines { Before = before }))
+                { Type = W.StyleValues.Paragraph, StyleId = style });
+            var paragraph = main.Document.Body!.Elements<W.Paragraph>().Last();
+            paragraph.ParagraphProperties = new W.ParagraphProperties(new W.ParagraphStyleId { Val = style });
+        }
+        DocumentFormatting.Apply(path);
+        string xml;
+        using (var result = WordprocessingDocument.Open(path, false))
+        {
+            var body = result.MainDocumentPart!.Document.Body!;
+            Assert.Equal(4, body.Elements<W.Paragraph>().Count());
+            var paragraph = body.Elements<W.Paragraph>().Last();
+            Assert.Equal(expected, paragraph.ParagraphProperties!.SpacingBetweenLines?.Before?.Value ?? before);
+            Assert.Null(paragraph.ParagraphProperties.KeepNext);
+            Assert.Null(body.Elements<W.Table>().Single().Descendants<W.KeepNext>().FirstOrDefault());
+            xml = body.OuterXml;
+        }
+        DocumentFormatting.Apply(path);
+        using var again = WordprocessingDocument.Open(path, false);
+        Assert.Equal(xml, again.MainDocumentPart!.Document.Body!.OuterXml);
+        Assert.Empty(DocxInspection.Validate(path).Errors);
+    }
+
     private void Create(bool pandocDisplay = false)
     {
         using var doc = WordprocessingDocument.Create(path, WordprocessingDocumentType.Document);

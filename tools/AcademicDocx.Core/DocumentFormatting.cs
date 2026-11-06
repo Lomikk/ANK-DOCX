@@ -66,9 +66,18 @@ public static class DocumentFormatting
         foreach (var paragraph in body.Descendants<W.Paragraph>().Where(p => !p.Ancestors<W.Table>().Any()))
         {
             var fields = paragraph.Descendants<W.FieldCode>().Select(f => f.Text.Trim()).ToArray();
+            if (fields.Any(f => f.StartsWith("SEQ Таблица ", StringComparison.Ordinal) ||
+                f.StartsWith("SEQ ТаблицаAppendix", StringComparison.Ordinal)))
+                ObjectStyle(paragraph, "TableCaption");
             if (fields.Any(f => f.StartsWith("SEQ Рисунок ", StringComparison.Ordinal) ||
                 f.StartsWith("SEQ РисунокAppendix", StringComparison.Ordinal)))
             {
+                ObjectStyle(paragraph, "ImageCaption");
+                var previous = paragraph.PreviousSibling();
+                while (previous is W.BookmarkStart or W.BookmarkEnd) previous = previous.PreviousSibling();
+                if (previous is W.Paragraph image && image.Descendants<W.Drawing>().Any() &&
+                    !image.Descendants<W.Text>().Any(t => !string.IsNullOrWhiteSpace(t.Text)))
+                    ObjectStyle(image, "CaptionedFigure");
                 // Quarto forces a direct left alignment even when Image Caption
                 // is centered in the reference. Let that reference style apply.
                 // Quarto can emit more than one pPr block before Word repairs
@@ -92,6 +101,7 @@ public static class DocumentFormatting
                 }
             }
         }
+        SpaceAfterTables(body, package.MainDocumentPart?.StyleDefinitionsPart?.Styles);
         // Word requires a terminal paragraph after a table. An empty 14 pt
         // paragraph can create a page of its own when that table fills a page.
         // Compact only that structural paragraph, never author text.
@@ -112,6 +122,66 @@ public static class DocumentFormatting
             Set(properties, mark);
         }
         package.MainDocumentPart!.Document.Save();
+    }
+
+    private static void ObjectStyle(W.Paragraph paragraph, string style)
+    {
+        if (!paragraph.Elements<W.ParagraphProperties>().Any()) paragraph.PrependChild(new W.ParagraphProperties());
+        foreach (var properties in paragraph.Elements<W.ParagraphProperties>())
+        {
+            Set(properties, new W.ParagraphStyleId { Val = style });
+            properties.RemoveAllChildren<W.Justification>();
+            // Quarto's direct 10 pt caption gap otherwise overrides the reference.
+            if (properties.SpacingBetweenLines is { } spacing)
+            {
+                spacing.Before = null; spacing.BeforeLines = null; spacing.BeforeAutoSpacing = null;
+                spacing.After = null; spacing.AfterLines = null; spacing.AfterAutoSpacing = null;
+            }
+        }
+    }
+
+    private static void SpaceAfterTables(W.Body body, W.Styles? styles)
+    {
+        // Only main-body tables, never cells, title/assignment forms or empty
+        // separator paragraphs. Space belongs to the following real paragraph.
+        var styleMap = styles?.Elements<W.Style>().Where(s => s.StyleId?.Value is not null)
+            .ToDictionary(s => s.StyleId!.Value!, StringComparer.Ordinal) ?? [];
+        bool pending = false;
+        foreach (var element in body.ChildElements)
+        {
+            if (element is W.Table table)
+            {
+                pending = !table.Descendants<W.ParagraphStyleId>().Any(s =>
+                    s.Val?.Value?.StartsWith("Academic", StringComparison.Ordinal) == true);
+                continue;
+            }
+            if (element is not W.Paragraph paragraph) continue;
+            var id = paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value ?? "Normal";
+            if (id.StartsWith("Academic", StringComparison.Ordinal)) { pending = false; continue; }
+            if (!pending) continue;
+            // A section boundary must never carry spacing into another section.
+            if (paragraph.ParagraphProperties?.SectionProperties is not null) { pending = false; continue; }
+            if (!paragraph.Descendants<W.Text>().Any(t => !string.IsNullOrWhiteSpace(t.Text)) &&
+                !paragraph.Descendants<W.Drawing>().Any() && !paragraph.Descendants<M.OfficeMath>().Any() &&
+                !paragraph.Descendants<W.FieldCode>().Any()) continue;
+            pending = false;
+            var properties = paragraph.ParagraphProperties ??= new W.ParagraphProperties();
+            var spacings = new List<W.SpacingBetweenLines?> { properties.SpacingBetweenLines };
+            var visited = new HashSet<string>(StringComparer.Ordinal);
+            while (visited.Add(id) && styleMap.TryGetValue(id, out var style))
+            {
+                spacings.Add(style.StyleParagraphProperties?.SpacingBetweenLines);
+                id = style.BasedOn?.Val?.Value ?? "";
+            }
+            var effectiveBefore = spacings.FirstOrDefault(s => s?.Before is not null);
+            // Preserve line-based or automatic spacing rather than guessing its height.
+            if (spacings.FirstOrDefault(s => s?.BeforeLines is not null)?.BeforeLines is not null ||
+                spacings.FirstOrDefault(s => s?.BeforeAutoSpacing is not null)?.BeforeAutoSpacing?.Value == true) continue;
+            int.TryParse(effectiveBefore?.Before?.Value, out var before);
+            var spacing = properties.SpacingBetweenLines ?? new W.SpacingBetweenLines();
+            spacing.Before = Math.Max(before, ReferenceStyles.ObjectOuterSpacingPoints * 20).ToString(System.Globalization.CultureInfo.InvariantCulture);
+            Set(properties, spacing);
+        }
     }
 
     private static void CenterNumberedEquation(W.Body body, W.Paragraph paragraph)

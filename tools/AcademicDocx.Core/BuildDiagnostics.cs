@@ -27,6 +27,7 @@ public static class BuildDiagnostics
         while (reader.ReadLine() is { } raw)
         {
             var line = Ansi.Replace(raw, "");
+            if (line.StartsWith(BuildProgressUpdate.Prefix, StringComparison.Ordinal)) { Flush(); continue; }
             var trimmed = line.Trim();
             if (Diagnostic.IsMatch(trimmed))
             {

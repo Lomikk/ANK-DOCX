@@ -89,11 +89,11 @@ public sealed class ReferenceTests : IDisposable
         ReferenceStyles.Apply(Path.Combine(AppContext.BaseDirectory, "Fixtures", "reference-migration-input.docx"), output);
         var expected = RelevantXml(Path.Combine(AppContext.BaseDirectory, "Fixtures", "reference-legacy.docx"));
         var actual = RelevantXml(output);
-        // Later user requirements intentionally change these four styles.
+        // Later user requirements intentionally change these styles.
         XNamespace word = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
         foreach (var xml in new[] { expected["word/styles.xml"], actual["word/styles.xml"] })
             xml.Root!.Elements(word + "style").Where(style =>
-                new[] { "Formula", "Table", "Hyperlink", "FollowedHyperlink" }.Contains(
+                new[] { "Formula", "Table", "Hyperlink", "FollowedHyperlink", "Caption", "Image Caption", "Table Caption", "Figure", "Captioned Figure" }.Contains(
                     (string?)style.Element(word + "name")?.Attribute(word + "val"), StringComparer.OrdinalIgnoreCase)).Remove();
         foreach (var name in expected.Keys)
             Assert.Equal(Normalize(expected[name].Root!), Normalize(actual[name].Root!));
@@ -124,6 +124,14 @@ public sealed class ReferenceTests : IDisposable
         Assert.Empty(table.Elements<W.TableStyleProperties>().SelectMany(s => s.Descendants<W.TableCellBorders>()));
         foreach (var id in new[] { "Formula", "ImageCaption" })
             Assert.Equal(W.JustificationValues.Center, styles.Single(s => s.StyleId == id).StyleParagraphProperties!.Justification!.Val!.Value);
+        var tableCaption = styles.Single(s => s.StyleId == "TableCaption").StyleParagraphProperties!;
+        Assert.Equal("340", tableCaption.SpacingBetweenLines!.Before!.Value);
+        Assert.Equal("120", tableCaption.SpacingBetweenLines.After!.Value);
+        Assert.True(tableCaption.KeepNext!.Val!.Value);
+        var imageCaption = styles.Single(s => s.StyleId == "ImageCaption").StyleParagraphProperties!;
+        Assert.Equal("120", imageCaption.SpacingBetweenLines!.Before!.Value);
+        Assert.Equal("340", imageCaption.SpacingBetweenLines.After!.Value);
+        Assert.False(imageCaption.KeepNext!.Val!.Value);
     }
 
     private static string Normalize(XElement element)

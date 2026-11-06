@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using AcademicDocx.Core;
 using Word = Microsoft.Office.Interop.Word;
 
@@ -16,6 +17,7 @@ internal sealed class FinalizationReport
     public List<TableSplitReport> SplitTables { get; } = [];
     public WordLifecycle? Word { get; set; }
     public string? Error { get; set; }
+    public Dictionary<string, double> Seconds { get; } = [];
 }
 
 internal static class WordFields
@@ -133,14 +135,24 @@ internal static class WordFields
 
 internal static class WordFinalizer
 {
-    public static FinalizationReport Run(string path, PageLayoutOptions? layout = null, string? templates = null)
+    public static FinalizationReport Run(string path, PageLayoutOptions? layout = null, string? templates = null,
+        Action<BuildProgressUpdate>? progress = null)
     {
         path = Path.GetFullPath(path);
         var report = new FinalizationReport { File = path };
         var staged = Path.Combine(Path.GetDirectoryName(path)!, $".academic-{Guid.NewGuid():N}.docx");
         WordSession? session = null;
+        var timer = Stopwatch.StartNew();
+        var stage = "";
+        void Step(string next, string message)
+        {
+            if (stage.Length != 0) report.Seconds[stage] = timer.Elapsed.TotalSeconds;
+            stage = next; timer.Restart();
+            progress?.Invoke(new(next, message));
+        }
         try
         {
+            Step("prepare", "Подготовка оформления DOCX");
             report.SchemaErrorsBeforeWord = DocxInspection.Validate(path).ErrorCount;
             var original = DocxInspection.Read(path);
             File.Copy(path, staged);
@@ -149,32 +161,39 @@ internal static class WordFinalizer
             report.Annotation = FrontMatterFormatting.Apply(staged);
             AuthorSignatureFormatting.Apply(staged);
             DocumentPageLayout.Apply(staged, layout, templates);
+            Step("word-open", "Открытие документа в Word");
             session = new();
             var document = session.Open(staged);
+            Step("front-matter", "Компоновка сопроводительных листов");
             WordAppendices.MarkContents(session, layout);
             WordFrontMatter.Layout(session);
+            Step("fields", "Обновление оглавления и ссылок");
             WordFields.Refresh(session);
-            var parts = WordTables.Split(session);
+            Step("tables", "Размещение таблиц по страницам");
+            var parts = WordTables.Split(session, (completed, total, name) =>
+                progress?.Invoke(new("tables", name, completed, total)));
             var tables = session.Objects.Own(document.Tables);
+            var tableIndices = new Dictionary<int, int>();
+            if (parts.Count > 0)
+                for (var index = 1; index <= tables.Count; index++)
+                    tableIndices.Add(session.Objects.Own(session.Objects.Own(tables[index]).Range).Start, index);
             foreach (var table in parts)
             {
                 var indices = new List<int>();
                 foreach (var part in table.Parts)
                 {
-                    for (var index = 1; index <= tables.Count; index++)
-                    {
-                        if (session.Objects.Own(session.Objects.Own(tables[index]).Range).Start != part.Start) continue;
-                        indices.Add(index);
-                        break;
-                    }
+                    if (tableIndices.TryGetValue(part.Start, out var index)) indices.Add(index);
                 }
                 if (indices.Count != table.Parts.Count) throw new InvalidDataException("Cannot locate saved table fragments");
                 report.SplitTables.Add(new(table.Name, indices));
             }
+            Step("normalize", "Сохранение и нормализация Word");
             document.Save();
             session.Close();
             document = session.Open(staged);
+            Step("fields-final", "Обновление окончательных номеров страниц");
             WordFields.Refresh(session, rebuildToc: false);
+            Step("verify", "Проверка страниц и частей таблиц");
             foreach (var index in report.SplitTables.SelectMany(table => table.TableIndices))
             {
                 var part = session.Objects.Own(session.Objects.Own(document.Tables)[index]);
@@ -189,9 +208,11 @@ internal static class WordFinalizer
             WordAppendices.VerifyContents(session, layout);
             report.FrontMatter = WordFrontMatter.Verify(session, report.Annotation);
             report.PageLayout = WordPageLayout.Verify(session, layout, report.Pages.Value, report.FrontMatter?.AnnotationStart);
+            Step("save", "Сохранение итогового документа");
             document.Save();
             session.Close();
             session.RequireCleanExit();
+            Step("validation", "Проверка структуры DOCX");
             report.Validation = DocxInspection.Validate(staged);
             if (report.Validation.ErrorCount > 0) throw new InvalidDataException("Word output failed Open XML SDK validation");
             var saved = DocxInspection.Read(staged);
@@ -206,6 +227,7 @@ internal static class WordFinalizer
         {
             session?.Dispose();
             report.Word = session?.Lifecycle;
+            if (stage.Length != 0) report.Seconds[stage] = timer.Elapsed.TotalSeconds;
             if (report.Word?.CleanupErrors.Count > 0) report.Passed = false;
             try { if (File.Exists(staged)) File.Delete(staged); }
             catch (IOException error)

@@ -89,7 +89,8 @@ internal static class Program
                     CheckOptions(args, 2, "--report", "--layout-metadata", "--page-templates");
                     if (Option(args, "--report") is { } reportPath) RequireDistinctPaths(args[1], reportPath);
                     var layoutFile = Option(args, "--layout-metadata");
-                    var report = WordFinalizer.Run(args[1], layoutFile is null ? null : PageLayoutOptions.Read(layoutFile), Option(args, "--page-templates"));
+                    var report = WordFinalizer.Run(args[1], layoutFile is null ? null : PageLayoutOptions.Read(layoutFile), Option(args, "--page-templates"),
+                        Environment.GetEnvironmentVariable("ACADEMIC_BUILD_PROGRESS") == "1" ? update => Console.Error.WriteLine(update.ToLine()) : null);
                     if (Option(args, "--report") is { } output) JsonReport.Write(output, report);
                     Console.Write(JsonReport.Serialize(report));
                     return report.Passed ? 0 : 1;

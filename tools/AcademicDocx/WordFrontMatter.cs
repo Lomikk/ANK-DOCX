@@ -37,7 +37,7 @@ internal static class WordFrontMatter
             if (style == "AcademicAssignmentPageEnd") fixedAssignment = true;
             if (style == "AcademicFormSignature") firstSignature = paragraph;
             if (firstSignature is not null && style == "AcademicFormText") lastSignature = paragraph;
-            if (style == "AcademicAssignmentEnd") break;
+            if (style is "AcademicAssignmentEnd" or "AcademicBodyStart") break;
         }
         if (fixedAssignment && firstSignature is not null && lastSignature is not null)
         {

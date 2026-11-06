@@ -5,6 +5,22 @@ namespace AcademicDocx.Tests;
 public sealed class BuildDiagnosticsTests
 {
     [Fact]
+    public void WorkerProgressDoesNotBecomePartOfAWarningsDiagnostic()
+    {
+        var update = new BuildProgressUpdate("tables", "Размещение таблиц", 3, 12);
+        Assert.Equal(update, BuildProgressUpdate.Read(update.ToLine()));
+        Assert.Null(BuildProgressUpdate.Read("ANK-PROGRESS broken"));
+        Assert.Null(BuildProgressUpdate.Read("ANK-PROGRESS {\"Stage\":null}"));
+        var file = Path.GetTempFileName();
+        try
+        {
+            File.WriteAllText(file, "WARNING: real warning\n" + update.ToLine() + "\nother process output\n");
+            Assert.Equal("WARNING: real warning", Assert.Single(BuildDiagnostics.Read(file)));
+        }
+        finally { File.Delete(file); }
+    }
+
+    [Fact]
     public void InspectMapsOnlyUnambiguousCellsToOriginalIncludedFiles()
     {
         var root = Path.GetFullPath(Path.Combine(Path.GetTempPath(), "ank-inspect"));

@@ -12,6 +12,31 @@ public sealed class FrontMatterTests : IDisposable
     public FrontMatterTests() => Directory.CreateDirectory(folder);
 
     [Theory]
+    [InlineData("AcademicStudyTitle", "AcademicBodyStart")]
+    [InlineData("AcademicReferatTitle", "AcademicTitleEnd")]
+    public void ContentsUsesProfileSpecificPageNumbering(string titleStyle, string expectedBoundary)
+    {
+        var file = Path.Combine(folder, "contents.docx");
+        File.Copy(Path.Combine(AppContext.BaseDirectory, "reference.docx"), file);
+        using (var package = WordprocessingDocument.Open(file, true))
+        {
+            var body = package.MainDocumentPart!.Document.Body!;
+            var section = (W.SectionProperties)body.Elements<W.SectionProperties>().Single().CloneNode(true);
+            body.RemoveAllChildren();
+            W.Paragraph P(string id) => new(new W.ParagraphProperties(new W.ParagraphStyleId { Val = id }));
+            body.Append(P(titleStyle), P("AcademicTitleEnd"), P("AcademicContentsStart"), new W.Paragraph(new W.Run(new W.FieldCode(" TOC \\o \"1-3\" "))),
+                P("AcademicBodyStart"), new W.Paragraph(new W.Run(new W.Text("Body"))), section);
+        }
+        DocumentPageLayout.Apply(file);
+        using var result = WordprocessingDocument.Open(file, false);
+        var boundary = result.MainDocumentPart!.Document.Body!.Elements<W.Paragraph>()
+            .First(p => p.ParagraphProperties?.SectionProperties is not null);
+        Assert.Equal(expectedBoundary, boundary.ParagraphProperties!.ParagraphStyleId!.Val!.Value);
+        Assert.Equal(titleStyle == "AcademicReferatTitle" ? 4 : 2, result.MainDocumentPart.Document.Descendants<W.SectionProperties>().Count());
+        Assert.Empty(DocxInspection.Validate(file).Errors);
+    }
+
+    [Theory]
     [InlineData(true)]
     [InlineData(false)]
     public void FrontSectionHidesNumbersAndCountsSemanticObjects(bool coursework)
