@@ -114,6 +114,32 @@ public sealed class WordMigrationTests : IDisposable
     }
 
     [WordFact]
+    public void HorizontalMergedHeaderKeepsBodyRowsAndRepeatingHeader()
+    {
+        var input = Pagination(90);
+        using (var package = WordprocessingDocument.Open(input, true))
+        {
+            var table = package.MainDocumentPart!.Document.Body!.Elements<W.Table>().Single();
+            var cells = table.Elements<W.TableRow>().First().Elements<W.TableCell>().ToArray();
+            var widths = table.GetFirstChild<W.TableGrid>()!.Elements<W.GridColumn>().ToArray();
+            var properties = cells[0].TableCellProperties ??= new W.TableCellProperties();
+            properties.GridSpan = new W.GridSpan { Val = 2 };
+            properties.TableCellWidth = new W.TableCellWidth { Type = W.TableWidthUnitValues.Dxa,
+                Width = (int.Parse(widths[0].Width!.Value!) + int.Parse(widths[1].Width!.Value!)).ToString(System.Globalization.CultureInfo.InvariantCulture) };
+            cells[1].Remove();
+        }
+        var before = DocxInspection.Read(input).Tables.Single();
+        Finalize(input, expectedSuccess: true);
+        var after = DocxInspection.Read(input).Tables;
+        Assert.True(after.Count >= 2);
+        Assert.True(DocxInspection.SameRows(before.Rows,
+            after[0].Rows.Concat(after.Skip(1).SelectMany(table => table.Rows.Skip(table.HeaderRows)))));
+        Assert.All(after, table => Assert.Equal(before.HeaderShape, table.HeaderShape));
+        AssertCaptionOrder(input, Enumerable.Repeat("Продолжение таблицы 1", after.Count - 2)
+            .Append("Окончание таблицы 1").ToArray());
+    }
+
+    [WordFact]
     public void TableReflowsAfterPrecedingContentChanges()
     {
         var input = Pagination(90);
@@ -136,6 +162,8 @@ public sealed class WordMigrationTests : IDisposable
     [InlineData("vertical-body-merge", "vertically merged body cells")]
     [InlineData("nested-table", "Nested tables")]
     [InlineData("oversized-row", "pages")]
+    [InlineData("oversized-middle-row", "pages")]
+    [InlineData("oversized-last-row", "pages")]
     public void UnsupportedTablesFailWithoutReplacingInput(string kind, string message)
     {
         var input = Pagination(90);
@@ -157,7 +185,10 @@ public sealed class WordMigrationTests : IDisposable
                     rows[1].Elements<W.TableCell>().First().Append(new W.Paragraph());
                     break;
                 case "oversized-row":
-                    var cell = rows[1].Elements<W.TableCell>().First();
+                case "oversized-middle-row":
+                case "oversized-last-row":
+                    var rowIndex = kind == "oversized-middle-row" ? 25 : kind == "oversized-last-row" ? rows.Length - 1 : 1;
+                    var cell = rows[rowIndex].Elements<W.TableCell>().First();
                     for (var index = 0; index < 100; index++) cell.Append(new W.Paragraph(new W.Run(new W.Text("Very tall row"))));
                     break;
             }

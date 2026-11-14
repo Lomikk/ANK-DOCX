@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Xml.Linq;
 using Word = Microsoft.Office.Interop.Word;
 
@@ -8,6 +9,24 @@ internal sealed record SplitTable(string Name, IReadOnlyList<Word.Range> Parts);
 internal sealed record TableSplitReport(string Name, IReadOnlyList<int> TableIndices);
 internal sealed record TableTarget(string Name, Word.Paragraph Caption, Word.Table Table, int Index);
 
+internal sealed class TableProcessingTimings
+{
+    public Dictionary<string, double> Seconds { get; } = [];
+    public Dictionary<string, int> Calls { get; } = [];
+    public void Record(string operation, long started)
+    {
+        Seconds[operation] = Seconds.GetValueOrDefault(operation) + Stopwatch.GetElapsedTime(started).TotalSeconds;
+        Calls[operation] = Calls.GetValueOrDefault(operation) + 1;
+    }
+    public T Measure<T>(string operation, Func<T> action)
+    {
+        var started = Stopwatch.GetTimestamp();
+        try { return action(); }
+        finally { Record(operation, started); }
+    }
+    public void Measure(string operation, Action action) => Measure(operation, () => { action(); return true; });
+}
+
 internal static class WordTables
 {
     public static int Page(ComScope scope, Word.Range range)
@@ -17,8 +36,18 @@ internal static class WordTables
         return (int)point.Information[Word.WdInformation.wdActiveEndPageNumber];
     }
 
-    private static IReadOnlyList<WordRow> Rows(ComScope scope, Word.Table table)
+    private static IReadOnlyList<WordRow> Rows(ComScope scope, Word.Table table, bool verticalMerges)
     {
+        if (!verticalMerges)
+        {
+            var nativeRows = new List<WordRow>();
+            foreach (Word.Row item in scope.Own(table.Rows))
+            {
+                var range = scope.Own(scope.Own(item).Range);
+                nativeRows.Add(new(nativeRows.Count + 1, range.Start, range.End));
+            }
+            return nativeRows;
+        }
         // Word.Rows cannot enumerate vertically merged header cells. Cell
         // RowIndex and range positions still describe the body boundaries.
         var rows = new SortedDictionary<int, WordRow>();
@@ -34,10 +63,16 @@ internal static class WordTables
         return rows.Values.ToArray();
     }
 
-    public static IReadOnlyList<SplitTable> Split(WordSession session, Action<int, int, string>? progress = null)
+    public static IReadOnlyList<SplitTable> Split(WordSession session, Action<int, int, string>? progress = null,
+        TableProcessingTimings? timings = null)
     {
+        timings ??= new();
+        var preparing = Stopwatch.GetTimestamp();
         var document = session.Document!;
         var scope = session.Objects;
+        int MeasurePage(Word.Range range) => timings.Measure("page-query", () => Page(scope, range));
+        IReadOnlyList<WordRow> MeasureRows(Word.Table table, bool verticalMerges) =>
+            timings.Measure(verticalMerges ? "cell-boundaries" : "row-boundaries", () => Rows(scope, table, verticalMerges));
         var bookmarks = scope.Own(document.Bookmarks);
         var targets = new List<(string Name, int Start)>();
         foreach (Word.Bookmark item in bookmarks)
@@ -91,6 +126,7 @@ internal static class WordTables
             scope.Own(current.Rows).AllowBreakAcrossPages = 0;
             prepared.Add(new(target.Name, caption, current, indexed[cursor].Index));
         }
+        timings.Record("prepare", preparing);
         var result = new List<SplitTable>();
         var inserted = 0;
         var completed = 0;
@@ -104,16 +140,16 @@ internal static class WordTables
             var current = target.Table;
             var currentIndex = target.Index + inserted;
             var tableRange = scope.Own(current.Range);
-            if (needsPagination) { document.Repaginate(); needsPagination = false; }
+            if (needsPagination) { timings.Measure("paginate", () => document.Repaginate()); needsPagination = false; }
             var end = scope.Own(tableRange.Duplicate);
             end.End--;
             end.Collapse(Word.WdCollapseDirection.wdCollapseEnd);
-            if (Page(scope, tableRange) == Page(scope, end)) continue;
+            if (MeasurePage(tableRange) == MeasurePage(end)) continue;
 
             // WordOpenXML is the public Flat OPC range representation, not a
             // source-text parser. Only detect unsupported table structures.
             XNamespace w = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
-            var xml = XDocument.Parse(tableRange.WordOpenXML);
+            var xml = timings.Measure("table-xml", () => XDocument.Parse(tableRange.WordOpenXML));
             var xmlTable = xml.Descendants(w + "body").Elements(w + "tbl").First();
             var xmlRows = xmlTable.Elements(w + "tr").ToArray();
             var headerCount = xmlRows.TakeWhile(row =>
@@ -129,8 +165,9 @@ internal static class WordTables
                 if (row.Descendants(w + "tbl").Any())
                     throw new InvalidDataException($"Nested tables in long table {target.Name} are not supported");
             }
+            var verticalMerges = xmlRows.Take(headerCount).Any(row => row.Descendants(w + "vMerge").Any());
             current.AutoFitBehavior(Word.WdAutoFitBehavior.wdAutoFitFixed);
-            var firstBody = Rows(scope, current).FirstOrDefault(row => row.Index > headerCount)
+            var firstBody = MeasureRows(current, verticalMerges).FirstOrDefault(row => row.Index > headerCount)
                 ?? throw new InvalidDataException($"No body rows in long table {target.Name}");
             var headerRange = scope.Own(document.Range(scope.Own(current.Range).Start, firstBody.Start));
             var captions = new List<Word.Range>();
@@ -138,25 +175,35 @@ internal static class WordTables
             var done = false;
             for (var pass = 0; pass < xmlRows.Length; pass++)
             {
-                document.Repaginate();
-                var body = Rows(scope, current).Where(row => row.Index > headerCount).ToArray();
+                timings.Measure("paginate", () => document.Repaginate());
+                var body = MeasureRows(current, verticalMerges).Where(row => row.Index > headerCount).ToArray();
                 if (body.Length == 0) throw new InvalidDataException($"Empty fragment in {target.Name}");
-                var page = Page(scope, scope.Own(document.Range(body[0].Start, body[0].Start)));
-                WordRow? split = null;
-                foreach (var row in body)
+                var page = MeasurePage(scope.Own(document.Range(body[0].Start, body[0].Start)));
+                // Row starts are in document order, so their physical page numbers
+                // are monotone. Locate the first row on the next page without
+                // asking Word for two page numbers for every preceding row.
+                var low = 1;
+                var high = body.Length;
+                while (low < high)
                 {
-                    var startPage = Page(scope, scope.Own(document.Range(row.Start, row.Start)));
-                    var endPage = Page(scope, scope.Own(document.Range(row.End - 2, row.End - 2)));
-                    if (startPage != endPage)
-                        throw new InvalidDataException($"A body row in {target.Name} crosses pages; reduce the row or revise its grouping");
-                    if (startPage > page) { split = row; break; }
+                    var middle = low + (high - low) / 2;
+                    if (MeasurePage(scope.Own(document.Range(body[middle].Start, body[middle].Start))) > page) high = middle;
+                    else low = middle + 1;
                 }
+                // Only the last row that starts on this page can cross its end:
+                // preceding row ranges end before that row starts. An oversized
+                // first row is caught here too, including a one-row fragment.
+                var last = body[low - 1];
+                if (MeasurePage(scope.Own(document.Range(last.End - 2, last.End - 2))) != page)
+                    throw new InvalidDataException($"A body row in {target.Name} crosses pages; reduce the row or revise its grouping");
+                var split = low < body.Length ? body[low] : null;
                 if (split is null)
                 {
                     parts.Add(scope.Own(scope.Own(current.Range).Duplicate));
                     done = true;
                     break;
                 }
+                var editing = Stopwatch.GetTimestamp();
                 var tables = scope.Own(document.Tables);
                 scope.Own(document.Range(split.Start, split.Start)).Select();
                 scope.Own(session.Application.Selection).SplitTable();
@@ -188,6 +235,7 @@ internal static class WordTables
                 scope.Own(scope.Own(document.Fields).Add(at, Word.WdFieldType.wdFieldRef, target.Name + " \\h", false));
                 captions.Add(scope.Own(paragraphRange.Duplicate));
                 current = tail;
+                timings.Record("split-edit", editing);
             }
             if (!done) throw new InvalidDataException($"Table splitting did not converge for {target.Name}");
             if (captions.Count > 0)

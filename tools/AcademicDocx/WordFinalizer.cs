@@ -18,6 +18,7 @@ internal sealed class FinalizationReport
     public WordLifecycle? Word { get; set; }
     public string? Error { get; set; }
     public Dictionary<string, double> Seconds { get; } = [];
+    public TableProcessingTimings TableProcessing { get; } = new();
 }
 
 internal static class WordFields
@@ -171,7 +172,7 @@ internal static class WordFinalizer
             WordFields.Refresh(session);
             Step("tables", "Размещение таблиц по страницам");
             var parts = WordTables.Split(session, (completed, total, name) =>
-                progress?.Invoke(new("tables", name, completed, total)));
+                progress?.Invoke(new("tables", name, completed, total)), report.TableProcessing);
             var tables = session.Objects.Own(document.Tables);
             var tableIndices = new Dictionary<int, int>();
             if (parts.Count > 0)

@@ -27,6 +27,80 @@ local function title(h)
 end
 local function object_id(id) return id:match('^(%a+)%-') end
 
+-- Pandoc already parses line blocks and math. Validate their structure, not QMD/TeX.
+local function significant(inlines)
+  local result = {}
+  for _, inline in ipairs(inlines) do
+    if inline.t ~= 'Space' and inline.t ~= 'SoftBreak' then result[#result+1] = inline end
+  end
+  return result
+end
+local function display_formula(block)
+  if block.t ~= 'Para' and block.t ~= 'Plain' then return false end
+  for _, inline in ipairs(block.content) do
+    if inline.t == 'Math' and inline.mathtype == 'DisplayMath' then return true end
+  end
+  return false
+end
+local function definition_line(inlines)
+  local parts, has_math = significant(inlines), false
+  for i, part in ipairs(parts) do
+    if part.t == 'Math' then
+      has_math = true
+      local following = parts[i+1]
+      if following and following.t == 'Str' and
+        (following.text == '—' or following.text == '–' or following.text == '-') then return true end
+    end
+  end
+  local first = parts[1] and pandoc.text.lower(text(parts[1])):gsub('[:,]$', '') or ''
+  return has_math and first == 'где'
+end
+local function unstyled_definitions(block)
+  if block.t == 'Para' or block.t == 'Plain' then return definition_line(block.content) end
+  if block.t == 'LineBlock' then
+    for _, line in ipairs(block.content) do if definition_line(line) then return true end end
+  end
+  return false
+end
+local function validate_definitions(div, id)
+  local function invalid(line, message)
+    fail('Пояснения формулы '..(id or '(без метки)')..(line and ', строка '..line or '')..': '..message)
+  end
+  if #div.content ~= 1 or div.content[1].t ~= 'LineBlock' or #div.content[1].content == 0 then
+    invalid(nil, 'в Formula Definitions нужен один Markdown line block: каждое обозначение с новой строки «|».')
+  end
+  local lines = div.content[1].content
+  for n, line in ipairs(lines) do
+    local parts = significant(line)
+    local start = 1
+    if n == 1 then
+      if not parts[1] or parts[1].t ~= 'Str' or parts[1].text ~= 'где' then
+        invalid(n, 'начните первую строку с «| где $v$ — ...;», без двоеточия после «где».')
+      end
+      start = 2
+    end
+    if not parts[start] or parts[start].t ~= 'Math' or parts[start].mathtype ~= 'InlineMath' or
+      not parts[start+1] or parts[start+1].t ~= 'Str' or parts[start+1].text ~= '—' then
+      invalid(n, 'нужно одно обозначение и тире: «| $s$ — пояснение;». Не объединяйте «$a$ и $b$ — ...».')
+    end
+    local description = pandoc.Inlines({})
+    for i = start+2, #parts do
+      local part = parts[i]
+      if part.t == 'Math' and parts[i+1] and parts[i+1].t == 'Str' and parts[i+1].text == '—' then
+        invalid(n, 'перенесите следующее обозначение на отдельную строку «|».')
+      end
+      description:insert(part)
+    end
+    local value = text(description)
+    local ending = n == #lines and '.' or ';'
+    if value:sub(-1) ~= ending then invalid(n, 'строка должна заканчиваться '..(ending == '.' and 'точкой.' or 'точкой с запятой.')) end
+    if not value:sub(1, -2):match('%S') then invalid(n, 'добавьте расшифровку обозначения.') end
+    if value:sub(1, -2):find(';', 1, true) then
+      invalid(n, 'точка с запятой разделяет строки пояснений; каждое обозначение пишите с новой строки «|».')
+    end
+  end
+end
+
 local floats = {}
 return {{FloatRefTarget = function(float) floats[float.identifier] = true end}, {Pandoc = function(doc)
   -- Some writer options are removed from document metadata before Lua runs.
@@ -74,6 +148,18 @@ return {{FloatRefTarget = function(float) floats[float.identifier] = true end}, 
   local ids, citations, top, issues = floats, {}, {}, {}
   local function identify(e) if e.identifier and e.identifier ~= '' then ids[e.identifier] = true end end
   doc:walk({
+    Blocks = function(blocks)
+      for i, block in ipairs(blocks) do
+        local previous = blocks[i-1]
+        local after_formula = previous and display_formula(previous)
+        local id = after_formula and text(previous):match('{#(eq%-[%w_-]+)}$') or nil
+        if block.t == 'Div' and block.attributes['custom-style'] == 'Formula Definitions' then
+          validate_definitions(block, id)
+        elseif after_formula and unstyled_definitions(block) then
+          fail('Пояснения формулы '..(id or '(без метки)')..': вместо обычного абзаца используйте Div custom-style="Formula Definitions" и строки «| где $v$ — ...;», «| $s$ — ... .». Каждое обозначение — с новой строки.')
+        end
+      end
+    end,
     Header = function(h)
       identify(h)
       if reserved[title(h)] then issues[#issues+1] = 'Раздел «'..text(h)..'» создаёт сборщик. Удалите его из QMD; источники — в references.bib, ссылки — [@ключ].' end

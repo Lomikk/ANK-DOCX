@@ -17,6 +17,88 @@ public sealed class QuartoFactAttribute : FactAttribute
 public sealed class AuthoringTests
 {
     [QuartoFact]
+    public void FormulaDefinitionsRequireSeparateLinesAndPreserveWordLineBreaks()
+    {
+        var root = Repository();
+        var folder = Path.Combine(root, ".tools", "formula-definitions-tests-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(folder);
+        Copy(Path.Combine(root, "quarto", "_extensions"), Path.Combine(folder, "_extensions"));
+        File.WriteAllText(Path.Combine(folder, "references.bib"), "");
+        const string formula = "$$v=\\frac{s}{t},$$ {#eq-speed}\n\n";
+        const string definitions = """
+            ::: {custom-style="Formula Definitions"}
+            | где $v$ — скорость, $м/с$;
+            | $s$ — расстояние, м;
+            | $t$ — время, с.
+            :::
+            """;
+        var valid = Render(folder, formula + definitions);
+        Assert.True(valid.Code == 0, valid.Output);
+        using (var doc = WordprocessingDocument.Open(Path.Combine(folder, "index.docx"), false))
+        {
+            var style = Assert.Single(doc.MainDocumentPart!.StyleDefinitionsPart!.Styles!.Elements<W.Style>(),
+                s => s.StyleName?.Val?.Value == "Formula Definitions");
+            var paragraph = Assert.Single(doc.MainDocumentPart.Document.Body!.Descendants<W.Paragraph>(),
+                p => p.ParagraphProperties?.ParagraphStyleId?.Val?.Value == style.StyleId?.Value);
+            Assert.Equal(2, paragraph.Descendants<W.Break>().Count());
+            Assert.Equal(4, paragraph.Descendants<DocumentFormat.OpenXml.Math.OfficeMath>().Count());
+            Assert.StartsWith("где", paragraph.InnerText, StringComparison.Ordinal);
+        }
+        foreach (var (content, error) in new[]
+        {
+            (formula + "Здесь $V$ — выручка; $B$ — активы.", "вместо обычного абзаца"),
+            (formula + "где $v$ — скорость;\n$s$ — расстояние.", "вместо обычного абзаца"),
+            (formula + "| где $v$ — скорость;\n| $s$ — расстояние.", "вместо обычного абзаца"),
+            (formula + definitions.Replace("| где", "где").Replace("| $", "$"), "Markdown line block"),
+            (formula + definitions.Replace("где $v$", "где: $v$"), "без двоеточия"),
+            (formula + definitions.Replace("где $v$", "Здесь $v$"), "без двоеточия"),
+            (formula + definitions.Replace("| $s$ — расстояние, м;", "| $s$ и $d$ — расстояния, м;"), "Не объединяйте"),
+            (formula + definitions.Replace("| $s$ — расстояние, м;\n| $t$", "| $s$ — расстояние, м; $t$"), "отдельную строку"),
+            (formula + definitions.Replace("| $s$ — расстояние, м;\n| $t$", "| $s$ — расстояние, м, $t$"), "отдельную строку"),
+            (formula + definitions.Replace("| $s$ — расстояние, м;", "| $s$ — расстояние, м."), "точкой с запятой"),
+            (formula + definitions.Replace("время, с.", "время, с;"), "точкой"),
+            (formula + definitions.Replace("расстояние, м;", ";"), "расшифровку"),
+            (formula + definitions.Replace("| $s$ —", "| где $s$ —"), "одно обозначение"),
+            (formula + definitions.Replace("| $s$ —", "| $s$ -"), "одно обозначение"),
+            (definitions.Replace("| где $v$ — скорость, $м/с$;", "| где $v$ и $u$ — скорости;"), "Не объединяйте")
+        })
+        {
+            var rejected = Render(folder, content);
+            Assert.True(rejected.Code != 0, "Unexpected success:\n" + content);
+            Assert.Contains(error, rejected.Output);
+            if (content.StartsWith(formula, StringComparison.Ordinal)) Assert.Contains("eq-speed", rejected.Output);
+            var diagnosticLog = Path.Combine(folder, "diagnostic.log");
+            File.WriteAllText(diagnosticLog, rejected.Output);
+            var shortLog = string.Join('\n', AcademicDocx.Core.BuildDiagnostics.Read(diagnosticLog));
+            Assert.Contains(error, shortLog);
+            Assert.DoesNotContain("stack traceback:", shortLog);
+        }
+        foreach (var body in new[]
+        {
+            // Previously defined symbols do not require a repeated legend.
+            "$v$ — скорость, $s$ — путь, $t$ — время.\n\n" + formula,
+            // A following paragraph with math is not necessarily a definition.
+            formula + "Здесь рассматривается случай $t>0$.",
+            formula + "Для расчёта принято $t=10$.",
+            // Source examples and ordinary line blocks are not formula legends.
+            "```markdown\n" + formula + "Здесь $v$ — скорость.\n```",
+            formula + "| Первая строка\n| Вторая строка",
+            // Nested author content is validated through the standard Blocks walk.
+            "::: {.example}\n\n" + formula + definitions + "\n\n:::"
+        })
+        {
+            valid = Render(folder, body);
+            Assert.True(valid.Code == 0, valid.Output);
+        }
+        File.WriteAllText(Path.Combine(folder, "_formula.qmd"), formula);
+        var included = Render(folder, "{{< include _formula.qmd >}}\n\n" + definitions);
+        Assert.True(included.Code == 0, included.Output);
+        var includedError = Render(folder, "{{< include _formula.qmd >}}\n\nЗдесь $v$ — скорость.");
+        Assert.NotEqual(0, includedError.Code);
+        Assert.Contains("Пояснения формулы eq-speed", includedError.Output);
+    }
+
+    [QuartoFact]
     public void StandardQuartoAuthoringGeneratesBibliographyAndRejectsManualReplacements()
     {
         var root = Repository();
