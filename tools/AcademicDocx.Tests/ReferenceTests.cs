@@ -27,7 +27,11 @@ public sealed class ReferenceTests : IDisposable
         {
             var style = styles.Elements<W.Style>().Single(s => s.StyleId == $"Heading{level}");
             Assert.Equal("28", style.StyleRunProperties!.GetFirstChild<W.FontSize>()!.Val!.Value);
-            Assert.Equal("397", style.StyleParagraphProperties!.Indentation!.FirstLine!.Value);
+            Assert.Equal(level == 1 ? "0" : "397", style.StyleParagraphProperties!.Indentation!.FirstLine!.Value);
+            Assert.Equal(level == 1, style.StyleParagraphProperties.PageBreakBefore!.Val!.Value);
+            Assert.Equal(level == 1 ? W.JustificationValues.Center : W.JustificationValues.Left, style.StyleParagraphProperties.Justification!.Val!.Value);
+            Assert.Equal(level <= 2 ? "360" : "140", style.StyleParagraphProperties.SpacingBetweenLines!.Before!.Value);
+            Assert.Equal(level <= 2 ? "360" : "140", style.StyleParagraphProperties.SpacingBetweenLines.After!.Value);
             Assert.Equal(level - 1, style.StyleParagraphProperties.OutlineLevel!.Val!.Value);
             var properties = style.StyleParagraphProperties.NumberingProperties!;
             var instance = main.NumberingDefinitionsPart!.Numbering!.Elements<W.NumberingInstance>()
@@ -93,7 +97,7 @@ public sealed class ReferenceTests : IDisposable
         XNamespace word = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
         foreach (var xml in new[] { expected["word/styles.xml"], actual["word/styles.xml"] })
             xml.Root!.Elements(word + "style").Where(style =>
-                new[] { "Formula", "Table", "Hyperlink", "FollowedHyperlink", "Caption", "Image Caption", "Table Caption", "Figure", "Captioned Figure" }.Contains(
+                new[] { "Heading 1", "Heading 2", "Formula", "Table", "Hyperlink", "FollowedHyperlink", "Caption", "Image Caption", "Table Caption", "Figure", "Captioned Figure" }.Contains(
                     (string?)style.Element(word + "name")?.Attribute(word + "val"), StringComparer.OrdinalIgnoreCase)).Remove();
         foreach (var name in expected.Keys)
             Assert.Equal(Normalize(expected[name].Root!), Normalize(actual[name].Root!));

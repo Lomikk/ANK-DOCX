@@ -108,10 +108,11 @@ public static class ReferenceStyles
         Style("Formula Definitions", W.JustificationValues.Left, indent: 0, keepLines: true);
         for (var level = 1; level <= 4; level++)
         {
-            var heading = Style($"Heading {level}", W.JustificationValues.Left,
-                before: level <= 2 ? 14 : 7, after: level == 1 ? 14 : 7,
+            var heading = Style($"Heading {level}", level == 1 ? W.JustificationValues.Center : W.JustificationValues.Left,
+                indent: level == 1 ? 0 : 7,
+                before: level <= 2 ? 18 : 7, after: level <= 2 ? 18 : 7,
                 bold: level <= 2, italic: level >= 3, caps: level == 1,
-                keepNext: true, keepLines: true, outline: level - 1);
+                keepNext: true, keepLines: true, newPage: level == 1, outline: level - 1);
             Set(heading, new W.NextParagraphStyle { Val = "BodyText" });
             Set(heading.StyleParagraphProperties!, new W.SuppressAutoHyphens { Val = true });
         }
